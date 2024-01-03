@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap");
+.headingOne {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.textContent {
+  color: #272727;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 165.5%;
+  margin-top: 24px;
+}
+.figureHeading {
+  color: #272727;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+.boxContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+.flexContainer {
+  display: flex;
+  align-items: self-end;
+  column-gap: 119px;
+  flex-wrap: nowrap;
+}
+.flexContainerTwo {
+  display: flex;
+  align-items: self-end;
+  justify-content: space-between;
+  column-gap: 47px;
+  flex-wrap: nowrap;
+}
+.first_item {
+}
+.second_item {
+}
+.tagYear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.textInner {
+  color: #222;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 125%;
+}
+.profitloss {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+  margin-top: 10px;
+}
+.explanation {
+  color: #272727;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 165.5%;
+  margin-top: 16px;
+}
+.figure {
+  margin-bottom: 52px;
+  color: #272727;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 24px;
+}

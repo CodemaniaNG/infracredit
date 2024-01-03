@@ -15,7 +15,7 @@ const SidenavData = ({ color, color2, color3, color4, color5 }: { color: any; co
     {
       svg: <DashboardIcon color={color} />,
       title: "Dashboard",
-      link: "/admin/Dashboard",
+      link: "/admin/dashboard",
     },
     // {
     //   svg: <Draftssvg color={color2} />,
@@ -30,7 +30,7 @@ const SidenavData = ({ color, color2, color3, color4, color5 }: { color: any; co
     {
       svg: <Taskssvg color={color4} />,
       title: "Tasks",
-      link: "/admin/Tasks",
+      link: "/admin/tasks",
     },
     // role === "Admin"
     //   ? {

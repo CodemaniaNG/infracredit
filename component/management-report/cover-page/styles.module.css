@@ -1,0 +1,28 @@
+.coveContainerbg {
+  width: 100%;
+  height: 1230px;
+  position: relative;
+  background-color: #172a54;
+}
+.parentSvg {
+  position: absolute;
+  width: 100%;
+  bottom: -2px;
+}
+.parentSvgTwo {
+  position: absolute;
+  width: 100%;
+  bottom: -2px;
+  right: 0;
+}
+.logoContainer{
+  position: absolute;
+  right: 20;
+  top: 96px;
+  right: 85px;
+}
+.iconTextManagement{
+  position: absolute;
+  top: 296px;
+  left: 89px;
+}

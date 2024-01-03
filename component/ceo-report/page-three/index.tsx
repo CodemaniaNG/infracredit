@@ -158,8 +158,8 @@ const CeoPageThree = ({ edit, popupAction1, popupAction2, popupAction3, popup, p
           <input
             type="text"
             value={data.title1}
-            onChange={(e) => {
-              setData({ ...data, title1: e.target.value });
+            onChange={e => {
+              setData({...data, title1: e.target.value})
             }}
           />
         ) : (
@@ -170,8 +170,8 @@ const CeoPageThree = ({ edit, popupAction1, popupAction2, popupAction3, popup, p
       {edit ? (
         <textarea
           value={data.text1}
-          onChange={(e) => {
-            setData({ ...data, text1: e.target.value });
+          onChange={e => {
+            setData({...data, text1: e.target.value})
           }}
         />
       ) : (
@@ -183,15 +183,25 @@ const CeoPageThree = ({ edit, popupAction1, popupAction2, popupAction3, popup, p
             <input
               type="text"
               value={data.title2}
-              onChange={(e) => {
-                setData({ ...data, title2: e.target.value });
+              onChange={e => {
+                setData({...data, title2: e.target.value})
               }}
             />
           ) : (
             <h2>{data.title2} *</h2>
           )}
-          <Doughnut data={chartData.data} options={chartData.options} onClick={edit ? popupAction1 : null} />
-          {popup && popup1 ? <ChartPopup chartDatas={chartData} setChartDatas={setChartData} popupClose={popupClose1} /> : null}
+          <Doughnut
+            data={chartData.data}
+            options={chartData.options}
+            onClick={edit ? popupAction1 : null}
+          />
+          {popup && popup1 ? (
+            <ChartPopup
+              chartDatas={chartData}
+              setChartDatas={setChartData}
+              popupClose={popupClose1}
+            />
+          ) : null}
         </div>
         <div className={styles.table}>
           <h2>H1 2022 Target</h2>
@@ -246,32 +256,52 @@ const CeoPageThree = ({ edit, popupAction1, popupAction2, popupAction3, popup, p
       {edit ? (
         <textarea
           value={data.text2}
-          onChange={(e) => {
-            setData({ ...data, text2: e.target.value });
+          onChange={e => {
+            setData({...data, text2: e.target.value})
           }}
         />
       ) : (
         <p>{data.text2}</p>
       )}
-      {popup && popup2 ? <ChartPopup chartDatas={chartData2} setChartDatas={setChartData2} popupClose={popupClose2} /> : null}
+      {popup && popup2 ? null : null}
       <div className={styles.targetChart}>
         <div>
           <h2>H1 2022 Target</h2>
-          <Doughnut data={chartData2.data} options={chartData2.options} onClick={edit ? popupAction2 : null} />
+          <Doughnut
+            data={chartData2.data}
+            options={chartData2.options}
+            onClick={edit ? popupAction2 : null}
+          />
         </div>
         <div>
           <h2>H1 2022 Target</h2>
-          <Doughnut data={chartData3.data} options={chartData3.options} onClick={edit ? popupAction3 : null} />
+          <Doughnut
+            data={chartData3.data}
+            options={chartData3.options}
+            onClick={edit ? popupAction3 : null}
+          />
         </div>
       </div>
-      {popup && popup3 ? <ChartPopup chartDatas={chartData3} setChartDatas={setChartData3} popupClose={popupClose3} /> : null}
+      {popup && popup3 ? (
+        <ChartPopup
+          chartDatas={chartData3}
+          setChartDatas={setChartData3}
+          popupClose={popupClose3}
+        />
+      ) : null}
       <p>
-        * NB: All pipeline figures and charts exclude our existing guarantee portfolio of Viathan, North South Power, GEL Utility, TSL, LFZC, GPC and PAT. We have also excluded
-        five mandated transactions which no longer qualify for the pipeline due to prolonged inactivity.
+        * NB: All pipeline figures and charts exclude our existing guarantee
+        portfolio of Viathan, North South Power, GEL Utility, TSL, LFZC, GPC and
+        PAT. We have also excluded five mandated transactions which no longer
+        qualify for the pipeline due to prolonged inactivity.
       </p>
-      <p> * Detailed breakdown of categorisation and transactions are in the Management Report</p>
+      <p>
+        {" "}
+        * Detailed breakdown of categorisation and transactions are in the
+        Management Report
+      </p>
     </div>
-  );
+  )
 };
 
 export default CeoPageThree;

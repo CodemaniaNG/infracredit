@@ -1,0 +1,17 @@
+.intro {
+  color: #272727;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 165.5%;
+  margin-bottom: 24px;
+}
+.figure {
+  color: #272727;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

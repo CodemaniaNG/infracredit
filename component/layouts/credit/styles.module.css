@@ -14,7 +14,10 @@
   line-height: normal;
   border-bottom: 1px solid #000;
 }
-
+.credit-transaction {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
 .renuBody > input {
   width: 100%;
   box-sizing: border-box;

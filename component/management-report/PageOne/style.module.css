@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap");
+.headingOne {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.subHeading {
+  color: #227cbf;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 24px;
+}
+.boxContainer {
+  background: #f5f5f5;
+  padding: 8px 12px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.tagYear {
+  color: #5e5e5e;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+}

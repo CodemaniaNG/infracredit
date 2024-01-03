@@ -19,10 +19,10 @@ const Sidenav = () => {
       <div className={styles.sidebarLink}>
         <p>Menu</p>
         {SidenavData({
-          color: pathName === "/admin/Dashboard" ? "#3F7ABA" : "#545764",
-          color2: pathName === "/admin/Draft" ? "#3F7ABA" : "#545764",
-          color3: pathName === "/admin/Deleted" ? "#3F7ABA" : "#545764",
-          color4: pathName === "/admin/Tasks" ? true : false,
+          color: pathName === "/admin/dashboard" ? "#3F7ABA" : "#545764",
+          color2: pathName === "/admin/draft" ? "#3F7ABA" : "#545764",
+          color3: pathName === "/admin/deleted" ? "#3F7ABA" : "#545764",
+          color4: pathName === "admin/tasks" ? true : false,
           color5: pathName === "/admin" ? true : false,
         })?.map((item, index) => {
           return item !== null ? (

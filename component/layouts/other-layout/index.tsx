@@ -12,8 +12,11 @@ const OtherLayout = ({ children }: { children: ReactNode }) => {
         {children}
         <div className={styles.otherFooter}>
           <p>
-            <span>Infrastructure Credit Guarantee Company Limited</span> RC 1368639 1 Adeyemo Alakija Street, Victoria Island, Lagos Chairman: Uche Orji, Chief Executive Officer:
-            Chinua Azubike, Directors: Chris Vermont, Stella Ojekwe-Onyejeli, Banji Fehintola, Sanjeev Gupta, Gilles Vaes, Claire Jarratt, Vivien Shobo, Hamda Ambah.
+            <b>Infrastructure Credit Guarantee Company Limited RC 1368639</b> 1
+            Adeyemo Alakija Street, Victoria Island, Lagos Chairman: Uche Orji,
+            Chief Executive Officer: Chinua Azubike, Directors: Chris Vermont,
+            Stella Ojekwe-Onyejeli, Banji Fehintola, Sanjeev Gupta, Gilles Vaes,
+            Claire Jarratt, Vivien Shobo, Hamda Ambah.
           </p>
           <h5>www.infracredit.ng</h5>
           <p>info@infracredit.ng</p>
@@ -21,7 +24,7 @@ const OtherLayout = ({ children }: { children: ReactNode }) => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default OtherLayout;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 import HeaderLine from "@/component/header-line";
 
-const CeoPageTen = ({ edit }: { edit: boolean }) => {
+const  CeoPageTen = ({ edit }: { edit: boolean }) => {
   const [data, setData] = useState({
     title1: "Financial Performance as at 31 December 2021",
     title2: "Statement of Profit or Loss",

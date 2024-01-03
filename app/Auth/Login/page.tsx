@@ -85,9 +85,8 @@ const Login = () => {
                       setLoading(false);
                       const split = username.split("@");
                       if (split[1] === "infracredit.ng") {
-                        // localStorage.setItem("role", role);
                         dispatch(setRole(role));
-                        router.push("/admin/Dashboard");
+                        router.push("/admin/dashboard");
                       } else {
                         toast.error("Email must be an Infracredit email");
                       }
