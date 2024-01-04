@@ -12,7 +12,7 @@
 }
 
 .header h1 {
-  color: #227cbf;
+  color: #000;
   font-size: 18px;
   font-style: normal;
   font-weight: 800;
@@ -118,9 +118,7 @@
 }
 
 .profitSingle p:nth-child(2),
-.profitSingle p:nth-child(3){
-  border-right: 1px solid #bcbcbc;
-}
+.profitSingle p:nth-child(3),
 .profitSingle p:nth-child(4),
 .profitSingle p:nth-child(5),
 .profitSingle p:nth-child(6),

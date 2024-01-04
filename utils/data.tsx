@@ -319,6 +319,185 @@ export const risk = [
 ]
 
 export const managementData = {
+  pageFive: {
+    heading: {
+      title: "Statement of Financial Position - comparison with prior year",
+      text1: "",
+      text2: "December 2021",
+      text3: "December 2020",
+      text4: "YOY Growth",
+    },
+    body: [
+      {
+        title: "Assets",
+        first: "",
+        second: "",
+        growth: "",
+      },
+      {
+        title: "Cash and cash equivalents",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Investment securities",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Guarantee fee receivable",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Other assets",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Property and equipment",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Right of use asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Intangible assets",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Cash and cash equivalents",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Total assets",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "",
+        first: "",
+        second: "",
+        growth: "",
+      },
+      {
+        title: "Liabilities",
+        first: "",
+        second: "",
+        growth: "",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Total liabilities",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "",
+        first: "",
+        second: "",
+        growth: "",
+      },
+      {
+        title: "Equity",
+        first: "",
+        second: "",
+        growth: "",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Deferred tax asset",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Total equity",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+      {
+        title: "Equity and liabilities",
+        first: "1,760",
+        second: "1,760",
+        growth: "2.4%",
+      },
+    ],
+  },
   pageFour: {
     heading: {
       title1:

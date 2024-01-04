@@ -1,4 +1,19 @@
 export type ManagementData = {
+  pageFive: {
+    heading: {
+      title: string
+      text1: string
+      text2: string
+      text3: string
+      text4: string
+    }
+    body: Array<{
+      title: string
+      first: string
+      second: string
+      growth: string
+    }>
+  }
   pageFour: {
     heading: {
       title1: string
