@@ -1,19 +1,27 @@
 .managementLayout {
-  height: 1215px;
-  background: #fff;
   width: 100%;
+  background: #fff;
+  padding-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding-left: 32px;
   padding-right: 32px;
-  box-sizing: border-box;
-  position: relative;
+}
+.managementLayoutEdit {
+  width: 100%;
+  background: #fff;
   padding-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 .rulers {
   height: 2px;
   background: #003f6e;
-  position: absolute;
-  bottom: 80px;
-  width: 93%;
+  width: 100%;
   box-sizing: border-box;
   left: 32px;
   right: 32px;
@@ -22,15 +30,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
-  bottom: 24px;
-  left: 32px;
-  right: 32px;
+  margin-top: 16px;
 }
 
 .managementReport {
   color: #47b65c;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -38,9 +43,12 @@
 }
 .date {
   color: #227cbf;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+.footer{
+  padding-bottom: 24px;
 }

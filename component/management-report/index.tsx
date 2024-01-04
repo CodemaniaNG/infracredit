@@ -12,27 +12,27 @@ const ManagementReport = ({
   setManagement,
 }: {
   edit: boolean
-  management: ManagementData
-  setManagement: Dispatch<SetStateAction<ManagementData>>
+  management: any
+  setManagement: Dispatch<SetStateAction<any>>
 }) => {
   return (
     <>
       <CoverPage />
-      <ManagementLayout>
+      <ManagementLayout edit={edit}>
         <PageOne
           edit={edit}
           management={management}
           setManagement={setManagement}
         />
       </ManagementLayout>
-      <ManagementLayout>
+      <ManagementLayout edit={edit}>
         <PageTwo
           edit={edit}
           management={management}
           setManagement={setManagement}
         />
       </ManagementLayout>
-      <ManagementLayout>
+      <ManagementLayout edit={edit}>
         <PageThree
           edit={edit}
           management={management}

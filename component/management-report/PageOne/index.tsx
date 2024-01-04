@@ -96,7 +96,7 @@ const PageOne = ({
       )}
       <div>
         {edit ? (
-          <div className={styles.boxContainer}>
+          <div className={styles.boxContainer} style={{marginBottom: "275px"}}>
             {management.pageOne.dataPackTwo.map((value, index) => {
               return (
                 <textarea
@@ -120,7 +120,7 @@ const PageOne = ({
             })}
           </div>
         ) : (
-          <div className={styles.boxContainer}>
+          <div className={styles.boxContainer} style={{marginBottom: "275px"}}>
             {management.pageOne.dataPackTwo.map(value => {
               return <div key={value.id}>{value.content}</div>
             })}
