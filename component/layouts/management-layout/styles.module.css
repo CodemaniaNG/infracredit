@@ -1,21 +1,23 @@
 .managementLayout {
-  width: 100%;
   background: #fff;
   padding-top: 48px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding-left: 32px;
+  width: 873px;
   padding-right: 32px;
+  box-sizing: border-box;
 }
 .managementLayoutEdit {
-  width: 100%;
   background: #fff;
+   box-sizing: border-box;
   padding-top: 48px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding-left: 32px;
+  width: 873px;
   padding-right: 32px;
 }
 .rulers {

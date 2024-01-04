@@ -5,6 +5,7 @@ import {ManagementData} from "@/app/types/management"
 import PageOne from "./PageOne"
 import PageTwo from "./PageTwo"
 import PageThree from "./PageThree"
+import PageFour from "./PageFour"
 
 const ManagementReport = ({
   edit,
@@ -34,6 +35,13 @@ const ManagementReport = ({
       </ManagementLayout>
       <ManagementLayout edit={edit}>
         <PageThree
+          edit={edit}
+          management={management}
+          setManagement={setManagement}
+        />
+      </ManagementLayout>
+      <ManagementLayout edit={edit}>
+        <PageFour
           edit={edit}
           management={management}
           setManagement={setManagement}
