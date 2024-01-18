@@ -319,6 +319,311 @@ export const risk = [
 ]
 
 export const managementData = {
+  pageEight: {
+    title: "Analysis of key financial ratios.",
+    subTitle:
+      "Based on Fitch rating methodology, one of the key rating drivers for InfraCredit is strong capitalization and leverage.",
+    body: {
+      firstItem: {
+        title: "Financial leverage (debt to capital ratio)",
+        content:
+          "Actual debt to capital ratio was 44.7% as against budget of 50.3% for the period ended 31st December 2021. The decrease is on account of additionalretained earnings during the period and the shortfall in budgeted capital.",
+      },
+      secondItem: {
+        title: "Net par-to-capital ratio (equity capital leverage ratio)",
+        content:
+          "Net par-to-capital ratio (i.e. excluding callable capital and subordinated debt capital) was 1.8 times compared to budget of 2.89 times as at 31st December 2021. . The decrease is attributable to the shortfall in actual guarantees issued YTD compared to budget.",
+      },
+      thirdItem: {
+        title: "Pre-tax return on average equity (ROE)",
+        content:
+          "Actual return on average equity (excluding exchange gains) was 5% as against budget of 5.2% for the year ended 31st December 2021. Return on average equity (inclusive of exchanging gains) as at 31st December 2021 was 10%.",
+      },
+      fourthItem: {
+        title: "Pre-tax return on average assets (ROA)",
+        content:
+          "Actual return on average assets (excluding exchange gains) was 2.5% as against budget of 3% for the year ended 31st December 2021. Return on average assets (inclusive of exchanging gains) as at 31st December 2021 was 5%.",
+      },
+      fifthItem: {
+        title: "Pre-tax return on average capital employed (ROCE)",
+        content:
+          "Actual return on average capital employed (excluding exchange gains) was 5.6% as against budget of 6% for the year ended 31st December 2021. Return on average capital employed (inclusive of exchanging gains) as at 31st December 2021 was 8.3%.",
+      },
+    },
+  },
+  pageSeven: {
+    title: "Financial Ratios",
+    titleTwo:
+      "Infrastructure Credit Guarantee Company Limited<br>Ratio analysis as @ 31st December 2021",
+    text1: "Ratio",
+    text2: "2021 Actual",
+    text3: "Full Yr Budget",
+    text4: "2020 Actual",
+    body: [
+      {
+        ratio: "Guarantee portfolio growth",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Net guarantee income to net revenue",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Total operating costs to gross guarantee income",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Total staff costs to gross guarantee income",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Totalstaff costs to net guarantee income",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Net guarantee income per staff (NGN million)",
+        actual: "41",
+        budget: "41",
+        actual2: "41",
+      },
+      {
+        ratio: "Gross guarantee income per staff (NGN million)",
+        actual: "41",
+        budget: "41",
+        actual2: "41",
+      },
+      {
+        ratio: "Staff costs per staff (NGN million)",
+        actual: "41",
+        budget: "41",
+        actual2: "41",
+      },
+      {
+        ratio: "Cost to income ratio (including exchange gains)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Cost to income ratio (excluding exchange gains)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Profit margin (including exchange gains)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Profit margin (excluding exchange gains)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Debt to equity ratio",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Debt to capital ratio",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Pre-tax return on equity (including exchange gains/(losses)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Pre-tax return on equity (excluding exchange gains/(losses)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio:
+          "Pre-tax return on total assets (including exchange gains/(losses)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio:
+          "Pre-tax return on total assets (excluding exchange gains/(losses)",
+        actual: "80%",
+        budget: "80%",
+        actual2: "80%",
+      },
+      {
+        ratio: "Gross capital leverage ratio (times)",
+        actual: "2x",
+        budget: "2x",
+        actual2: "2x",
+      },
+      {
+        ratio: "Net capital leverage ratio (times)",
+        actual: "2x",
+        budget: "2x",
+        actual2: "2x",
+      },
+      {
+        ratio: "Net par-to equity leverage ratio (times",
+        actual: "2x",
+        budget: "2x",
+        actual2: "2x",
+      },
+    ],
+  },
+  pagSix: {
+    heading: {
+      title1: "OPEX Analysis",
+      title2: "31 December 2021 YTD",
+      text1: "Detail",
+      text2: "Actual YTD",
+      text3: "Budget",
+      text4: "Budget<br>Achieved<br>YTD",
+      text5: "Full Year Budget",
+      text6: "Budget Balance",
+    },
+    body: [
+      {
+        title: "Staff cost",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Staff cost",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "5",
+      },
+      {
+        title: "Legal and secretarial expenses",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Human resources consultancy fees",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Credit rating fees",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Other professional fees",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Profesional fees",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "5",
+      },
+      {
+        title: "Auditors remuneration",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Board expenses and Director’s fees",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "IT cost",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Depreciation and amortization charges",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Impairment charge",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Other expenses",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Other operating expenses",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+      {
+        title: "Total operating expenses",
+        actual: "3,890",
+        budget: "4,878",
+        budgetAchieved: "12%",
+        secondActual: "345",
+        growth: "76",
+      },
+    ],
+  },
   pageFive: {
     heading: {
       title: "Statement of Financial Position - comparison with prior year",

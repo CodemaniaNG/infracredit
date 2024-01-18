@@ -1,4 +1,39 @@
 export type ManagementData = {
+  pageEight: {
+    title: string
+    subTitle: string
+    body: {
+      firstItem: {
+        title: string
+        content: string
+      }
+      secondItem: {
+        title: string
+        content: string
+      }
+      thirdItem: {
+        title: string
+        content: string
+      }
+      fourthItem: {
+        title: string
+        content: string
+      }
+      fifthItem: {
+        title: string
+        content: string
+      }
+    }
+  }
+  pageSeven: {
+    title: string
+    titleTwo: string
+    text1: string
+    text2: string
+    text3: string
+    text4: string
+    body: {ratio: string; actual: string; budget: string; actual2: string}[]
+  }
   pageFive: {
     heading: {
       title: string
@@ -13,6 +48,26 @@ export type ManagementData = {
       second: string
       growth: string
     }>
+  }
+  pagSix: {
+    heading: {
+      title1: string
+      title2: string
+      text1: string
+      text2: string
+      text3: string
+      text4: string
+      text5: string
+      text6: string
+    }
+    body: {
+      title: string
+      actual: string
+      budget: string
+      budgetAchieved: string
+      secondActual: string
+      growth: string
+    }[]
   }
   pageFour: {
     heading: {

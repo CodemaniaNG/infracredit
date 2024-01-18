@@ -10,6 +10,8 @@ const PageSix = ({
   management: ManagementData
   setManagement: Dispatch<SetStateAction<ManagementData>>
 }) => {
+  const array: number[] = [1, 6, 13, 14]
+
   return (
     <div>
       <div>
@@ -19,22 +21,11 @@ const PageSix = ({
               <>
                 <input
                   type="text"
-                  value={management.pageFour.heading.title1}
+                  value={management.pagSix.heading.title1}
                   onChange={e => {
                     const updatedData = {...management}
                     // Update the title1 property
-                    updatedData.pageFour.heading.title1 = e.target.value
-                    // Set the updated state
-                    setManagement(updatedData)
-                  }}
-                />
-                <input
-                  type="text"
-                  value={management.pageFour.heading.title2}
-                  onChange={e => {
-                    const updatedData = {...management}
-                    // Update the title1 property
-                    updatedData.pageFour.heading.title2 = e.target.value
+                    updatedData.pagSix.heading.title1 = e.target.value
                     // Set the updated state
                     setManagement(updatedData)
                   }}
@@ -42,8 +33,7 @@ const PageSix = ({
               </>
             ) : (
               <>
-                <h1>{management.pageFour.heading.title1}</h1>
-                <h2>{management.pageFour.heading.title2}</h2>
+                <h1>{management.pagSix.heading.title1}</h1>
               </>
             )}
           </div>
@@ -53,44 +43,72 @@ const PageSix = ({
                 <>
                   <input
                     type="text"
-                    value={management.pageFour.heading.text1}
+                    value={management.pagSix.heading.title2}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageFour.heading.text1 = e.target.value
+                      updatedData.pagSix.heading.title2 = e.target.value
+                      // Set the updated state
+                      setManagement(updatedData)
+                    }}
+                  />
+                </>
+              ) : (
+                <p
+                  style={{
+                    textAlign: "center",
+                    width: "100%",
+                    fontSize: 12,
+                    fontWeight: 600,
+                  }}
+                >
+                  {management.pagSix.heading.title2}
+                </p>
+              )}
+            </div>
+            <div className={styles.profitHead}>
+              {edit ? (
+                <>
+                  <input
+                    type="text"
+                    value={management.pagSix.heading.text1}
+                    onChange={e => {
+                      const updatedData = {...management}
+                      // Update the title1 property
+                      updatedData.pagSix.heading.text1 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
                   />
                   <input
                     type="text"
-                    value={management.pageFour.heading.text2}
+                    value={management.pagSix.heading.text2}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageFour.heading.text2 = e.target.value
+                      updatedData.pagSix.heading.text2 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
                   />
                   <input
                     type="text"
-                    value={management.pageFour.heading.text3}
+                    value={management.pagSix.heading.text3}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageFour.heading.text3 = e.target.value
+                      updatedData.pagSix.heading.text3 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
                   />
                   <input
                     type="text"
-                    value={management.pageFour.heading.text4}
+                    value={management.pagSix.heading.text4}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageFour.heading.text4 = e.target.value
+                      updatedData.pagSix.heading.text4 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
@@ -108,11 +126,11 @@ const PageSix = ({
                   />
                   <input
                     type="text"
-                    value={management.pageFour.heading.text6}
+                    value={management.pagSix.heading.text6}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageFour.heading.text6 = e.target.value
+                      updatedData.pagSix.heading.text6 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
@@ -120,12 +138,16 @@ const PageSix = ({
                 </>
               ) : (
                 <>
-                  <p>{management.pageFour.heading.text1}</p>
-                  <p>{management.pageFour.heading.text2}</p>
-                  <p>{management.pageFour.heading.text3}</p>
-                  <p>{management.pageFour.heading.text4}</p>
-                  <p>{management.pageFour.heading.text5}</p>
-                  <p>{management.pageFour.heading.text6}</p>
+                  <p>{management.pagSix.heading.text1}</p>
+                  <p>{management.pagSix.heading.text2}</p>
+                  <p>{management.pagSix.heading.text3}</p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: management.pagSix.heading.text4,
+                    }}
+                  ></p>
+                  <p>{management.pagSix.heading.text5}</p>
+                  <p>{management.pagSix.heading.text6}</p>
                 </>
               )}
             </div>
@@ -137,7 +159,7 @@ const PageSix = ({
               <p>N’million</p>
               <p>%</p>
             </div>
-            {management.pageFour.body?.map((item, index) => {
+            {management.pagSix.body?.map((item, index) => {
               return (
                 <div className={styles.profitSingle} key={index}>
                   {edit ? (
@@ -147,8 +169,7 @@ const PageSix = ({
                         value={item.title}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageFour.body[index].title =
-                            e.target.value
+                          updatedData.pagSix.body[index].title = e.target.value
                           setManagement(updatedData)
                         }}
                       />
@@ -157,8 +178,7 @@ const PageSix = ({
                         value={item.actual}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageFour.body[index].actual =
-                            e.target.value
+                          updatedData.pagSix.body[index].actual = e.target.value
                           setManagement(updatedData)
                         }}
                       />
@@ -167,8 +187,7 @@ const PageSix = ({
                         value={item.budget}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageFour.body[index].budget =
-                            e.target.value
+                          updatedData.pagSix.body[index].budget = e.target.value
                           setManagement(updatedData)
                         }}
                       />
@@ -177,7 +196,7 @@ const PageSix = ({
                         value={item.budgetAchieved}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageFour.body[index].budgetAchieved =
+                          updatedData.pagSix.body[index].budgetAchieved =
                             e.target.value
                           setManagement(updatedData)
                         }}
@@ -187,7 +206,7 @@ const PageSix = ({
                         value={item.secondActual}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageFour.body[index].secondActual =
+                          updatedData.pagSix.body[index].secondActual =
                             e.target.value
                           setManagement(updatedData)
                         }}
@@ -197,20 +216,67 @@ const PageSix = ({
                         value={item.growth}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageFour.body[index].growth =
-                            e.target.value
+                          updatedData.pagSix.body[index].growth = e.target.value
                           setManagement(updatedData)
                         }}
                       />
                     </>
                   ) : (
                     <>
-                      <p>{item.title}</p>
-                      <p>{item.actual}</p>
-                      <p>{item.budget}</p>
-                      <p>{item.budgetAchieved}</p>
-                      <p>{item.secondActual}</p>
-                      <p>{item.growth}</p>
+                      <p
+                        style={{
+                          background: array.includes(index)
+                            ? "#E5E5E5"
+                            : "white",
+                        }}
+                      >
+                        {item.title}
+                      </p>
+                      <p
+                        style={{
+                          background: array.includes(index)
+                            ? "#E5E5E5"
+                            : "white",
+                        }}
+                      >
+                        {item.actual}
+                      </p>
+                      <p
+                        style={{
+                          background: array.includes(index)
+                            ? "#E5E5E5"
+                            : "white",
+                        }}
+                      >
+                        {item.budget}
+                      </p>
+                      <p
+                        style={{
+                          background: array.includes(index)
+                            ? "#E5E5E5"
+                            : "white",
+                        }}
+                      >
+                        {item.budgetAchieved}
+                      </p>
+                      <p
+                        style={{
+                          background: array.includes(index)
+                            ? "#E5E5E5"
+                            : "white",
+                        }}
+                      >
+                        {item.secondActual}
+                      </p>
+                      <p
+                        style={{
+                          background: array.includes(index)
+                            ? "#E5E5E5"
+                            : "white",
+                        }}
+                      >
+                        {item.growth}
+                      </p>
                     </>
                   )}
                 </div>
