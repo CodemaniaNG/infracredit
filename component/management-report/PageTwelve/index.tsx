@@ -1,7 +1,7 @@
 import {ManagementData} from "@/app/types/management"
 import {Dispatch, SetStateAction} from "react"
 import styles from "./style.module.css"
-const PageSix = ({
+const PageTwelve = ({
   edit,
   management,
   setManagement,
@@ -36,18 +36,16 @@ const PageSix = ({
                 <h1>{management.pageSix.heading.title1}</h1>
               </>
             )}
-          </div>
-          <div className={styles.profitTable}>
-            <div className={styles.profitHead}>
+            <div className={styles.header}>
               {edit ? (
                 <>
                   <input
                     type="text"
-                    value={management.pageSix.heading.title2}
+                    value={management.pageTwelve.heading.title2}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageSix.heading.title2 = e.target.value
+                      updatedData.pageTwelve.heading.title2 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
@@ -56,37 +54,40 @@ const PageSix = ({
               ) : (
                 <p
                   style={{
-                    textAlign: "center",
+                    textAlign: "left",
                     width: "100%",
-                    fontSize: 12,
-                    fontWeight: 600,
+                    fontSize: 18,
+                    fontWeight: 500,
+                    color: "#227CBF",
                   }}
                 >
-                  {management.pageSix.heading.title2}
+                  {management.pageTwelve.heading.title2}
                 </p>
               )}
             </div>
+          </div>
+          <div className={styles.profitTable}>
             <div className={styles.profitHead}>
               {edit ? (
                 <>
                   <input
                     type="text"
-                    value={management.pageSix.heading.text1}
+                    value={management.pageTwelve.heading.text1}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageSix.heading.text1 = e.target.value
+                      updatedData.pageTwelve.heading.text1 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
                   />
                   <input
                     type="text"
-                    value={management.pageSix.heading.text2}
+                    value={management.pageTwelve.heading.text2}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageSix.heading.text2 = e.target.value
+                      updatedData.pageTwelve.heading.text2 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
@@ -97,40 +98,40 @@ const PageSix = ({
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageSix.heading.text3 = e.target.value
+                      updatedData.pageTwelve.heading.text3 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
                   />
                   <input
                     type="text"
-                    value={management.pageSix.heading.text4}
+                    value={management.pageTwelve.heading.text4}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageSix.heading.text4 = e.target.value
+                      updatedData.pageTwelve.heading.text4 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
                   />
                   <input
                     type="text"
-                    value={management.pageSix.heading.text5}
+                    value={management.pageTwelve.heading.text5}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageSix.heading.text5 = e.target.value
+                      updatedData.pageTwelve.heading.text5 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
                   />
                   <input
                     type="text"
-                    value={management.pageSix.heading.text6}
+                    value={management.pageTwelve.heading.text6}
                     onChange={e => {
                       const updatedData = {...management}
                       // Update the title1 property
-                      updatedData.pageSix.heading.text6 = e.target.value
+                      updatedData.pageTwelve.heading.text6 = e.target.value
                       // Set the updated state
                       setManagement(updatedData)
                     }}
@@ -138,16 +139,16 @@ const PageSix = ({
                 </>
               ) : (
                 <>
-                  <p>{management.pageSix.heading.text1}</p>
-                  <p>{management.pageSix.heading.text2}</p>
-                  <p>{management.pageSix.heading.text3}</p>
+                  <p>{management.pageTwelve.heading.text1}</p>
+                  <p>{management.pageTwelve.heading.text2}</p>
+                  <p>{management.pageTwelve.heading.text3}</p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: management.pageSix.heading.text4,
+                      __html: management.pageTwelve.heading.text4,
                     }}
                   ></p>
-                  <p>{management.pageSix.heading.text5}</p>
-                  <p>{management.pageSix.heading.text6}</p>
+                  <p>{management.pageTwelve.heading.text5}</p>
+                  <p>{management.pageTwelve.heading.text6}</p>
                 </>
               )}
             </div>
@@ -159,7 +160,7 @@ const PageSix = ({
               <p>N’million</p>
               <p>%</p>
             </div>
-            {management.pageSix.body?.map((item, index) => {
+            {management.pageTwelve.body?.map((item, index) => {
               return (
                 <div className={styles.profitSingle} key={index}>
                   {edit ? (
@@ -169,7 +170,8 @@ const PageSix = ({
                         value={item.title}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageSix.body[index].title = e.target.value
+                          updatedData.pageTwelve.body[index].title =
+                            e.target.value
                           setManagement(updatedData)
                         }}
                       />
@@ -178,7 +180,7 @@ const PageSix = ({
                         value={item.actual}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageSix.body[index].actual =
+                          updatedData.pageTwelve.body[index].actual =
                             e.target.value
                           setManagement(updatedData)
                         }}
@@ -188,7 +190,7 @@ const PageSix = ({
                         value={item.budget}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageSix.body[index].budget =
+                          updatedData.pageTwelve.body[index].budget =
                             e.target.value
                           setManagement(updatedData)
                         }}
@@ -198,7 +200,7 @@ const PageSix = ({
                         value={item.budgetAchieved}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageSix.body[index].budgetAchieved =
+                          updatedData.pageTwelve.body[index].budgetAchieved =
                             e.target.value
                           setManagement(updatedData)
                         }}
@@ -208,7 +210,7 @@ const PageSix = ({
                         value={item.secondActual}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageSix.body[index].secondActual =
+                          updatedData.pageTwelve.body[index].secondActual =
                             e.target.value
                           setManagement(updatedData)
                         }}
@@ -218,7 +220,7 @@ const PageSix = ({
                         value={item.growth}
                         onChange={e => {
                           const updatedData = {...management}
-                          updatedData.pageSix.body[index].growth =
+                          updatedData.pageTwelve.body[index].growth =
                             e.target.value
                           setManagement(updatedData)
                         }}
@@ -292,4 +294,4 @@ const PageSix = ({
   )
 }
 
-export default PageSix
+export default PageTwelve

@@ -1,0 +1,93 @@
+.pageFourteen {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-bottom: 32px;
+}
+
+.pageFourteen > h2 {
+  color: #227cbf;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.statementTable {
+  width: 100%;
+  border-left: 1px solid #b5b5b5;
+  /* border-right: 1px solid #b5b5b5; */
+}
+
+.statementHead {
+  display: flex;
+  background: #002d4e;
+}
+.statementHead p:first-child,
+.statementHead input:first-child,
+.statementHeader p:first-child,
+.statementSingle p:first-child,
+.statementSingle input:first-child {
+  width: 42%;
+  border: none;
+  text-align: left;
+  border-right: 1px solid #b5b5b5;
+}
+
+.statementHead p:nth-child(2),
+.statementHead p:nth-child(3),
+.statementHead p:nth-child(4),
+.statementHead input:nth-child(2),
+.statementHead input:nth-child(3),
+.statementHead input:nth-child(4),
+.statementHeader p:nth-child(2),
+.statementHeader p:nth-child(3),
+.statementHeader p:nth-child(4),
+.statementSingle p:nth-child(2),
+.statementSingle p:nth-child(3),
+.statementSingle p:nth-child(4),
+.statementSingle input:nth-child(2),
+.statementSingle input:nth-child(3),
+.statementSingle input:nth-child(4) {
+  width: 19.3%;
+  border-right: 1px solid #b5b5b5;
+}
+
+.statementHead p,
+.statementHeader p,
+.statementHead input {
+  color: #fff;
+  text-align: right;
+  padding: 8px;
+  box-sizing: border-box;
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.statementHeader {
+  display: flex;
+  background: #47b65c;
+}
+
+.statementSingle {
+  display: flex;
+  border-bottom: 1px solid #b5b5b5;
+}
+
+.statementSingle p,
+.statementSingle input {
+  color: #000;
+  text-align: right;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 8px;
+  box-sizing: border-box;
+  border: none;
+}

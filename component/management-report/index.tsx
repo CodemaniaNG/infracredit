@@ -10,6 +10,10 @@ import PageFive from "./PageFive"
 import PageSix from "./PageSix"
 import PageSeven from "./PagexSeven"
 import PageEight from "./PageEight"
+import PageNine from "./PageNine"
+import PageTen from "./PageTen"
+import PageEleven from "./PageEleven"
+import PageTwelve from "./PageTwelve"
 
 const ManagementReport = ({
   edit,
@@ -74,6 +78,34 @@ const ManagementReport = ({
       </ManagementLayout>
       <ManagementLayout edit={edit}>
         <PageEight
+          edit={edit}
+          management={management}
+          setManagement={setManagement}
+        />
+      </ManagementLayout>
+      <ManagementLayout edit={edit}>
+        <PageNine
+          edit={edit}
+          management={management}
+          setManagement={setManagement}
+        />
+      </ManagementLayout>
+      <ManagementLayout edit={edit}>
+        <PageTen
+          edit={edit}
+          management={management}
+          setManagement={setManagement}
+        />
+      </ManagementLayout>
+      <ManagementLayout edit={edit}>
+        <PageEleven
+          edit={edit}
+          management={management}
+          setManagement={setManagement}
+        />
+      </ManagementLayout>
+      <ManagementLayout edit={edit}>
+        <PageTwelve
           edit={edit}
           management={management}
           setManagement={setManagement}
