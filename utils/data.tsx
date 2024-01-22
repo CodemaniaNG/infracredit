@@ -1616,6 +1616,239 @@ export const managementData = {
       },
     ],
   },
+  pageSixteen: {
+    title: "Appendix: Projected guarantees portfolio",
+    body: [
+      {
+        serialNo: 1,
+        transaction: "North South Power – Bank of Industry***",
+        infrastructure: "On-Grid Power (Hydro)",
+        amount: "2.1",
+      },
+      {
+        serialNo: 2,
+        transaction: "Viathan – Bank of Industry***",
+        infrastructure: "On-Grid Power (Hydro)",
+        amount: "2.1",
+      },
+      {
+        serialNo: 3,
+        transaction: "Lagos Free Zone Company – Bond***",
+        infrastructure: "inputs to Infra (Industrial Park)",
+        amount: "2.1",
+      },
+      {
+        serialNo: 4,
+        transaction: "GPC Energy & Logistics – Bond***",
+        infrastructure: "Transportation (Logistics)",
+        amount: "2.1",
+      },
+      {
+        serialNo: 0,
+        transaction: "Sub - Total",
+        infrastructure: "",
+        amount: "123",
+      },
+      {
+        serialNo: 5,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 6,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 7,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 8,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 9,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 0,
+        transaction: "Sub - Total",
+        infrastructure: "",
+        amount: "123",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 0,
+        transaction: "Sub - Total",
+        infrastructure: "",
+        amount: "123",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 1,
+        transaction: "Transaction",
+        infrastructure: "Infrastructure Activity/Industry",
+        amount: "2.1",
+      },
+      {
+        serialNo: 0,
+        transaction: "Sub - Total",
+        infrastructure: "",
+        amount: "123",
+      },
+      {
+        serialNo: 0,
+        transaction: "Total guarantee pipeline (N’Billion)",
+        infrastructure: "",
+        amount: "1,787",
+      },
+    ],
+    text1:
+      "*** Guarantees already issued to North South Power, Viathan, Lagos Free Zone Company and GPC in FY2021.",
+    text2: "** Contingent Refinancing Guarantee (CRG) transactions.",
+  },
+  pageFifteen: {
+    title: "Projected Guarantees Portfolio",
+    contentOne: {
+      greenText: "Amber(51-79%)",
+      listTitle:
+        "These are transactions with 51-79% probability of reaching financial close and are categorized based on the following criteria:",
+      lists: [
+        "Mandate Letter signed",
+        "Transaction has obtained Credit Committee approval",
+        "Fee Letter and/or Guarantee Documentation expected to be negotiated and/or signed within 8 weeks",
+        "All Material CPs with timelines for completion agreed with the client",
+      ],
+      conclusion:
+        "Based on the above criteria, <b>N11.6 billion</b> guarantee transactions representing 3.8% of total mandated transactions are classified as <b>Amber</b> as at 28th February 2022.",
+    },
+    contentTwo: {
+      greenText: "Red (<=50%)",
+      listTitle:
+        "These are transactions with ≤50% probability of reaching financial close and are categorized based on the following criteria:",
+      lists: [
+        "Mandate Lettersigned",
+        "Due diligence ongoing",
+        "Pending Credit Committee approval",
+        "Client has expressed interest to defer transaction",
+        "Conditional refinancing guarantee transaction",
+      ],
+      conclusion:
+        "Based on the above criteria, <b>N263.4 billion</b> guarantee transactions representing 87.4% of total mandated transactions are classified as <b>Red</b> as at 28th February 2022.",
+    },
+  },
+  pageFourteen: {
+    title: "Projected Guarantees Portfolio",
+    content:
+      "As at 28th February 2022, InfraCredit has an aggregate of 34 mandated guarantee transactions with a total size of N301.5 Billion, of which the portfolio of mandated deals is categorized based on defined criteria, into <b>Green</b>, <b>Amber</b> and <b>Red</b> as follows:",
+    title2: "Guarantee transactions categorization (N’billion)",
+    greenText: "Green (>=80%)",
+    listTitle:
+      "These are transactions with ≥80% probability of reaching financial close and are categorized based on the following criteria:",
+    lists: [
+      "Transaction has obtained Credit Committee approval with Fee Letter signed",
+      "Guarantee Documentsin agreed form ",
+      "Professional Partiesto the Bond Issue appointed or selected ",
+      "Already filed or expected filing with the SEC (or equivalent Exchange) within 6 weeks",
+      "All Material CPs to Financial Close have been satisfactorily met or committed by the Client for completion on or before Financial Close ",
+      "Financial Close expected within 3 – 6 months",
+    ],
+    conclusion:
+      "Based on the above criteria,N26.5 billion guarantee transactions representing 8.8% of total mandated transactions are classified as Green as at 28th February 2022.",
+  },
+  pageThirtheen: {
+    title: "Investment Portfolio",
+    content:
+      "As at 31 st December 2021, InfraCredit held a total investment portfolio of N67 billion (including accrued interest) comprising Eurobonds (N62.7 billion; 93.5%),FGN Bonds (N4.6 billion 6.9%), and Commercial paper (N298.9 million 0.4%).<br><br>USD-denominated investments account for 94% of total funded capital. <br><br>The weighted average duration of total investments portfolio is 3.78 years of which long- term and short-term investments respectively account for 4.23 years and 0.18 years. This is depicted in Figure 4.",
+    graphInfo: {
+      figure: "Figure 4: Investment Portfolio",
+    },
+  },
   pageThree: {
     intro:
       "Total expenses of N1.95 billion represent 90% of budgeted total operating expenses of N2.16 billion for the period..",

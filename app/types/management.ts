@@ -1,4 +1,46 @@
 export type ManagementData = {
+  pageSixteen: {
+    title: string
+    body: {
+      serialNo: number
+      transaction: string
+      infrastructure: string
+      amount: string
+    }[]
+    text1: string
+    text2: string
+  }
+  pageThirtheen: {
+    title: string
+    content: string
+    graphInfo: {
+      figure: string
+    }
+  }
+  pageFifteen: {
+    title: string
+    contentOne: {
+      greenText: string
+      listTitle: string
+      lists: string[]
+      conclusion: string
+    }
+    contentTwo: {
+      greenText: string
+      listTitle: string
+      lists: string[]
+      conclusion: string
+    }
+  }
+  pageFourteen: {
+    title: string
+    content: string
+    title2: string
+    greenText: string
+    listTitle: string
+    lists: string[]
+    conclusion: string
+  }
   pageNine: {
     heading: {
       title1: string
