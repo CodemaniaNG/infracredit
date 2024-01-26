@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export const draft = [
   {
     title: "Annual Report Template",
@@ -158,6 +160,8 @@ interface CeoPage3 {
   popupClose2: any
   popup3: boolean
   popupClose3: any
+  ceoreportdata: CEOTYPE
+  setCeoreportdata: Dispatch<SetStateAction<CEOTYPE>>
 }
 
 export default CeoPage3

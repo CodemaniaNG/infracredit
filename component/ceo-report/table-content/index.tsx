@@ -1,10 +1,18 @@
-import React, { useState } from "react";
-import styles from "./styles.module.css";
+import React, {Dispatch, SetStateAction, useState} from "react"
+import styles from "./styles.module.css"
 
-const TableContent = ({ edit }: { edit: boolean }) => {
+const TableContent = ({
+  edit,
+  ceoreportdata,
+  setCeoreportdata,
+}: {
+  edit: boolean
+  ceoreportdata: CEOTYPE
+  setCeoreportdata: Dispatch<SetStateAction<CEOTYPE>>
+}) => {
   interface Sample {
-    title: string;
-    number: number;
+    title: string
+    number: number
   }
   const [tableContent, setTableContent] = useState<Sample[]>([
     {
@@ -39,7 +47,7 @@ const TableContent = ({ edit }: { edit: boolean }) => {
       title: "Appendices",
       number: 15,
     },
-  ]);
+  ])
   return (
     <div className={styles.tableContent}>
       <div className={styles.tableContentHeader}>
@@ -47,7 +55,7 @@ const TableContent = ({ edit }: { edit: boolean }) => {
         <div></div>
       </div>
       <div className={styles.tableContentBody}>
-        {tableContent?.map((item, index) => {
+        {ceoreportdata.tableOfContent?.map((item, index) => {
           return (
             <div className={styles.tableContentSingle} key={index}>
               <div className={styles.tableContentText}>
@@ -56,15 +64,12 @@ const TableContent = ({ edit }: { edit: boolean }) => {
                   <input
                     type="text"
                     value={item.title}
-                    onChange={(e) => {
-                      const newState = tableContent.map((item, index2) => {
-                        if (index === index2) {
-                          return { ...item, title: e.target.value };
-                        } else {
-                          return item;
-                        }
-                      });
-                      setTableContent(newState);
+                    onChange={e => {
+                      const updatedData = {...ceoreportdata}
+                      // Update the title1 property
+                      updatedData.tableOfContent[index].title = e.target.value
+                      // Set the updated state
+                      setCeoreportdata(updatedData)
                     }}
                   />
                 ) : (
@@ -73,11 +78,11 @@ const TableContent = ({ edit }: { edit: boolean }) => {
               </div>
               <p>{item.number}</p>
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TableContent;
+export default TableContent

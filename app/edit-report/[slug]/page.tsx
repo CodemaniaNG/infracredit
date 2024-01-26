@@ -32,12 +32,13 @@ import Renumeration from "@/component/renumeration-com"
 import {credit, finance, managementData, renumeration, risk} from "@/utils/data"
 import CreateTable from "@/component/layouts/credit-table"
 import ManagementReport from "@/component/management-report"
+import {ceoReportData} from "@/component/ceo-report/Data"
 
 const EditReport = ({params}: {params: {slug: string}}) => {
-  console.log(params)
   const router = useRouter()
   const [edit, setEdit] = useState(false)
   const [management, setManagement] = useState(managementData)
+  const [ceoreportdata, setCeoreportdata] = useState(ceoReportData)
   const [title, setTitle] = useState(
     params.slug === "CEOReport"
       ? "CEO Report"
@@ -132,7 +133,11 @@ const EditReport = ({params}: {params: {slug: string}}) => {
           <EditPages />
           <div className={styles.editReportContent}>
             {params.slug === "CEOReport" ? (
-              <CeoReport edit={edit} />
+              <CeoReport
+                edit={edit}
+                ceoreportdata={ceoreportdata}
+                setCeoreportdata={setCeoreportdata}
+              />
             ) : params.slug === "REMUNERATIONANDNOMINATIONCOMMITTEE" ? (
               <Renumeration
                 edit={edit}
@@ -163,7 +168,7 @@ const EditReport = ({params}: {params: {slug: string}}) => {
                 setManagement={setManagement}
               />
             ) : (
-              <h2>Hello World</h2>
+              <h2>Template cannot be found</h2>
             )}
           </div>
           <div className={styles.editReportDiscuss}>
