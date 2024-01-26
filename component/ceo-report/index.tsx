@@ -69,6 +69,8 @@ const CeoReport = ({
       <CeoLayout edit={edit} number={4}>
         <CeoPageThree
           edit={edit}
+          ceoreportdata={ceoreportdata}
+          setCeoreportdata={setCeoreportdata}
           popupAction1={() => {
             setPopup(true)
             setChart1(true)
