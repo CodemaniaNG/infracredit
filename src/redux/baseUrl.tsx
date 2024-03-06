@@ -1,0 +1,1 @@
+export const baseUrl = 'https://hermoney-v2yc9.ondigitalocean.app/v1/api/';
