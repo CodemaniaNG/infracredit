@@ -1,6 +1,6 @@
 import { Text, VStack, Grid, GridItem } from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
-import DashboardTable from "@/components/admin/MemberTable";
+import DashboardTable from "@/components/dashboard/DashboardTable";
 import ContractCard from "@/components/contracts/ContractCard";
 
 const Dashboard = () => {

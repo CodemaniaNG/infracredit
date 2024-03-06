@@ -16,7 +16,7 @@ import {
   AvatarBadge,
 } from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
-import DashboardTable from "@/components/admin/MemberTable";
+import DashboardTable from "@/components/dashboard/DashboardTable";
 import { useRouter } from "next/router";
 import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";

@@ -11,7 +11,7 @@ import {
   TabPanel,
   HStack,
 } from "@chakra-ui/react";
-import DashboardTable from "@/components/admin/MemberTable";
+import DashboardTable from "@/components/dashboard/DashboardTable";
 import DocumentCard from "@/components/documents/DocumentCard";
 import Button from "@/components/ui/Button";
 
