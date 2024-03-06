@@ -361,7 +361,7 @@ const Layout = ({ children, title }: any) => {
         isOpen={isOpen2}
         onClose={handleModal2}
         body={
-          <VStack align="center" spacing={4}>
+          <VStack align="center" spacing={4} p={3} mt={5}>
             <VStack align="center">
               <Avatar
                 size="xl"

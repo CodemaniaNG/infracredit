@@ -10,6 +10,7 @@ import {
   AvatarGroup,
 } from "@chakra-ui/react";
 import Button from "../ui/Button";
+import { useRouter } from "next/router";
 
 type TaskCardProps = {
   title: string;
@@ -18,6 +19,7 @@ type TaskCardProps = {
 };
 
 const TaskCard = ({ title, desc, isStack = false }: TaskCardProps) => {
+  const router = useRouter();
   return (
     <>
       <Card
@@ -78,7 +80,12 @@ const TaskCard = ({ title, desc, isStack = false }: TaskCardProps) => {
               </Text>
             </HStack>
 
-            <Button text="Edit Report" type="submit" size="md" />
+            <Button
+              text="Edit Report"
+              type="submit"
+              size="md"
+              onClick={() => router.push("/editor")}
+            />
           </VStack>
         </CardBody>
       </Card>
