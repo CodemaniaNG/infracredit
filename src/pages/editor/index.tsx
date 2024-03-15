@@ -1,22 +1,21 @@
 import {
   Text,
-  VStack,
   Grid,
   GridItem,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   Box,
   IconButton,
   HStack,
   Image,
-  Avatar,
-  AvatarBadge,
 } from "@chakra-ui/react";
 import Button from "@/components/ui/Button";
 import { useRouter } from "next/router";
+import PageContent from "@/components/editor/PageContent";
+import ReportDescription from "@/components/editor/ReportDescription";
+import Comments from "@/components/editor/Comments";
+import Tools from "@/components/editor/Tools";
+import Pages from "@/components/editor/Pages";
+import CeoReport from "@/components/templates/ceo-report";
+import { ceoReportData } from "@/utils/data";
 
 const Editor = () => {
   const router = useRouter();
@@ -77,213 +76,28 @@ const Editor = () => {
           gap={2}
           mb={5}
         >
-          <GridItem colSpan={1}>
-            <Box p="6" overflowY="auto" bg="white" />
+          <GridItem
+            colSpan={1}
+            sx={{
+              position: "sticky",
+              top: "0",
+              zIndex: "1",
+            }}
+          >
+            <Tools />
+            <Pages />
           </GridItem>
+
           <GridItem colSpan={3}>
-            <Box p="6" overflowY="auto" bg="white" />
+            <Box>
+              <CeoReport data={ceoReportData} />
+            </Box>
           </GridItem>
-          <GridItem colSpan={1}>
-            <VStack
-              align="flex-start"
-              bg="white"
-              p={3}
-              borderRadius="16px"
-              borderWidth={1}
-              borderColor="border.100"
-              spacing={3}
-              w="100%"
-              mb={5}
-            >
-              <HStack justify="space-between" align="center" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="greens.100"
-                  fontFamily={"body"}
-                >
-                  Collaborators (5)
-                </Text>
 
-                <IconButton
-                  icon={<Image src="/images/arrow-down.svg" alt="export" />}
-                  variant={"ghost"}
-                  bg="transparent"
-                  aria-label="export"
-                  p={0}
-                  m={0}
-                />
-              </HStack>
-
-              <HStack justify="space-between" align="center" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="greens.100"
-                  fontFamily={"body"}
-                >
-                  Supervisors (5)
-                </Text>
-
-                <IconButton
-                  icon={<Image src="/images/arrow-down.svg" alt="export" />}
-                  variant={"ghost"}
-                  bg="transparent"
-                  aria-label="export"
-                  p={0}
-                  m={0}
-                />
-              </HStack>
-
-              <VStack align="flex-start" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="greens.100"
-                  fontFamily={"body"}
-                >
-                  Reviewers
-                </Text>
-
-                <VStack align="flex-start">
-                  <Avatar
-                    size="sm"
-                    name="Segun Adebayo"
-                    src="https://bit.ly/sage-adebayo"
-                  >
-                    <AvatarBadge boxSize="1.25em" bg="green.500" />
-                  </Avatar>
-
-                  <Text
-                    fontSize={"12px"}
-                    fontFamily={"body"}
-                    fontWeight={"500"}
-                    color={"subText.600"}
-                  >
-                    Segun
-                  </Text>
-                </VStack>
-              </VStack>
-
-              <HStack justify="space-between" align="center" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="subText.300"
-                  fontFamily={"body"}
-                >
-                  Add New Reviewer
-                </Text>
-
-                <IconButton
-                  icon={<Image src="/images/add.svg" alt="export" />}
-                  bg="#F0FFFF"
-                  aria-label="export"
-                  size={"sm"}
-                  borderRadius={"full"}
-                />
-              </HStack>
-            </VStack>
-
-            <VStack
-              align="flex-start"
-              bg="white"
-              p={3}
-              borderRadius="16px"
-              borderWidth={1}
-              borderColor="border.100"
-              spacing={3}
-              w="100%"
-            >
-              <HStack justify="space-between" align="center" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="greens.100"
-                  fontFamily={"body"}
-                >
-                  Collaborators (5)
-                </Text>
-
-                <IconButton
-                  icon={<Image src="/images/arrow-down.svg" alt="export" />}
-                  variant={"ghost"}
-                  bg="transparent"
-                  aria-label="export"
-                  p={0}
-                  m={0}
-                />
-              </HStack>
-
-              <HStack justify="space-between" align="center" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="greens.100"
-                  fontFamily={"body"}
-                >
-                  Supervisors (5)
-                </Text>
-
-                <IconButton
-                  icon={<Image src="/images/arrow-down.svg" alt="export" />}
-                  variant={"ghost"}
-                  bg="transparent"
-                  aria-label="export"
-                  p={0}
-                  m={0}
-                />
-              </HStack>
-
-              <VStack align="flex-start" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="greens.100"
-                  fontFamily={"body"}
-                >
-                  Reviewers
-                </Text>
-
-                <VStack align="flex-start">
-                  <Avatar
-                    size="sm"
-                    name="Segun Adebayo"
-                    src="https://bit.ly/sage-adebayo"
-                  >
-                    <AvatarBadge boxSize="1.25em" bg="green.500" />
-                  </Avatar>
-
-                  <Text
-                    fontSize={"12px"}
-                    fontFamily={"body"}
-                    fontWeight={"500"}
-                    color={"subText.600"}
-                  >
-                    Segun
-                  </Text>
-                </VStack>
-              </VStack>
-
-              <HStack justify="space-between" align="center" w="100%">
-                <Text
-                  fontSize={"14px"}
-                  fontWeight="500"
-                  color="subText.300"
-                  fontFamily={"body"}
-                >
-                  Add New Reviewer
-                </Text>
-
-                <IconButton
-                  icon={<Image src="/images/add.svg" alt="export" />}
-                  bg="#F0FFFF"
-                  aria-label="export"
-                  size={"sm"}
-                  borderRadius={"full"}
-                />
-              </HStack>
-            </VStack>
+          <GridItem colSpan={1} position="sticky" right="0">
+            <PageContent />
+            <ReportDescription />
+            <Comments />
           </GridItem>
         </Grid>
       </Box>
