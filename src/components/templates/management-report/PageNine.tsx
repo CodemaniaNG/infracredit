@@ -1,4 +1,5 @@
 import {
+  HStack,
   VStack,
   Table,
   Thead,
@@ -8,30 +9,31 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
+import ManagementLayOut from "./ManagementLayOut";
 
-const PageFifteen = ({ data, isEdit }: any) => {
+const PageNine = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut page={16} isEdit={isEdit}>
+      <ManagementLayOut page={10} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <VStack align={"flex-start"} w="100%" spacing={0}>
             <EditableInput
               isEdit={isEdit}
               value={data[0]?.title}
-              fontSize="18px"
+              fontSize="22px"
               color="black"
-              fontWeight="800"
+              fontWeight="600"
               textAlign="left"
             />
-            <EditableTextArea
+            <EditableInput
+              isEdit={isEdit}
               value={data[0]?.title2}
               fontSize="18px"
               color="primary3"
               fontWeight="500"
-              isEdit={isEdit}
+              textAlign="left"
             />
           </VStack>
 
@@ -157,9 +159,9 @@ const PageFifteen = ({ data, isEdit }: any) => {
             </Table>
           </TableContainer>
         </VStack>
-      </CeoLayOut>
+      </ManagementLayOut>
     </>
   );
 };
 
-export default PageFifteen;
+export default PageNine;

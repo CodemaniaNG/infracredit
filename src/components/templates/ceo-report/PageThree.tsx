@@ -20,7 +20,7 @@ import { useState } from "react";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 import EditableInput from "@/components/ui/EditableInput";
 
-const PageThree = ({ data }: any) => {
+const PageThree = ({ data, isEdit }: any) => {
   interface LineProps {
     options: ChartOptions<"doughnut">;
     data: ChartData<"doughnut">;
@@ -187,9 +187,9 @@ const PageThree = ({ data }: any) => {
   });
   return (
     <>
-      <CeoLayOut isTitle={false} page={4}>
+      <CeoLayOut page={4} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
-          <Title title={data[0]?.title} color="primary3" />
+          <Title title={data[0]?.title} color="primary3" isEdit={isEdit} />
 
           <EditableTextArea
             value={data[0]?.itemOne}
@@ -233,7 +233,7 @@ const PageThree = ({ data }: any) => {
                           <Th key={index} py={0}>
                             <EditableInput
                               value={item}
-                              isEdit={false}
+                              isEdit={isEdit}
                               textAlign="left"
                               fontSize="11px"
                               color="white"
@@ -251,7 +251,7 @@ const PageThree = ({ data }: any) => {
                         <Td borderColor="primary3" py={0}>
                           <EditableInput
                             value={item?.text1}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="10px"
                             color="black"
@@ -261,7 +261,7 @@ const PageThree = ({ data }: any) => {
                         <Td borderColor="primary3" py={0}>
                           <EditableInput
                             value={item?.text2}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="10px"
                             color="black"
@@ -271,7 +271,7 @@ const PageThree = ({ data }: any) => {
                         <Td borderColor="primary3" py={0}>
                           <EditableInput
                             value={item?.text3}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="10px"
                             color="black"
@@ -281,7 +281,7 @@ const PageThree = ({ data }: any) => {
                         <Td borderColor="primary3" py={0}>
                           <EditableInput
                             value={item?.text4}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="10px"
                             color="black"

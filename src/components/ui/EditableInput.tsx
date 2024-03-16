@@ -33,6 +33,7 @@ const EditableInput = ({
       isPreviewFocusable={isEdit}
       p={0}
       m={0}
+      w="100%"
     >
       <EditablePreview />
       <Input
@@ -43,6 +44,7 @@ const EditableInput = ({
         fontSize={fontSize}
         p={0}
         m={0}
+        w="100%"
       />
     </Editable>
   );

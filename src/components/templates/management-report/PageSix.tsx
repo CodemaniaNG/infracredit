@@ -1,4 +1,5 @@
 import {
+  HStack,
   VStack,
   Table,
   Thead,
@@ -8,14 +9,13 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
-import EditableTextArea from "@/components/ui/EditableTextArea";
+import ManagementLayOut from "./ManagementLayOut";
 
-const PageFifteen = ({ data, isEdit }: any) => {
+const PageSix = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut page={16} isEdit={isEdit}>
+      <ManagementLayOut page={7} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <VStack align={"flex-start"} w="100%" spacing={0}>
             <EditableInput
@@ -25,13 +25,6 @@ const PageFifteen = ({ data, isEdit }: any) => {
               color="black"
               fontWeight="800"
               textAlign="left"
-            />
-            <EditableTextArea
-              value={data[0]?.title2}
-              fontSize="18px"
-              color="primary3"
-              fontWeight="500"
-              isEdit={isEdit}
             />
           </VStack>
 
@@ -56,7 +49,7 @@ const PageFifteen = ({ data, isEdit }: any) => {
                         <EditableInput
                           value={item}
                           isEdit={isEdit}
-                          textAlign="right"
+                          textAlign={index === 1 ? "left" : "rigth"}
                           fontSize="11px"
                           color="white"
                           fontWeight="600"
@@ -77,7 +70,7 @@ const PageFifteen = ({ data, isEdit }: any) => {
                         <EditableInput
                           value={item}
                           isEdit={isEdit}
-                          textAlign="right"
+                          textAlign={index === 1 ? "left" : "rigth"}
                           fontSize="11px"
                           color="white"
                           fontWeight="600"
@@ -157,9 +150,9 @@ const PageFifteen = ({ data, isEdit }: any) => {
             </Table>
           </TableContainer>
         </VStack>
-      </CeoLayOut>
+      </ManagementLayOut>
     </>
   );
 };
 
-export default PageFifteen;
+export default PageSix;

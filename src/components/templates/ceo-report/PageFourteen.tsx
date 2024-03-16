@@ -1,5 +1,4 @@
 import {
-  HStack,
   VStack,
   Table,
   Thead,
@@ -11,16 +10,15 @@ import {
 } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
-import EditableTextArea from "@/components/ui/EditableTextArea";
 
-const PageFourteen = ({ data }: any) => {
+const PageFourteen = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut isTitle={false} page={15}>
+      <CeoLayOut page={15} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <VStack align={"flex-start"} w="100%" spacing={0}>
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title}
               fontSize="18px"
               color="primary3"
@@ -49,7 +47,7 @@ const PageFourteen = ({ data }: any) => {
                       >
                         <EditableInput
                           value={item}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="right"
                           fontSize="11px"
                           color="white"
@@ -70,7 +68,7 @@ const PageFourteen = ({ data }: any) => {
                       >
                         <EditableInput
                           value={item}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="right"
                           fontSize="11px"
                           color="white"
@@ -88,7 +86,7 @@ const PageFourteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text1}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="left"
                         fontSize="10px"
                         color="black"
@@ -98,7 +96,7 @@ const PageFourteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                       <EditableInput
                         value={item?.text2}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"
@@ -108,7 +106,7 @@ const PageFourteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                       <EditableInput
                         value={item?.text3}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"
@@ -118,7 +116,7 @@ const PageFourteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                       <EditableInput
                         value={item?.text4}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"

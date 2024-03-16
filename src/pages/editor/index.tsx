@@ -15,10 +15,12 @@ import Comments from "@/components/editor/Comments";
 import Tools from "@/components/editor/Tools";
 import Pages from "@/components/editor/Pages";
 import CeoReport from "@/components/templates/ceo-report";
-import { ceoReportData } from "@/utils/data";
+import ManagementReport from "@/components/templates/management-report";
+import { useState } from "react";
 
 const Editor = () => {
   const router = useRouter();
+  const [isEdit, setIsEdit] = useState(false);
   return (
     <>
       <Box p="6" overflowY="auto" bg="bg.100">
@@ -48,12 +50,13 @@ const Editor = () => {
 
           <HStack justify="flex-end">
             <Button
-              text="Cancel Edit"
+              text={isEdit ? "Cancel Edit" : "Edit"}
               bg="transparent"
               border="#FFCB8A"
               color="#FF8F00"
               borderWidth="1px"
               px={6}
+              onClick={() => setIsEdit(!isEdit)}
             />
             <Button
               text="Save"
@@ -90,7 +93,8 @@ const Editor = () => {
 
           <GridItem colSpan={3}>
             <Box>
-              <CeoReport data={ceoReportData} />
+              <CeoReport isEdit={isEdit} />
+              {/* <ManagementReport isEdit={isEdit} /> */}
             </Box>
           </GridItem>
 

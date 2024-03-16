@@ -1,27 +1,24 @@
 import {
   VStack,
-  HStack,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableContainer,
 } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
-import Title from "./Title";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 
-const PageFour = ({ data }: any) => {
+const PageFour = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut isTitle={false} page={5}>
+      <CeoLayOut page={5} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableInput
-            isEdit={false}
+            isEdit={isEdit}
             value={data[0]?.title}
             fontSize="18px"
             color="primary3"
@@ -33,21 +30,21 @@ const PageFour = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <TableContainer w="100%">
@@ -70,7 +67,7 @@ const PageFour = ({ data }: any) => {
                       >
                         <EditableInput
                           value={item}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="11px"
                           color="white"
@@ -88,7 +85,7 @@ const PageFour = ({ data }: any) => {
                     <Td borderColor="#676767" py={0}>
                       <EditableInput
                         value={item?.text1}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="left"
                         fontSize="10px"
                         color="black"
@@ -98,7 +95,7 @@ const PageFour = ({ data }: any) => {
                     <Td borderColor="#676767" py={0}>
                       <EditableInput
                         value={item?.text2}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="left"
                         fontSize="10px"
                         color="black"
@@ -108,7 +105,7 @@ const PageFour = ({ data }: any) => {
                     <Td borderColor="#676767" py={0}>
                       <EditableInput
                         value={item?.text3}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="left"
                         fontSize="10px"
                         color="black"
@@ -120,7 +117,7 @@ const PageFour = ({ data }: any) => {
                         <EditableInput
                           key={index}
                           value={item}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -139,7 +136,7 @@ const PageFour = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           {data[0]?.notes.map((item: any, index: number) => (
@@ -149,7 +146,7 @@ const PageFour = ({ data }: any) => {
               fontSize="14px"
               color="subText.900"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
           ))}
         </VStack>

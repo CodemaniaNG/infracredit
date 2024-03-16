@@ -17,28 +17,30 @@ import PageFourteen from "./PageFourteen";
 import PageFifteen from "./PageFifteen";
 import PageSixteen from "./PageSixteen";
 import CoverPage from "./CoverPage";
+import Footer from "./Footer";
 
-const CeoReport = ({ data }: any) => {
+const CeoReport = ({ isEdit }: any) => {
   return (
     <>
       <CoverPage />
-      <TableOfContent data={ceoReport?.tableOfContent} />
-      <PageOne data={ceoReport?.Body?.subTitle} />
-      <PageTwo data={ceoReport?.Body?.subTitleTwo} />
-      <Page3 data={ceoReport?.Body?.subTitleThree} />
-      <PageFour data={ceoReport?.Body?.subTitleFour} />
-      <PageFive data={ceoReport?.Body?.subTitleFive} />
-      <PageSix data={ceoReport?.Body?.subTitleSix} />
-      <PageSeven data={ceoReport?.Body?.subTitleSeven} />
-      <PageEight data={ceoReport?.Body?.subTitleEight} />
-      <PageNine data={ceoReport?.Body?.subTitleNine} />
-      <PageTen data={ceoReport?.Body?.subTitleTen} />
-      <PageEleven data={ceoReport?.Body?.subTitleEleven} />
-      <PageTwelve data={ceoReport?.Body?.subTitleTwelve} />
-      <PageThirteen data={ceoReport?.Body?.subTitleThirteen} />
-      <PageFourteen data={ceoReport?.Body?.subTitleFourteen} />
-      <PageFifteen data={ceoReport?.Body?.subTitleFIifteen} />
-      <PageSixteen data={ceoReport?.Body?.subTitleSixteen} />
+      <TableOfContent data={ceoReport?.tableOfContent} isEdit={isEdit} />
+      <PageOne data={ceoReport?.Body?.subTitle} isEdit={isEdit} />
+      <PageTwo data={ceoReport?.Body?.subTitleTwo} isEdit={isEdit} />
+      <Page3 data={ceoReport?.Body?.subTitleThree} isEdit={isEdit} />
+      <PageFour data={ceoReport?.Body?.subTitleFour} isEdit={isEdit} />
+      <PageFive data={ceoReport?.Body?.subTitleFive} isEdit={isEdit} />
+      <PageSix data={ceoReport?.Body?.subTitleSix} isEdit={isEdit} />
+      <PageSeven data={ceoReport?.Body?.subTitleSeven} isEdit={isEdit} />
+      <PageEight data={ceoReport?.Body?.subTitleEight} isEdit={isEdit} />
+      <PageNine data={ceoReport?.Body?.subTitleNine} isEdit={isEdit} />
+      <PageTen data={ceoReport?.Body?.subTitleTen} isEdit={isEdit} />
+      <PageEleven data={ceoReport?.Body?.subTitleEleven} isEdit={isEdit} />
+      <PageTwelve data={ceoReport?.Body?.subTitleTwelve} isEdit={isEdit} />
+      <PageThirteen data={ceoReport?.Body?.subTitleThirteen} isEdit={isEdit} />
+      <PageFourteen data={ceoReport?.Body?.subTitleFourteen} isEdit={isEdit} />
+      <PageFifteen data={ceoReport?.Body?.subTitleFIifteen} isEdit={isEdit} />
+      <PageSixteen data={ceoReport?.Body?.subTitleSixteen} isEdit={isEdit} />
+      <Footer />
     </>
   );
 };

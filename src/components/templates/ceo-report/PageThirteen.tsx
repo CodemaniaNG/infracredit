@@ -1,5 +1,4 @@
 import {
-  HStack,
   VStack,
   Table,
   Thead,
@@ -12,16 +11,15 @@ import {
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
-import Title from "./Title";
 
-const PageThirteen = ({ data }: any) => {
+const PageThirteen = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut isTitle={false} page={14}>
+      <CeoLayOut page={14} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <VStack align={"flex-start"} w="100%" spacing={0}>
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title}
               fontSize="18px"
               color="primary3"
@@ -33,7 +31,7 @@ const PageThirteen = ({ data }: any) => {
               fontSize="18px"
               color="primary3"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
           </VStack>
 
@@ -57,7 +55,7 @@ const PageThirteen = ({ data }: any) => {
                       >
                         <EditableInput
                           value={item}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="right"
                           fontSize="11px"
                           color="white"
@@ -78,7 +76,7 @@ const PageThirteen = ({ data }: any) => {
                       >
                         <EditableInput
                           value={item}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="right"
                           fontSize="11px"
                           color="white"
@@ -96,7 +94,7 @@ const PageThirteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text1}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="left"
                         fontSize="10px"
                         color="black"
@@ -106,7 +104,7 @@ const PageThirteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text2}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"
@@ -116,7 +114,7 @@ const PageThirteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text3}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"
@@ -126,7 +124,7 @@ const PageThirteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text4}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"
@@ -136,7 +134,7 @@ const PageThirteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text5}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"
@@ -146,7 +144,7 @@ const PageThirteen = ({ data }: any) => {
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text6}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
                         color="black"

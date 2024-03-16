@@ -2,14 +2,13 @@ import { HStack, VStack } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import type { ChartData, ChartOptions } from "chart.js";
 import { useState } from "react";
 import Title from "./Title";
 
-const PageEleven = ({ data }: any) => {
+const PageEleven = ({ data, isEdit }: any) => {
   interface LineProps {
     options: ChartOptions<"doughnut">;
     data: ChartData<"doughnut">;
@@ -57,11 +56,11 @@ const PageEleven = ({ data }: any) => {
 
   return (
     <>
-      <CeoLayOut isTitle={false} page={12}>
+      <CeoLayOut page={12} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <VStack align="flex-start" w="100%" spacing={1}>
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title}
               fontSize="18px"
               color="greens.200"
@@ -74,34 +73,34 @@ const PageEleven = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
             <EditableTextArea
               value={data[0]?.itemsTwo}
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
             <EditableTextArea
               value={data[0]?.itemsThree}
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
             <EditableTextArea
               value={data[0]?.itemsFour}
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
           </VStack>
 
           <VStack align="flex-start" w="100%" spacing={1}>
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title2}
               fontSize="18px"
               color="greens.200"
@@ -114,25 +113,25 @@ const PageEleven = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
             <EditableTextArea
               value={data[0]?.itemsSix}
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
             <EditableTextArea
               value={data[0]?.itemsSeven}
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
           </VStack>
 
-          <Title title={data[0]?.title3} />
+          <Title title={data[0]?.title3} isEdit={isEdit} />
 
           <HStack
             w="100%"
@@ -146,21 +145,21 @@ const PageEleven = ({ data }: any) => {
                 fontSize="14px"
                 color="black"
                 fontWeight="500"
-                isEdit={false}
+                isEdit={isEdit}
               />
               <EditableTextArea
                 value={data[0]?.itemsNine}
                 fontSize="14px"
                 color="black"
                 fontWeight="500"
-                isEdit={false}
+                isEdit={isEdit}
               />
               <EditableTextArea
                 value={data[0]?.itemsTen}
                 fontSize="14px"
                 color="black"
                 fontWeight="500"
-                isEdit={false}
+                isEdit={isEdit}
               />
             </VStack>
 

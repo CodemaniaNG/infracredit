@@ -20,7 +20,7 @@ import { useState } from "react";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 
-const PageTwo = ({ data }: any) => {
+const PageTwo = ({ data, isEdit }: any) => {
   const [chartDatas, setChartDatas] = useState<any>({
     data: {
       datasets: [
@@ -66,7 +66,7 @@ const PageTwo = ({ data }: any) => {
           display: true,
         },
         title: {
-          display: false,
+          display: isEdit,
           text: "Analysis of Guaranteed Transactions Since Inception of NGN87.6 Billion as at 28 February 2022",
           color: "#70ad47",
           font: { size: 20, weight: "bold", family: "Inter" },
@@ -77,15 +77,15 @@ const PageTwo = ({ data }: any) => {
   });
   return (
     <>
-      <CeoLayOut title={data[0]?.title} page={3}>
+      <CeoLayOut title={data[0]?.title} page={3} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
-          <EditableTextArea value={data[0]?.itemOne} isEdit={false} />
+          <EditableTextArea value={data[0]?.itemOne} isEdit={isEdit} />
 
-          <Title title={data[0]?.title2} color="primary3" />
+          <Title title={data[0]?.title2} color="primary3" isEdit={isEdit} />
 
           <HStack align="flex-start" w="100%" spacing={4}>
             <HStack w="50%">
-              <EditableTextArea value={data[0]?.itmesTwo} isEdit={false} />
+              <EditableTextArea value={data[0]?.itmesTwo} isEdit={isEdit} />
             </HStack>
 
             <VStack w="50%" align="flex-start">
@@ -108,7 +108,7 @@ const PageTwo = ({ data }: any) => {
             </VStack>
           </HStack>
 
-          <Title title={data[0]?.title3} color="primary3" />
+          <Title title={data[0]?.title3} color="primary3" isEdit={isEdit} />
 
           <VStack align="flex-start" w="100%">
             <TableContainer w="100%">
@@ -128,7 +128,7 @@ const PageTwo = ({ data }: any) => {
                         >
                           <EditableInput
                             value={item}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="12px"
                             color="white"
@@ -146,7 +146,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text1}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -156,7 +156,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text2}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -166,7 +166,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text3}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -176,7 +176,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text4}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -200,7 +200,7 @@ const PageTwo = ({ data }: any) => {
                         <Th key={index} py={0}>
                           <EditableInput
                             value={item}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="12px"
                             color="white"
@@ -218,7 +218,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text1}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -228,7 +228,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text2}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -238,7 +238,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text3}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -248,7 +248,7 @@ const PageTwo = ({ data }: any) => {
                       <Td borderColor="primary3" py={0}>
                         <EditableInput
                           value={item?.text4}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"

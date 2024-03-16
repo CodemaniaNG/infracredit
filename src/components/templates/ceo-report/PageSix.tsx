@@ -3,13 +3,13 @@ import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 
-const PageSix = ({ data }: any) => {
+const PageSix = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut isTitle={false} page={7}>
+      <CeoLayOut page={7} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableInput
-            isEdit={false}
+            isEdit={isEdit}
             value={data[0]?.title}
             fontSize="18px"
             color="primary3"
@@ -21,25 +21,25 @@ const PageSix = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableInput
-            isEdit={false}
+            isEdit={isEdit}
             value={data[0]?.title2}
             fontSize="18px"
             color="primary3"
@@ -52,7 +52,7 @@ const PageSix = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableTextArea
@@ -60,11 +60,11 @@ const PageSix = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableInput
-            isEdit={false}
+            isEdit={isEdit}
             value={data[0]?.title3}
             fontSize="18px"
             color="primary3"
@@ -77,7 +77,7 @@ const PageSix = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableTextArea
@@ -85,7 +85,7 @@ const PageSix = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableTextArea
@@ -93,7 +93,7 @@ const PageSix = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
         </VStack>
       </CeoLayOut>

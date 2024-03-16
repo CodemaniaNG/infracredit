@@ -7,19 +7,17 @@ import {
   Th,
   Td,
   TableContainer,
-  HStack,
 } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import type { ChartData, ChartOptions } from "chart.js";
 import { useState } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageNine = ({ data }: any) => {
+const PageNine = ({ data, isEdit }: any) => {
   interface LineProps {
     options: ChartOptions<"doughnut">;
     data: ChartData<"doughnut">;
@@ -75,10 +73,10 @@ const PageNine = ({ data }: any) => {
 
   return (
     <>
-      <CeoLayOut page={10} title={data[0]?.title}>
+      <CeoLayOut page={10} title={data[0]?.title} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableInput
-            isEdit={false}
+            isEdit={isEdit}
             value={data[0]?.title2}
             fontSize="18px"
             color="greens.200"
@@ -90,46 +88,46 @@ const PageNine = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsFour}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsFive}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <EditableTextArea
             value={data[0]?.itemsSix}
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <VStack align="flex-start" w="100%">
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title3}
               fontSize="16px"
               color="greens.200"
@@ -157,7 +155,7 @@ const PageNine = ({ data }: any) => {
                         >
                           <EditableInput
                             value={item}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="11px"
                             color="white"
@@ -178,7 +176,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                         <EditableInput
                           value={item?.text1}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -188,7 +186,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#F2F2F2"}>
                         <EditableInput
                           value={item?.text2}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -198,7 +196,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                         <EditableInput
                           value={item?.text3}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -208,7 +206,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#F2F2F2"}>
                         <EditableInput
                           value={item?.text4}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -218,7 +216,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                         <EditableInput
                           value={item?.text5}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -251,7 +249,7 @@ const PageNine = ({ data }: any) => {
                         >
                           <EditableInput
                             value={item}
-                            isEdit={false}
+                            isEdit={isEdit}
                             textAlign="left"
                             fontSize="11px"
                             color="white"
@@ -269,7 +267,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                         <EditableInput
                           value={item?.text1}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -279,7 +277,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#F2F2F2"}>
                         <EditableInput
                           value={item?.text2}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -289,7 +287,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                         <EditableInput
                           value={item?.text3}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -299,7 +297,7 @@ const PageNine = ({ data }: any) => {
                       <Td borderColor="#676767" py={2} bg={"#F2F2F2"}>
                         <EditableInput
                           value={item?.text4}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="10px"
                           color="black"
@@ -315,7 +313,7 @@ const PageNine = ({ data }: any) => {
 
           <VStack align="flex-start" w="100%">
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title4}
               fontSize="16px"
               color="greens.200"
@@ -328,7 +326,7 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="600"
-              isEdit={false}
+              isEdit={isEdit}
             />
 
             <EditableTextArea
@@ -336,7 +334,7 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
 
             <EditableTextArea
@@ -344,13 +342,13 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
           </VStack>
 
           <VStack align="flex-start" w="100%">
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title5}
               fontSize="16px"
               color="greens.200"
@@ -363,13 +361,13 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
           </VStack>
 
           <VStack align="flex-start" w="100%">
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title6}
               fontSize="16px"
               color="greens.200"
@@ -382,7 +380,7 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
 
             <EditableTextArea
@@ -390,7 +388,7 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
 
             <EditableTextArea
@@ -398,7 +396,7 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
 
             <EditableTextArea
@@ -406,21 +404,21 @@ const PageNine = ({ data }: any) => {
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
             <EditableTextArea
               value={data[0]?.itemsFifteen}
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
             <EditableTextArea
               value={data[0]?.itemsSixteen}
               fontSize="14px"
               color="black"
               fontWeight="500"
-              isEdit={false}
+              isEdit={isEdit}
             />
           </VStack>
         </VStack>

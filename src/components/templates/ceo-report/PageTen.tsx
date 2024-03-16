@@ -9,7 +9,7 @@ import Title from "./Title";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageTen = ({ data }: any) => {
+const PageTen = ({ data, isEdit }: any) => {
   const dataBar: any = {
     labels: ["2021 A", "2022 B"],
     datasets: [
@@ -33,19 +33,19 @@ const PageTen = ({ data }: any) => {
     },
     plugins: {
       legend: {
-        display: false,
+        display: isEdit,
       },
     },
   };
 
   return (
     <>
-      <CeoLayOut isTitle={false} page={11}>
+      <CeoLayOut page={11} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
-          <Title title={data[0]?.title} />
+          <Title title={data[0]?.title} isEdit={isEdit} />
           <VStack align="flex-start" w="100%" spacing={0}>
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title2}
               fontSize="16px"
               color="black"
@@ -53,7 +53,7 @@ const PageTen = ({ data }: any) => {
               textAlign="left"
             />
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title3}
               fontSize="16px"
               color="black"
@@ -67,7 +67,7 @@ const PageTen = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableTextArea
@@ -75,7 +75,7 @@ const PageTen = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableTextArea
@@ -83,7 +83,7 @@ const PageTen = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableTextArea
@@ -91,7 +91,7 @@ const PageTen = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
 
           <EditableTextArea
@@ -99,11 +99,11 @@ const PageTen = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
           <VStack w="100%" align="flex-start" spacing={0}>
             <EditableInput
-              isEdit={false}
+              isEdit={isEdit}
               value={data[0]?.title4}
               fontSize="16px"
               color="subText.900"
@@ -119,7 +119,7 @@ const PageTen = ({ data }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
-            isEdit={false}
+            isEdit={isEdit}
           />
         </VStack>
       </CeoLayOut>

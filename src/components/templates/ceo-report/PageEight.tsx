@@ -12,7 +12,6 @@ import {
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
-
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
@@ -21,7 +20,7 @@ import { useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageEight = ({ data }: any) => {
+const PageEight = ({ data, isEdit }: any) => {
   interface LineProps {
     options: ChartOptions<"doughnut">;
     data: ChartData<"doughnut">;
@@ -77,7 +76,7 @@ const PageEight = ({ data }: any) => {
 
   return (
     <>
-      <CeoLayOut page={8} title={data[0]?.title}>
+      <CeoLayOut page={8} title={data[0]?.title} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <TableContainer w="100%">
             <Table size="sm" cellSpacing={0} cellPadding={0}>
@@ -88,7 +87,7 @@ const PageEight = ({ data }: any) => {
                       <Th key={index} py={1} textTransform="capitalize">
                         <EditableInput
                           value={item}
-                          isEdit={false}
+                          isEdit={isEdit}
                           textAlign="left"
                           fontSize="11px"
                           color="black"
@@ -106,7 +105,7 @@ const PageEight = ({ data }: any) => {
                     <Td py={1}>
                       <EditableInput
                         value={item?.text1}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="left"
                         fontSize="10px"
                         color="black"
@@ -116,7 +115,7 @@ const PageEight = ({ data }: any) => {
                     <Td py={1}>
                       <EditableInput
                         value={item?.text2}
-                        isEdit={false}
+                        isEdit={isEdit}
                         textAlign="left"
                         fontSize="10px"
                         color="black"
@@ -137,7 +136,7 @@ const PageEight = ({ data }: any) => {
           >
             <VStack w="50%" align="flex-start">
               <EditableInput
-                isEdit={false}
+                isEdit={isEdit}
                 value={data[0]?.title2}
                 fontSize="18px"
                 color="primary3"

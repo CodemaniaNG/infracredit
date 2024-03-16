@@ -5,7 +5,7 @@ import EditableInput from "@/components/ui/EditableInput";
 const TableOfContent = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut page={1} isEdit={isEdit}>
+      <CeoLayOut isTitle={false} page={1} isEdit={isEdit}>
         <VStack align="flex-start" w="100%">
           <VStack align="flex-start" w="100%">
             <EditableInput

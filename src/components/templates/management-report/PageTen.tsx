@@ -8,14 +8,13 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
-import EditableTextArea from "@/components/ui/EditableTextArea";
+import ManagementLayOut from "./ManagementLayOut";
 
-const PageFifteen = ({ data, isEdit }: any) => {
+const PageTen = ({ data, isEdit }: any) => {
   return (
     <>
-      <CeoLayOut page={16} isEdit={isEdit}>
+      <ManagementLayOut page={11} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <VStack align={"flex-start"} w="100%" spacing={0}>
             <EditableInput
@@ -25,13 +24,6 @@ const PageFifteen = ({ data, isEdit }: any) => {
               color="black"
               fontWeight="800"
               textAlign="left"
-            />
-            <EditableTextArea
-              value={data[0]?.title2}
-              fontSize="18px"
-              color="primary3"
-              fontWeight="500"
-              isEdit={isEdit}
             />
           </VStack>
 
@@ -90,7 +82,7 @@ const PageFifteen = ({ data, isEdit }: any) => {
 
               <Tbody>
                 {data[0].table1[1].data.map((item: any, index: number) => (
-                  <Tr key={index} bg={index % 2 === 0 ? "#D9D9D9" : "white"}>
+                  <Tr key={index}>
                     <Td borderColor="#676767" py={2}>
                       <EditableInput
                         value={item?.text1}
@@ -101,7 +93,7 @@ const PageFifteen = ({ data, isEdit }: any) => {
                         fontWeight="600"
                       />
                     </Td>
-                    <Td borderColor="#676767" py={2}>
+                    <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                       <EditableInput
                         value={item?.text2}
                         isEdit={isEdit}
@@ -111,7 +103,7 @@ const PageFifteen = ({ data, isEdit }: any) => {
                         fontWeight="600"
                       />
                     </Td>
-                    <Td borderColor="#676767" py={2}>
+                    <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                       <EditableInput
                         value={item?.text3}
                         isEdit={isEdit}
@@ -121,29 +113,9 @@ const PageFifteen = ({ data, isEdit }: any) => {
                         fontWeight="600"
                       />
                     </Td>
-                    <Td borderColor="#676767" py={2}>
+                    <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
                       <EditableInput
                         value={item?.text4}
-                        isEdit={isEdit}
-                        textAlign="right"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                    <Td borderColor="#676767" py={2}>
-                      <EditableInput
-                        value={item?.text5}
-                        isEdit={isEdit}
-                        textAlign="right"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                    <Td borderColor="#676767" py={2}>
-                      <EditableInput
-                        value={item?.text6}
                         isEdit={isEdit}
                         textAlign="right"
                         fontSize="10px"
@@ -157,9 +129,9 @@ const PageFifteen = ({ data, isEdit }: any) => {
             </Table>
           </TableContainer>
         </VStack>
-      </CeoLayOut>
+      </ManagementLayOut>
     </>
   );
 };
 
-export default PageFifteen;
+export default PageTen;
