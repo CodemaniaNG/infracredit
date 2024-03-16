@@ -17,6 +17,7 @@ import Pages from "@/components/editor/Pages";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
 import { useState } from "react";
+import Renumeration from "@/components/templates/renumeration";
 
 const Editor = () => {
   const router = useRouter();
@@ -93,8 +94,9 @@ const Editor = () => {
 
           <GridItem colSpan={3}>
             <Box>
-              <CeoReport isEdit={isEdit} />
+              {/* <CeoReport isEdit={isEdit} /> */}
               {/* <ManagementReport isEdit={isEdit} /> */}
+              <Renumeration isEdit={isEdit} />
             </Box>
           </GridItem>
 

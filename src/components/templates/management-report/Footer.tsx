@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <VStack
         alignItems="flex-start"
-        bgGradient="linear(to-b, rgba(71, 182, 92, 1), rgba(34, 124, 191, 1))"
+        bg="#172A54"
         bgRepeat="no-repeat"
         mb={6}
         w="100%"
@@ -29,17 +29,9 @@ const Footer = () => {
             w="100%"
             p="6"
             justify="space-between"
-            align="center"
+            align="flex-start"
             flexShrink={0}
           >
-            <Box w="50%">
-              <Image
-                src="/images/logo-white.svg"
-                alt="logo"
-                w="233px"
-                h="70px"
-              />
-            </Box>
             <VStack align="flex-start" spacing={4} w="50%">
               <HStack
                 borderBottomWidth={2}
@@ -108,6 +100,10 @@ const Footer = () => {
                 </Text>
               </HStack>
             </VStack>
+
+            <HStack w="50%" justify="flex-end">
+              <Image src="/images/logo.svg" alt="logo" w="233px" h="70px" />
+            </HStack>
           </HStack>
         </VStack>
       </VStack>

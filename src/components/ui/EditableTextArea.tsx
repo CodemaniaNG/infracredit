@@ -32,6 +32,7 @@ const EditableTextArea = ({
       w="100%"
       isPreviewFocusable={isEdit}
       textAlign={textAlign}
+      whiteSpace="pre-wrap"
     >
       <EditablePreview />
       <EditableTextareaChakra
