@@ -12,6 +12,7 @@ const theme = extendTheme({
     primary2: "#000A44",
     primary3: "#227CBF",
     secondary: "#1D6FA0",
+    secondary2: "#0360A5",
     maintText: {
       100: "#272A3C",
       200: "#131628",
@@ -30,9 +31,9 @@ const theme = extendTheme({
       400: "#686B78",
       500: "#626262",
       600: "#A4A7B4",
-      700: "",
-      800: "",
-      900: "",
+      700: "#696A6C",
+      800: "#3C3C3C",
+      900: "#272727",
     },
     bg: {
       100: "#F4F7FF",
@@ -48,7 +49,7 @@ const theme = extendTheme({
     border: {
       100: "#CCCFDC",
       200: "#E0E3F0",
-      300: "",
+      300: "#B3B3B3",
       400: "",
       500: "",
       600: "",
@@ -58,6 +59,7 @@ const theme = extendTheme({
     },
     greens:{
       100: "#287750",
+      200: "#47B65C",
     },
   },
   fonts: {
