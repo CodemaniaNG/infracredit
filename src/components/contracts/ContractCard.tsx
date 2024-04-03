@@ -26,11 +26,15 @@ const ContractCard = ({
   const router = useRouter();
   return (
     <>
-      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}
-      onClick={() => {
-        router.push(`/editor/${type}?role=${role}`);
-      }}
-      cursor="pointer"
+      <Card
+        variant="outline"
+        maxW="sm"
+        bg="#fff"
+        borderRadius={16}
+        onClick={() => {
+          router.push(`/editor/${type}?role=${role}`);
+        }}
+        cursor="pointer"
       >
         <CardBody p={2}>
           <Image src="/images/contract.svg" alt="Document" />

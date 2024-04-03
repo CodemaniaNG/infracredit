@@ -8,9 +8,11 @@ import {
   Divider,
   Avatar,
   AvatarGroup,
+  Link as ChakraLink,
 } from "@chakra-ui/react";
 import Button from "../ui/Button";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 type TaskCardProps = {
   title: string;
@@ -95,12 +97,16 @@ const TaskCard = ({
                 </Text>
               </HStack>
 
-              {["completed"].includes(status) && <Text
-                fontSize={"12px"}
-                fontWeight="600"
-                color="greens.100"
-                fontFamily={"body"}
-              >Complete</Text>}
+              {["completed"].includes(status) && (
+                <Text
+                  fontSize={"12px"}
+                  fontWeight="600"
+                  color="greens.100"
+                  fontFamily={"body"}
+                >
+                  Complete
+                </Text>
+              )}
             </HStack>
             {["todo", "progress"].includes(status) && (
               <Button
@@ -108,7 +114,7 @@ const TaskCard = ({
                 type="submit"
                 size="md"
                 onClick={() => {
-                  router.push(`/editor/${type}`);
+                  router.push(`/editor/${type}?role=${role}`);
                 }}
               />
             )}
