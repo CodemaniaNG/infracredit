@@ -14,10 +14,12 @@ import ReportTable from "@/components/admin/ReportTable";
 import { useRouter } from "next/router";
 import Button from "@/components/ui/Button";
 import MemberCard from "@/components/admin/MemberCard";
+import Layout from "@/components/dashboard/Layout";
 
 const Member = () => {
   const router = useRouter();
   const { memberId } = router.query;
+  console.log(memberId);
 
   const data = [
     {
@@ -105,7 +107,7 @@ const Member = () => {
   ];
 
   return (
-    <>
+    <Layout showSidebar={false}>
       <Box p="6" overflowY="auto" bg="bg.100" h="100%">
         <HStack justify="space-between" mb={"5"}>
           <HStack>
@@ -187,7 +189,7 @@ const Member = () => {
           </>
         </>
       </Box>
-    </>
+    </Layout>
   );
 };
 

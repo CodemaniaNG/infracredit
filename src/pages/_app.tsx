@@ -7,11 +7,18 @@ import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { PublicClientApplication } from "@azure/msal-browser";
+import { msalConfig } from "@/authConfig";
+import { MsalProvider } from "@azure/msal-react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isReady, setIsReady] = useState(false);
+  const [msalInstance, setMsalInstance] = useState<any>(null);
 
   useEffect(() => {
+    // Initialize MSAL once the component mounts
+    const instance: any = new PublicClientApplication(msalConfig);
+    setMsalInstance(instance);
     setIsReady(true);
   }, []);
 
@@ -28,7 +35,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Fonts />
         <Provider store={store}>
-          <Component {...pageProps} />
+          <MsalProvider instance={msalInstance}>
+            <Component {...pageProps} />
+          </MsalProvider>
         </Provider>
       </ChakraProvider>
     </>

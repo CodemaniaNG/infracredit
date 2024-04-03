@@ -1,19 +1,6 @@
-import {
-  Box,
-  Text,
-  VStack,
-  Grid,
-  GridItem,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  HStack,
-} from "@chakra-ui/react";
-import DashboardTable from "@/components/dashboard/DashboardTable";
+import { Text, VStack, Grid, GridItem, HStack } from "@chakra-ui/react";
 import DocumentCard from "@/components/documents/DocumentCard";
-import Button from "@/components/ui/Button";
+import Folder from "../documents/Folder";
 
 const tasks = [
   {
@@ -31,59 +18,6 @@ const tasks = [
   {
     title: "Annual report",
     desc: "This is a commment, This is a commment, This is a commment",
-  },
-];
-
-const data = [
-  {
-    sn: "1",
-    title: "Annual report",
-    editedBy: "Olusanya Ezekiel",
-    editedOn: "12th May, 2021",
-    currentUser: "Wale Peter",
-  },
-  {
-    sn: "1",
-    title: "Annual report",
-    editedBy: "Olusanya Ezekiel",
-    editedOn: "12th May, 2021",
-    currentUser: "Wale Peter",
-  },
-  {
-    sn: "1",
-    title: "Annual report",
-    editedBy: "Olusanya Ezekiel",
-    editedOn: "12th May, 2021",
-    currentUser: "Wale Peter",
-  },
-  {
-    sn: "1",
-    title: "Annual report",
-    editedBy: "Olusanya Ezekiel",
-    editedOn: "12th May, 2021",
-    currentUser: "Wale Peter",
-  },
-  {
-    sn: "1",
-    title: "Annual report",
-    editedBy: "Olusanya Ezekiel",
-    editedOn: "12th May, 2021",
-    currentUser: "Wale Peter",
-  },
-];
-
-const tabs = [
-  {
-    title: "All Documents",
-  },
-  {
-    title: "Reports",
-  },
-  {
-    title: "Microsoft Word",
-  },
-  {
-    title: "PDFs",
   },
 ];
 
@@ -114,17 +48,6 @@ const Documents = () => {
             All of your documents are managed here
           </Text>
         </VStack>
-
-        <HStack justify="flex-end">
-          <Button
-            text="Upload Document"
-            bg="#F0FFFF"
-            border="#8CDBB4"
-            color="#287750"
-            icon="/images/add.svg"
-            iconPosition="left"
-          />
-          </HStack>
       </HStack>
       <>
         <>
@@ -170,52 +93,23 @@ const Documents = () => {
             fontFamily={"body"}
             mb={3}
           >
-            All Documents
+            Folders
           </Text>
-          <Tabs>
-            <TabList>
-              {tabs.map((tab, index) => (
-                <Tab
-                  key={index}
-                  _selected={{
-                    color: "greens.100",
-                    bg: "white",
-                    fontWeight: "700",
-                    fontSize: "16px",
-                    borderBottom: "2px solid #287750",
-                    borderTopLeftRadius: "16px",
-                    borderTopRightRadius: "16px",
-                    borderBottomEndRadius: "0px",
-                    borderBottomStartRadius: "0px",
-                  }}
-                  px={4}
-                  py={2}
-                  color="subText.400"
-                  fontFamily={"body"}
-                  fontWeight="500"
-                  fontSize={"16px"}
-                  mr={3}
-                >
-                  {tab.title}
-                </Tab>
-              ))}
-            </TabList>
-
-            <TabPanels px={0}>
-              <TabPanel px={0}>
-                <DashboardTable data={data} />
-              </TabPanel>
-              <TabPanel px={0}>
-                <DashboardTable data={data} />
-              </TabPanel>
-              <TabPanel px={0}>
-                <DashboardTable data={data} />
-              </TabPanel>
-              <TabPanel px={0}>
-                <DashboardTable data={data} />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <Grid
+            templateColumns={{
+              sm: "repeat(1, 1fr)",
+              md: "repeat(2, 1fr)",
+              lg: "repeat(4, 1fr)",
+            }}
+            gap={2}
+            mb={5}
+          >
+            {tasks.map((task, index) => (
+              <GridItem colSpan={1} key={index}>
+                <Folder title={task.title} desc={task.desc} />
+              </GridItem>
+            ))}
+          </Grid>
         </>
       </>
     </>

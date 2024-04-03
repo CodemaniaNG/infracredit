@@ -41,7 +41,7 @@ const TableOfContent = ({ data, isEdit }: any) => {
                   </HStack>
 
                   <Text fontSize="20px" color="subText.800" fontWeight="600">
-                    {item?.number}
+                    {item?.page}
                   </Text>
                 </HStack>
               </ListItem>

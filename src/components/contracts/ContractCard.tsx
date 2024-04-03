@@ -8,16 +8,30 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import Button from "../ui/Button";
+import { useRouter } from "next/router";
 
 type ContractCardProps = {
   title: string;
   desc: string;
+  type?: string;
+  role?: string;
 };
 
-const ContractCard = ({ title, desc }: ContractCardProps) => {
+const ContractCard = ({
+  title,
+  desc,
+  type = "contract",
+  role,
+}: ContractCardProps) => {
+  const router = useRouter();
   return (
     <>
-      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}>
+      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}
+      onClick={() => {
+        router.push(`/editor/${type}?role=${role}`);
+      }}
+      cursor="pointer"
+      >
         <CardBody p={2}>
           <Image src="/images/contract.svg" alt="Document" />
           <Divider borderColor="border.200" />
@@ -60,7 +74,14 @@ const ContractCard = ({ title, desc }: ContractCardProps) => {
               </Text>
             </HStack>
 
-            <Button text="Open" type="submit" size="md" />
+            <Button
+              text="Open"
+              type="submit"
+              size="md"
+              onClick={() => {
+                router.push(`/editor/${type}?role=${role}`);
+              }}
+            />
           </VStack>
         </CardBody>
       </Card>

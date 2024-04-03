@@ -106,20 +106,7 @@ const Admin = () => {
             color="maintText.200"
             fontFamily={"body"}
           >
-            Welcome back,
-            <Text
-              as="span"
-              fontSize={{
-                base: "20px",
-                md: "24px",
-                lg: "32px",
-              }}
-              fontWeight="600"
-              color="secondary"
-              fontFamily={"body"}
-            >
-              Olusanya Ezekiel
-            </Text>
+            Staff
           </Text>
           <Text
             fontSize={"16px"}
@@ -134,7 +121,7 @@ const Admin = () => {
 
         <HStack justify="flex-end">
           <Button
-            text="Create New User"
+            text="Create New Staff"
             icon="/images/add2.svg"
             iconPosition="left"
             onClick={handleModal}
@@ -242,7 +229,7 @@ const Admin = () => {
                   fontFamily={"body"}
                   mb={3}
                 >
-                  In Progress (344)
+                  In Progress
                   <Text
                     as="span"
                     fontSize={"16px"}
@@ -267,7 +254,7 @@ const Admin = () => {
                   fontFamily={"body"}
                   mb={3}
                 >
-                  Under Review (344)
+                  Under Review
                   <Text
                     as="span"
                     fontSize={"16px"}
@@ -292,7 +279,7 @@ const Admin = () => {
                   fontFamily={"body"}
                   mb={3}
                 >
-                  Completed (344)
+                  Completed
                   <Text
                     as="span"
                     fontSize={"16px"}
@@ -330,12 +317,12 @@ const Admin = () => {
                   key={index}
                   _selected={{
                     color: "greens.100",
-                    bg: "white",
+                    bg: "bg.500",
                     fontWeight: "700",
                     fontSize: "16px",
                     borderBottom: "2px solid #287750",
-                    borderTopLeftRadius: "16px",
-                    borderTopRightRadius: "16px",
+                    borderTopLeftRadius: "0px",
+                    borderTopRightRadius: "0px",
                     borderBottomEndRadius: "0px",
                     borderBottomStartRadius: "0px",
                     px: 6,
@@ -347,6 +334,8 @@ const Admin = () => {
                   fontWeight="500"
                   fontSize={"16px"}
                   mr={3}
+                  w={150}
+                  borderRadius={0}
                 >
                   {tab.title}
                 </Tab>
@@ -385,7 +374,7 @@ const Admin = () => {
               fontWeight={"600"}
               fontFamily={"body"}
             >
-              Create New User
+              Create New Staff
             </Text>
             <Formik
               initialValues={{
@@ -443,7 +432,7 @@ const Admin = () => {
                     />
 
                     <VStack align="stretch" w={"100%"} mt={4}>
-                      <Button text="Create User" px={4} py={4} type="submit" />
+                      <Button text="Create Staff" px={4} py={4} type="submit" />
                     </VStack>
                   </VStack>
                 </Form>
