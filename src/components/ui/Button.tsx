@@ -15,13 +15,14 @@ const Button = (props: ButtonType) => {
     fontWeight = 700,
     px,
     py,
-    color: text = "white"	,
+    color: text = "white",
     bg = "secondary",
     border = "secondary",
     type = "button",
     borderRadius = "8px",
     width = "100%",
-    borderWidth = "0",
+    borderWidth = "1",
+    borderStyle = "solid",
   } = props;
 
   return (
@@ -33,24 +34,23 @@ const Button = (props: ButtonType) => {
       onClick={onClick}
       color={text}
       bg={bg}
-      // leftIcon={icon && iconPosition === "left" && icon}
       leftIcon={
-        icon && iconPosition === "left" && (
+        icon &&
+        iconPosition === "left" && (
           <Image src={icon} alt="icon" boxSize="20px" />
         )
       }
-      // rightIcon={icon && iconPosition === "right" && icon}
       rightIcon={
-        icon && iconPosition === "right" && (
+        icon &&
+        iconPosition === "right" && (
           <Image src={icon} alt="icon" boxSize="20px" />
         )
       }
-      // borderWidth={variant === "outline" ? "1px" : "0px"}
       borderWidth={borderWidth}
       borderColor={border}
       borderRadius={borderRadius}
+      borderStyle={borderStyle}
       _hover={{
-        // give it a nice sacling effect on hover
         transform: "scale(1.05)",
         transition: "all 0.2s ease-in-out",
       }}

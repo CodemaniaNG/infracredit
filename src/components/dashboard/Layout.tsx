@@ -25,7 +25,7 @@ import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Modal from "../ui/Modal";
 import Button from "../ui/Button";
 
-const Layout = ({ children, title }: any) => {
+const Layout = ({ children, title, showSidebar = true }: any) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { userInfo } = useAppSelector((state) => state.app.auth);
@@ -116,11 +116,11 @@ const Layout = ({ children, title }: any) => {
       icon: "/images/contracts.svg",
       activIcon: "/images/contracts-active.svg",
       // user-contracts, admin
-      isVisble: role === "user-contracts" || role === "admin" ? true : false,
+      isVisble: role === "user-contracts" || role === "admin" || role === "manager" ? true : false,
     },
     {
       path: "/dashboard/admin",
-      title: "Admin",
+      title: "Staffs",
       icon: "/images/admin.svg",
       activIcon: "/images/admin-active.svg",
       isVisble: role === "admin" ? true : false,
@@ -222,96 +222,98 @@ const Layout = ({ children, title }: any) => {
           </HStack>
         </HStack>
         <Flex flex="1" overflow="hidden">
-          <Box
-            w="205px"
-            bg="white"
-            p="4"
-            borderWidth={1}
-            borderTopWidth={0}
-            borderColor="border.100"
-            display={
-              isSidebarOpen
-                ? { base: "block", md: "block" }
-                : { base: "none", md: "block" }
-            }
-            transition="width 0.3s ease"
-            overflowY="auto"
-            sx={{
-              "&::-webkit-scrollbar": {
-                width: "0px",
-                background: "transparent",
-              },
-            }}
-          >
-            <Text
-              fontSize="14px"
-              fontWeight="500"
-              fontFamily="body"
-              color="subText.200"
-              mb="5"
+          {showSidebar && (
+            <Box
+              w="205px"
+              bg="white"
+              p="4"
+              borderWidth={1}
+              borderTopWidth={0}
+              borderColor="border.100"
+              display={
+                isSidebarOpen
+                  ? { base: "block", md: "block" }
+                  : { base: "none", md: "block" }
+              }
+              transition="width 0.3s ease"
+              overflowY="auto"
+              sx={{
+                "&::-webkit-scrollbar": {
+                  width: "0px",
+                  background: "transparent",
+                },
+              }}
             >
-              Menu
-            </Text>
+              <Text
+                fontSize="14px"
+                fontWeight="500"
+                fontFamily="body"
+                color="subText.200"
+                mb="5"
+              >
+                Menu
+              </Text>
 
-            <VStack align="stretch">
-              {links &&
-                links.map((link, index) => (
-                  <SideBarLinks2
-                    key={index}
-                    path={link.path}
-                    title={link.title}
-                    icon={link.icon}
-                    activIcon={link.activIcon}
-                    isVisble={link.isVisble}
-                  />
-                ))}
+              <VStack align="stretch">
+                {links &&
+                  links.map((link, index) => (
+                    <SideBarLinks2
+                      key={index}
+                      path={link.path}
+                      title={link.title}
+                      icon={link.icon}
+                      activIcon={link.activIcon}
+                      isVisble={link.isVisble}
+                    />
+                  ))}
 
-              {/* log out  */}
+                {/* log out  */}
 
-              <Box onClick={handleModal} mt="10">
-                <VStack align="stretch" py="1">
-                  <Flex
-                    flexDirection="row"
-                    alignItems="center"
-                    justifyContent="space-between"
-                    pt={"0"}
-                    px="4"
-                    py="2"
-                    _hover={{
-                      bg: "bg.200",
-                      cursor: "pointer",
-                      borderLeftWidth: "4px",
-                      borderLeftColor: "secondary",
-                      transition: "all 0.3s ease",
-                    }}
-                    bg={"transparent"}
-                    cursor={"pointer"}
-                    borderLeftWidth={"0px"}
-                    borderLeftColor={"secondary"}
-                  >
+                <Box onClick={handleModal} mt="10">
+                  <VStack align="stretch" py="1">
                     <Flex
-                      cursor="pointer"
-                      display="flex"
                       flexDirection="row"
                       alignItems="center"
-                      justifyContent="flex-start"
-                      gap="4"
+                      justifyContent="space-between"
+                      pt={"0"}
+                      px="4"
+                      py="2"
+                      _hover={{
+                        bg: "bg.200",
+                        cursor: "pointer",
+                        borderLeftWidth: "4px",
+                        borderLeftColor: "secondary",
+                        transition: "all 0.3s ease",
+                      }}
+                      bg={"transparent"}
+                      cursor={"pointer"}
+                      borderLeftWidth={"0px"}
+                      borderLeftColor={"secondary"}
                     >
-                      <Image src="/images/logout.svg" alt="logo" />
-
-                      <Text
-                        fontSize="16px"
-                        fontWeight="500"
-                        color={"subText.200"}
+                      <Flex
+                        cursor="pointer"
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                        justifyContent="flex-start"
+                        gap="4"
                       >
-                        Logout
-                      </Text>
+                        <Image src="/images/logout.svg" alt="logo" />
+
+                        <Text
+                          fontSize="16px"
+                          fontWeight="500"
+                          color={"subText.200"}
+                        >
+                          Logout
+                        </Text>
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </VStack>
-              </Box>
-            </VStack>
-          </Box>
+                  </VStack>
+                </Box>
+              </VStack>
+            </Box>
+          )}
           <Box flex="1" p="4" overflowY="auto" bg="bg.100">
             {children}
           </Box>

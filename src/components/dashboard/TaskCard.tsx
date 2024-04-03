@@ -16,9 +16,19 @@ type TaskCardProps = {
   title: string;
   desc: string;
   isStack?: boolean;
+  status?: any;
+  type?: string;
+  role?: string;
 };
 
-const TaskCard = ({ title, desc, isStack = false }: TaskCardProps) => {
+const TaskCard = ({
+  title,
+  desc,
+  isStack = false,
+  status,
+  type = "report",
+  role,
+}: TaskCardProps) => {
   const router = useRouter();
   return (
     <>
@@ -28,6 +38,10 @@ const TaskCard = ({ title, desc, isStack = false }: TaskCardProps) => {
         bg="#fff"
         borderRadius={8}
         mb={isStack ? "3" : "0"}
+        onClick={() => {
+          router.push(`/editor/${type}?role=${role}`);
+        }}
+        cursor="pointer"
       >
         <CardBody>
           <VStack align="flex-start" spacing={4}>
@@ -68,24 +82,46 @@ const TaskCard = ({ title, desc, isStack = false }: TaskCardProps) => {
 
             <Divider borderColor="border.200" />
 
-            <HStack>
-              <Image src="/images/comment.svg" alt="Like" />
-              <Text
-                fontSize={"12px"}
-                fontWeight="500"
-                color="subText.300"
-                fontFamily={"body"}
-              >
-                13 Comments
-              </Text>
-            </HStack>
+            <HStack justify="space-between" w="100%">
+              <HStack>
+                <Image src="/images/comment.svg" alt="Like" />
+                <Text
+                  fontSize={"12px"}
+                  fontWeight="500"
+                  color="subText.300"
+                  fontFamily={"body"}
+                >
+                  13 Comments
+                </Text>
+              </HStack>
 
-            <Button
-              text="Edit Report"
-              type="submit"
-              size="md"
-              onClick={() => router.push("/editor")}
-            />
+              {["completed"].includes(status) && <Text
+                fontSize={"12px"}
+                fontWeight="600"
+                color="greens.100"
+                fontFamily={"body"}
+              >Complete</Text>}
+            </HStack>
+            {["todo", "progress"].includes(status) && (
+              <Button
+                text="Edit Report"
+                type="submit"
+                size="md"
+                onClick={() => {
+                  router.push(`/editor/${type}`);
+                }}
+              />
+            )}
+            {["review"].includes(status) && (
+              <Button
+                text="Review"
+                type="submit"
+                size="md"
+                onClick={() => {
+                  router.push(`/editor/${type}?role=${role}`);
+                }}
+              />
+            )}
           </VStack>
         </CardBody>
       </Card>

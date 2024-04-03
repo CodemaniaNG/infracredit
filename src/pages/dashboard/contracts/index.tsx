@@ -2,6 +2,7 @@ import { useAppSelector } from "@/redux/store";
 import Layout from "@/components/dashboard/Layout";
 import ContractsC from "@/components/user-contract/Contracts";
 import ContractsAdmin from "@/components/admin/Contracts";
+import ContractsManager from "@/components/manager/Contracts";
 
 export default function Contracts() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
@@ -10,8 +11,9 @@ export default function Contracts() {
   return (
     <>
       <Layout>
-      {role === "user-contracts" && <ContractsC />}
-      {role === "admin" && <ContractsAdmin />}
+        {role === "user-contracts" && <ContractsC />}
+        {role === "admin" && <ContractsAdmin />}
+        {role === "manager" && <ContractsManager />}
       </Layout>
     </>
   );

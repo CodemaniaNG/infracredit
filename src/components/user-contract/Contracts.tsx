@@ -51,14 +51,16 @@ const Contracts = () => {
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
-
   const roles = [
-    { value: "user-reports", label: "User Report" },
-    { value: "user-contracts", label: "User Contracts" },
-    { value: "admin", label: "Admin" },
-    { value: "manager", label: "Manager" },
-    { value: "supervisor", label: "Supervisor" },
-    { value: "viewer", label: "Viewer" },
+    { value: "current", label: "Current Guarantee Porfolio Contract" },
+    { value: "new", label: "New Guarantee Porfolio Contract" },
+  ];
+
+  const industries = [
+    { value: "education", label: "Education" },
+    { value: "health", label: "Health" },
+    { value: "agriculture", label: "Agriculture" },
+    { value: "finance", label: "Finance" },
   ];
 
   return (
@@ -161,7 +163,11 @@ const Contracts = () => {
               >
                 {tasks.map((task, index) => (
                   <GridItem colSpan={1} key={index}>
-                    <ContractCard title={task.title} desc={task.desc} />
+                    <ContractCard
+                      title={task.title}
+                      desc={task.desc}
+                      role="user-contracts"
+                    />
                   </GridItem>
                 ))}
               </Grid>
@@ -176,11 +182,13 @@ const Contracts = () => {
         body={
           <VStack align="flex-start" spacing={4} mt={10} mb={5}>
             <Text
-            color={"greens.100"}
-            fontSize={"24px"}
-            fontWeight={"600"}
-            fontFamily={"body"}
-            >Create New Contract</Text>
+              color={"greens.100"}
+              fontSize={"24px"}
+              fontWeight={"600"}
+              fontFamily={"body"}
+            >
+              Create New Contract
+            </Text>
             <Formik
               initialValues={{
                 role: "",
@@ -195,17 +203,31 @@ const Contracts = () => {
                 <Form style={{ width: "100%" }}>
                   <VStack>
                     <Select
-                      label="Select Document"
+                      label="Select Template"
                       name="role"
                       options={roles}
-                      placeholder="Select your role"
+                      placeholder="Select template"
                     />
 
                     <Input
                       label="Date"
-                      name="email"
+                      name="date"
                       type="date"
                       placeholder="Your email address"
+                    />
+
+                    <Input
+                      label="Client Name"
+                      name="clientName"
+                      type="text"
+                      placeholder="Your email address"
+                    />
+
+                    <Select
+                      label="Select Industry"
+                      name="industry"
+                      options={industries}
+                      placeholder="Select industry"
                     />
 
                     <VStack align="stretch" w={"100%"} mt={4}>

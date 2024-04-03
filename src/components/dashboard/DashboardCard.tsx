@@ -22,12 +22,7 @@ const DashboardCard = ({
             <HStack spacing={4}>
               <Image src={image} alt="logo" w="fit-content" />
               <VStack align="flex-start">
-                <Text
-                  fontSize="16px"
-                  fontWeight="600"
-                  color="secondary"
-                  fontFamily={"body"}
-                >
+                <Text fontSize="16px" fontWeight="600" color="secondary">
                   {label}
                 </Text>
               </VStack>

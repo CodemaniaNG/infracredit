@@ -9,6 +9,7 @@ import {
   Tab,
   TabPanel,
   HStack,
+  IconButton,
 } from "@chakra-ui/react";
 import TaskCard from "@/components/dashboard/TaskCard";
 import TaskStack from "@/components/task/TaskStack";
@@ -17,8 +18,9 @@ import TemplateCard from "./TemplateCard";
 import Button from "@/components/ui/Button";
 import Modal from "../ui/Modal";
 import { useState } from "react";
-import { Formik, Form } from "formik";
+import { Formik, Form, FieldArray } from "formik";
 import Input from "@/components/ui/Input2";
+import { FiTrash2 } from "react-icons/fi";
 
 const Tasks = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -281,9 +283,9 @@ const Tasks = () => {
             </Text>
             <Formik
               initialValues={{
-                role: "",
-                email: "",
-                password: "",
+                departmentName: "",
+                departmentDescription: "",
+                levels: ["level 1"],
               }}
               onSubmit={(values, actions) => {
                 console.log(values);
@@ -292,25 +294,58 @@ const Tasks = () => {
               {(props) => (
                 <Form style={{ width: "100%" }}>
                   <VStack>
-                  
-
                     <Input
                       label="Department Name"
-                      name="email"
+                      name="departmentName"
                       type="text"
-                      placeholder="Your email address"
+                      placeholder="Department Name"
                     />
                     <Input
                       label="Department Description"
-                      name="email"
+                      name="departmentDescription"
                       type="text"
-                      placeholder="Your email address"
+                      placeholder="Department Description"
                     />
-                    <Input
-                      label="Levels"
-                      name="email"
-                      type="text"
-                      placeholder="Your email address"
+
+                    <FieldArray
+                      name="levels"
+                      render={(arrayHelpers) => (
+                        <VStack align="stretch" w={"100%"}>
+                          {props.values.levels.map((level, index) => (
+                            <VStack key={index} position="relative">
+                              <Input
+                                label="Level"
+                                name={`levels.${index}`}
+                                type="text"
+                                placeholder="Level"
+                              />
+                              {index > 0 && (
+                                <IconButton
+                                  aria-label="delete level"
+                                  position="absolute"
+                                  right="-2"
+                                  top="-2"
+                                  icon={<FiTrash2 size={20} color="#FF3B30" />}
+                                  onClick={() => arrayHelpers.remove(index)}
+                                  variant="ghost"
+                                  _hover={{ bg: "transparent" }}
+                                />
+                              )}
+                            </VStack>
+                          ))}
+                           <Button
+                            text="Add another level"
+                            size="sm"
+                            fontSize={10}
+                            onClick={() => arrayHelpers.push("")}
+                            variant="outline"
+                            bg="transparent"
+                            color="subText.400"
+                            border="border.100"
+                            borderStyle="dashed"
+                          />
+                        </VStack>
+                      )}
                     />
 
                     <VStack align="stretch" w={"100%"} mt={4}>
