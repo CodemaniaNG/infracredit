@@ -17,6 +17,8 @@
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^2.8.2",
+    "@ckeditor/ckeditor5-build-classic": "^41.3.0",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.5",

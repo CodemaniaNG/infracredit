@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import Select from "@/components/ui/Select";
 import AuthLeft from "@/components/auth/AuthLeft";
 import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "@/authConfig";
 
 const roles = [
   { value: "user-reports", label: "User Report" },
@@ -37,7 +38,7 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state: any) => state.app.auth);
 
-  const { instance } = useMsal();
+  const { instance, accounts } = useMsal();
 
   useEffect(() => {
     if (userInfo) {
@@ -75,9 +76,14 @@ const LoginPage = () => {
   };
 
   const loginMsal = () => {
-    instance.loginPopup().then((res) => {
-      console.log(res.accessToken, "res login");
-    });
+    instance
+      .loginPopup(loginRequest)
+      .then((res) => {
+        console.log(res.accessToken, "res login");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -130,10 +136,10 @@ const LoginPage = () => {
                         text="Login"
                         px={4}
                         py={6}
-                        type="submit"
+                        type="button"
                         // isLoading={isLoading}
                         // isDisabled={isLoading}
-                        // onClick={loginMsal}
+                        onClick={loginMsal}
                       />
                     </VStack>
                   </VStack>

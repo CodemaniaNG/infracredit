@@ -28,6 +28,9 @@ import { Formik, Form, FieldArray } from "formik";
 import Input from "@/components/ui/Input2";
 import { FiTrash2 } from "react-icons/fi";
 
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 const Editor = () => {
   const router = useRouter();
   const { template, role } = router.query;
@@ -41,6 +44,9 @@ const Editor = () => {
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
   const [file, setFile] = useState<any>(null);
+
+  const [ckeData, setCkeData] = useState("");
+  console.log(ckeData);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
@@ -246,7 +252,7 @@ const Editor = () => {
             </GridItem>
 
             <GridItem colSpan={3}>
-              <Box>
+              {/* <Box>
                 {template === "report" && <CeoReport isEdit={isEdit} />}
                 {template === "contract" && <CeoReport isEdit={isEdit} />}
                 {template === "management-report" && (
@@ -255,7 +261,26 @@ const Editor = () => {
                 {template === "renumeration" && (
                   <Renumeration isEdit={isEdit} />
                 )}
-              </Box>
+              </Box> */}
+              <CKEditor
+                editor={ClassicEditor}
+                data={ckeData}
+                onReady={(editor) => {
+                  // You can store the "editor" and use when it is needed.
+                  console.log("Editor is ready to use!", editor);
+                }}
+                onChange={(event, editor) => {
+                  console.log(event);
+                  const data = editor.getData();
+                  setCkeData(data);
+                }}
+                onBlur={(event, editor) => {
+                  console.log("Blur.", editor);
+                }}
+                onFocus={(event, editor) => {
+                  console.log("Focus.", editor);
+                }}
+              />
             </GridItem>
 
             <GridItem colSpan={1} position="sticky" right="0">
