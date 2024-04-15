@@ -23,6 +23,8 @@ const Button = (props: ButtonType) => {
     width = "100%",
     borderWidth = "1",
     borderStyle = "solid",
+    iconWidth = "20px",
+    iconHeight = "20px",
   } = props;
 
   return (
@@ -37,13 +39,13 @@ const Button = (props: ButtonType) => {
       leftIcon={
         icon &&
         iconPosition === "left" && (
-          <Image src={icon} alt="icon" boxSize="20px" />
+          <Image src={icon} alt="icon" width={iconWidth} height={iconHeight} />
         )
       }
       rightIcon={
         icon &&
         iconPosition === "right" && (
-          <Image src={icon} alt="icon" boxSize="20px" />
+          <Image src={icon} alt="icon" width={iconWidth} height={iconHeight} />
         )
       }
       borderWidth={borderWidth}

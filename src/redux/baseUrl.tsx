@@ -1,1 +1,1 @@
-export const baseUrl = 'https://hermoney-v2yc9.ondigitalocean.app/v1/api/';
+export const baseUrl = 'https://app-infracredit-webapi-eastus-dev-001.azurewebsites.net/';

@@ -25,6 +25,8 @@ export type ButtonType = {
     width?: string;
     borderWidth?: string;
     borderStyle?: string;
+    iconWidth?: string;
+    iconHeight?: string;
 };
 
 export type InputProps = {

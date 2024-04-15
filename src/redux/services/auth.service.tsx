@@ -3,62 +3,35 @@ import { baseUrl } from "../baseUrl";
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: baseUrl,
+    // prepareHeaders: (headers, { getState }: any) => {
+    //   const token = getState().auth.token;
+    //   if (token) {
+    //     headers.set("authorization", `Bearer ${token}`);
+    //   }
+    //   // set cors headers
+    //   headers.set("Access-Control-Allow-Origin", "*");
+    //   headers.set("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS");
+    //   headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    //   return headers;
+    // },
+  }),
   tagTypes: ["Auth"],
   endpoints: (builder) => ({
-    registerOrganisation: builder.mutation({
-      query: (body) => ({
-        url: `organization/register`,
+    getUserByEmail: builder.query({
+      query: ({ token, email }) => ({
+        url: `api/users/${email}`,
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
         },
-        body: body,
       }),
-      invalidatesTags: ["Auth"],
-    }),
-
-    login: builder.mutation({
-      query: (body) => ({
-        url: `auth/login`,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      }),
-      invalidatesTags: ["Auth"],
-    }),
-
-    forgotPassword: builder.mutation({
-      query: (body) => ({
-        url: `auth/forgot-password`,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      }),
-      invalidatesTags: ["Auth"],
-    }),
-
-    resetPassword: builder.mutation({
-      query: (body) => ({
-        url: `auth/reset-password`,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: body,
-      }),
-      invalidatesTags: ["Auth"],
     }),
   }),
 });
 
-export const {
-  useRegisterOrganisationMutation,
-  useLoginMutation,
-  useForgotPasswordMutation,
-  useResetPasswordMutation,
-} = authApi;
+export const { useGetUserByEmailQuery } = authApi;
