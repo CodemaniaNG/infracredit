@@ -252,7 +252,7 @@ const Editor = () => {
             </GridItem>
 
             <GridItem colSpan={3}>
-              {/* <Box>
+              <Box>
                 {template === "report" && <CeoReport isEdit={isEdit} />}
                 {template === "contract" && <CeoReport isEdit={isEdit} />}
                 {template === "management-report" && (
@@ -261,8 +261,8 @@ const Editor = () => {
                 {template === "renumeration" && (
                   <Renumeration isEdit={isEdit} />
                 )}
-              </Box> */}
-              <CKEditor
+              </Box>
+              {/* <CKEditor
                 editor={ClassicEditor}
                 data={ckeData}
                 onReady={(editor) => {
@@ -280,7 +280,7 @@ const Editor = () => {
                 onFocus={(event, editor) => {
                   console.log("Focus.", editor);
                 }}
-              />
+              /> */}
             </GridItem>
 
             <GridItem colSpan={1} position="sticky" right="0">
