@@ -8,18 +8,38 @@ import DashboardViewer from "@/components/viewer/Dashboard";
 import DashboardAdmin from "@/components/admin/Dashboard";
 
 export default function Home() {
-  const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role;
+  const { userInfo, roles } = useAppSelector((state) => state.app.auth);
+  const roleId = userInfo?.roleId;
 
   return (
     <>
       <Layout>
-        {role === "user-reports" && <DashboardReports />}
-        {role === "user-contracts" && <DashboardContracts />}
-        {role === "manager" && <DashboardManager />}
-        {role === "supervisor" && <DashboardSupervisor />}
-        {role === "viewer" && <DashboardViewer />}
-        {role === "admin" && <DashboardAdmin />}
+        {/* {roleId === "user-reports" && <DashboardReports />}
+        {roleId === "user-contracts" && <DashboardContracts />}
+        {roleId === "manager" && <DashboardManager />}
+        {roleId === "supervisor" && <DashboardSupervisor />}
+        {roleId === "viewer" && <DashboardViewer />}
+        {roleId === "538d1ca3-0148-443c-b663-9c555e0d48f5" && (
+          <DashboardAdmin />
+        )} */}
+        {roles?.map((role: any) => {
+          if (roleId === role.id) {
+            switch (role?.value) {
+              case "Admin":
+                return <DashboardAdmin />;
+              case "Manager":
+                return <DashboardManager />;
+              case "Supervisor":
+                return <DashboardSupervisor />;
+              case "User":
+                return <DashboardReports />;
+              case "Viewer":
+                return <DashboardViewer />;
+              default:
+                return <DashboardReports />;
+            }
+          }
+        })}
       </Layout>
     </>
   );

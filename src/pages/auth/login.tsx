@@ -1,24 +1,17 @@
-import React from "react";
-import {
-  Box,
-  Flex,
-  Image,
-  VStack,
-  Heading,
-  Text,
-  Link as ChakraLink,
-} from "@chakra-ui/react";
+import { Box, Flex, Image, VStack, Text } from "@chakra-ui/react";
 import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import { useToast } from "@chakra-ui/react";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
-import { setCredentials } from "@/redux/slices/authSlice";
+import { setCredentials, setToken, setRoles } from "@/redux/slices/authSlice";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import AuthLeft from "@/components/auth/AuthLeft";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "@/authConfig";
-import { useGetUserByEmailQuery } from "@/redux/services/auth.service";
+import {
+  useGetUserByEmailQuery,
+  useGetUserByIdQuery,
+  useGetUserRolesQuery,
+} from "@/redux/services/auth.service";
 
 const roles = [
   { value: "user-reports", label: "User Report" },
@@ -31,39 +24,82 @@ const roles = [
 
 const LoginPage = () => {
   const router = useRouter();
-  const toast = useToast();
   const dispatch = useAppDispatch();
-  const { userInfo } = useAppSelector((state: any) => state.app.auth);
-  const [email, setEmail] = useState("");
-  const [accessToken, setAccessToken] = useState("");
+  const { userInfo, token, roles } = useAppSelector(
+    (state: any) => state.app.auth
+  );
+  const [email, setEmail] = useState("dummyemail.d@codemania.com.ng");
+  const [userId, setUserId] = useState("12345");
 
-  const { data, error, isLoading, refetch } = useGetUserByEmailQuery({
-    token: accessToken,
+  useEffect(() => {
+    if (userInfo && roles?.length > 0) {
+      router.push("/");
+    }
+  }, [router, userInfo, roles]);
+
+  const { data, isLoading, refetch } = useGetUserByEmailQuery({
+    token: token,
     email: email,
   });
 
+  const userDataFromEmail = data;
+
+  const {
+    data: userData,
+    isLoading: userIsLoading,
+    refetch: userRefetch,
+    error,
+  } = useGetUserByIdQuery({
+    token: token,
+    id: userId,
+  });
+
+  const user = userData;
+
+  const { data: rolesData } = useGetUserRolesQuery({ token: token });
+  const allRoles = rolesData?.data;
+
   useEffect(() => {
-    if (accessToken && email) {
+    if (allRoles) {
+      dispatch(setRoles(allRoles));
+    }
+  }, [allRoles, dispatch]);
+
+  useEffect(() => {
+    if (user?.status === "success" && user?.data) {
+      dispatch(setCredentials(user?.data));
+    }
+  }, [user, dispatch, router]);
+
+  useEffect(() => {
+    if (
+      userDataFromEmail?.status === "success" &&
+      userDataFromEmail?.data?.id
+    ) {
+      setUserId(userDataFromEmail?.data?.id);
+      userRefetch();
+    }
+  }, [userDataFromEmail, userId, userRefetch]);
+
+  useEffect(() => {
+    if (email) {
       refetch();
     }
-  }, [accessToken, email, refetch]);
-
-  const { instance } = useMsal();
+  }, [email, refetch]);
 
   // useEffect(() => {
-  //   if (userInfo) {
-  //     router.push("/");
+  //   if (token && error) {
+  //     alert("An error occurred. Please try again later.");
   //   }
-  // }, [router, userInfo]);
+  // }, [error, token]);
+
+  const { instance } = useMsal();
 
   const handleLogin = () => {
     instance
       .loginPopup(loginRequest)
       .then((res) => {
-        console.log(res.account.name, "name");
-        console.log(res.account.username, "email");
-        console.log(res.accessToken, "res login");
-        setAccessToken(res.accessToken);
+        dispatch(setToken(res.accessToken));
         setEmail(res.account.username);
       })
       .catch((e) => {
@@ -114,6 +150,8 @@ const LoginPage = () => {
                 iconHeight="32px"
                 iconWidth="32px"
                 borderRadius={0}
+                // isLoading={isLoading || userIsLoading}
+                // isDisabled={isLoading || userIsLoading}
               />
             </VStack>
           </VStack>

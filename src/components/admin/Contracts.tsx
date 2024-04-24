@@ -1,15 +1,6 @@
-import {
-  Text,
-  VStack,
-  Grid,
-  GridItem,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-} from "@chakra-ui/react";
+import { Text, Grid, GridItem } from "@chakra-ui/react";
 import ContractCard from "@/components/contracts/ContractCard";
+import DashboardHeader from "../dashboard/DashboardHeader";
 
 const Contracts = () => {
   const tasks = [
@@ -31,39 +22,9 @@ const Contracts = () => {
     },
   ];
 
-  const tabs = [
-    {
-      title: "All Contracts",
-    },
-    {
-      title: "My Contracts",
-    },
-  ];
   return (
     <>
-      <VStack align="flex-start" mb={"3"}>
-        <Text
-          fontSize={{
-            base: "20px",
-            md: "24px",
-            lg: "32px",
-          }}
-          fontWeight="600"
-          color="maintText.200"
-          fontFamily={"body"}
-        >
-          Contracts
-        </Text>
-        <Text
-          fontSize={"16px"}
-          fontWeight="500"
-          color="subText.400"
-          mt={-2}
-          fontFamily={"body"}
-        >
-          12th May, 2023
-        </Text>
-      </VStack>
+      <DashboardHeader title="Contracts" />
 
       <>
         <Text

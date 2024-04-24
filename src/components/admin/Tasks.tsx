@@ -21,6 +21,7 @@ import { useState } from "react";
 import { Formik, Form, FieldArray } from "formik";
 import Input from "@/components/ui/Input2";
 import { FiTrash2 } from "react-icons/fi";
+import DashboardHeader from "../dashboard/DashboardHeader";
 
 const Tasks = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -81,45 +82,19 @@ const Tasks = () => {
 
   return (
     <>
-      <HStack justify="space-between" mb={"3"}>
-        <VStack align="flex-start" mb={"3"}>
-          <Text
-            fontSize={{
-              base: "20px",
-              md: "24px",
-              lg: "32px",
-            }}
-            fontWeight="600"
-            color="maintText.200"
-            fontFamily={"body"}
-          >
-            My Tasks
-          </Text>
-          <Text
-            fontSize={"16px"}
-            fontWeight="500"
-            color="subText.400"
-            mt={-2}
-            fontFamily={"body"}
-          >
-            12th May, 2023
-          </Text>
-        </VStack>
-
-        <HStack justify="flex-end">
-          {activeIndex === 0 && (
-            <Button
-              text="Add New Department"
-              bg="#F0FFFF"
-              border="#8CDBB4"
-              color="greens.100"
-              icon="/images/add.svg"
-              iconPosition="left"
-              onClick={handleModal}
-            />
-          )}
-        </HStack>
-      </HStack>
+      <DashboardHeader title="My Tasks">
+        {activeIndex === 0 && (
+          <Button
+            text="Add New Department"
+            bg="#F0FFFF"
+            border="#8CDBB4"
+            color="greens.100"
+            icon="/images/add.svg"
+            iconPosition="left"
+            onClick={handleModal}
+          />
+        )}
+      </DashboardHeader>
 
       <>
         <>
@@ -333,7 +308,7 @@ const Tasks = () => {
                               )}
                             </VStack>
                           ))}
-                           <Button
+                          <Button
                             text="Add another level"
                             size="sm"
                             fontSize={10}

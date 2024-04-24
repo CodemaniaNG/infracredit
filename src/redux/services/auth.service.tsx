@@ -5,33 +5,43 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: baseUrl,
-    // prepareHeaders: (headers, { getState }: any) => {
-    //   const token = getState().auth.token;
-    //   if (token) {
-    //     headers.set("authorization", `Bearer ${token}`);
-    //   }
-    //   // set cors headers
-    //   headers.set("Access-Control-Allow-Origin", "*");
-    //   headers.set("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS");
-    //   headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    //   return headers;
-    // },
   }),
   tagTypes: ["Auth"],
   endpoints: (builder) => ({
     getUserByEmail: builder.query({
       query: ({ token, email }) => ({
-        url: `api/users/${email}`,
-        method: "POST",
+        url: `api/users/remote/${email}`,
+        method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        },
+      }),
+    }),
+
+    getUserById: builder.query({
+      query: ({ token, id }) => ({
+        url: `api/users/${id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
+
+    getUserRoles: builder.query({
+      query: ({ token }) => ({
+        url: `api/users/roles`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
       }),
     }),
   }),
 });
 
-export const { useGetUserByEmailQuery } = authApi;
+export const {
+  useGetUserByEmailQuery,
+  useGetUserByIdQuery,
+  useGetUserRolesQuery,
+} = authApi;
