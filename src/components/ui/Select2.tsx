@@ -13,6 +13,8 @@ const Select2 = ({
   label,
   placeholder,
   options,
+  onChange,
+  value,
   ...rest
 }: SelectProps) => {
   return (
@@ -43,10 +45,16 @@ const Select2 = ({
             errorBorderColor="red.500"
             backgroundColor="white"
             {...rest}
+            onChange={(e) => {
+              form.setFieldValue(name, e.target.value);
+              if (onChange) {
+                onChange(e);
+              }
+            }}
           >
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+            {options?.map((option) => (
+              <option key={option?.value} value={option?.value}>
+                {option?.label}
               </option>
             ))}
           </ChakraSelect>

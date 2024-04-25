@@ -4,7 +4,7 @@ import { Box, Flex } from "@chakra-ui/react";
 const override = {
   display: "block",
   margin: "0 auto",
-  borderColor: "#3D8356",
+  borderColor: "#3F7ABA",
 };
 
 const Loader = () => {
@@ -22,7 +22,7 @@ const Loader = () => {
         <Flex justifyContent="center" alignItems="center" h="100vh">
           <Box>
             <PropagateLoader
-              color={"#6046A9"}
+              color={"#3F7ABA"}
               loading={true}
               cssOverride={override}
               size={15}

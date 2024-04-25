@@ -55,6 +55,8 @@ export type SelectProps = {
     label: string;
     options: any[];
     placeholder: string;
+    onChange?: any;
+    value?: string;
 };
 
 export type TextareaProps = {

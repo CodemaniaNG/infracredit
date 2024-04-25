@@ -9,17 +9,14 @@ import {
   Tab,
   TabPanel,
   Box,
-  HStack,
 } from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import MemberTable from "@/components/admin/MemberTable";
 import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 import { useState } from "react";
-import { Formik, Form } from "formik";
-import Input from "@/components/ui/Input2";
-import Select from "@/components/ui/Select2";
 import DashboardHeader from "../dashboard/DashboardHeader";
+import CreateStaff from "../modals/CreateStaff";
 
 const Admin = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,15 +79,6 @@ const Admin = () => {
     {
       title: "Manager",
     },
-  ];
-
-  const roles = [
-    { value: "user-reports", label: "User Report" },
-    { value: "user-contracts", label: "User Contracts" },
-    { value: "admin", label: "Admin" },
-    { value: "manager", label: "Manager" },
-    { value: "supervisor", label: "Supervisor" },
-    { value: "viewer", label: "Viewer" },
   ];
 
   return (
@@ -341,80 +329,7 @@ const Admin = () => {
       <Modal
         isOpen={isOpen}
         onClose={handleModal}
-        body={
-          <VStack align="flex-start" spacing={4} mt={10} mb={5}>
-            <Text
-              color={"greens.100"}
-              fontSize={"24px"}
-              fontWeight={"600"}
-              fontFamily={"body"}
-            >
-              Create New Staff
-            </Text>
-            <Formik
-              initialValues={{
-                role: "",
-                email: "",
-                password: "",
-              }}
-              onSubmit={(values, actions) => {
-                console.log(values);
-              }}
-            >
-              {(props) => (
-                <Form style={{ width: "100%" }}>
-                  <VStack>
-                    <Input
-                      label="Name"
-                      name="email"
-                      type="text"
-                      placeholder="Enter user name"
-                    />
-
-                    <Select
-                      label="Role"
-                      name="role"
-                      options={roles}
-                      placeholder="Select user role"
-                    />
-
-                    <Select
-                      label="Level"
-                      name="role"
-                      options={roles}
-                      placeholder="Select user level"
-                    />
-
-                    <Select
-                      label="Department"
-                      name="role"
-                      options={roles}
-                      placeholder="Select user department"
-                    />
-
-                    <Input
-                      label="Email"
-                      name="email"
-                      type="email"
-                      placeholder="Enter user address"
-                    />
-
-                    <Input
-                      label="Phone Number"
-                      name="email"
-                      type="phone"
-                      placeholder="Enter user phone"
-                    />
-
-                    <VStack align="stretch" w={"100%"} mt={4}>
-                      <Button text="Create Staff" px={4} py={4} type="submit" />
-                    </VStack>
-                  </VStack>
-                </Form>
-              )}
-            </Formik>
-          </VStack>
-        }
+        body={<CreateStaff setIsOpen={setIsOpen} />}
       />
     </>
   );

@@ -13,10 +13,11 @@ import { useRouter } from "next/router";
 
 type DepartmentCardProps = {
   title: string;
-  desc: string;
+  desc?: string;
+  id?: string;
 };
 
-const DepartmentCard = ({ title, desc }: DepartmentCardProps) => {
+const DepartmentCard = ({ title, desc, id }: DepartmentCardProps) => {
   const router = useRouter();
   return (
     <>
@@ -28,7 +29,7 @@ const DepartmentCard = ({ title, desc }: DepartmentCardProps) => {
         justifyContent="center"
         alignItems="center"
         boxShadow="0px 4px 8px rgba(38, 105, 93, 0.1)"
-        onClick={() => router.push(`/dashboard/admin/department/${title}`)}
+        onClick={() => router.push(`/dashboard/admin/department/${id}`)}
         cursor={"pointer"}
       >
         <CardBody>
@@ -62,10 +63,10 @@ const DepartmentCard = ({ title, desc }: DepartmentCardProps) => {
               fontFamily={"body"}
               textAlign="center"
             >
-              {desc}
+              {desc || "No description"}
             </Text>
 
-            <HStack>
+            {/* <HStack>
               <Image src="/images/comment.svg" alt="Like" />
               <Text
                 fontSize={"12px"}
@@ -75,7 +76,7 @@ const DepartmentCard = ({ title, desc }: DepartmentCardProps) => {
               >
                 13 Comments
               </Text>
-            </HStack>
+            </HStack> */}
           </VStack>
         </CardBody>
       </Card>

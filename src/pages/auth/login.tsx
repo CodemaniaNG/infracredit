@@ -11,7 +11,7 @@ import {
   useGetUserByEmailQuery,
   useGetUserByIdQuery,
   useGetUserRolesQuery,
-} from "@/redux/services/auth.service";
+} from "@/redux/services/onboard.service";
 
 const roles = [
   { value: "user-reports", label: "User Report" },
@@ -150,8 +150,8 @@ const LoginPage = () => {
                 iconHeight="32px"
                 iconWidth="32px"
                 borderRadius={0}
-                // isLoading={isLoading || userIsLoading}
-                // isDisabled={isLoading || userIsLoading}
+                isLoading={isLoading || userIsLoading && token}
+                isDisabled={isLoading || userIsLoading && token}
               />
             </VStack>
           </VStack>
