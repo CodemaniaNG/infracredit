@@ -6,36 +6,16 @@ import TasksSupervisor from "@/components/supervisor/Tasks";
 import TasksAdmin from "@/components/admin/Tasks";
 
 export default function Tasks() {
-  // const { userInfo } = useAppSelector((state) => state.app.auth);
-  // const role = userInfo?.role;
-
-  const { userInfo, roles } = useAppSelector((state) => state.app.auth);
-  const roleId = userInfo?.roleId;
+  const { userInfo } = useAppSelector((state) => state.app.auth);
+  const role = userInfo?.role.name;
 
   return (
     <>
       <Layout>
-        {/* {role === "user-reports" && <TasksReports />}
-        {role === "manager" && <TasksManager />}
-        {role === "supervisor" && <TasksSupervisor />}
-        {role === "admin" && <TasksAdmin />} */}
-
-        {roles?.map((role: any) => {
-          if (roleId === role.id) {
-            switch (role?.value) {
-              case "Admin":
-                return <TasksAdmin />;
-              case "Manager":
-                return <TasksManager />;
-              case "Supervisor":
-                return <TasksSupervisor />;
-              case "User":
-                return <TasksReports />;
-              default:
-                return <TasksReports />;
-            }
-          }
-        })}
+        {role === "User" && <TasksReports />}
+        {role === "Manager" && <TasksManager />}
+        {role === "Supervisor" && <TasksSupervisor />}
+        {role === "Admin" && <TasksAdmin />}
       </Layout>
     </>
   );

@@ -3,15 +3,16 @@ import Button from "@/components/ui/Button";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import { setCredentials, setToken, setRoles } from "@/redux/slices/authSlice";
 import { useRouter } from "next/router";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AuthLeft from "@/components/auth/AuthLeft";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "@/authConfig";
 import {
   useGetUserByEmailQuery,
   useGetUserByIdQuery,
-  useGetUserRolesQuery,
+  // useGetUserRolesQuery,
 } from "@/redux/services/onboard.service";
+// import { useGetRolesQuery } from "@/redux/services/roles.service";
 
 const roles = [
   { value: "user-reports", label: "User Report" },
@@ -26,13 +27,13 @@ const LoginPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { userInfo, token, roles } = useAppSelector(
-    (state: any) => state.app.auth
+    (state: any) => state.app.auth,
   );
   const [email, setEmail] = useState("dummyemail.d@codemania.com.ng");
   const [userId, setUserId] = useState("12345");
 
   useEffect(() => {
-    if (userInfo && roles?.length > 0) {
+    if (userInfo) {
       router.push("/");
     }
   }, [router, userInfo, roles]);
@@ -56,14 +57,17 @@ const LoginPage = () => {
 
   const user = userData;
 
-  const { data: rolesData } = useGetUserRolesQuery({ token: token });
-  const allRoles = rolesData?.data;
+  // const { data: rolesData } = useGetUserRolesQuery({ token: token });
+  // const allRoles = rolesData?.data;
 
-  useEffect(() => {
-    if (allRoles) {
-      dispatch(setRoles(allRoles));
-    }
-  }, [allRoles, dispatch]);
+  // const { data: rolesData } = useGetRolesQuery(token);
+  // const allRoles = rolesData?.data;
+
+  // useEffect(() => {
+  //   if (allRoles) {
+  //     dispatch(setRoles(allRoles));
+  //   }
+  // }, [allRoles, dispatch]);
 
   useEffect(() => {
     if (user?.status === "success" && user?.data) {
@@ -150,8 +154,8 @@ const LoginPage = () => {
                 iconHeight="32px"
                 iconWidth="32px"
                 borderRadius={0}
-                isLoading={isLoading || userIsLoading && token}
-                isDisabled={isLoading || userIsLoading && token}
+                isLoading={isLoading || (userIsLoading && token)}
+                isDisabled={isLoading || (userIsLoading && token)}
               />
             </VStack>
           </VStack>

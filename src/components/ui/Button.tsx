@@ -17,7 +17,7 @@ const Button = (props: ButtonType) => {
     py,
     color: text = "white",
     bg = "secondary",
-    border = "secondary",
+    border: borderColor = "secondary",
     type = "button",
     borderRadius = "8px",
     width = "100%",
@@ -49,7 +49,7 @@ const Button = (props: ButtonType) => {
         )
       }
       borderWidth={borderWidth}
-      borderColor={border}
+      borderColor={borderColor}
       borderRadius={borderRadius}
       borderStyle={borderStyle}
       _hover={{

@@ -240,7 +240,7 @@ const PageThree = ({ data, isEdit }: any) => {
                               fontWeight="600"
                             />
                           </Th>
-                        )
+                        ),
                       )}
                     </Tr>
                   </Thead>

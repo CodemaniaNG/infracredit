@@ -2,8 +2,12 @@ import { VStack } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import Title from "./Title";
 import EditableTextArea from "@/components/ui/EditableTextArea";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { setCeoReport } from "@/redux/slices/templateSlice";
 
 const PageOne = ({ data, isEdit }: any) => {
+  const dispatch = useAppDispatch();
+  const { ceoReport } = useAppSelector((state) => state.app.template);
   return (
     <>
       <CeoLayOut title={data[0]?.title} page={2} isEdit={isEdit}>
@@ -14,6 +18,19 @@ const PageOne = ({ data, isEdit }: any) => {
             color="black"
             fontWeight="500"
             isEdit={isEdit}
+            // onChange={(e: any) => {
+            //   dispatch(
+            //     setCeoReport({
+            //       ...ceoReport,
+            //       subTitle: [
+            //         {
+            //           ...data[0],
+            //           itemOne: e.target.value,
+            //         },
+            //       ],
+            //     }),
+            //   );
+            // }}
           />
           <EditableTextArea
             value={data[0]?.itmesTwo}
@@ -21,6 +38,19 @@ const PageOne = ({ data, isEdit }: any) => {
             color="black"
             fontWeight="500"
             isEdit={isEdit}
+            // onChange={(e: any) => {
+            //   dispatch(
+            //     setCeoReport({
+            //       ...ceoReport,
+            //       subTitle: [
+            //         {
+            //           ...data[0],
+            //           itmesTwo: e.target.value,
+            //         },
+            //       ],
+            //     }),
+            //   );
+            // }}
           />
           <EditableTextArea
             value={data[0]?.itemsThree}
@@ -28,6 +58,19 @@ const PageOne = ({ data, isEdit }: any) => {
             color="black"
             fontWeight="500"
             isEdit={isEdit}
+            // onChange={(e: any) => {
+            //   dispatch(
+            //     setCeoReport({
+            //       ...ceoReport,
+            //       subTitle: [
+            //         {
+            //           ...data[0],
+            //           itemsThree: e.target.value,
+            //         },
+            //       ],
+            //     }),
+            //   );
+            // }}
           />
 
           <Title title={data[1]?.title} isEdit={isEdit} />
@@ -37,6 +80,19 @@ const PageOne = ({ data, isEdit }: any) => {
             color="black"
             fontWeight="500"
             isEdit={isEdit}
+            // onChange={(e: any) => {
+            //   dispatch(
+            //     setCeoReport({
+            //       ...ceoReport,
+            //       subTitle: [
+            //         {
+            //           ...data[1],
+            //           itemOne: e.target.value,
+            //         },
+            //       ],
+            //     }),
+            //   );
+            // }}
           />
         </VStack>
       </CeoLayOut>

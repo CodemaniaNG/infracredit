@@ -94,7 +94,7 @@ const PageEight = ({ data, isEdit }: any) => {
                           fontWeight="600"
                         />
                       </Th>
-                    )
+                    ),
                   )}
                 </Tr>
               </Thead>
@@ -128,12 +128,7 @@ const PageEight = ({ data, isEdit }: any) => {
             </Table>
           </TableContainer>
 
-          <HStack
-            w="100%"
-            spacing={4}
-            align="center"
-            justify="space-between"
-          >
+          <HStack w="100%" spacing={4} align="center" justify="space-between">
             <VStack w="50%" align="flex-start">
               <EditableInput
                 isEdit={isEdit}

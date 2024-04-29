@@ -7,37 +7,17 @@ import DeletedSupervisor from "@/components/supervisor/Deleted";
 import DeletedAdmin from "@/components/admin/Deleted";
 
 export default function Deleted() {
-  // const { userInfo } = useAppSelector((state) => state.app.auth);
-  // const role = userInfo?.role;
-
-  const { userInfo, roles } = useAppSelector((state) => state.app.auth);
-  const roleId = userInfo?.roleId;
+  const { userInfo } = useAppSelector((state) => state.app.auth);
+  const role = userInfo?.role.name;
 
   return (
     <>
       <Layout>
-        {/* {role === "user-reports" && <DeletedReport />}
-        {role === "user-contracts" && <DeletedContract />}
-        {role === "manager" && <DeletedManager />}
-        {role === "supervisor" && <DeletedSupervisor />}
-        {role === "admin" && <DeletedAdmin />} */}
-
-        {roles?.map((role: any) => {
-          if (roleId === role.id) {
-            switch (role?.value) {
-              case "Admin":
-                return <DeletedAdmin />;
-              case "Manager":
-                return <DeletedManager />;
-              case "Supervisor":
-                return <DeletedSupervisor />;
-              case "User":
-                return <DeletedReport />;
-              default:
-                return <DeletedReport />;
-            }
-          }
-        })}
+        {role === "User" && <DeletedReport />}
+        {/* {role === "user-contracts" && <DeletedContract />} */}
+        {role === "Manager" && <DeletedManager />}
+        {role === "Supervisor" && <DeletedSupervisor />}
+        {role === "Admin" && <DeletedAdmin />}
       </Layout>
     </>
   );

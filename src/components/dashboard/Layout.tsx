@@ -28,8 +28,10 @@ import Button from "../ui/Button";
 const Layout = ({ children, title, showSidebar = true }: any) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+
   const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.roleId;
+  const role = userInfo?.role.name;
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
 
@@ -56,12 +58,12 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/dashboard-active.svg",
       // user-reports user-contracts admin manager supervisor viewer
       isVisble:
-        role === "user-reports" ||
+        role === "User" ||
         role === "user-contracts" ||
-        role === "538d1ca3-0148-443c-b663-9c555e0d48f5" ||
-        role === "manager" ||
-        role === "supervisor" ||
-        role === "viewer"
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor" ||
+        role === "Viewer"
           ? true
           : false,
     },
@@ -72,12 +74,12 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/documents-active.svg",
       // user-reports user-contracts admin manager supervisor viewer
       isVisble:
-        role === "user-reports" ||
+        role === "User" ||
         role === "user-contracts" ||
-        role === "adm538d1ca3-0148-443c-b663-9c555e0d48f5in" ||
-        role === "manager" ||
-        role === "supervisor" ||
-        role === "viewer"
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor" ||
+        role === "Viewer"
           ? true
           : false,
     },
@@ -88,11 +90,11 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/deleted-active.svg",
       // user-reports user-contracts admin manager supervisor
       isVisble:
-        role === "user-reports" ||
+        role === "User" ||
         role === "user-contracts" ||
-        role === "538d1ca3-0148-443c-b663-9c555e0d48f5" ||
-        role === "manager" ||
-        role === "supervisor"
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
           ? true
           : false,
     },
@@ -103,10 +105,10 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/tasks-active.svg",
       // user-reports, admin, manager, supervisor
       isVisble:
-        role === "user-reports" ||
-        role === "538d1ca3-0148-443c-b663-9c555e0d48f5" ||
-        role === "manager" ||
-        role === "supervisor"
+        role === "User" ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
           ? true
           : false,
     },
@@ -117,9 +119,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/contracts-active.svg",
       // user-contracts, admin
       isVisble:
-        role === "user-contracts" ||
-        role === "538d1ca3-0148-443c-b663-9c555e0d48f5" ||
-        role === "manager"
+        role === "User" || role === "Admin" || role === "Manager"
           ? true
           : false,
     },
@@ -128,7 +128,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       title: "Staffs",
       icon: "/images/admin.svg",
       activIcon: "/images/admin-active.svg",
-      isVisble: role === "538d1ca3-0148-443c-b663-9c555e0d48f5" ? true : false,
+      isVisble: role === "Admin" ? true : false,
     },
   ]);
 
@@ -407,9 +407,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                 textTransform="capitalize"
                 mt={-2}
               >
-                {role === "538d1ca3-0148-443c-b663-9c555e0d48f5"
-                  ? "Admin"
-                  : role}
+                {role?.name}
               </Text>
             </VStack>
 
@@ -437,7 +435,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                   fontFamily={"body"}
                   mt={-2}
                 >
-                  {userInfo?.level ? userInfo?.level : "N/A"}
+                  {userInfo?.level ? userInfo?.level?.name : "N/A"}
                 </Text>
               </VStack>
 
@@ -457,7 +455,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                   fontFamily={"body"}
                   mt={-2}
                 >
-                  {userInfo?.department ? userInfo?.department : "N/A"}
+                  {userInfo?.department ? userInfo?.department?.name : "N/A"}
                 </Text>
               </VStack>
 

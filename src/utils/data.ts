@@ -821,7 +821,6 @@ export const ceoReport = {
                 text5: "",
                 text6: "",
               },
-
               {
                 text1: "Cost to income ratio (Incl.exch. Gains/(losses)",
                 text2: "12%",
@@ -1179,7 +1178,6 @@ export const ceoReport = {
                 text5: "",
                 text6: "",
               },
-
               {
                 text1: "Cost to income ratio (Incl.exch. Gains/(losses)",
                 text2: "12%",
@@ -1601,7 +1599,6 @@ export const managementReport = {
                 text5: "",
                 text6: "",
               },
-
               {
                 text1: "Cost to income ratio (Incl.exch. Gains/(losses)",
                 text2: "12%",
@@ -2302,7 +2299,6 @@ export const managementReport = {
                 text5: "",
                 text6: "",
               },
-
               {
                 text1: "Cost to income ratio (Incl.exch. Gains/(losses)",
                 text2: "12%",

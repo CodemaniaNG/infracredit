@@ -12,6 +12,7 @@ type EditableInputProps = {
   textAlign?: any;
   fontWeight?: string;
   value?: string;
+  onChange?: any;
 };
 
 const EditableInput = ({
@@ -20,7 +21,8 @@ const EditableInput = ({
   color = "white",
   textAlign = "center",
   fontWeight = "600",
-    value,
+  value,
+  onChange,
 }: EditableInputProps) => {
   return (
     <Editable
@@ -45,6 +47,8 @@ const EditableInput = ({
         p={0}
         m={0}
         w="100%"
+        value={value}
+        onChange={onChange}
       />
     </Editable>
   );

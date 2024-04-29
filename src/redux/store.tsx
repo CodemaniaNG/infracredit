@@ -27,15 +27,17 @@ import { reportsApi } from "./services/reports.service";
 
 // reducers
 import authReducer from "./slices/authSlice";
+import templatReducer from "./slices/templateSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "template"],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  template: templatReducer,
   [onboardApi.reducerPath]: onboardApi.reducer,
   [rolesApi.reducerPath]: rolesApi.reducer,
   [departmentApi.reducerPath]: departmentApi.reducer,

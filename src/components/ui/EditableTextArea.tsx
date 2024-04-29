@@ -12,6 +12,7 @@ type EditableTextAreaProps = {
   textAlign?: any;
   fontWeight?: string;
   value?: string;
+  onChange?: any;
 };
 
 const EditableTextArea = ({
@@ -21,6 +22,7 @@ const EditableTextArea = ({
   textAlign,
   fontWeight = "500",
   value,
+  onChange,
 }: EditableTextAreaProps) => {
   return (
     <Editable
@@ -44,6 +46,8 @@ const EditableTextArea = ({
         color="black"
         noOfLines={100}
         rows={10}
+        value={value}
+        onChange={onChange}
       />
     </Editable>
   );

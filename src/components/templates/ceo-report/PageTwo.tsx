@@ -100,11 +100,7 @@ const PageTwo = ({ data, isEdit }: any) => {
                 Analysis of Guaranteed Transactions Since Inception of NGN87.6
                 Billion as at 28 February 2022
               </Text>
-              <Doughnut
-                data={chartDatas.data}
-                options={chartDatas.options}
-                // onClick={edit ? popupAction : null}
-              />
+              <Doughnut data={chartDatas.data} options={chartDatas.options} />
             </VStack>
           </HStack>
 
@@ -123,9 +119,7 @@ const PageTwo = ({ data, isEdit }: any) => {
                   <Tr>
                     {data[0].table1[0].tableHeader.map(
                       (item: any, index: number) => (
-                        <Th key={index}
-                         py={0}
-                        >
+                        <Th key={index} py={0}>
                           <EditableInput
                             value={item}
                             isEdit={isEdit}
@@ -135,7 +129,7 @@ const PageTwo = ({ data, isEdit }: any) => {
                             fontWeight="600"
                           />
                         </Th>
-                      )
+                      ),
                     )}
                   </Tr>
                 </Thead>
@@ -191,8 +185,6 @@ const PageTwo = ({ data, isEdit }: any) => {
 
             <TableContainer w="100%" mt={-3} mb={4}>
               <Table size="sm" borderWidth={1} borderColor="primary3">
-                
-
                 <Thead bg="secondary">
                   <Tr>
                     {data[0].table2[0].tableHeader.map(
@@ -207,7 +199,7 @@ const PageTwo = ({ data, isEdit }: any) => {
                             fontWeight="600"
                           />
                         </Th>
-                      )
+                      ),
                     )}
                   </Tr>
                 </Thead>

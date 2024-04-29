@@ -8,11 +8,9 @@ import {
   Divider,
   Avatar,
   AvatarGroup,
-  Link as ChakraLink,
 } from "@chakra-ui/react";
 import Button from "../ui/Button";
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 type TaskCardProps = {
   title: string;
@@ -20,7 +18,7 @@ type TaskCardProps = {
   isStack?: boolean;
   status?: any;
   type?: string;
-  role?: string;
+  id?: string;
 };
 
 const TaskCard = ({
@@ -29,7 +27,7 @@ const TaskCard = ({
   isStack = false,
   status,
   type = "report",
-  role,
+  id,
 }: TaskCardProps) => {
   const router = useRouter();
   return (
@@ -41,7 +39,7 @@ const TaskCard = ({
         borderRadius={8}
         mb={isStack ? "3" : "0"}
         onClick={() => {
-          router.push(`/editor/${type}?role=${role}`);
+          router.push(`/editor/${id}`);
         }}
         cursor="pointer"
       >
@@ -114,7 +112,7 @@ const TaskCard = ({
                 type="submit"
                 size="md"
                 onClick={() => {
-                  router.push(`/editor/${type}?role=${role}`);
+                  router.push(`/editor/${id}`);
                 }}
               />
             )}
@@ -124,7 +122,7 @@ const TaskCard = ({
                 type="submit"
                 size="md"
                 onClick={() => {
-                  router.push(`/editor/${type}?role=${role}`);
+                  router.push(`/editor/${id}`);
                 }}
               />
             )}
