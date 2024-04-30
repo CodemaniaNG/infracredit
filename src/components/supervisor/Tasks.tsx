@@ -101,7 +101,6 @@ const Tasks = () => {
                   desc={task.desc}
                   key={index}
                   isStack={true}
-                  role="supervisor"
                   status="todo"
                 />
               ))}
@@ -115,7 +114,6 @@ const Tasks = () => {
                   desc={task.desc}
                   key={index}
                   isStack={true}
-                  role="supervisor"
                   status="progress"
                 />
               ))}
@@ -129,7 +127,6 @@ const Tasks = () => {
                   desc={task.desc}
                   key={index}
                   isStack={true}
-                  role="supervisor"
                 />
               ))}
             </TaskStack>
@@ -142,7 +139,6 @@ const Tasks = () => {
                   desc={task.desc}
                   key={index}
                   isStack={true}
-                  role="supervisor"
                   status="completed"
                 />
               ))}
