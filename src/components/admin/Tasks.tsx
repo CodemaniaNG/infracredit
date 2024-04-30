@@ -109,7 +109,7 @@ const Tasks = () => {
 
   return (
     <>
-      {departmentsLoading || templatesLoading ? (
+      {departmentsLoading || templatesLoading || reportsLoading ? (
         <Loader />
       ) : (
         <>
@@ -178,7 +178,7 @@ const Tasks = () => {
                           <GridItem colSpan={1} key={index}>
                             <DepartmentCard
                               title={dept?.name}
-                              desc={dept?.desc}
+                              desc={dept?.description}
                               id={dept?.id}
                             />
                           </GridItem>

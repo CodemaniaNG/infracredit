@@ -66,7 +66,7 @@ export const reportsApi = createApi({
       query: ({ token, body }) => ({
         url: `api/reports/${body.reportId}/reviewers`,
         method: "POST",
-        body: { UserId: body.UserId },
+        body,
         headers: {
           Authorization: `Bearer ${token}`,
         },

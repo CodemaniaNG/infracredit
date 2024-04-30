@@ -1,5 +1,4 @@
 import {
-  VStack,
   Table,
   Thead,
   Tbody,
@@ -13,26 +12,53 @@ import {
   MenuItem,
   IconButton,
   Image,
-  Badge,
-  HStack,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import { formatDate2 } from "@/utils/functions";
 import { useRouter } from "next/router";
+import Button from "../ui/Button";
 
 const MemberTable = ({ data }: any) => {
   const router = useRouter();
-  const headers = [
-    "S/N",
-    "Name",
-    "Email",
-    "Role",
-    "Joined On",
-    "Action",
-  ];
+  const headers = ["S/N", "Name", "Email", "Role", "Joined On", "Action"];
+
+  const EmptyState = ({ title, desc, buttonTitle, onClick }: any) => (
+    <Stack dir="column" align="center" justify="center" py={10}>
+      <Image src="/images/empty.svg" alt="empty" />
+      <Stack dir="column" spacing={0}>
+        <Text
+          color="maintText.400"
+          fontSize={{ base: "24px", sm: "28px" }}
+          fontWeight={600}
+          textAlign="center"
+        >
+          {title}
+        </Text>
+        <Text
+          color="subText.400"
+          fontSize={{ base: "16px", sm: "16px" }}
+          lineHeight="24px"
+          textAlign="center"
+        >
+          {desc}
+        </Text>
+      </Stack>
+      {buttonTitle && (
+        <Stack>
+          <Button
+            text={buttonTitle}
+            icon="/images/add3.svg"
+            iconPosition="left"
+            onClick={onClick}
+          />
+        </Stack>
+      )}
+    </Stack>
+  );
 
   return (
-    <TableContainer w="100%">
+    <TableContainer w="100%" bg="white">
       <Table
         variant="striped"
         minW="100%"
@@ -69,7 +95,7 @@ const MemberTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.sn}
+                {index + 1}
               </Td>
 
               <Td
@@ -102,7 +128,7 @@ const MemberTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.role}
+                {item?.role?.name}
               </Td>
 
               <Td
@@ -113,7 +139,7 @@ const MemberTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.joinedOn}
+                {formatDate2(item?.createdAt)}
               </Td>
 
               <Td
@@ -138,9 +164,7 @@ const MemberTable = ({ data }: any) => {
                       color="mainTex.200"
                       fontFamily="body"
                       onClick={() =>
-                        router.push(
-                          `/dashboard/admin/member/${item?.name}`
-                        )
+                        router.push(`/dashboard/admin/member/${item?.id}`)
                       }
                     >
                       View Logs
@@ -152,6 +176,13 @@ const MemberTable = ({ data }: any) => {
           ))}
         </Tbody>
       </Table>
+
+      {!data?.length && (
+        <EmptyState
+          title="No Member Found"
+          desc="No member has been added to this department yet"
+        />
+      )}
     </TableContainer>
   );
 };

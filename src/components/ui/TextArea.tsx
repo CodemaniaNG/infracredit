@@ -1,22 +1,14 @@
 import React from "react";
-import { SelectProps } from "@/interfaces/type";
+import { Field } from "formik";
 import {
-  Select as ChakraSelect,
   FormLabel,
   FormControl,
   FormErrorMessage,
+  Textarea as ChakraTextArea,
 } from "@chakra-ui/react";
-import { Field } from "formik";
+import { TextareaProps } from "@/interfaces/type";
 
-const Select2 = ({
-  name,
-  label,
-  placeholder,
-  options,
-  onChange,
-  value,
-  ...rest
-}: SelectProps) => {
+const TextArea = ({ name, placeholder, label }: TextareaProps) => {
   return (
     <Field name={name}>
       {({ field, form }: any) => (
@@ -30,7 +22,8 @@ const Select2 = ({
           >
             {label}
           </FormLabel>
-          <ChakraSelect
+
+          <ChakraTextArea
             {...field}
             placeholder={placeholder}
             borderRadius={"8px"}
@@ -39,30 +32,21 @@ const Select2 = ({
             color="#374151"
             fontSize={14}
             fontWeight={400}
-            h={10}
+            px={4}
+            py={4}
             isInvalid={form.errors[name] && form.touched[name]}
             focusBorderColor="primary"
             errorBorderColor="red.500"
             backgroundColor="white"
-            {...rest}
-            onChange={(e) => {
-              form.setFieldValue(name, e.target.value);
-              if (onChange) {
-                onChange(e);
-              }
-            }}
-          >
-            {options?.map((option, index) => (
-              <option key={index} value={option?.value}>
-                {option?.label}
-              </option>
-            ))}
-          </ChakraSelect>
-          <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
+          />
+
+          <FormErrorMessage color="red" fontWeight={400} fontSize={12} mt={1}>
+            {form.errors[name]}
+          </FormErrorMessage>
         </FormControl>
       )}
     </Field>
   );
 };
 
-export default Select2;
+export default TextArea;

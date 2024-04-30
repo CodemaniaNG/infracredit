@@ -31,10 +31,13 @@ import SubmitReport from "@/components/modals/SubmitReport";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
 import { useGetReportByIdQuery } from "@/redux/services/reports.service";
+import { useGetCommentsQuery } from "@/redux/services/reports.service";
 import {
   setCeoReport,
   setManagementReport,
 } from "@/redux/slices/templateSlice";
+import ActionBtns from "@/components/editor/ActionBtns";
+import TemplateModals from "@/components/editor/TemplateModals";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
@@ -62,8 +65,13 @@ const Editor = () => {
     id: template,
   });
 
-  const templateData = data?.data;
+  const { data: commentsData, isLoading: commentsLoading } =
+    useGetCommentsQuery({
+      token: token,
+      reportId: template,
+    });
 
+  const templateData = data?.data;
   useEffect(() => {
     if (templateData?.title?.toLowerCase().includes("ceo")) {
       dispatch(setCeoReport(JSON.parse(templateData.body)));
@@ -111,7 +119,7 @@ const Editor = () => {
   return (
     <>
       <Layout showSidebar={false}>
-        {reportsLoading ? (
+        {reportsLoading || commentsLoading ? (
           <Loader />
         ) : (
           <Box p="6" overflowY="auto" bg="bg.100">
@@ -143,153 +151,20 @@ const Editor = () => {
                 </Text>
               </HStack>
 
-              <HStack justify="flex-end">
-                {isEdit && (
-                  <Button
-                    text={"Cancel Edit"}
-                    bg="transparent"
-                    border="#FFCB8A"
-                    color="#FF8F00"
-                    borderWidth="1px"
-                    px={6}
-                    onClick={() => setIsEdit(!isEdit)}
-                  />
-                )}
-                {!isEdit && (
-                  <Button
-                    text="Share Report"
-                    bg="#F0FFFF"
-                    border="#8CDBB4"
-                    color="greens.100"
-                    borderWidth="1px"
-                    px={6}
-                    onClick={handleModal8}
-                  />
-                )}
-                <Button
-                  text={isEdit ? "Save" : "Edit Report"}
-                  onClick={() => setIsEdit(!isEdit)}
-                />
-              </HStack>
-
-              {template === "report" && role === "user-reports" && (
-                <HStack justify="flex-end">
-                  {isEdit && (
-                    <Button
-                      text={"Cancel Edit"}
-                      bg="transparent"
-                      border="#FFCB8A"
-                      color="#FF8F00"
-                      borderWidth="1px"
-                      px={6}
-                      onClick={() => setIsEdit(!isEdit)}
-                    />
-                  )}
-                  {!isEdit && (
-                    <Button
-                      text="Share Report"
-                      bg="#F0FFFF"
-                      border="#8CDBB4"
-                      color="greens.100"
-                      borderWidth="1px"
-                      px={6}
-                      onClick={handleModal8}
-                    />
-                  )}
-                  <Button
-                    text={isEdit ? "Save" : "Edit Report"}
-                    onClick={() => setIsEdit(!isEdit)}
-                  />
-                </HStack>
-              )}
-
-              {template === "report" && role === "manager" && (
-                <HStack justify="flex-end">
-                  <Button
-                    text="Disapprove"
-                    bg="transparent"
-                    border="#FF9D98"
-                    color="#FF3B30"
-                    borderWidth="1px"
-                    px={6}
-                    variant="outline"
-                    onClick={handleModal4}
-                  />
-                  <Button text={"Approve"} onClick={handleModal3} />
-                </HStack>
-              )}
-
-              {template === "contract" && role === "user-contracts" && (
-                <HStack justify="flex-end">
-                  <Button
-                    text="Share Contract"
-                    bg="#F0FFFF"
-                    border="#8CDBB4"
-                    color="greens.100"
-                    borderWidth="1px"
-                    onClick={handleModal2}
-                  />
-                  <Button
-                    text="Re-Upload Contract"
-                    px={6}
-                    onClick={handleModal}
-                  />
-                </HStack>
-              )}
-
-              {template === "contract" && role === "manager" && (
-                <HStack justify="flex-end">
-                  <Button
-                    text="Download Document"
-                    bg="#F0FFFF"
-                    border="#8CDBB4"
-                    color="greens.100"
-                    borderWidth="1px"
-                  />
-                  <Button
-                    text="Upload Signed PDF"
-                    px={6}
-                    onClick={handleModal5}
-                  />
-                </HStack>
-              )}
-
-              {template === "report" && role === "supervisor" && (
-                <HStack justify="flex-end">
-                  {isEdit && (
-                    <Button
-                      text={"Cancel Edit"}
-                      bg="transparent"
-                      border="#FFCB8A"
-                      color="#FF8F00"
-                      borderWidth="1px"
-                      px={6}
-                      onClick={() => setIsEdit(!isEdit)}
-                    />
-                  )}
-                  {!isEdit && (
-                    <Button
-                      text={"Return"}
-                      bg="transparent"
-                      border="#FF9D98"
-                      color="#FF3B30"
-                      borderWidth="1px"
-                      px={6}
-                      onClick={handleModal6}
-                    />
-                  )}
-                  <Button
-                    text={isEdit ? "Save" : "Edit Report"}
-                    bg="#F0FFFF"
-                    color="greens.100"
-                    px={6}
-                    onClick={() => setIsEdit(!isEdit)}
-                  />
-                  {!isEdit && (
-                    <Button text={"Submit"} px={6} onClick={handleModal7} />
-                  )}
-                </HStack>
-              )}
+              <ActionBtns
+                isEdit={isEdit}
+                setIsEdit={setIsEdit}
+                handleModal={handleModal}
+                handleModal2={handleModal2}
+                handleModal3={handleModal3}
+                handleModal4={handleModal4}
+                handleModal5={handleModal5}
+                handleModal6={handleModal6}
+                handleModal7={handleModal7}
+                handleModal8={handleModal8}
+                template={template}
+                role={role}
+              />
             </HStack>
 
             <Grid
@@ -334,60 +209,40 @@ const Editor = () => {
 
               <GridItem colSpan={1} position="sticky" right="0">
                 {/* <PageContent /> */}
-                <ReportDescription />
-                <Comments />
+                <ReportDescription templateData={templateData} />
+                <Comments id={templateData?.id} comments={commentsData} />
               </GridItem>
             </Grid>
           </Box>
         )}
+
+        <TemplateModals
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          handleModal={handleModal}
+          isOpen2={isOpen2}
+          setIsOpen2={setIsOpen2}
+          handleModal2={handleModal2}
+          isOpen3={isOpen3}
+          setIsOpen3={setIsOpen3}
+          handleModal3={handleModal3}
+          isOpen4={isOpen4}
+          setIsOpen4={setIsOpen4}
+          handleModal4={handleModal4}
+          isOpen5={isOpen5}
+          setIsOpen5={setIsOpen5}
+          handleModal5={handleModal5}
+          isOpen6={isOpen6}
+          setIsOpen6={setIsOpen6}
+          handleModal6={handleModal6}
+          isOpen7={isOpen7}
+          setIsOpen7={setIsOpen7}
+          handleModal7={handleModal7}
+          isOpen8={isOpen8}
+          setIsOpen8={setIsOpen8}
+          handleModal8={handleModal8}
+        />
       </Layout>
-
-      <Modal
-        isOpen={isOpen}
-        onClose={handleModal}
-        body={<ReUpload setIsOpen={setIsOpen} />}
-      />
-
-      <Modal
-        isOpen={isOpen2}
-        onClose={handleModal2}
-        body={<ShareContract setIsOpen={setIsOpen2} />}
-      />
-      <Modal
-        isOpen={isOpen8}
-        onClose={handleModal8}
-        body={<ShareReport setIsOpen={setIsOpen8} />}
-      />
-
-      <Modal
-        isOpen={isOpen3}
-        onClose={handleModal3}
-        body={<ApproveReport setIsOpen={setIsOpen3} />}
-      />
-
-      <Modal
-        isOpen={isOpen4}
-        onClose={handleModal4}
-        body={<DisapproveReport setIsOpen={setIsOpen4} />}
-      />
-
-      <Modal
-        isOpen={isOpen5}
-        onClose={handleModal5}
-        body={<UploadSignedPDF setIsOpen={setIsOpen5} />}
-      />
-
-      <Modal
-        isOpen={isOpen6}
-        onClose={handleModal6}
-        body={<ReturnReport setIsOpen={setIsOpen6} />}
-      />
-
-      <Modal
-        isOpen={isOpen7}
-        onClose={handleModal7}
-        body={<SubmitReport setIsOpen={setIsOpen7} />}
-      />
     </>
   );
 };
