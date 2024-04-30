@@ -11,66 +11,8 @@ import {
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import "chart.js/auto";
-import type { ChartData, ChartOptions } from "chart.js";
-import { useState } from "react";
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PageNine = ({ data, isEdit }: any) => {
-  interface LineProps {
-    options: ChartOptions<"doughnut">;
-    data: ChartData<"doughnut">;
-  }
-
-  const [chartData, setChartData] = useState<LineProps>({
-    data: {
-      datasets: [
-        {
-          // label: "red",
-          data: [11, 11, 11, 11, 11],
-          backgroundColor: [
-            "#93C953",
-            "#0C4421",
-            "#29ADE4",
-            "#4E82BD",
-            "#1D4F79",
-          ],
-          weight: 1,
-        },
-      ],
-      labels: ["BBB_(11%)", "BBB(11%)", "BBB+(11%)", "A+(11%)%", "AA(11%)"],
-    },
-    options: {
-      responsive: true,
-      animations: {
-        tension: {
-          duration: 1000,
-          easing: "linear",
-          from: 1,
-          to: 0,
-          loop: true,
-        },
-      },
-      plugins: {
-        legend: {
-          position: "left",
-          display: true,
-          labels: {
-            boxWidth: 10,
-          },
-        },
-        // title: {
-        //   display: true,
-        //   text: "Analysis of Guaranteed Transactions Since Inception of NGN87.6 Billion as at 28 February 2022",
-        //   color: "#70ad47",
-        //   font: { size: 20, weight: "bold", family: "Inter" },
-        //   fullSize: true,
-        // },
-      },
-    },
-  });
-
   return (
     <>
       <CeoLayOut page={10} title={data[0]?.title} isEdit={isEdit}>
@@ -162,7 +104,7 @@ const PageNine = ({ data, isEdit }: any) => {
                             fontWeight="600"
                           />
                         </Th>
-                      )
+                      ),
                     )}
                   </Tr>
                 </Thead>
@@ -256,7 +198,7 @@ const PageNine = ({ data, isEdit }: any) => {
                             fontWeight="600"
                           />
                         </Th>
-                      )
+                      ),
                     )}
                   </Tr>
                 </Thead>

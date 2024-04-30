@@ -13,6 +13,8 @@ const Select2 = ({
   label,
   placeholder,
   options,
+  onChange,
+  value,
   ...rest
 }: SelectProps) => {
   return (
@@ -20,11 +22,11 @@ const Select2 = ({
       {({ field, form }: any) => (
         <FormControl isInvalid={form.errors[name] && form.touched[name]}>
           <FormLabel
-           color="subText.200"
-           fontWeight={"500"}
-           fontSize={14}
-           mb={1}
-           fontFamily="body"
+            color="subText.200"
+            fontWeight={"500"}
+            fontSize={14}
+            mb={1}
+            fontFamily="body"
           >
             {label}
           </FormLabel>
@@ -33,7 +35,7 @@ const Select2 = ({
             placeholder={placeholder}
             borderRadius={"8px"}
             borderWidth={1}
-              borderColor="border.200"
+            borderColor="border.200"
             color="#374151"
             fontSize={14}
             fontWeight={400}
@@ -43,10 +45,16 @@ const Select2 = ({
             errorBorderColor="red.500"
             backgroundColor="white"
             {...rest}
+            onChange={(e) => {
+              form.setFieldValue(name, e.target.value);
+              if (onChange) {
+                onChange(e);
+              }
+            }}
           >
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+            {options?.map((option, index) => (
+              <option key={index} value={option?.value}>
+                {option?.label}
               </option>
             ))}
           </ChakraSelect>

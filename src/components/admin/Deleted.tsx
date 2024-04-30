@@ -1,5 +1,7 @@
-import { Text, VStack, Grid, GridItem } from "@chakra-ui/react";
+import { Text, Grid, GridItem } from "@chakra-ui/react";
 import DocumentCard from "@/components/documents/DocumentCard";
+import DashboardHeader from "../dashboard/DashboardHeader";
+
 const tasks = [
   {
     title: "Annual report",
@@ -18,32 +20,11 @@ const tasks = [
     desc: "This is a commment, This is a commment, This is a commment",
   },
 ];
+
 const Deleted = () => {
   return (
     <>
-      <VStack align="flex-start" mb={"3"}>
-        <Text
-          fontSize={{
-            base: "20px",
-            md: "24px",
-            lg: "32px",
-          }}
-          fontWeight="600"
-          color="maintText.200"
-          fontFamily={"body"}
-        >
-          Deleted Reports
-        </Text>
-        <Text
-          fontSize={"16px"}
-          fontWeight="500"
-          color="subText.400"
-          mt={-2}
-          fontFamily={"body"}
-        >
-          12th May, 2023
-        </Text>
-      </VStack>
+      <DashboardHeader title="Deleted Reports" />
 
       <>
         <>
@@ -60,6 +41,7 @@ const Deleted = () => {
           >
             Recent
           </Text>
+          
           <Grid
             templateColumns={{
               sm: "repeat(1, 1fr)",

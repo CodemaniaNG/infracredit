@@ -1,9 +1,12 @@
+import { useAppSelector } from "@/redux/store";
 import { Text, VStack, Grid, GridItem } from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import DashboardTable from "@/components/dashboard/DashboardTable";
 import DocumentCard from "@/components/documents/DocumentCard";
+import { formatDate2 } from "@/utils/functions";
 
 const Dashboard = () => {
+  const { userInfo } = useAppSelector((state) => state.app.auth);
   const tasks = [
     {
       title: "Annual report",
@@ -60,6 +63,7 @@ const Dashboard = () => {
       currentUser: "Wale Peter",
     },
   ];
+  
   return (
     <>
       <VStack align="flex-start" mb={"3"}>
@@ -84,8 +88,9 @@ const Dashboard = () => {
             fontWeight="600"
             color="secondary"
             fontFamily={"body"}
+            textTransform={"capitalize"}
           >
-            Olusanya Ezekiel
+            {" "}{userInfo?.name}
           </Text>
         </Text>
         <Text
@@ -95,7 +100,7 @@ const Dashboard = () => {
           mt={-2}
           fontFamily={"body"}
         >
-          12th May, 2023
+          {formatDate2(new Date().toISOString())}
         </Text>
       </VStack>
       <>

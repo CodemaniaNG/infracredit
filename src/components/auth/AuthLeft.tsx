@@ -9,7 +9,7 @@ const AuthLeft = () => {
       mr={8}
       bg="white"
       color="white"
-      p={6}
+      p={4}
     >
       <VStack
         bg="primary"
@@ -42,9 +42,10 @@ const AuthLeft = () => {
 
         <Image
           src="/images/auth.svg"
-          boxSize="100%"
           alt="Company Logo"
           objectFit="contain"
+          h={{ base: "200px", md: "250px" }}
+          maxW={"850px"}
         />
       </VStack>
     </Box>

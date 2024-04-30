@@ -28,8 +28,10 @@ import Button from "../ui/Button";
 const Layout = ({ children, title, showSidebar = true }: any) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+
   const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role;
+  const role = userInfo?.role.name;
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
 
@@ -56,12 +58,12 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/dashboard-active.svg",
       // user-reports user-contracts admin manager supervisor viewer
       isVisble:
-        role === "user-reports" ||
+        role === "User" ||
         role === "user-contracts" ||
-        role === "admin" ||
-        role === "manager" ||
-        role === "supervisor" ||
-        role === "viewer"
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor" ||
+        role === "Viewer"
           ? true
           : false,
     },
@@ -72,12 +74,12 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/documents-active.svg",
       // user-reports user-contracts admin manager supervisor viewer
       isVisble:
-        role === "user-reports" ||
+        role === "User" ||
         role === "user-contracts" ||
-        role === "admin" ||
-        role === "manager" ||
-        role === "supervisor" ||
-        role === "viewer"
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor" ||
+        role === "Viewer"
           ? true
           : false,
     },
@@ -88,11 +90,11 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/deleted-active.svg",
       // user-reports user-contracts admin manager supervisor
       isVisble:
-        role === "user-reports" ||
+        role === "User" ||
         role === "user-contracts" ||
-        role === "admin" ||
-        role === "manager" ||
-        role === "supervisor"
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
           ? true
           : false,
     },
@@ -103,10 +105,10 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       activIcon: "/images/tasks-active.svg",
       // user-reports, admin, manager, supervisor
       isVisble:
-        role === "user-reports" ||
-        role === "admin" ||
-        role === "manager" ||
-        role === "supervisor"
+        role === "User" ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
           ? true
           : false,
     },
@@ -116,14 +118,17 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
       icon: "/images/contracts.svg",
       activIcon: "/images/contracts-active.svg",
       // user-contracts, admin
-      isVisble: role === "user-contracts" || role === "admin" || role === "manager" ? true : false,
+      isVisble:
+        role === "User" || role === "Admin" || role === "Manager"
+          ? true
+          : false,
     },
     {
       path: "/dashboard/admin",
       title: "Staffs",
       icon: "/images/admin.svg",
       activIcon: "/images/admin-active.svg",
-      isVisble: role === "admin" ? true : false,
+      isVisble: role === "Admin" ? true : false,
     },
   ]);
 
@@ -192,7 +197,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                     color="maintText.100"
                     fontFamily={"body"}
                   >
-                    Segun Adebayo
+                    {userInfo?.name}
                   </Text>
                   <Text
                     fontSize="12px"
@@ -202,15 +207,17 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                     mt="-2"
                     textTransform="capitalize"
                   >
-                    {role}
+                    {role === "538d1ca3-0148-443c-b663-9c555e0d48f5"
+                      ? "Admin"
+                      : role}
                   </Text>
                 </VStack>
                 <Avatar
                   size="md"
-                  name="Segun Adebayo"
-                  src="https://bit.ly/sage-adebayo"
+                  name={userInfo?.name}
+                  // src="https://bit.ly/sage-adebayo"
                   borderRadius="full"
-                  bg="#E4E4E4"
+                  bg="primary"
                   color="white"
                   fontSize="16px"
                   fontWeight="bold"
@@ -367,10 +374,10 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
             <VStack align="center">
               <Avatar
                 size="xl"
-                name="Segun Adebayo"
-                src="https://bit.ly/sage-adebayo"
+                name={userInfo?.name}
+                // src="https://bit.ly/sage-adebayo"
                 borderRadius="full"
-                bg="#E4E4E4"
+                bg="primary"
                 color="white"
                 fontSize="16px"
                 fontWeight="bold"
@@ -386,8 +393,9 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                 color="maintText.100"
                 fontFamily={"body"}
                 textAlign="center"
+                textTransform="capitalize"
               >
-                Olusanya Ezekiel
+                {userInfo?.name}
               </Text>
 
               <Text
@@ -399,7 +407,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                 textTransform="capitalize"
                 mt={-2}
               >
-                {role}
+                {role?.name}
               </Text>
             </VStack>
 
@@ -427,7 +435,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                   fontFamily={"body"}
                   mt={-2}
                 >
-                  Chief Product Designer
+                  {userInfo?.level ? userInfo?.level?.name : "N/A"}
                 </Text>
               </VStack>
 
@@ -447,7 +455,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                   fontFamily={"body"}
                   mt={-2}
                 >
-                  Design
+                  {userInfo?.department ? userInfo?.department?.name : "N/A"}
                 </Text>
               </VStack>
 
@@ -467,7 +475,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                   fontFamily={"body"}
                   mt={-2}
                 >
-                  Olusanyadtgoc@gmail.com
+                  {userInfo?.email ? userInfo?.email : "N/A"}
                 </Text>
               </VStack>
 
@@ -487,11 +495,11 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                   fontFamily={"body"}
                   mt={-2}
                 >
-                  09076856465
+                  {userInfo?.phone ? userInfo?.phone : "N/A"}
                 </Text>
               </VStack>
 
-              <VStack align="flex-start">
+              {/* <VStack align="flex-start">
                 <Text
                   fontSize="14px"
                   fontWeight={500}
@@ -509,7 +517,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                 >
                   09 - 02 -2019
                 </Text>
-              </VStack>
+              </VStack> */}
             </VStack>
           </VStack>
         }

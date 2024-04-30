@@ -7,15 +7,15 @@ import TasksAdmin from "@/components/admin/Tasks";
 
 export default function Tasks() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role;
+  const role = userInfo?.role.name;
 
   return (
     <>
       <Layout>
-        {role === "user-reports" && <TasksReports />}
-        {role === "manager" && <TasksManager />}
-        {role === "supervisor" && <TasksSupervisor />}
-        {role === "admin" && <TasksAdmin />}
+        {role === "User" && <TasksReports />}
+        {role === "Manager" && <TasksManager />}
+        {role === "Supervisor" && <TasksSupervisor />}
+        {role === "Admin" && <TasksAdmin />}
       </Layout>
     </>
   );

@@ -6,14 +6,14 @@ import ContractsManager from "@/components/manager/Contracts";
 
 export default function Contracts() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role;
+  const role = userInfo?.role.name;
 
   return (
     <>
       <Layout>
-        {role === "user-contracts" && <ContractsC />}
-        {role === "admin" && <ContractsAdmin />}
-        {role === "manager" && <ContractsManager />}
+        {role === "User" && <ContractsC />}
+        {role === "Admin" && <ContractsAdmin />}
+        {role === "Manager" && <ContractsManager />}
       </Layout>
     </>
   );

@@ -13,12 +13,12 @@ import { MsalProvider } from "@azure/msal-react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isReady, setIsReady] = useState(false);
-  const [msalInstance, setMsalInstance] = useState<any>(null);
-
+  // const [msalInstance, setMsalInstance] = useState<any>(null);
+  const instance: any = new PublicClientApplication(msalConfig);
   useEffect(() => {
     // Initialize MSAL once the component mounts
-    const instance: any = new PublicClientApplication(msalConfig);
-    setMsalInstance(instance);
+    // const instance: any = new PublicClientApplication(msalConfig);
+    // setMsalInstance(instance);
     setIsReady(true);
   }, []);
 
@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Fonts />
         <Provider store={store}>
-          <MsalProvider instance={msalInstance}>
+          <MsalProvider instance={instance}>
             <Component {...pageProps} />
           </MsalProvider>
         </Provider>

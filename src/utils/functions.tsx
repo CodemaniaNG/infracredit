@@ -83,3 +83,13 @@ export const shortenEmail = (email: string) => {
     return `${firstPart}...@${secondPart}`;
   }
 };
+
+// WRITE A FUNCTION THAT TAKES A JSON AND ADDS DOUBLE QUOTES TO THE ALL KEYS
+export const addDoubleQuotes = (json: any) => {
+  const jsonString = JSON.stringify(json);
+  const formattedJson = jsonString.replace(
+    /([{,])(\s*)([A-Za-z0-9_\-]+?)\s*:/g,
+    '$1"$3":'
+  );
+  return JSON.parse(formattedJson);
+};

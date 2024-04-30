@@ -9,17 +9,17 @@ import DashboardAdmin from "@/components/admin/Dashboard";
 
 export default function Home() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role;
+  const role = userInfo?.role.name;
 
   return (
     <>
       <Layout>
-        {role === "user-reports" && <DashboardReports />}
-        {role === "user-contracts" && <DashboardContracts />}
-        {role === "manager" && <DashboardManager />}
-        {role === "supervisor" && <DashboardSupervisor />}
-        {role === "viewer" && <DashboardViewer />}
-        {role === "admin" && <DashboardAdmin />}
+        {role === "User" && <DashboardReports />}
+        {/* {role === "user-contracts" && <DashboardContracts />} */}
+        {role === "Manager" && <DashboardManager />}
+        {role === "Supervisor" && <DashboardSupervisor />}
+        {role === "Viewer" && <DashboardViewer />}
+        {role === "Admin" && <DashboardAdmin />}
       </Layout>
     </>
   );

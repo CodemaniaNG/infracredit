@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type AuthState = {
   userInfo: any;
-  signUpData: any;
+  token: string;
+  roles: any;
 };
 
 const initialState: AuthState = {
   userInfo: null,
-  signUpData: null,
+  token: "",
+  roles: [],
 };
 
 const authSlice = createSlice({
@@ -17,16 +19,21 @@ const authSlice = createSlice({
     setCredentials: (state, action) => {
       state.userInfo = action.payload;
     },
-    setSignUpData: (state, action) => {
-      state.signUpData = action.payload;
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
+    setRoles: (state, action) => {
+      state.roles = action.payload;
     },
     logOut: (state) => {
       state.userInfo = null;
-      state.signUpData = null;
+      state.token = "";
+      state.roles = [];
+      sessionStorage.clear();
     },
   },
 });
 
-export const { setCredentials, setSignUpData, logOut } = authSlice.actions;
+export const { setCredentials, logOut, setToken, setRoles } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -13,11 +13,12 @@ const theme = extendTheme({
     primary3: "#227CBF",
     secondary: "#1D6FA0",
     secondary2: "#0360A5",
+    secondary3: "#F1511B",
     maintText: {
       100: "#272A3C",
       200: "#131628",
       300: "#1B1B1B",
-      400: "",
+      400: "#202123",
       500: "",
       600: "",
       700: "",
@@ -57,7 +58,7 @@ const theme = extendTheme({
       800: "",
       900: "",
     },
-    greens:{
+    greens: {
       100: "#287750",
       200: "#47B65C",
     },

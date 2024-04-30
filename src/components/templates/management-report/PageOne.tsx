@@ -70,7 +70,6 @@ const PageOne = ({ data, isEdit }: any) => {
             />
           </VStack>
 
-
           <EditableInput
             isEdit={isEdit}
             value={data[0]?.title3}

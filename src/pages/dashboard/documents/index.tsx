@@ -9,17 +9,17 @@ import DocumentsAdmin from "@/components/admin/Documents";
 
 export default function Documents() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role;
+  const role = userInfo?.role.name;
 
   return (
     <>
       <Layout>
-        {role === "user-reports" && <DocumentsReport />}
-        {role === "user-contracts" && <DocumentsContract />}
-        {role === "manager" && <DocumentsManager />}
-        {role === "supervisor" && <DocumentsSupervisor />}
-        {role === "viewer" && <DocumentsViewer />}
-        {role === "admin" && <DocumentsAdmin />}
+        {role === "User" && <DocumentsReport />}
+        {/* {role === "user-contracts" && <DocumentsContract />} */}
+        {role === "Manager" && <DocumentsManager />}
+        {role === "Supervisor" && <DocumentsSupervisor />}
+        {role === "Viewer" && <DocumentsViewer />}
+        {role === "Admin" && <DocumentsAdmin />}
       </Layout>
     </>
   );

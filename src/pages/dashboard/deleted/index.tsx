@@ -8,16 +8,16 @@ import DeletedAdmin from "@/components/admin/Deleted";
 
 export default function Deleted() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role;
+  const role = userInfo?.role.name;
 
   return (
     <>
       <Layout>
-        {role === "user-reports" && <DeletedReport />}
-        {role === "user-contracts" && <DeletedContract />}
-        {role === "manager" && <DeletedManager />}
-        {role === "supervisor" && <DeletedSupervisor />}
-        {role === "admin" && <DeletedAdmin />}
+        {role === "User" && <DeletedReport />}
+        {/* {role === "user-contracts" && <DeletedContract />} */}
+        {role === "Manager" && <DeletedManager />}
+        {role === "Supervisor" && <DeletedSupervisor />}
+        {role === "Admin" && <DeletedAdmin />}
       </Layout>
     </>
   );

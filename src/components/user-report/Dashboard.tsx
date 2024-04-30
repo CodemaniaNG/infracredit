@@ -167,12 +167,7 @@ const Dashboard = () => {
           >
             {tasks.map((task, index) => (
               <GridItem colSpan={1} key={index}>
-                <TaskCard
-                  title={task.title}
-                  desc={task.desc}
-                  status="todo"
-                  role="user-reports"
-                />
+                <TaskCard title={task.title} desc={task.desc} status="todo" />
               </GridItem>
             ))}
           </Grid>

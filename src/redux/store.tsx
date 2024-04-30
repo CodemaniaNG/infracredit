@@ -19,33 +19,41 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 // services
-import { organizationApi } from "./services/organization.service";
-import { authApi } from "./services/auth.service";
-import { usersApi } from "./services/users.service";
+import { onboardApi } from "./services/onboard.service";
+import { rolesApi } from "./services/roles.service";
+import { departmentApi } from "./services/department.service";
+import { templatesApi } from "./services/templates.service";
+import { reportsApi } from "./services/reports.service";
 
 // reducers
 import authReducer from "./slices/authSlice";
+import templatReducer from "./slices/templateSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "template"],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  [organizationApi.reducerPath]: organizationApi.reducer,
-  [authApi.reducerPath]: authApi.reducer,
-  [usersApi.reducerPath]: usersApi.reducer,
+  template: templatReducer,
+  [onboardApi.reducerPath]: onboardApi.reducer,
+  [rolesApi.reducerPath]: rolesApi.reducer,
+  [departmentApi.reducerPath]: departmentApi.reducer,
+  [templatesApi.reducerPath]: templatesApi.reducer,
+  [reportsApi.reducerPath]: reportsApi.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store: any = configureStore({
   reducer: {
     app: persistedReducer,
-    [organizationApi.reducerPath]: organizationApi.reducer,
-    [authApi.reducerPath]: authApi.reducer,
-    [usersApi.reducerPath]: usersApi.reducer,
+    [onboardApi.reducerPath]: onboardApi.reducer,
+    [rolesApi.reducerPath]: rolesApi.reducer,
+    [departmentApi.reducerPath]: departmentApi.reducer,
+    [templatesApi.reducerPath]: templatesApi.reducer,
+    [reportsApi.reducerPath]: reportsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -53,9 +61,11 @@ export const store: any = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat([
-      organizationApi.middleware,
-      authApi.middleware,
-      usersApi.middleware,
+      onboardApi.middleware,
+      rolesApi.middleware,
+      departmentApi.middleware,
+      templatesApi.middleware,
+      reportsApi.middleware,
     ]),
 });
 

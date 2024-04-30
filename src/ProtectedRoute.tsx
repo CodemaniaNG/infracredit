@@ -9,31 +9,30 @@ const ProtectedRoute = (WrappedComponent: any) => {
     const Router = useRouter();
     const toast = useToast();
     const dispatch = useAppDispatch();
-    const { userInfo } = useAppSelector((state) => state.app.auth);
-    const accessToken = userInfo?.data?.token;
+    const { token } = useAppSelector((state) => state.app.auth);
 
     // checks whether we are on client / browser or server.
     if (typeof window !== "undefined") {
-      if (!userInfo) {
+      if (!token) {
         Router.push(`/auth/login`);
       }
-      // if (!accessToken) {
-      //   // Router.push(`/auth/login`);
-      // } else if (accessToken) {
-      //   // check if the token is expired
-      //   const decodedToken: any = jwtDecode(accessToken);
-      //   const currentTime = Date.now() / 1000;
-      //   if (decodedToken.exp < currentTime) {
-      //     toast({
-      //       title: "Session expired ",
-      //       position: "top-right",
-      //       status: "error",
-      //       duration: 5000,
-      //       isClosable: true,
-      //     });
-      //     dispatch(logOut());
-      //   }
-      // }
+      if (!token) {
+        Router.push(`/auth/login`);
+      } else if (token) {
+        // check if the token is expired
+        const decodedToken: any = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp < currentTime) {
+          toast({
+            title: "Session expired ",
+            position: "top-right",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+          dispatch(logOut());
+        }
+      }
 
       return <WrappedComponent {...props} />;
     }
