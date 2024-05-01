@@ -1,5 +1,4 @@
 import {
-  VStack,
   Table,
   Thead,
   Tbody,
@@ -9,16 +8,12 @@ import {
   TableContainer,
   Menu,
   MenuButton,
-  MenuList,
-  MenuItem,
   IconButton,
   Image,
-  Badge,
-  HStack,
-  Text,
 } from "@chakra-ui/react";
 import { formatDate2 } from "@/utils/functions";
 import { useRouter } from "next/router";
+import Empty from "../admin/Empty";
 
 const DashboardTable = ({ data }: any) => {
   const router = useRouter();
@@ -32,7 +27,7 @@ const DashboardTable = ({ data }: any) => {
   ];
 
   return (
-    <TableContainer w="100%">
+    <TableContainer w="100%" bg="white">
       <Table
         variant="striped"
         minW="100%"
@@ -152,6 +147,12 @@ const DashboardTable = ({ data }: any) => {
           ))}
         </Tbody>
       </Table>
+      {!data?.length && (
+        <Empty
+          title="No activity Found"
+          desc="User''s activity will be displayed here."
+        />
+      )}
     </TableContainer>
   );
 };

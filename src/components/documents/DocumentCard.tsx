@@ -6,10 +6,7 @@ import {
   VStack,
   Text,
   Divider,
-  Avatar,
-  AvatarGroup,
 } from "@chakra-ui/react";
-import Button from "../ui/Button";
 
 type TaskCardProps = {
   title: string;
@@ -47,8 +44,6 @@ const DocumentCard = ({ title, desc }: TaskCardProps) => {
                 {desc}
               </Text>
             </VStack>
-
-            
 
             <HStack>
               <Image src="/images/comment.svg" alt="Like" />

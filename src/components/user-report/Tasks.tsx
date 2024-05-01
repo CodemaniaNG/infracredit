@@ -9,6 +9,7 @@ import { useAppSelector } from "@/redux/store";
 import { useGetReportsQuery } from "@/redux/services/reports.service";
 import Loader from "../ui/Loader";
 import DashboardHeader from "../dashboard/DashboardHeader";
+import Empty from "../admin/Empty";
 
 const Tasks = () => {
   const { token } = useAppSelector((state) => state.app.auth);
@@ -21,40 +22,6 @@ const Tasks = () => {
   const { data: reportsData, isLoading: reportsLoading } =
     useGetReportsQuery(token);
   const reports = reportsData?.data;
-
-  const EmptyState = ({ title, desc, buttonTitle, onClick }: any) => (
-    <Stack dir="column" align="center" justify="center">
-      <Image src="/images/empty.svg" alt="empty" />
-      <Stack dir="column" spacing={0}>
-        <Text
-          color="maintText.400"
-          fontSize={{ base: "24px", sm: "28px" }}
-          fontWeight={600}
-          textAlign="center"
-        >
-          {title}
-        </Text>
-        <Text
-          color="subText.400"
-          fontSize={{ base: "16px", sm: "16px" }}
-          lineHeight="24px"
-          textAlign="center"
-        >
-          {desc}
-        </Text>
-      </Stack>
-      {buttonTitle && (
-        <Stack>
-          <Button
-            text={buttonTitle}
-            icon="/images/add3.svg"
-            iconPosition="left"
-            onClick={onClick}
-          />
-        </Stack>
-      )}
-    </Stack>
-  );
 
   return (
     <>
@@ -151,7 +118,7 @@ const Tasks = () => {
                 </GridItem>
               </Grid>
             ) : (
-              <EmptyState
+              <Empty
                 title="No report added yet"
                 desc="Your reports will be displayed here."
               />
