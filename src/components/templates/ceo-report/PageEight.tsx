@@ -20,7 +20,7 @@ import { useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageEight = ({ data, isEdit }: any) => {
+const PageEight = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   interface LineProps {
     options: ChartOptions<"doughnut">;
     data: ChartData<"doughnut">;
@@ -76,13 +76,17 @@ const PageEight = ({ data, isEdit }: any) => {
 
   return (
     <>
-      <CeoLayOut page={8} title={data[0]?.title} isEdit={isEdit}>
+      <CeoLayOut
+        page={8}
+        title={reportToEdit?.subTitleEight[0]?.title}
+        isEdit={isEdit}
+      >
         <VStack align="flex-start" w="100%" spacing={4}>
           <TableContainer w="100%">
             <Table size="sm" cellSpacing={0} cellPadding={0}>
               <Thead>
                 <Tr>
-                  {data[0].table1[0].tableHeader.map(
+                  {reportToEdit?.subTitleEight[0].table1[0].tableHeader.map(
                     (item: any, index: number) => (
                       <Th key={index} py={1} textTransform="capitalize">
                         <EditableInput
@@ -100,30 +104,32 @@ const PageEight = ({ data, isEdit }: any) => {
               </Thead>
 
               <Tbody>
-                {data[0].table1[1].data.map((item: any, index: number) => (
-                  <Tr key={index}>
-                    <Td py={1}>
-                      <EditableInput
-                        value={item?.text1}
-                        isEdit={isEdit}
-                        textAlign="left"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                    <Td py={1}>
-                      <EditableInput
-                        value={item?.text2}
-                        isEdit={isEdit}
-                        textAlign="left"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                  </Tr>
-                ))}
+                {reportToEdit?.subTitleEight[0].table1[1].data.map(
+                  (item: any, index: number) => (
+                    <Tr key={index}>
+                      <Td py={1}>
+                        <EditableInput
+                          value={item?.text1}
+                          isEdit={isEdit}
+                          textAlign="left"
+                          fontSize="10px"
+                          color="black"
+                          fontWeight="600"
+                        />
+                      </Td>
+                      <Td py={1}>
+                        <EditableInput
+                          value={item?.text2}
+                          isEdit={isEdit}
+                          textAlign="left"
+                          fontSize="10px"
+                          color="black"
+                          fontWeight="600"
+                        />
+                      </Td>
+                    </Tr>
+                  ),
+                )}
               </Tbody>
             </Table>
           </TableContainer>
@@ -132,7 +138,7 @@ const PageEight = ({ data, isEdit }: any) => {
             <VStack w="50%" align="flex-start">
               <EditableInput
                 isEdit={isEdit}
-                value={data[0]?.title2}
+                value={reportToEdit?.subTitleEight[0]?.title2}
                 fontSize="18px"
                 color="primary3"
                 fontWeight="800"

@@ -1,7 +1,7 @@
 import { Box, Flex, Image, VStack, Text } from "@chakra-ui/react";
 import Button from "@/components/ui/Button";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
-import { setCredentials, setToken, setRoles } from "@/redux/slices/authSlice";
+import { setCredentials, setToken } from "@/redux/slices/authSlice";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import AuthLeft from "@/components/auth/AuthLeft";
@@ -10,37 +10,24 @@ import { loginRequest } from "@/authConfig";
 import {
   useGetUserByEmailQuery,
   useGetUserByIdQuery,
-  // useGetUserRolesQuery,
 } from "@/redux/services/onboard.service";
-// import { useGetRolesQuery } from "@/redux/services/roles.service";
-
-const roles = [
-  { value: "user-reports", label: "User Report" },
-  { value: "user-contracts", label: "User Contracts" },
-  { value: "admin", label: "Admin" },
-  { value: "manager", label: "Manager" },
-  { value: "supervisor", label: "Supervisor" },
-  { value: "viewer", label: "Viewer" },
-];
 
 const LoginPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { userInfo, token, roles } = useAppSelector(
-    (state: any) => state.app.auth,
-  );
-  const [email, setEmail] = useState("dummyemail.d@codemania.com.ng");
-  const [userId, setUserId] = useState("12345");
+  const { userInfo, token } = useAppSelector((state: any) => state.app.auth);
+  const [email, setEmail] = useState<any>(null);
+  const [userId, setUserId] = useState<any>(null);
 
   useEffect(() => {
     if (userInfo) {
       router.push("/");
     }
-  }, [router, userInfo, roles]);
+  }, [router, userInfo]);
 
   const { data, isLoading, refetch } = useGetUserByEmailQuery({
-    token: token,
-    email: email,
+    token: token || null,
+    email: email || null,
   });
 
   const userDataFromEmail = data;
@@ -51,29 +38,22 @@ const LoginPage = () => {
     refetch: userRefetch,
     error,
   } = useGetUserByIdQuery({
-    token: token,
-    id: userId,
+    token: token || null,
+    id: userId || null,
   });
 
   const user = userData;
-
-  // const { data: rolesData } = useGetUserRolesQuery({ token: token });
-  // const allRoles = rolesData?.data;
-
-  // const { data: rolesData } = useGetRolesQuery(token);
-  // const allRoles = rolesData?.data;
-
-  // useEffect(() => {
-  //   if (allRoles) {
-  //     dispatch(setRoles(allRoles));
-  //   }
-  // }, [allRoles, dispatch]);
+  const userError = error as any;
 
   useEffect(() => {
     if (user?.status === "success" && user?.data) {
       dispatch(setCredentials(user?.data));
+    } else if (userError?.status === 403) {
+      dispatch(setCredentials(null));
+      dispatch(setToken(null));
+      router.push("/auth/not-found");
     }
-  }, [user, dispatch, router]);
+  }, [user, dispatch, router, userError]);
 
   useEffect(() => {
     if (
@@ -90,12 +70,6 @@ const LoginPage = () => {
       refetch();
     }
   }, [email, refetch]);
-
-  // useEffect(() => {
-  //   if (token && error) {
-  //     alert("An error occurred. Please try again later.");
-  //   }
-  // }, [error, token]);
 
   const { instance } = useMsal();
 
@@ -154,8 +128,8 @@ const LoginPage = () => {
                 iconHeight="32px"
                 iconWidth="32px"
                 borderRadius={0}
-                isLoading={isLoading || (userIsLoading && token)}
-                isDisabled={isLoading || (userIsLoading && token)}
+                isLoading={userIsLoading && token}
+                isDisabled={userIsLoading && token}
               />
             </VStack>
           </VStack>

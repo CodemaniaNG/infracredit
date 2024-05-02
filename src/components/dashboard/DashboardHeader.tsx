@@ -1,7 +1,7 @@
 import { formatDate2 } from "@/utils/functions";
 import { Text, VStack, HStack } from "@chakra-ui/react";
 
-const DashboardHeader = ({ children, title }: any) => {
+const DashboardHeader = ({ children, title, description }: any) => {
   return (
     <HStack justify="space-between" mb={"3"}>
       <VStack align="flex-start">
@@ -17,15 +17,28 @@ const DashboardHeader = ({ children, title }: any) => {
         >
           {title}
         </Text>
-        <Text
-          fontSize={"16px"}
-          fontWeight="500"
-          color="subText.400"
-          mt={-2}
-          fontFamily={"body"}
-        >
-          {formatDate2(new Date().toISOString())}
-        </Text>
+        {description && (
+          <Text
+            fontSize={"16px"}
+            fontWeight="500"
+            color="subText.400"
+            mt={-2}
+            fontFamily={"body"}
+          >
+            {description}
+          </Text>
+        )}
+        {!description && (
+          <Text
+            fontSize={"16px"}
+            fontWeight="500"
+            color="subText.400"
+            mt={-2}
+            fontFamily={"body"}
+          >
+            {formatDate2(new Date().toISOString())}
+          </Text>
+        )}
       </VStack>
 
       <HStack justify="flex-end">{children}</HStack>

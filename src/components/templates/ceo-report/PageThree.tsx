@@ -20,7 +20,7 @@ import { useState } from "react";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 import EditableInput from "@/components/ui/EditableInput";
 
-const PageThree = ({ data, isEdit }: any) => {
+const PageThree = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   interface LineProps {
     options: ChartOptions<"doughnut">;
     data: ChartData<"doughnut">;
@@ -185,14 +185,19 @@ const PageThree = ({ data, isEdit }: any) => {
       },
     },
   });
+
   return (
     <>
       <CeoLayOut page={4} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
-          <Title title={data[0]?.title} color="primary3" isEdit={isEdit} />
+          <Title
+            title={reportToEdit?.subTitleThree[0]?.title}
+            color="primary3"
+            isEdit={isEdit}
+          />
 
           <EditableTextArea
-            value={data[0]?.itemOne}
+            value={reportToEdit?.subTitleThree[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -201,7 +206,7 @@ const PageThree = ({ data, isEdit }: any) => {
           <HStack align="flex-start" w="100%" spacing={4}>
             <VStack w="40%" align="flex-start">
               <EditableTextArea
-                value={data[0]?.chart1Title}
+                value={reportToEdit?.subTitleThree[0]?.chart1Title}
                 fontSize="12px"
                 color="green.200"
                 fontWeight="700"
@@ -212,7 +217,7 @@ const PageThree = ({ data, isEdit }: any) => {
 
             <VStack w="60%">
               <EditableTextArea
-                value={data[0]?.table1Title}
+                value={reportToEdit?.subTitleThree[0]?.table1Title}
                 fontSize="12px"
                 color="green.200"
                 fontWeight="700"
@@ -228,7 +233,7 @@ const PageThree = ({ data, isEdit }: any) => {
                 >
                   <Thead bg="secondary">
                     <Tr>
-                      {data[0].table1[0].tableHeader.map(
+                      {reportToEdit?.subTitleThree[0].table1[0].tableHeader.map(
                         (item: any, index: number) => (
                           <Th key={index} py={0}>
                             <EditableInput
@@ -246,50 +251,52 @@ const PageThree = ({ data, isEdit }: any) => {
                   </Thead>
 
                   <Tbody>
-                    {data[0].table1[1].data.map((item: any, index: number) => (
-                      <Tr borderColor="primary3" key={index}>
-                        <Td borderColor="primary3" py={0}>
-                          <EditableInput
-                            value={item?.text1}
-                            isEdit={isEdit}
-                            textAlign="left"
-                            fontSize="10px"
-                            color="black"
-                            fontWeight="600"
-                          />
-                        </Td>
-                        <Td borderColor="primary3" py={0}>
-                          <EditableInput
-                            value={item?.text2}
-                            isEdit={isEdit}
-                            textAlign="left"
-                            fontSize="10px"
-                            color="black"
-                            fontWeight="600"
-                          />
-                        </Td>
-                        <Td borderColor="primary3" py={0}>
-                          <EditableInput
-                            value={item?.text3}
-                            isEdit={isEdit}
-                            textAlign="left"
-                            fontSize="10px"
-                            color="black"
-                            fontWeight="600"
-                          />
-                        </Td>
-                        <Td borderColor="primary3" py={0}>
-                          <EditableInput
-                            value={item?.text4}
-                            isEdit={isEdit}
-                            textAlign="left"
-                            fontSize="10px"
-                            color="black"
-                            fontWeight="600"
-                          />
-                        </Td>
-                      </Tr>
-                    ))}
+                    {reportToEdit?.subTitleThree[0].table1[1].data.map(
+                      (item: any, index: number) => (
+                        <Tr borderColor="primary3" key={index}>
+                          <Td borderColor="primary3" py={0}>
+                            <EditableInput
+                              value={item?.text1}
+                              isEdit={isEdit}
+                              textAlign="left"
+                              fontSize="10px"
+                              color="black"
+                              fontWeight="600"
+                            />
+                          </Td>
+                          <Td borderColor="primary3" py={0}>
+                            <EditableInput
+                              value={item?.text2}
+                              isEdit={isEdit}
+                              textAlign="left"
+                              fontSize="10px"
+                              color="black"
+                              fontWeight="600"
+                            />
+                          </Td>
+                          <Td borderColor="primary3" py={0}>
+                            <EditableInput
+                              value={item?.text3}
+                              isEdit={isEdit}
+                              textAlign="left"
+                              fontSize="10px"
+                              color="black"
+                              fontWeight="600"
+                            />
+                          </Td>
+                          <Td borderColor="primary3" py={0}>
+                            <EditableInput
+                              value={item?.text4}
+                              isEdit={isEdit}
+                              textAlign="left"
+                              fontSize="10px"
+                              color="black"
+                              fontWeight="600"
+                            />
+                          </Td>
+                        </Tr>
+                      ),
+                    )}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -297,7 +304,7 @@ const PageThree = ({ data, isEdit }: any) => {
           </HStack>
 
           <EditableTextArea
-            value={data[0]?.itemTwo}
+            value={reportToEdit?.subTitleThree[0]?.itemTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -328,15 +335,17 @@ const PageThree = ({ data, isEdit }: any) => {
           </HStack>
 
           <VStack align="flex-start" w="100%" spacing={1}>
-            {data[0]?.notes.map((item: any, index: number) => (
-              <EditableTextArea
-                key={index}
-                value={item}
-                fontSize="14px"
-                color="subText.900"
-                fontWeight="500"
-              />
-            ))}
+            {reportToEdit?.subTitleThree[0]?.notes.map(
+              (item: any, index: number) => (
+                <EditableTextArea
+                  key={index}
+                  value={item}
+                  fontSize="14px"
+                  color="subText.900"
+                  fontWeight="500"
+                />
+              ),
+            )}
           </VStack>
         </VStack>
       </CeoLayOut>

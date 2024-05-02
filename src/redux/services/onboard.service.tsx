@@ -48,6 +48,7 @@ export const onboardApi = createApi({
           Authorization: `Bearer ${token}`,
         },
       }),
+      invalidatesTags: ["Onboard"],
     }),
 
     onboardUser: builder.mutation({
@@ -59,6 +60,7 @@ export const onboardApi = createApi({
           Authorization: `Bearer ${token}`,
         },
       }),
+      invalidatesTags: ["Onboard"],
     }),
 
     removeUser: builder.mutation({

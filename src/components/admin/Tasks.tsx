@@ -6,9 +6,6 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  Stack,
-  Image,
-  Text,
 } from "@chakra-ui/react";
 import TaskCard from "@/components/dashboard/TaskCard";
 import TaskStack from "@/components/task/TaskStack";
@@ -25,6 +22,7 @@ import { useGetTemplatesQuery } from "@/redux/services/templates.service";
 import { useRouter } from "next/router";
 import Loader from "../ui/Loader";
 import { useGetReportsQuery } from "@/redux/services/reports.service";
+import Empty from "./Empty";
 
 const tabs = [
   {
@@ -72,40 +70,6 @@ const Tasks = () => {
       setActiveIndex(Number(query.tab));
     }
   }, [router.query]);
-
-  const EmptyState = ({ title, desc, buttonTitle, onClick }: any) => (
-    <Stack dir="column" align="center" justify="center">
-      <Image src="/images/empty.svg" alt="empty" />
-      <Stack dir="column" spacing={0}>
-        <Text
-          color="maintText.400"
-          fontSize={{ base: "24px", sm: "28px" }}
-          fontWeight={600}
-          textAlign="center"
-        >
-          {title}
-        </Text>
-        <Text
-          color="subText.400"
-          fontSize={{ base: "16px", sm: "16px" }}
-          lineHeight="24px"
-          textAlign="center"
-        >
-          {desc}
-        </Text>
-      </Stack>
-      {buttonTitle && (
-        <Stack>
-          <Button
-            text={buttonTitle}
-            icon="/images/add3.svg"
-            iconPosition="left"
-            onClick={onClick}
-          />
-        </Stack>
-      )}
-    </Stack>
-  );
 
   return (
     <>
@@ -185,7 +149,7 @@ const Tasks = () => {
                         ))}
                       </Grid>
                     ) : (
-                      <EmptyState
+                      <Empty
                         title="No department added yet"
                         desc="You can create a new department to this section here."
                         buttonTitle="Add New Department"
@@ -279,7 +243,7 @@ const Tasks = () => {
                         </GridItem>
                       </Grid>
                     ) : (
-                      <EmptyState
+                      <Empty
                         title="No report added yet"
                         desc="Your reports will be displayed here."
                       />
@@ -304,7 +268,7 @@ const Tasks = () => {
                         ))}
                       </Grid>
                     ) : (
-                      <EmptyState
+                      <Empty
                         title="No template added yet"
                         desc="Your templates will be displayed here."
                       />

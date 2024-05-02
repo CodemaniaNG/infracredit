@@ -1,12 +1,8 @@
 import { Text, VStack, Box, HStack, List, ListItem } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setCeoReport } from "@/redux/slices/templateSlice";
 
-const TableOfContent = ({ data, isEdit }: any) => {
-  const dispatch = useAppDispatch();
-  const { ceoReport } = useAppSelector((state) => state.app.template);
+const TableOfContent = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>
       <CeoLayOut page={1} isEdit={isEdit}>
@@ -28,7 +24,7 @@ const TableOfContent = ({ data, isEdit }: any) => {
           />
 
           <List spacing={3} w="100%">
-            {data?.map((item: any, i: number) => (
+            {reportToEdit?.tableOfContent?.map((item: any, i: number) => (
               <ListItem w="100%" key={i}>
                 <HStack w="100%" justify="space-between" align="center">
                   <HStack w="100%">
@@ -41,25 +37,6 @@ const TableOfContent = ({ data, isEdit }: any) => {
                       color="subText.800"
                       fontWeight="600"
                       textAlign="left"
-                      onChange={(e: any) => {
-                        dispatch(
-                          setCeoReport({
-                            ...ceoReport,
-                            body: JSON.stringify({
-                              ...ceoReport?.body,
-                              tableOfContent:
-                                ceoReport?.body?.tableOfContent?.map(
-                                  (content: any, index: number) => {
-                                    if (i === index) {
-                                      return console.log(content);
-                                    }
-                                    return content;
-                                  },
-                                ),
-                            }),
-                          }),
-                        );
-                      }}
                     />
                   </HStack>
 

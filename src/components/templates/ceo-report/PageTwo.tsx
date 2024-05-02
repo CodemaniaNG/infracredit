@@ -20,7 +20,7 @@ import { useState } from "react";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 
-const PageTwo = ({ data, isEdit }: any) => {
+const PageTwo = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   const [chartDatas, setChartDatas] = useState<any>({
     data: {
       datasets: [
@@ -75,17 +75,32 @@ const PageTwo = ({ data, isEdit }: any) => {
       },
     },
   });
+
   return (
     <>
-      <CeoLayOut title={data[0]?.title} page={3} isEdit={isEdit}>
+      <CeoLayOut
+        title={reportToEdit?.subTitleTwo[0]?.title}
+        page={3}
+        isEdit={isEdit}
+      >
         <VStack align="flex-start" w="100%" spacing={4}>
-          <EditableTextArea value={data[0]?.itemOne} isEdit={isEdit} />
+          <EditableTextArea
+            value={reportToEdit?.subTitleTwo[0]?.itemOne}
+            isEdit={isEdit}
+          />
 
-          <Title title={data[0]?.title2} color="primary3" isEdit={isEdit} />
+          <Title
+            title={reportToEdit?.subTitleTwo[0]?.title2}
+            color="primary3"
+            isEdit={isEdit}
+          />
 
           <HStack align="flex-start" w="100%" spacing={4}>
             <HStack w="50%">
-              <EditableTextArea value={data[0]?.itmesTwo} isEdit={isEdit} />
+              <EditableTextArea
+                value={reportToEdit?.subTitleTwo[0]?.itmesTwo}
+                isEdit={isEdit}
+              />
             </HStack>
 
             <VStack w="50%" align="flex-start">
@@ -104,7 +119,11 @@ const PageTwo = ({ data, isEdit }: any) => {
             </VStack>
           </HStack>
 
-          <Title title={data[0]?.title3} color="primary3" isEdit={isEdit} />
+          <Title
+            title={reportToEdit?.subTitleTwo[0]?.title3}
+            color="primary3"
+            isEdit={isEdit}
+          />
 
           <VStack align="flex-start" w="100%">
             <TableContainer w="100%">
@@ -117,7 +136,7 @@ const PageTwo = ({ data, isEdit }: any) => {
               >
                 <Thead bg="secondary">
                   <Tr>
-                    {data[0].table1[0].tableHeader.map(
+                    {reportToEdit?.subTitleTwo[0].table1[0].tableHeader.map(
                       (item: any, index: number) => (
                         <Th key={index} py={0}>
                           <EditableInput
@@ -135,50 +154,52 @@ const PageTwo = ({ data, isEdit }: any) => {
                 </Thead>
 
                 <Tbody>
-                  {data[0].table1[1].data.map((item: any, index: number) => (
-                    <Tr borderColor="primary3" key={index}>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text1}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text2}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text3}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text4}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                    </Tr>
-                  ))}
+                  {reportToEdit?.subTitleTwo[0].table1[1].data.map(
+                    (item: any, index: number) => (
+                      <Tr borderColor="primary3" key={index}>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text1}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text2}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text3}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text4}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                      </Tr>
+                    ),
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>
@@ -187,7 +208,7 @@ const PageTwo = ({ data, isEdit }: any) => {
               <Table size="sm" borderWidth={1} borderColor="primary3">
                 <Thead bg="secondary">
                   <Tr>
-                    {data[0].table2[0].tableHeader.map(
+                    {reportToEdit?.subTitleTwo[0].table2[0].tableHeader.map(
                       (item: any, index: number) => (
                         <Th key={index} py={0}>
                           <EditableInput
@@ -205,50 +226,52 @@ const PageTwo = ({ data, isEdit }: any) => {
                 </Thead>
 
                 <Tbody>
-                  {data[0].table2[1].data.map((item: any, index: number) => (
-                    <Tr borderColor="primary3" key={index}>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text1}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text2}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text3}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                      <Td borderColor="primary3" py={0}>
-                        <EditableInput
-                          value={item?.text4}
-                          isEdit={isEdit}
-                          textAlign="left"
-                          fontSize="10px"
-                          color="black"
-                          fontWeight="600"
-                        />
-                      </Td>
-                    </Tr>
-                  ))}
+                  {reportToEdit?.subTitleTwo[0].table2[1].data.map(
+                    (item: any, index: number) => (
+                      <Tr borderColor="primary3" key={index}>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text1}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text2}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text3}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                        <Td borderColor="primary3" py={0}>
+                          <EditableInput
+                            value={item?.text4}
+                            isEdit={isEdit}
+                            textAlign="left"
+                            fontSize="10px"
+                            color="black"
+                            fontWeight="600"
+                          />
+                        </Td>
+                      </Tr>
+                    ),
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>

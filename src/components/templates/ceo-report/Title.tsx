@@ -1,7 +1,7 @@
 import { VStack, Box } from "@chakra-ui/react";
 import EditableInput from "@/components/ui/EditableInput";
 
-const Title = ({ title, color = "greens.200", isEdit }: any) => {
+const Title = ({ title, color = "greens.200", isEdit, onChange }: any) => {
   return (
     <>
       <VStack align="flex-start" w="100%" spacing={0}>
@@ -12,6 +12,7 @@ const Title = ({ title, color = "greens.200", isEdit }: any) => {
           color={color}
           fontWeight="800"
           textAlign="left"
+          onChange={onChange}
         />
       </VStack>
       <Box
