@@ -8,7 +8,6 @@ import {
   Image,
 } from "@chakra-ui/react";
 import Layout from "@/components/dashboard/Layout";
-import Button from "@/components/ui/Button";
 import { useRouter } from "next/router";
 import PageContent from "@/components/editor/PageContent";
 import ReportDescription from "@/components/editor/ReportDescription";
@@ -17,17 +16,7 @@ import Tools from "@/components/editor/Tools";
 import Pages from "@/components/editor/Pages";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
-import { useState, useEffect } from "react";
-import Renumeration from "@/components/templates/renumeration";
-import Modal from "@/components/ui/Modal";
-import ReUpload from "@/components/modals/ReUpload";
-import ShareContract from "@/components/modals/ShareContract";
-import ShareReport from "@/components/modals/ShareReport";
-import ApproveReport from "@/components/modals/ApproveReport";
-import DisapproveReport from "@/components/modals/DisapproveReport";
-import UploadSignedPDF from "@/components/modals/UploadSignedPDF";
-import ReturnReport from "@/components/modals/ReturnReport";
-import SubmitReport from "@/components/modals/SubmitReport";
+import { useState, useEffect, use } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
 import { useGetReportByIdQuery } from "@/redux/services/reports.service";
@@ -52,6 +41,7 @@ const Editor = () => {
   const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
+  const [reportToEdit, setReportToEdit] = useState<any>(null);
 
   const { ceoReport, managementReport } = useAppSelector(
     (state) => state.app.template,
@@ -83,6 +73,18 @@ const Editor = () => {
       dispatch(setManagementReport(JSON.parse(templateData.body)));
     }
   }, [templateData, dispatch]);
+
+  useEffect(() => {
+    if (ceoReport) {
+      setReportToEdit(ceoReport);
+    }
+  }, [ceoReport]);
+
+  useEffect(() => {
+    if (managementReport) {
+      setReportToEdit(managementReport);
+    }
+  }, [managementReport]);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
@@ -191,8 +193,13 @@ const Editor = () => {
               <GridItem colSpan={3}>
                 <Box>
                   {templateData?.title?.toLowerCase().includes("ceo") && (
-                    <CeoReport isEdit={isEdit} ceoReport={ceoReport} />
+                    <CeoReport
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
                   )}
+
                   {templateData?.title
                     ?.toLowerCase()
                     .includes("management") && (

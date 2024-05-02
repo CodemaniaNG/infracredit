@@ -9,7 +9,7 @@ import Title from "./Title";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageTen = ({ data, isEdit }: any) => {
+const PageTen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   const dataBar: any = {
     labels: ["2021 A", "2022 B"],
     datasets: [
@@ -42,11 +42,11 @@ const PageTen = ({ data, isEdit }: any) => {
     <>
       <CeoLayOut page={11} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
-          <Title title={data[0]?.title} isEdit={isEdit} />
+          <Title title={reportToEdit?.subTitleTen[0]?.title} isEdit={isEdit} />
           <VStack align="flex-start" w="100%" spacing={0}>
             <EditableInput
               isEdit={isEdit}
-              value={data[0]?.title2}
+              value={reportToEdit?.subTitleTen[0]?.title2}
               fontSize="16px"
               color="black"
               fontWeight="700"
@@ -54,7 +54,7 @@ const PageTen = ({ data, isEdit }: any) => {
             />
             <EditableInput
               isEdit={isEdit}
-              value={data[0]?.title3}
+              value={reportToEdit?.subTitleTen[0]?.title3}
               fontSize="16px"
               color="black"
               fontWeight="700"
@@ -63,7 +63,7 @@ const PageTen = ({ data, isEdit }: any) => {
           </VStack>
 
           <EditableTextArea
-            value={data[0]?.itemOne}
+            value={reportToEdit?.subTitleTen[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -71,7 +71,7 @@ const PageTen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsTwo}
+            value={reportToEdit?.subTitleTen[0]?.itemsTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -79,7 +79,7 @@ const PageTen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsThree}
+            value={reportToEdit?.subTitleTen[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -87,7 +87,7 @@ const PageTen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsFour}
+            value={reportToEdit?.subTitleTen[0]?.itemsFour}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -95,7 +95,7 @@ const PageTen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsFive}
+            value={reportToEdit?.subTitleTen[0]?.itemsFive}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -104,7 +104,7 @@ const PageTen = ({ data, isEdit }: any) => {
           <VStack w="100%" align="flex-start" spacing={0}>
             <EditableInput
               isEdit={isEdit}
-              value={data[0]?.title4}
+              value={reportToEdit?.subTitleTen[0]?.title4}
               fontSize="16px"
               color="subText.900"
               fontWeight="700"
@@ -115,7 +115,7 @@ const PageTen = ({ data, isEdit }: any) => {
           </VStack>
 
           <EditableTextArea
-            value={data[0]?.itemsSix}
+            value={reportToEdit?.subTitleTen[0]?.itemsSix}
             fontSize="14px"
             color="black"
             fontWeight="500"

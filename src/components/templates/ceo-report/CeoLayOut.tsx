@@ -1,7 +1,7 @@
 import { Text, VStack, Box, HStack, Image } from "@chakra-ui/react";
 import EditableInput from "@/components/ui/EditableInput";
 
-const CeoLayOut = ({ children, page, isEdit, title }: any) => {
+const CeoLayOut = ({ children, page, isEdit, title, onChange }: any) => {
   return (
     <>
       <VStack
@@ -30,6 +30,7 @@ const CeoLayOut = ({ children, page, isEdit, title }: any) => {
                   color="greens.200"
                   fontWeight="800"
                   textAlign="left"
+                  onChange={onChange}
                 />
               </VStack>
               <Box
@@ -77,7 +78,7 @@ const CeoLayOut = ({ children, page, isEdit, title }: any) => {
             <Box w="45%" bg="border.300" h={"8px"} />
           </HStack>
         </VStack>
-        <VStack px="6"  align={"flex-start"}>
+        <VStack px="6" align={"flex-start"}>
           <EditableInput
             isEdit={isEdit}
             value="Source: CBN, Vetiva Research, Rencap FSDH Research"

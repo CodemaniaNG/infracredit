@@ -3,35 +3,35 @@ import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 
-const PageSix = ({ data, isEdit }: any) => {
+const PageSix = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>
       <CeoLayOut page={7} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableInput
             isEdit={isEdit}
-            value={data[0]?.title}
+            value={reportToEdit?.subTitleSix[0]?.title}
             fontSize="18px"
             color="primary3"
             fontWeight="800"
             textAlign="left"
           />
           <EditableTextArea
-            value={data[0]?.itemOne}
+            value={reportToEdit?.subTitleSix[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
             isEdit={isEdit}
           />
           <EditableTextArea
-            value={data[0]?.itemsTwo}
+            value={reportToEdit?.subTitleSix[0]?.itemsTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
             isEdit={isEdit}
           />
           <EditableTextArea
-            value={data[0]?.itemsThree}
+            value={reportToEdit?.subTitleSix[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -40,7 +40,7 @@ const PageSix = ({ data, isEdit }: any) => {
 
           <EditableInput
             isEdit={isEdit}
-            value={data[0]?.title2}
+            value={reportToEdit?.subTitleSix[0]?.title2}
             fontSize="18px"
             color="primary3"
             fontWeight="800"
@@ -48,7 +48,7 @@ const PageSix = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsFour}
+            value={reportToEdit?.subTitleSix[0]?.itemsFour}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -56,7 +56,7 @@ const PageSix = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsFive}
+            value={reportToEdit?.subTitleSix[0]?.itemsFive}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -65,7 +65,7 @@ const PageSix = ({ data, isEdit }: any) => {
 
           <EditableInput
             isEdit={isEdit}
-            value={data[0]?.title3}
+            value={reportToEdit?.subTitleSix[0]?.title3}
             fontSize="18px"
             color="primary3"
             fontWeight="800"
@@ -73,7 +73,7 @@ const PageSix = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsSix}
+            value={reportToEdit?.subTitleSix[0]?.itemsSix}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -81,7 +81,7 @@ const PageSix = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsSeven}
+            value={reportToEdit?.subTitleSix[0]?.itemsSeven}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -89,7 +89,7 @@ const PageSix = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsEight}
+            value={reportToEdit?.subTitleSix[0]?.itemsEight}
             fontSize="14px"
             color="black"
             fontWeight="500"

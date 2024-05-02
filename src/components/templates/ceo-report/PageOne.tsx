@@ -2,83 +2,119 @@ import { VStack } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import Title from "./Title";
 import EditableTextArea from "@/components/ui/EditableTextArea";
-import { useState, useEffect } from "react";
 
-const PageOne = ({ data, isEdit }: any) => {
-  const [ceoReport, setCeoReport] = useState<any>(data);
-
-  useEffect(() => {
-    setCeoReport(data);
-  }, [data]);
-
+const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>
-      <CeoLayOut title={data[0]?.title} page={2} isEdit={isEdit}>
+      <CeoLayOut
+        title={reportToEdit?.subTitle[0]?.title}
+        page={2}
+        isEdit={isEdit}
+        onChange={(e: any) => {
+          setReportToEdit({
+            ...reportToEdit,
+            subTitle: [
+              {
+                ...reportToEdit?.subTitle[0],
+                title: e.target.value,
+              },
+              ...reportToEdit?.subTitle.slice(1),
+            ],
+          });
+        }}
+      >
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableTextArea
-            value={ceoReport[0]?.itemOne}
+            value={reportToEdit?.subTitle[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
             isEdit={isEdit}
             onChange={(e: any) => {
-              setCeoReport([
-                {
-                  ...ceoReport[0],
-                  itemOne: e.target.value,
-                },
-                ceoReport[1],
-              ]);
+              setReportToEdit({
+                ...reportToEdit,
+                subTitle: [
+                  {
+                    ...reportToEdit?.subTitle[0],
+                    itemOne: e.target.value,
+                  },
+                  ...reportToEdit?.subTitle.slice(1),
+                ],
+              });
             }}
           />
           <EditableTextArea
-            value={ceoReport[0]?.itmesTwo}
+            value={reportToEdit?.subTitle[0]?.itmesTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
             isEdit={isEdit}
             onChange={(e: any) => {
-              setCeoReport([
-                {
-                  ...ceoReport[0],
-                  itmesTwo: e.target.value,
-                },
-                ceoReport[1],
-              ]);
+              setReportToEdit({
+                ...reportToEdit,
+                subTitle: [
+                  {
+                    ...reportToEdit?.subTitle[0],
+                    itmesTwo: e.target.value,
+                  },
+                  ...reportToEdit?.subTitle.slice(1),
+                ],
+              });
             }}
           />
           <EditableTextArea
-            value={ceoReport[0]?.itemsThree}
+            value={reportToEdit?.subTitle[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"
             isEdit={isEdit}
             onChange={(e: any) => {
-              setCeoReport([
-                {
-                  ...ceoReport[0],
-                  itemsThree: e.target.value,
-                },
-                ceoReport[1],
-              ]);
+              setReportToEdit({
+                ...reportToEdit,
+                subTitle: [
+                  {
+                    ...reportToEdit?.subTitle[0],
+                    itemsThree: e.target.value,
+                  },
+                  ...reportToEdit?.subTitle.slice(1),
+                ],
+              });
             }}
           />
 
-          <Title title={data[1]?.title} isEdit={isEdit} />
+          <Title
+            title={reportToEdit?.subTitle[1]?.title}
+            isEdit={isEdit}
+            onChange={(e: any) => {
+              setReportToEdit({
+                ...reportToEdit,
+                subTitle: [
+                  ...reportToEdit?.subTitle.slice(0, 1),
+                  {
+                    ...reportToEdit?.subTitle[1],
+                    title: e.target.value,
+                  },
+                ],
+              });
+            }}
+          />
           <EditableTextArea
-            value={ceoReport[1]?.itemOne}
+            value={reportToEdit?.subTitle[1]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
             isEdit={isEdit}
             onChange={(e: any) => {
-              setCeoReport([
-                ceoReport[0],
-                {
-                  ...ceoReport[1],
-                  itemOne: e.target.value,
-                },
-              ]);
+              setReportToEdit({
+                ...reportToEdit,
+                subTitle: [
+                  ...reportToEdit?.subTitle.slice(0, 1),
+                  {
+                    ...reportToEdit?.subTitle[1],
+                    itemOne: e.target.value,
+                  },
+                ],
+              });
             }}
           />
         </VStack>

@@ -18,29 +18,99 @@ import PageSixteen from "./PageSixteen";
 import CoverPage from "./CoverPage";
 import Footer from "./Footer";
 
-const CeoReport = ({ isEdit, ceoReport }: any) => {
+const CeoReport = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>
-      {ceoReport && (
+      {reportToEdit && (
         <>
           <CoverPage />
-          <TableOfContent data={ceoReport?.tableOfContent} isEdit={isEdit} />
-          <PageOne data={ceoReport?.subTitle} isEdit={isEdit} />
-          <PageTwo data={ceoReport?.subTitleTwo} isEdit={isEdit} />
-          <Page3 data={ceoReport?.subTitleThree} isEdit={isEdit} />
-          <PageFour data={ceoReport?.subTitleFour} isEdit={isEdit} />
-          <PageFive data={ceoReport?.subTitleFive} isEdit={isEdit} />
-          <PageSix data={ceoReport?.subTitleSix} isEdit={isEdit} />
-          <PageSeven data={ceoReport?.subTitleSeven} isEdit={isEdit} />
-          <PageEight data={ceoReport?.subTitleEight} isEdit={isEdit} />
-          <PageNine data={ceoReport?.subTitleNine} isEdit={isEdit} />
-          <PageTen data={ceoReport?.subTitleTen} isEdit={isEdit} />
-          <PageEleven data={ceoReport?.subTitleEleven} isEdit={isEdit} />
-          <PageTwelve data={ceoReport?.subTitleTwelve} isEdit={isEdit} />
-          <PageThirteen data={ceoReport?.subTitleThirteen} isEdit={isEdit} />
-          <PageFourteen data={ceoReport?.subTitleFourteen} isEdit={isEdit} />
-          <PageFifteen data={ceoReport?.subTitleFIifteen} isEdit={isEdit} />
-          <PageSixteen data={ceoReport?.subTitleSixteen} isEdit={isEdit} />
+          <TableOfContent
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+
+          <PageOne
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+
+          <PageTwo
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <Page3
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageFour
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageFive
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageSix
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageSeven
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageEight
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageNine
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageTen
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageEleven
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageTwelve
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageThirteen
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageFourteen
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageFifteen
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageSixteen
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
           <Footer />
         </>
       )}
