@@ -2,43 +2,6 @@ import { Text, VStack, Box, HStack, List, ListItem } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 
-// {
-//   "tableOfContent": [
-//     {
-//       "title": "Key Macro Highlghts of Q1 2022",
-//       "page": 2
-//     },
-//     {
-//       "title": "Strategic Business Plan Update",
-//       "page": 3
-//     },
-//     {
-//       "title": "Risk Management",
-//       "page": 8
-//     },
-//     {
-//       "title": "HSES",
-//       "page": 9
-//     },
-//     {
-//       "title": "Human Resources",
-//       "page": 10
-//     },
-//     {
-//       "title": "Financial Performance",
-//       "page": 11
-//     },
-//     {
-//       "title": "Other Matters",
-//       "page": 12
-//     },
-//     {
-//       "title": "Appendices",
-//       "page": 15
-//     }
-//   ]
-// }
-
 const TableOfContent = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>

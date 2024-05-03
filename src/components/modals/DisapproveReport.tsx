@@ -1,10 +1,59 @@
-import { Text, HStack, VStack, Avatar, AvatarBadge } from "@chakra-ui/react";
+import {
+  Text,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarBadge,
+  useToast,
+} from "@chakra-ui/react";
 import Button from "../ui/Button";
 import { Formik, Form } from "formik";
 import Input from "@/components/ui/Input2";
-import { FiTrash2 } from "react-icons/fi";
+import { useAppSelector } from "@/redux/store";
+import { useUpdateReportMutation } from "@/redux/services/reports.service";
+import { formatDate2 } from "@/utils/functions";
 
-const DisapproveReport = ({ setIsOpen }: any) => {
+const DisapproveReport = ({ setIsOpen, templateData }: any) => {
+  const toast = useToast();
+  const { token, userInfo } = useAppSelector((state) => state.app.auth);
+  const role = userInfo?.role.name;
+
+  const [updateReport, { isLoading: updateReportLoading }] =
+    useUpdateReportMutation();
+
+  const handleUpdateReport = async () => {
+    const data = [
+      {
+        op: "replace",
+        path: "Status",
+        value: 2,
+      },
+    ];
+    await updateReport({
+      token,
+      body: data,
+      id: templateData?.id,
+    })
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Report disapproved successfully.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setIsOpen(false);
+      })
+      .catch((error) => {
+        toast({
+          title: "An error occurred.",
+          description: error.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
+  };
   return (
     <VStack align="flex-start" spacing={4} mt={10} mb={5}>
       <Text
@@ -39,7 +88,7 @@ const DisapproveReport = ({ setIsOpen }: any) => {
             fontWeight={"500"}
             fontFamily={"body"}
           >
-            Contractual Agreement | January 3, 2023
+            {templateData?.title} | {formatDate2(templateData?.createdAt)}
           </Text>
         </VStack>
       </VStack>
@@ -57,8 +106,9 @@ const DisapproveReport = ({ setIsOpen }: any) => {
         <HStack spacing={2}>
           <Avatar
             size="sm"
-            name="Segun Adebayo"
-            src="https://bit.ly/sage-adebayo"
+            name={templateData?.creator?.name}
+            bg="primary"
+            color="white"
           >
             <AvatarBadge boxSize="1.25em" bg="green.500" />
           </Avatar>
@@ -69,7 +119,7 @@ const DisapproveReport = ({ setIsOpen }: any) => {
               fontWeight={"500"}
               color={"maintText.200"}
             >
-              Segun Adebayo
+              {templateData?.creator?.name}
             </Text>
             <Text
               fontSize={"11px"}
@@ -161,7 +211,16 @@ const DisapproveReport = ({ setIsOpen }: any) => {
           onClick={() => setIsOpen(false)}
         />
 
-        <Button text="Disapprove" px={4} py={4} type="submit" bg="#FF3B30" />
+        <Button
+          text="Disapprove"
+          px={4}
+          py={4}
+          type="submit"
+          bg="#FF3B30"
+          isLoading={updateReportLoading}
+          onClick={handleUpdateReport}
+          isDisabled={updateReportLoading}
+        />
       </HStack>
     </VStack>
   );

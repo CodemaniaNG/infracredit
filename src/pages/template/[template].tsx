@@ -51,9 +51,9 @@ const Editor = () => {
       dispatch(setTemplateContent(JSON.parse(templateData.body)));
       dispatch(setType("credit"));
     }
-    if (templateData?.title?.toLowerCase().includes("remuneration")) {
+    if (templateData?.title?.toLowerCase().includes("renumeration")) {
       dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("remuneration"));
+      dispatch(setType("renumeration"));
     }
     if (templateData?.title?.toLowerCase().includes("finance")) {
       dispatch(setTemplateContent(JSON.parse(templateData.body)));
@@ -155,7 +155,7 @@ const Editor = () => {
                     />
                   )}
 
-                  {type === "remuneration" && (
+                  {type === "renumeration" && (
                     <Renumeration
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}

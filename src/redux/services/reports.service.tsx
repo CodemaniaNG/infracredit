@@ -25,6 +25,7 @@ export const reportsApi = createApi({
           Authorization: `Bearer ${token}`,
         },
       }),
+      providesTags: ["Reports"],
     }),
 
     createReport: builder.mutation({
@@ -40,8 +41,8 @@ export const reportsApi = createApi({
     }),
 
     updateReport: builder.mutation({
-      query: ({ token, body }) => ({
-        url: `api/reports/${body.id}`,
+      query: ({ token, body, id }) => ({
+        url: `api/reports/${id}`,
         method: "PATCH",
         body,
         headers: {

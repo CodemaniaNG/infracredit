@@ -81,7 +81,7 @@ const MemberTable = ({ data }: any) => {
                 fontSize={16}
                 fontWeight={400}
                 color="subText.200"
-                textTransform="capitalize"
+                textTransform="lowercase"
                 fontFamily={"body"}
               >
                 {item?.email}

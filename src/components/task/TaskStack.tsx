@@ -18,7 +18,7 @@ const TaskStack = ({ children, title, count, borderColor }: any) => {
         mb={3}
       >
         <Text
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           color="subText.200"
           fontFamily={"body"}

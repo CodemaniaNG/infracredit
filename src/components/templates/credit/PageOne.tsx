@@ -26,7 +26,13 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
         color="black"
         fontWeight="700"
         textAlign="left"
-        isEdit={true}
+        isEdit={isEdit}
+        onChange={(e: any) => {
+          setReportToEdit({
+            ...reportToEdit,
+            title: e.target.value,
+          });
+        }}
       />
       <TableContainer w="100%">
         <Table
@@ -78,6 +84,30 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                     fontSize="12px"
                     color="black"
                     fontWeight="700"
+                    isEdit={isEdit}
+                    onChange={(e: any) => {
+                      setReportToEdit({
+                        ...reportToEdit,
+                        table: [
+                          {
+                            tableHeader: reportToEdit.table[0].tableHeader,
+                          },
+                          {
+                            data: reportToEdit.table[1].data.map(
+                              (subItem: any, subIndex: number) => {
+                                if (index === subIndex) {
+                                  return {
+                                    ...subItem,
+                                    item1: e.target.value,
+                                  };
+                                }
+                                return subItem;
+                              },
+                            ),
+                          },
+                        ],
+                      });
+                    }}
                   />
                 </Td>
 
@@ -93,7 +123,30 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                     fontSize="12px"
                     color="black"
                     fontWeight="700"
-                    isEdit={true}
+                    isEdit={isEdit}
+                    onChange={(e: any) => {
+                      setReportToEdit({
+                        ...reportToEdit,
+                        table: [
+                          {
+                            tableHeader: reportToEdit.table[0].tableHeader,
+                          },
+                          {
+                            data: reportToEdit.table[1].data.map(
+                              (subItem: any, subIndex: number) => {
+                                if (index === subIndex) {
+                                  return {
+                                    ...subItem,
+                                    item2: e.target.value,
+                                  };
+                                }
+                                return subItem;
+                              },
+                            ),
+                          },
+                        ],
+                      });
+                    }}
                   />
                 </Td>
 
@@ -117,7 +170,34 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                         fontSize="12px"
                         color="black"
                         fontWeight="700"
-                        isEdit={true}
+                        isEdit={isEdit}
+                        onChange={(e: any) => {
+                          setReportToEdit({
+                            ...reportToEdit,
+                            table: [
+                              {
+                                tableHeader: reportToEdit.table[0].tableHeader,
+                              },
+                              {
+                                data: reportToEdit.table[1].data.map(
+                                  (subItem: any, subIndex: number) => {
+                                    if (index === subIndex) {
+                                      return {
+                                        ...subItem,
+                                        item3: [
+                                          {
+                                            text1: e.target.value,
+                                          },
+                                        ],
+                                      };
+                                    }
+                                    return subItem;
+                                  },
+                                ),
+                              },
+                            ],
+                          });
+                        }}
                       />
                     </Stack>
                   ))}

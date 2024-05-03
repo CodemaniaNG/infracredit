@@ -1882,7 +1882,7 @@ export const managementReport = {
                 text6: "76",
               },
               {
-                text1: "Auditors remuneration",
+                text1: "Auditors renumeration",
                 text2: "3,890",
                 text3: "4,878",
                 text4: "12%",
@@ -2713,7 +2713,7 @@ export const managementReport = {
                 text6: "76",
               },
               {
-                text1: "Auditors remuneration",
+                text1: "Auditors renumeration",
                 text2: "3,890",
                 text3: "4,878",
                 text4: "12%",
@@ -3104,8 +3104,8 @@ export const financeAndAuditCommittee = {
   ],
 };
 
-export const remunerationAndNominationCommittee = {
-  title: "REMUNERATION AND NOMINATION COMMITTEE",
+export const renumerationAndNominationCommittee = {
+  title: "RENUMERATION AND NOMINATION COMMITTEE",
   table: [
     {
       tableHeader: ["S/N", "MEETING", "DELIBERATION AND OUTCOME"],
@@ -3115,7 +3115,7 @@ export const remunerationAndNominationCommittee = {
         {
           item1: "1",
           item2:
-            "The meeting of the Remuneration and Nomination Committee (the Committee) held on the 17th of March 2022 via teleconference at 02:00 pm prompt to consider / review / deliberate on the general update on human resources; and the report on the end of the year appraisal.",
+            "The meeting of the renumeration and Nomination Committee (the Committee) held on the 17th of March 2022 via teleconference at 02:00 pm prompt to consider / review / deliberate on the general update on human resources; and the report on the end of the year appraisal.",
           item3: [
             {
               text1: "1. Human Resources & Administration Operational Report.",

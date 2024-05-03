@@ -118,10 +118,10 @@ const LoginPage = () => {
                 Sign In to InfraCredit
               </Text>
               <Button
-                text="Sign In with Microsoft Azure"
+                text="Continue with Azure"
                 py={7}
                 type="button"
-                bg="secondary3"
+                // bg="secondary3"
                 onClick={handleLogin}
                 icon={"/images/azure.svg"}
                 iconPosition="left"

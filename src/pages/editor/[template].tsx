@@ -6,6 +6,7 @@ import {
   IconButton,
   HStack,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import Layout from "@/components/dashboard/Layout";
 import { useRouter } from "next/router";
@@ -16,8 +17,11 @@ import ManagementReport from "@/components/templates/management-report";
 import { useState, useEffect, use } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
-import { useGetReportByIdQuery } from "@/redux/services/reports.service";
-import { useGetCommentsQuery } from "@/redux/services/reports.service";
+import {
+  useGetReportByIdQuery,
+  useGetCommentsQuery,
+  useUpdateReportMutation,
+} from "@/redux/services/reports.service";
 import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
 import ActionBtns from "@/components/editor/ActionBtns";
 import TemplateModals from "@/components/editor/TemplateModals";
@@ -26,6 +30,7 @@ import Credit from "@/components/templates/credit";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
+  const toast = useToast();
   const router = useRouter();
   const { template } = router.query;
   const [isEdit, setIsEdit] = useState(false);
@@ -38,6 +43,7 @@ const Editor = () => {
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
   const [reportToEdit, setReportToEdit] = useState<any>(null);
+  const [reportTitle, setReportTitle] = useState("");
 
   const { templateContent, type } = useAppSelector(
     (state) => state.app.template,
@@ -46,7 +52,14 @@ const Editor = () => {
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
 
-  const { data, isLoading: reportsLoading } = useGetReportByIdQuery({
+  const [updateReport, { isLoading: updateReportLoading }] =
+    useUpdateReportMutation();
+
+  const {
+    data,
+    isLoading: reportsLoading,
+    refetch,
+  } = useGetReportByIdQuery({
     token: token,
     id: template,
   });
@@ -58,6 +71,12 @@ const Editor = () => {
     });
 
   const templateData = data?.data;
+
+  useEffect(() => {
+    if (templateData) {
+      setReportTitle(templateData?.description);
+    }
+  }, [templateData]);
 
   useEffect(() => {
     if (templateData?.title?.toLowerCase().includes("ceo")) {
@@ -72,9 +91,9 @@ const Editor = () => {
       dispatch(setTemplateContent(JSON.parse(templateData.body)));
       dispatch(setType("credit"));
     }
-    if (templateData?.title?.toLowerCase().includes("remuneration")) {
+    if (templateData?.title?.toLowerCase().includes("renumeration")) {
       dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("remuneration"));
+      dispatch(setType("renumeration"));
     }
     if (templateData?.title?.toLowerCase().includes("finance")) {
       dispatch(setTemplateContent(JSON.parse(templateData.body)));
@@ -122,6 +141,51 @@ const Editor = () => {
 
   const handleModal8 = () => {
     setIsOpen8(!isOpen8);
+  };
+
+  const handleUpdateReport = async () => {
+    const data = [
+      {
+        op: "replace",
+        path: "Description",
+        value: reportTitle,
+      },
+      {
+        op: "replace",
+        path: "Body",
+        value: JSON.stringify(reportToEdit),
+      },
+      {
+        op: "replace",
+        path: "Status",
+        value: 1,
+      },
+    ];
+    await updateReport({
+      token,
+      body: data,
+      id: template,
+    })
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Report updated successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setIsEdit(false);
+        refetch();
+      })
+      .catch((error) => {
+        toast({
+          title: "An error occurred.",
+          description: error.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
   };
 
   return (
@@ -172,6 +236,9 @@ const Editor = () => {
                 handleModal8={handleModal8}
                 template={template}
                 role={role}
+                handleUpdateReport={handleUpdateReport}
+                updateReportLoading={updateReportLoading}
+                templateData={templateData}
               />
             </HStack>
 
@@ -192,7 +259,13 @@ const Editor = () => {
                   zIndex: "1",
                 }}
               >
-                <ReportDescription templateData={templateData} />
+                <ReportDescription
+                  templateData={templateData}
+                  setReportTitle={setReportTitle}
+                  reportTitle={reportTitle}
+                  handleUpdateReport={handleUpdateReport}
+                  updateReportLoading={updateReportLoading}
+                />
               </GridItem>
 
               <GridItem colSpan={3}>
@@ -223,7 +296,7 @@ const Editor = () => {
                     />
                   )}
 
-                  {type === "remuneration" && (
+                  {type === "renumeration" && (
                     <Renumeration
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
@@ -279,6 +352,7 @@ const Editor = () => {
           isOpen8={isOpen8}
           setIsOpen8={setIsOpen8}
           handleModal8={handleModal8}
+          templateData={templateData}
         />
       </Layout>
     </>

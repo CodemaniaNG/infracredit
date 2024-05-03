@@ -215,6 +215,7 @@ const Tasks = () => {
                                     key={report?.id}
                                     isStack={true}
                                     status={report?.status}
+                                    id={report?.id}
                                   />
                                 )}
                               </>
@@ -241,6 +242,7 @@ const Tasks = () => {
                                     key={report?.id}
                                     isStack={true}
                                     status={report?.status}
+                                    id={report?.id}
                                   />
                                 )}
                               </>
@@ -267,6 +269,7 @@ const Tasks = () => {
                                     key={report?.id}
                                     isStack={true}
                                     status={report?.status}
+                                    id={report?.id}
                                   />
                                 )}
                               </>
@@ -293,6 +296,7 @@ const Tasks = () => {
                                     key={report?.id}
                                     isStack={true}
                                     status={report?.status}
+                                    id={report?.id}
                                   />
                                 )}
                               </>

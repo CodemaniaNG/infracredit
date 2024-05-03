@@ -25,7 +25,13 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
         color="black"
         fontWeight="600"
         textAlign="left"
-        isEdit={true}
+        isEdit={isEdit}
+        onChange={(e: any) => {
+          setReportToEdit({
+            ...reportToEdit,
+            title: e.target.value,
+          });
+        }}
       />
       <TableContainer w="100%">
         <Table
@@ -77,6 +83,25 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                     fontSize="12px"
                     color="black"
                     fontWeight="700"
+                    isEdit={isEdit}
+                    onChange={(e: any) => {
+                      setReportToEdit({
+                        ...reportToEdit,
+                        table: [
+                          {
+                            ...reportToEdit?.table[0],
+                          },
+                          {
+                            data: [
+                              {
+                                ...reportToEdit?.table[1].data[0],
+                                item1: e.target.value,
+                              },
+                            ],
+                          },
+                        ],
+                      });
+                    }}
                   />
                 </Td>
 
@@ -92,7 +117,25 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                     fontSize="12px"
                     color="black"
                     fontWeight="700"
-                    isEdit={true}
+                    isEdit={isEdit}
+                    onChange={(e: any) => {
+                      setReportToEdit({
+                        ...reportToEdit,
+                        table: [
+                          {
+                            ...reportToEdit?.table[0],
+                          },
+                          {
+                            data: [
+                              {
+                                ...reportToEdit?.table[1].data[0],
+                                item2: e.target.value,
+                              },
+                            ],
+                          },
+                        ],
+                      });
+                    }}
                   />
                 </Td>
 
@@ -116,14 +159,76 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                         fontSize="12px"
                         color="black"
                         fontWeight="700"
-                        isEdit={true}
+                        isEdit={isEdit}
+                        onChange={(e: any) => {
+                          const newTable =
+                            reportToEdit?.table[1].data[0].item3.map(
+                              (item: any, i: number) => {
+                                if (i === index) {
+                                  return {
+                                    ...item,
+                                    text1: e.target.value,
+                                  };
+                                }
+                                return item;
+                              },
+                            );
+
+                          setReportToEdit({
+                            ...reportToEdit,
+                            table: [
+                              {
+                                ...reportToEdit?.table[0],
+                              },
+                              {
+                                data: [
+                                  {
+                                    ...reportToEdit?.table[1].data[0],
+                                    item3: newTable,
+                                  },
+                                ],
+                              },
+                            ],
+                          });
+                        }}
                       />
                       <EditableTextArea
                         value={subItem.text2}
                         fontSize="12px"
                         color="#383838"
                         fontWeight="500"
-                        isEdit={true}
+                        isEdit={isEdit}
+                        onChange={(e: any) => {
+                          const newTable =
+                            reportToEdit?.table[1].data[0].item3.map(
+                              (item: any, i: number) => {
+                                if (i === index) {
+                                  return {
+                                    ...item,
+                                    text2: e.target.value,
+                                  };
+                                }
+                                return item;
+                              },
+                            );
+
+                          setReportToEdit({
+                            ...reportToEdit,
+                            table: [
+                              {
+                                ...reportToEdit?.table[0],
+                              },
+                              {
+                                data: [
+                                  {
+                                    ...reportToEdit?.table[1].data[0],
+                                    item3: newTable,
+                                  },
+                                ],
+                              },
+                            ],
+                          });
+                        }}
                       />
                     </Stack>
                   ))}
