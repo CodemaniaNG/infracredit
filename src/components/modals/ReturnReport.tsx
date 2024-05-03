@@ -1,9 +1,62 @@
-import { Text, HStack, VStack, Avatar, AvatarBadge } from "@chakra-ui/react";
+import {
+  Text,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarBadge,
+  useToast,
+} from "@chakra-ui/react";
 import Button from "../ui/Button";
 import { Formik, Form } from "formik";
 import Input from "@/components/ui/Input2";
+import { useAppSelector } from "@/redux/store";
+import { useUpdateReportMutation } from "@/redux/services/reports.service";
+import { formatDate2 } from "@/utils/functions";
+import { useRouter } from "next/router";
 
-const ReturnReport = ({ setIsOpen }: any) => {
+const ReturnReport = ({ setIsOpen, templateData }: any) => {
+  const router = useRouter();
+  const toast = useToast();
+  const { token, userInfo } = useAppSelector((state) => state.app.auth);
+  const role = userInfo?.role.name;
+
+  const [updateReport, { isLoading: updateReportLoading }] =
+    useUpdateReportMutation();
+
+  const handleUpdateReport = async () => {
+    const data = [
+      {
+        op: "replace",
+        path: "Status",
+        value: 1,
+      },
+    ];
+    await updateReport({
+      token,
+      body: data,
+      id: templateData?.id,
+    })
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Report returned successfully.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setIsOpen(false);
+        router.back();
+      })
+      .catch((error) => {
+        toast({
+          title: "An error occurred.",
+          description: error.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
+  };
   return (
     <VStack align="flex-start" spacing={4} mt={10} mb={5}>
       <Text
@@ -38,7 +91,8 @@ const ReturnReport = ({ setIsOpen }: any) => {
             fontWeight={"500"}
             fontFamily={"body"}
           >
-            Contractual Agreement | January 3, 2023
+            {/* Contractual Agreement | January 3, 2023 */}
+            {templateData?.title} | {formatDate2(templateData?.createdAt)}
           </Text>
         </VStack>
       </VStack>
@@ -56,8 +110,9 @@ const ReturnReport = ({ setIsOpen }: any) => {
         <HStack spacing={2}>
           <Avatar
             size="sm"
-            name="Segun Adebayo"
-            src="https://bit.ly/sage-adebayo"
+            name={templateData?.creator?.name}
+            bg="primary"
+            color="white"
           >
             <AvatarBadge boxSize="1.25em" bg="green.500" />
           </Avatar>
@@ -68,7 +123,7 @@ const ReturnReport = ({ setIsOpen }: any) => {
               fontWeight={"500"}
               color={"maintText.200"}
             >
-              Segun Adebayo
+              {templateData?.creator?.name}
             </Text>
             <Text
               fontSize={"11px"}
@@ -160,7 +215,16 @@ const ReturnReport = ({ setIsOpen }: any) => {
           onClick={() => setIsOpen(false)}
         />
 
-        <Button text="Return" px={4} py={4} type="submit" bg="#FF3B30" />
+        <Button
+          text="Return"
+          px={4}
+          py={4}
+          type="submit"
+          bg="#FF3B30"
+          onClick={handleUpdateReport}
+          isLoading={updateReportLoading}
+          isDisabled={updateReportLoading}
+        />
       </HStack>
     </VStack>
   );

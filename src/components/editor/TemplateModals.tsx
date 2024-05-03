@@ -83,7 +83,9 @@ const TemplateModals = ({
       <Modal
         isOpen={isOpen6}
         onClose={handleModal6}
-        body={<ReturnReport setIsOpen={setIsOpen6} />}
+        body={
+          <ReturnReport setIsOpen={setIsOpen6} templateData={templateData} />
+        }
       />
 
       <Modal

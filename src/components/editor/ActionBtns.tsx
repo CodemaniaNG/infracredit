@@ -45,9 +45,11 @@ const ActionBtns = ({
               borderWidth="1px"
               px={6}
               onClick={handleModal7}
-              // isDisabled={
-              //   templateData?.status !== 0 || templateData?.status !== 1
-              // }
+              isDisabled={
+                templateData?.status === 2 ||
+                templateData?.status === 3 ||
+                templateData?.status === 4
+              }
             />
           )}
           <Button
@@ -59,11 +61,12 @@ const ActionBtns = ({
               setIsEdit(!isEdit);
             }}
             isLoading={updateReportLoading}
-            // isDisabled={
-            //   updateReportLoading ||
-            //   templateData?.status !== 0 ||
-            //   templateData?.status !== 1
-            // }
+            isDisabled={
+              updateReportLoading ||
+              templateData?.status === 2 ||
+              templateData?.status === 3 ||
+              templateData?.status === 4
+            }
           />
         </HStack>
       )}
