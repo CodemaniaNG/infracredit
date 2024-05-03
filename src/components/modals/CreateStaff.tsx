@@ -13,12 +13,17 @@ import { createStaffSchema } from "@/schemas/admin.schema";
 import {
   useGetUserRolesQuery,
   useOnboardUserMutation,
+  useGetUserByEmailQuery,
 } from "@/redux/services/onboard.service";
+import { FaRegCircleCheck } from "react-icons/fa6";
+import { RxCrossCircled } from "react-icons/rx";
 
 const CreateStaff = ({ setIsOpen }: any) => {
   const toast = useToast();
   const { token } = useAppSelector((state) => state.app.auth);
   const [deptId, setDeptId] = useState<string>("");
+  const [email, setEmail] = useState<any>(null);
+  const [name, setName] = useState<any>(null);
 
   const [onboardUser, { isLoading: onboardUserLoading }] =
     useOnboardUserMutation();
@@ -53,8 +58,21 @@ const CreateStaff = ({ setIsOpen }: any) => {
     (level: any) => ({
       value: level.id,
       label: level.name,
-    })
+    }),
   );
+
+  const {
+    data,
+    error,
+    isLoading: loadingFetchUser,
+    refetch,
+  } = useGetUserByEmailQuery({
+    token: token,
+    email: email,
+  });
+
+  const userDetail = data;
+  const userError = error as any;
 
   useEffect(() => {
     if (deptId) {
@@ -62,10 +80,30 @@ const CreateStaff = ({ setIsOpen }: any) => {
     }
   }, [deptId, refetchDepartmentLevels]);
 
+  useEffect(() => {
+    if (email) {
+      refetch();
+    }
+  }, [email, refetch]);
+
+  useEffect(() => {
+    if (userDetail?.data?.givenName) {
+      setName(userDetail?.data?.givenName);
+    }
+  }, [userDetail]);
+
   const handleCreateStaff = async (values: any) => {
     await onboardUser({
       token,
-      body: values,
+      body: {
+        Name: name,
+        Username: name,
+        RoleId: values.RoleId,
+        DepartmentId: values.DepartmentId,
+        LevelId: values.LevelId,
+        Email: email,
+        Phone: values.Phone,
+      },
     })
       .unwrap()
       .then(() => {
@@ -79,13 +117,28 @@ const CreateStaff = ({ setIsOpen }: any) => {
         setIsOpen(false);
       })
       .catch((error) => {
-        toast({
-          title: "Something went wrong",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-          position: "top",
-        });
+        console.log(error, "error");
+        if (error.data && error.data.errors) {
+          const errorMessages = Object.values(error.data.errors)
+            .flat()
+            .join("\n");
+
+          toast({
+            title: errorMessages,
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          });
+        } else {
+          toast({
+            title: "Something went wrong",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          });
+        }
       });
   };
 
@@ -97,7 +150,7 @@ const CreateStaff = ({ setIsOpen }: any) => {
         fontWeight={"600"}
         fontFamily={"body"}
       >
-        Create New Staff
+        Onboard Staff
       </Text>
       <Formik
         initialValues={{
@@ -110,6 +163,7 @@ const CreateStaff = ({ setIsOpen }: any) => {
           Phone: "",
         }}
         onSubmit={(values) => {
+          console.log(values, "values");
           handleCreateStaff(values);
         }}
         validationSchema={createStaffSchema}
@@ -117,11 +171,57 @@ const CreateStaff = ({ setIsOpen }: any) => {
         {(props) => (
           <Form style={{ width: "100%" }}>
             <VStack>
+              <Stack direction={"row"} align="center" w={"100%"} spacing={1}>
+                <Input
+                  label="Email"
+                  name="Email"
+                  type="email"
+                  placeholder="Enter email address"
+                  onChange={(e: any) => {
+                    if (
+                      e.target.value &&
+                      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
+                        e.target.value,
+                      )
+                    ) {
+                      setEmail(e.target.value);
+                    }
+                  }}
+                />
+                {loadingFetchUser && email && (
+                  <Spinner size="sm" color="green.500" mt={5} />
+                )}
+                {userDetail?.status === "success" &&
+                  email &&
+                  !loadingFetchUser && (
+                    <FaRegCircleCheck
+                      color="green"
+                      fontSize="20px"
+                      style={{
+                        marginTop: "25px",
+                      }}
+                    />
+                  )}
+                {userError?.data?.status === 404 &&
+                  email &&
+                  !loadingFetchUser && (
+                    <RxCrossCircled
+                      color="red"
+                      fontSize="20px"
+                      style={{
+                        marginTop: "25px",
+                      }}
+                    />
+                  )}
+              </Stack>
+
               <Input
                 label="Name"
                 name="Name"
                 type="text"
                 placeholder="Enter full name"
+                isReadOnly={true}
+                value={name}
               />
 
               <Input
@@ -129,6 +229,8 @@ const CreateStaff = ({ setIsOpen }: any) => {
                 name="Username"
                 type="text"
                 placeholder="Enter username"
+                isReadOnly={true}
+                value={name}
               />
 
               <Stack direction={"row"} align="center" w={"100%"} spacing={1}>
@@ -161,19 +263,12 @@ const CreateStaff = ({ setIsOpen }: any) => {
                   label="Level"
                   name="LevelId"
                   options={departmentLevels}
-                  placeholder="Select user level"
+                  placeholder="Select department level"
                 />
                 {departmentLevelsLoading && (
                   <Spinner size="sm" color="green.500" mt={5} />
                 )}
               </Stack>
-
-              <Input
-                label="Email"
-                name="Email"
-                type="email"
-                placeholder="Enter user address"
-              />
 
               <Input
                 label="Phone Number"

@@ -7,7 +7,7 @@ import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageTwo = ({ data, isEdit }: any) => {
+const PageTwo = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   const dataBar: any = {
     labels: ["2021 A", "2022 B"],
     datasets: [
@@ -42,7 +42,7 @@ const PageTwo = ({ data, isEdit }: any) => {
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableInput
             isEdit={isEdit}
-            value={data[0]?.title}
+            value={reportToEdit?.subTitleTwo[0]?.title}
             fontSize="24px"
             color="black"
             fontWeight="600"
@@ -50,7 +50,7 @@ const PageTwo = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemOne}
+            value={reportToEdit?.subTitleTwo[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -60,7 +60,7 @@ const PageTwo = ({ data, isEdit }: any) => {
           <VStack w="100%" align="flex-start" spacing={0}>
             <EditableInput
               isEdit={isEdit}
-              value={data[0]?.title2}
+              value={reportToEdit?.subTitleTwo[0]?.title2}
               fontSize="16px"
               color="subText.900"
               fontWeight="700"
@@ -70,7 +70,7 @@ const PageTwo = ({ data, isEdit }: any) => {
             <Bar data={dataBar} options={optionsBar} />
 
             <EditableTextArea
-              value={data[0]?.itmesTwo}
+              value={reportToEdit?.subTitleTwo[0]?.itmesTwo}
               fontSize="14px"
               color="black"
               fontWeight="500"
@@ -81,7 +81,7 @@ const PageTwo = ({ data, isEdit }: any) => {
           <VStack w="100%" align="flex-start" spacing={0}>
             <EditableInput
               isEdit={isEdit}
-              value={data[0]?.title2}
+              value={reportToEdit?.subTitleTwo[0]?.title2}
               fontSize="16px"
               color="subText.900"
               fontWeight="700"

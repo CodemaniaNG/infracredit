@@ -29,7 +29,7 @@ const ActionBtns = ({
             onClick={() => setIsEdit(!isEdit)}
           />
         )}
-        {!isEdit && (
+        {/* {!isEdit && (
           <Button
             text="Share Report"
             bg="#F0FFFF"
@@ -39,7 +39,7 @@ const ActionBtns = ({
             px={6}
             onClick={handleModal8}
           />
-        )}
+        )} */}
         <Button
           text={isEdit ? "Save" : "Edit Report"}
           onClick={() => setIsEdit(!isEdit)}

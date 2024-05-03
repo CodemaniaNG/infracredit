@@ -29,7 +29,13 @@ const TaskCard = ({
   type = "report",
   id,
 }: TaskCardProps) => {
+  console.log("status", status);
   const router = useRouter();
+
+  // {
+  //   (todo = 0), (inProgress = 1), underReview, awaitingApproval, completed;
+  // }
+
   return (
     <>
       <Card
@@ -95,18 +101,19 @@ const TaskCard = ({
                 </Text>
               </HStack>
 
-              {["completed"].includes(status) && (
+              {status === 4 && (
                 <Text
                   fontSize={"12px"}
                   fontWeight="600"
                   color="greens.100"
                   fontFamily={"body"}
                 >
-                  Complete
+                  Completed
                 </Text>
               )}
             </HStack>
-            {["todo", "progress"].includes(status) && (
+
+            {status === 0 && (
               <Button
                 text="Edit Report"
                 type="submit"
@@ -116,7 +123,19 @@ const TaskCard = ({
                 }}
               />
             )}
-            {["review"].includes(status) && (
+
+            {status === 1 && (
+              <Button
+                text="Continue Report"
+                type="submit"
+                size="md"
+                onClick={() => {
+                  router.push(`/editor/${id}`);
+                }}
+              />
+            )}
+
+            {status === 2 && (
               <Button
                 text="Review"
                 type="submit"

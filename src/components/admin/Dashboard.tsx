@@ -5,13 +5,13 @@ import DashboardTable from "@/components/dashboard/DashboardTable";
 import DocumentCard from "@/components/documents/DocumentCard";
 import { formatDate2 } from "@/utils/functions";
 import Loader from "../ui/Loader";
-import { useGetReportsQuery } from "@/redux/services/reports.service";
+import { useGetTemplatesQuery } from "@/redux/services/templates.service";
 
 const Dashboard = () => {
   const { userInfo, token } = useAppSelector((state) => state.app.auth);
-  const { data: reportsData, isLoading: reportsLoading } =
-    useGetReportsQuery(token);
-  const reports = reportsData?.data;
+  const { data: templatesData, isLoading: templatesLoading } =
+    useGetTemplatesQuery(token);
+  const templates = templatesData?.data;
 
   const data = [
     // {
@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {reportsLoading ? (
+      {templatesLoading ? (
         <Loader />
       ) : (
         <>
@@ -134,11 +134,12 @@ const Dashboard = () => {
                 gap={2}
                 mb={5}
               >
-                {reports?.slice(0, 4)?.map((report: any, index: any) => (
+                {templates?.slice(0, 4)?.map((template: any, index: any) => (
                   <GridItem colSpan={1} key={index}>
                     <DocumentCard
-                      title={report?.title}
-                      desc={report?.description}
+                      title={template?.title}
+                      desc={template?.description}
+                      id={template?.id}
                     />
                   </GridItem>
                 ))}

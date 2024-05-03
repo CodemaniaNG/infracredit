@@ -9,11 +9,8 @@ import {
 } from "@chakra-ui/react";
 import Layout from "@/components/dashboard/Layout";
 import { useRouter } from "next/router";
-import PageContent from "@/components/editor/PageContent";
 import ReportDescription from "@/components/editor/ReportDescription";
 import Comments from "@/components/editor/Comments";
-import Tools from "@/components/editor/Tools";
-import Pages from "@/components/editor/Pages";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
 import { useState, useEffect, use } from "react";
@@ -21,12 +18,11 @@ import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
 import { useGetReportByIdQuery } from "@/redux/services/reports.service";
 import { useGetCommentsQuery } from "@/redux/services/reports.service";
-import {
-  setCeoReport,
-  setManagementReport,
-} from "@/redux/slices/templateSlice";
+import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
 import ActionBtns from "@/components/editor/ActionBtns";
 import TemplateModals from "@/components/editor/TemplateModals";
+import Renumeration from "@/components/templates/renumeration";
+import Credit from "@/components/templates/credit";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
@@ -43,7 +39,7 @@ const Editor = () => {
   const [isOpen8, setIsOpen8] = useState(false);
   const [reportToEdit, setReportToEdit] = useState<any>(null);
 
-  const { ceoReport, managementReport } = useAppSelector(
+  const { templateContent, type } = useAppSelector(
     (state) => state.app.template,
   );
 
@@ -62,29 +58,39 @@ const Editor = () => {
     });
 
   const templateData = data?.data;
+
   useEffect(() => {
     if (templateData?.title?.toLowerCase().includes("ceo")) {
-      dispatch(setCeoReport(JSON.parse(templateData.body)));
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("ceo"));
     }
-  }, [templateData, dispatch]);
-
-  useEffect(() => {
     if (templateData?.title?.toLowerCase().includes("management")) {
-      dispatch(setManagementReport(JSON.parse(templateData.body)));
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("management"));
+    }
+    if (templateData?.title?.toLowerCase().includes("credit")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("credit"));
+    }
+    if (templateData?.title?.toLowerCase().includes("remuneration")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("remuneration"));
+    }
+    if (templateData?.title?.toLowerCase().includes("finance")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("finance"));
+    }
+    if (templateData?.title?.toLowerCase().includes("risk")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("risk"));
     }
   }, [templateData, dispatch]);
 
   useEffect(() => {
-    if (ceoReport) {
-      setReportToEdit(ceoReport);
+    if (templateContent) {
+      setReportToEdit(templateContent);
     }
-  }, [ceoReport]);
-
-  useEffect(() => {
-    if (managementReport) {
-      setReportToEdit(managementReport);
-    }
-  }, [managementReport]);
+  }, [templateContent]);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
@@ -131,8 +137,8 @@ const Editor = () => {
                   icon={<Image src="/images/undo.svg" alt="back" />}
                   bg="white"
                   onClick={() => {
-                    dispatch(setCeoReport(null));
-                    dispatch(setManagementReport(null));
+                    dispatch(setTemplateContent(null));
+                    dispatch(setType(""));
                     router.back();
                   }}
                   aria-label="back"
@@ -186,8 +192,7 @@ const Editor = () => {
                   zIndex: "1",
                 }}
               >
-                {/* <Tools /> */}
-                <Pages />
+                <ReportDescription templateData={templateData} />
               </GridItem>
 
               <GridItem colSpan={3}>
@@ -205,18 +210,44 @@ const Editor = () => {
                     .includes("management") && (
                     <ManagementReport
                       isEdit={isEdit}
-                      managementReport={managementReport}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
                     />
                   )}
-                  {/* {template === "renumeration" && (
-                  <Renumeration isEdit={isEdit} />
-                )} */}
+
+                  {type === "credit" && (
+                    <Credit
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+
+                  {type === "remuneration" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+                  {type === "risk" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+                  {type === "finance" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
                 </Box>
               </GridItem>
 
               <GridItem colSpan={1} position="sticky" right="0">
-                {/* <PageContent /> */}
-                <ReportDescription templateData={templateData} />
                 <Comments id={templateData?.id} comments={commentsData} />
               </GridItem>
             </Grid>

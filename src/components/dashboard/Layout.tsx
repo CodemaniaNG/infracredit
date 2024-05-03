@@ -196,6 +196,7 @@ const Layout = ({ children, title, showSidebar = true }: any) => {
                     fontWeight="500"
                     color="maintText.100"
                     fontFamily={"body"}
+                    textTransform="capitalize"
                   >
                     {userInfo?.name}
                   </Text>

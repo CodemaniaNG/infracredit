@@ -11,24 +11,23 @@ import Layout from "@/components/dashboard/Layout";
 import Button from "@/components/ui/Button";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
-import Renumeration from "@/components/templates/renumeration";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import { useGetTemplateByIdQuery } from "@/redux/services/templates.service";
 import Loader from "@/components/ui/Loader";
-import {
-  setCeoReport,
-  setManagementReport,
-} from "@/redux/slices/templateSlice";
+import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
+import Renumeration from "@/components/templates/renumeration";
+import Credit from "@/components/templates/credit";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
+  const [reportToEdit, setReportToEdit] = useState<any>(null);
   const { template } = router.query;
   const { token } = useAppSelector((state) => state.app.auth);
-  const { ceoReport, managementReport } = useAppSelector(
+  const { templateContent, type } = useAppSelector(
     (state) => state.app.template,
   );
 
@@ -40,18 +39,37 @@ const Editor = () => {
   const templateData = data?.data;
 
   useEffect(() => {
-    if (templateData?.title?.includes("Ceo")) {
-      // dispatch(setCeoReport(templateData));
-      dispatch(setCeoReport(JSON.parse(templateData.body)));
+    if (templateData?.title?.toLowerCase().includes("ceo")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("ceo"));
+    }
+    if (templateData?.title?.toLowerCase().includes("management")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("management"));
+    }
+    if (templateData?.title?.toLowerCase().includes("credit")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("credit"));
+    }
+    if (templateData?.title?.toLowerCase().includes("remuneration")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("remuneration"));
+    }
+    if (templateData?.title?.toLowerCase().includes("finance")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("finance"));
+    }
+    if (templateData?.title?.toLowerCase().includes("risk")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("risk"));
     }
   }, [templateData, dispatch]);
 
   useEffect(() => {
-    if (templateData?.title?.includes("Management")) {
-      // dispatch(setManagementReport(templateData));
-      dispatch(setManagementReport(JSON.parse(templateData.body)));
+    if (templateContent) {
+      setReportToEdit(templateContent);
     }
-  }, [templateData, dispatch]);
+  }, [templateContent]);
 
   return (
     <>
@@ -66,8 +84,8 @@ const Editor = () => {
                   icon={<Image src="/images/undo.svg" alt="back" />}
                   bg="white"
                   onClick={() => {
-                    dispatch(setCeoReport(null));
-                    dispatch(setManagementReport(null));
+                    dispatch(setTemplateContent(null));
+                    dispatch(setType(""));
                     router.back();
                   }}
                   aria-label="back"
@@ -111,21 +129,53 @@ const Editor = () => {
 
               <GridItem colSpan={3}>
                 <Box>
-                  {templateData?.title?.includes("Ceo") && (
-                    <CeoReport isEdit={isEdit} ceoReport={ceoReport} />
-                  )}
-
-                  {templateData?.title?.includes("Management") && (
-                    <ManagementReport
+                  {templateData?.title?.toLowerCase().includes("ceo") && (
+                    <CeoReport
                       isEdit={isEdit}
-                      managementReport={managementReport}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
                     />
                   )}
-                  {/* {template === "contract" && <CeoReport isEdit={isEdit} />}
 
-                  {template === "renumeration" && (
-                    <Renumeration isEdit={isEdit} />
-                  )} */}
+                  {templateData?.title
+                    ?.toLowerCase()
+                    .includes("management") && (
+                    <ManagementReport
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+
+                  {type === "credit" && (
+                    <Credit
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+
+                  {type === "remuneration" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+                  {type === "risk" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+                  {type === "finance" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
                 </Box>
               </GridItem>
 

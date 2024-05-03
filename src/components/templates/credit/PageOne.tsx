@@ -7,6 +7,7 @@ import {
   Th,
   Td,
   TableContainer,
+  Text,
   Stack,
 } from "@chakra-ui/react";
 import EditableTextArea from "@/components/ui/EditableTextArea";
@@ -23,7 +24,7 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
         value={reportToEdit?.title}
         fontSize="12px"
         color="black"
-        fontWeight="600"
+        fontWeight="700"
         textAlign="left"
         isEdit={true}
       />
@@ -116,13 +117,6 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                         fontSize="12px"
                         color="black"
                         fontWeight="700"
-                        isEdit={true}
-                      />
-                      <EditableTextArea
-                        value={subItem.text2}
-                        fontSize="12px"
-                        color="#383838"
-                        fontWeight="500"
                         isEdit={true}
                       />
                     </Stack>

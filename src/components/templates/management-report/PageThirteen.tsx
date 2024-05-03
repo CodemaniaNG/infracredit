@@ -8,7 +8,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "chart.js/auto";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageThirteen = ({ data, isEdit }: any) => {
+const PageThirteen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   const [chartData, setChartData] = useState<any>({
     data: {
       datasets: [
@@ -53,7 +53,7 @@ const PageThirteen = ({ data, isEdit }: any) => {
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableInput
             isEdit={isEdit}
-            value={data[0]?.title}
+            value={reportToEdit?.subTitleThirteen[0]?.title}
             fontSize="24px"
             color="black"
             fontWeight="600"
@@ -61,7 +61,7 @@ const PageThirteen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemOne}
+            value={reportToEdit?.subTitleThirteen[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -69,7 +69,7 @@ const PageThirteen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsTwo}
+            value={reportToEdit?.subTitleThirteen[0]?.itemsTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -77,7 +77,7 @@ const PageThirteen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsThree}
+            value={reportToEdit?.subTitleThirteen[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"

@@ -164,7 +164,7 @@ const Tasks = () => {
                         templateColumns={{
                           sm: "repeat(1, 1fr)",
                           md: "repeat(2, 1fr)",
-                          lg: "repeat(4, 1fr)",
+                          lg: "repeat(5, 1fr)",
                         }}
                         gap={2}
                         mb={5}
@@ -172,18 +172,26 @@ const Tasks = () => {
                         <GridItem colSpan={1}>
                           <TaskStack
                             title="To Do"
-                            count={5}
+                            count={
+                              reports?.filter(
+                                (report: any) => report?.status === 0,
+                              ).length
+                            }
                             borderColor="#FF3B30"
                           >
                             {reports?.map((report: any) => (
-                              <TaskCard
-                                title={report?.title}
-                                desc={report?.description}
-                                key={report?.id}
-                                isStack={true}
-                                status={report?.status}
-                                id={report?.id}
-                              />
+                              <>
+                                {report?.status === 0 && (
+                                  <TaskCard
+                                    title={report?.title}
+                                    desc={report?.description}
+                                    key={report?.id}
+                                    isStack={true}
+                                    status={report?.status}
+                                    id={report?.id}
+                                  />
+                                )}
+                              </>
                             ))}
                           </TaskStack>
                         </GridItem>
@@ -191,17 +199,25 @@ const Tasks = () => {
                         <GridItem colSpan={1}>
                           <TaskStack
                             title="In Progress"
-                            count={5}
+                            count={
+                              reports?.filter(
+                                (report: any) => report?.status === 1,
+                              ).length
+                            }
                             borderColor="#3C76F1"
                           >
                             {reports?.map((report: any) => (
-                              <TaskCard
-                                title={report?.title}
-                                desc={report?.description}
-                                key={report?.id}
-                                isStack={true}
-                                status={report?.status}
-                              />
+                              <>
+                                {report?.status === 1 && (
+                                  <TaskCard
+                                    title={report?.title}
+                                    desc={report?.description}
+                                    key={report?.id}
+                                    isStack={true}
+                                    status={report?.status}
+                                  />
+                                )}
+                              </>
                             ))}
                           </TaskStack>
                         </GridItem>
@@ -209,17 +225,51 @@ const Tasks = () => {
                         <GridItem colSpan={1}>
                           <TaskStack
                             title="Under Review"
-                            count={5}
+                            count={
+                              reports?.filter(
+                                (report: any) => report?.status === 2,
+                              ).length
+                            }
                             borderColor="#FF8F00"
                           >
                             {reports?.map((report: any) => (
-                              <TaskCard
-                                title={report?.title}
-                                desc={report?.description}
-                                key={report?.id}
-                                isStack={true}
-                                status={report?.status}
-                              />
+                              <>
+                                {report?.status === 2 && (
+                                  <TaskCard
+                                    title={report?.title}
+                                    desc={report?.description}
+                                    key={report?.id}
+                                    isStack={true}
+                                    status={report?.status}
+                                  />
+                                )}
+                              </>
+                            ))}
+                          </TaskStack>
+                        </GridItem>
+
+                        <GridItem colSpan={1}>
+                          <TaskStack
+                            title="Awaiting Approval"
+                            count={
+                              reports?.filter(
+                                (report: any) => report?.status === 3,
+                              ).length
+                            }
+                            borderColor="#FF9500"
+                          >
+                            {reports?.map((report: any) => (
+                              <>
+                                {report?.status === 3 && (
+                                  <TaskCard
+                                    title={report?.title}
+                                    desc={report?.description}
+                                    key={report?.id}
+                                    isStack={true}
+                                    status={report?.status}
+                                  />
+                                )}
+                              </>
                             ))}
                           </TaskStack>
                         </GridItem>
@@ -227,17 +277,25 @@ const Tasks = () => {
                         <GridItem colSpan={1}>
                           <TaskStack
                             title="Completed"
-                            count={5}
+                            count={
+                              reports?.filter(
+                                (report: any) => report?.status === 4,
+                              ).length
+                            }
                             borderColor="#34C759"
                           >
                             {reports?.map((report: any) => (
-                              <TaskCard
-                                title={report?.title}
-                                desc={report?.description}
-                                key={report?.id}
-                                isStack={true}
-                                status={report?.status}
-                              />
+                              <>
+                                {report?.status === 4 && (
+                                  <TaskCard
+                                    title={report?.title}
+                                    desc={report?.description}
+                                    key={report?.id}
+                                    isStack={true}
+                                    status={report?.status}
+                                  />
+                                )}
+                              </>
                             ))}
                           </TaskStack>
                         </GridItem>

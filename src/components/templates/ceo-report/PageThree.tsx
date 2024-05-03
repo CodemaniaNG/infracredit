@@ -201,6 +201,7 @@ const PageThree = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
+            isEdit={isEdit}
           />
 
           <HStack align="flex-start" w="100%" spacing={4}>
@@ -210,6 +211,7 @@ const PageThree = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                 fontSize="12px"
                 color="green.200"
                 fontWeight="700"
+                isEdit={isEdit}
               />
 
               <Doughnut data={chartData.data} options={chartData.options} />
@@ -222,6 +224,7 @@ const PageThree = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                 color="green.200"
                 fontWeight="700"
                 textAlign="center"
+                isEdit={isEdit}
               />
               <TableContainer w="100%">
                 <Table
@@ -308,6 +311,7 @@ const PageThree = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
             fontSize="14px"
             color="black"
             fontWeight="500"
+            isEdit={isEdit}
           />
 
           <HStack align="flex-start" w="100%" spacing={4}>

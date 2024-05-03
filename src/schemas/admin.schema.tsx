@@ -1,8 +1,8 @@
 import * as yup from "yup";
 
 export const createStaffSchema = yup.object().shape({
-  Name: yup.string().required("Name is required"),
-  Username: yup.string().required("Username is required"),
+  // Name: yup.string().required("Name is required"),
+  // Username: yup.string().required("Username is required"),
   RoleId: yup.string().required("Role is required"),
   DepartmentId: yup.string().required("Department is required"),
   LevelId: yup.string().required("Level is required"),
