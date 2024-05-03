@@ -33,6 +33,7 @@ const TemplateModals = ({
   isOpen8,
   setIsOpen8,
   handleModal8,
+  templateData,
 }: any) => {
   return (
     <>
@@ -57,13 +58,20 @@ const TemplateModals = ({
       <Modal
         isOpen={isOpen3}
         onClose={handleModal3}
-        body={<ApproveReport setIsOpen={setIsOpen3} />}
+        body={
+          <ApproveReport setIsOpen={setIsOpen3} templateData={templateData} />
+        }
       />
 
       <Modal
         isOpen={isOpen4}
         onClose={handleModal4}
-        body={<DisapproveReport setIsOpen={setIsOpen4} />}
+        body={
+          <DisapproveReport
+            setIsOpen={setIsOpen4}
+            templateData={templateData}
+          />
+        }
       />
 
       <Modal
@@ -81,7 +89,9 @@ const TemplateModals = ({
       <Modal
         isOpen={isOpen7}
         onClose={handleModal7}
-        body={<SubmitReport setIsOpen={setIsOpen7} />}
+        body={
+          <SubmitReport setIsOpen={setIsOpen7} templateData={templateData} />
+        }
       />
     </>
   );

@@ -3,7 +3,7 @@ import Button from "../ui/Button";
 type MemberCardProps = {
   name: string;
   role: string;
-  btnText: string;
+  btnText?: string;
 };
 const MemberCard = ({ name, role, btnText }: MemberCardProps) => {
   return (

@@ -8,7 +8,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "chart.js/auto";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageThree = ({ data, isEdit }: any) => {
+const PageThree = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   const [chartData2, setChartData2] = useState<any>({
     data: {
       datasets: [
@@ -64,12 +64,13 @@ const PageThree = ({ data, isEdit }: any) => {
       },
     },
   });
+
   return (
     <>
       <ManagementLayOut page={4} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableTextArea
-            value={data[0]?.title}
+            value={reportToEdit?.subTitleThree[0]?.title}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -80,7 +81,7 @@ const PageThree = ({ data, isEdit }: any) => {
             <VStack w="50%" spacing={0}>
               <EditableInput
                 isEdit={isEdit}
-                value={data[0]?.title2}
+                value={reportToEdit?.subTitleThree[0]?.title2}
                 fontSize="16px"
                 color="subText.900"
                 fontWeight="700"
@@ -91,14 +92,14 @@ const PageThree = ({ data, isEdit }: any) => {
           </VStack>
 
           <EditableTextArea
-            value={data[0]?.itemOne}
+            value={reportToEdit?.subTitleThree[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
             isEdit={isEdit}
           />
           <EditableTextArea
-            value={data[0]?.itmesTwo}
+            value={reportToEdit?.subTitleThree[0]?.itmesTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"

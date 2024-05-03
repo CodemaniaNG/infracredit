@@ -6,30 +6,31 @@ import {
   IconButton,
   HStack,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import Layout from "@/components/dashboard/Layout";
 import { useRouter } from "next/router";
-import PageContent from "@/components/editor/PageContent";
 import ReportDescription from "@/components/editor/ReportDescription";
 import Comments from "@/components/editor/Comments";
-import Tools from "@/components/editor/Tools";
-import Pages from "@/components/editor/Pages";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
 import { useState, useEffect, use } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
-import { useGetReportByIdQuery } from "@/redux/services/reports.service";
-import { useGetCommentsQuery } from "@/redux/services/reports.service";
 import {
-  setCeoReport,
-  setManagementReport,
-} from "@/redux/slices/templateSlice";
+  useGetReportByIdQuery,
+  useGetCommentsQuery,
+  useUpdateReportMutation,
+} from "@/redux/services/reports.service";
+import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
 import ActionBtns from "@/components/editor/ActionBtns";
 import TemplateModals from "@/components/editor/TemplateModals";
+import Renumeration from "@/components/templates/renumeration";
+import Credit from "@/components/templates/credit";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
+  const toast = useToast();
   const router = useRouter();
   const { template } = router.query;
   const [isEdit, setIsEdit] = useState(false);
@@ -42,15 +43,23 @@ const Editor = () => {
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
   const [reportToEdit, setReportToEdit] = useState<any>(null);
+  const [reportTitle, setReportTitle] = useState("");
 
-  const { ceoReport, managementReport } = useAppSelector(
+  const { templateContent, type } = useAppSelector(
     (state) => state.app.template,
   );
 
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
 
-  const { data, isLoading: reportsLoading } = useGetReportByIdQuery({
+  const [updateReport, { isLoading: updateReportLoading }] =
+    useUpdateReportMutation();
+
+  const {
+    data,
+    isLoading: reportsLoading,
+    refetch,
+  } = useGetReportByIdQuery({
     token: token,
     id: template,
   });
@@ -62,29 +71,45 @@ const Editor = () => {
     });
 
   const templateData = data?.data;
+
+  useEffect(() => {
+    if (templateData) {
+      setReportTitle(templateData?.description);
+    }
+  }, [templateData]);
+
   useEffect(() => {
     if (templateData?.title?.toLowerCase().includes("ceo")) {
-      dispatch(setCeoReport(JSON.parse(templateData.body)));
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("ceo"));
     }
-  }, [templateData, dispatch]);
-
-  useEffect(() => {
     if (templateData?.title?.toLowerCase().includes("management")) {
-      dispatch(setManagementReport(JSON.parse(templateData.body)));
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("management"));
+    }
+    if (templateData?.title?.toLowerCase().includes("credit")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("credit"));
+    }
+    if (templateData?.title?.toLowerCase().includes("renumeration")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("renumeration"));
+    }
+    if (templateData?.title?.toLowerCase().includes("finance")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("finance"));
+    }
+    if (templateData?.title?.toLowerCase().includes("risk")) {
+      dispatch(setTemplateContent(JSON.parse(templateData.body)));
+      dispatch(setType("risk"));
     }
   }, [templateData, dispatch]);
 
   useEffect(() => {
-    if (ceoReport) {
-      setReportToEdit(ceoReport);
+    if (templateContent) {
+      setReportToEdit(templateContent);
     }
-  }, [ceoReport]);
-
-  useEffect(() => {
-    if (managementReport) {
-      setReportToEdit(managementReport);
-    }
-  }, [managementReport]);
+  }, [templateContent]);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
@@ -118,6 +143,51 @@ const Editor = () => {
     setIsOpen8(!isOpen8);
   };
 
+  const handleUpdateReport = async () => {
+    const data = [
+      {
+        op: "replace",
+        path: "Description",
+        value: reportTitle,
+      },
+      {
+        op: "replace",
+        path: "Body",
+        value: JSON.stringify(reportToEdit),
+      },
+      {
+        op: "replace",
+        path: "Status",
+        value: 1,
+      },
+    ];
+    await updateReport({
+      token,
+      body: data,
+      id: template,
+    })
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Report updated successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setIsEdit(false);
+        refetch();
+      })
+      .catch((error) => {
+        toast({
+          title: "An error occurred.",
+          description: error.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
+  };
+
   return (
     <>
       <Layout showSidebar={false}>
@@ -131,8 +201,8 @@ const Editor = () => {
                   icon={<Image src="/images/undo.svg" alt="back" />}
                   bg="white"
                   onClick={() => {
-                    dispatch(setCeoReport(null));
-                    dispatch(setManagementReport(null));
+                    dispatch(setTemplateContent(null));
+                    dispatch(setType(""));
                     router.back();
                   }}
                   aria-label="back"
@@ -166,6 +236,9 @@ const Editor = () => {
                 handleModal8={handleModal8}
                 template={template}
                 role={role}
+                handleUpdateReport={handleUpdateReport}
+                updateReportLoading={updateReportLoading}
+                templateData={templateData}
               />
             </HStack>
 
@@ -186,8 +259,13 @@ const Editor = () => {
                   zIndex: "1",
                 }}
               >
-                {/* <Tools /> */}
-                <Pages />
+                <ReportDescription
+                  templateData={templateData}
+                  setReportTitle={setReportTitle}
+                  reportTitle={reportTitle}
+                  handleUpdateReport={handleUpdateReport}
+                  updateReportLoading={updateReportLoading}
+                />
               </GridItem>
 
               <GridItem colSpan={3}>
@@ -205,18 +283,44 @@ const Editor = () => {
                     .includes("management") && (
                     <ManagementReport
                       isEdit={isEdit}
-                      managementReport={managementReport}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
                     />
                   )}
-                  {/* {template === "renumeration" && (
-                  <Renumeration isEdit={isEdit} />
-                )} */}
+
+                  {type === "credit" && (
+                    <Credit
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+
+                  {type === "renumeration" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+                  {type === "risk" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+                  {type === "finance" && (
+                    <Renumeration
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
                 </Box>
               </GridItem>
 
               <GridItem colSpan={1} position="sticky" right="0">
-                {/* <PageContent /> */}
-                <ReportDescription templateData={templateData} />
                 <Comments id={templateData?.id} comments={commentsData} />
               </GridItem>
             </Grid>
@@ -248,6 +352,7 @@ const Editor = () => {
           isOpen8={isOpen8}
           setIsOpen8={setIsOpen8}
           handleModal8={handleModal8}
+          templateData={templateData}
         />
       </Layout>
     </>

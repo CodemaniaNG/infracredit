@@ -1,7 +1,58 @@
-import { Text, HStack, VStack, Avatar, AvatarBadge } from "@chakra-ui/react";
+import {
+  Text,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarBadge,
+  useToast,
+} from "@chakra-ui/react";
 import Button from "../ui/Button";
+import { useAppSelector } from "@/redux/store";
+import { useUpdateReportMutation } from "@/redux/services/reports.service";
+import { formatDate2 } from "@/utils/functions";
 
-const ApproveReport = ({ setIsOpen }: any) => {
+const ApproveReport = ({ setIsOpen, templateData }: any) => {
+  const toast = useToast();
+  const { token, userInfo } = useAppSelector((state) => state.app.auth);
+  const role = userInfo?.role.name;
+
+  const [updateReport, { isLoading: updateReportLoading }] =
+    useUpdateReportMutation();
+
+  const handleUpdateReport = async () => {
+    const data = [
+      {
+        op: "replace",
+        path: "Status",
+        value: 4,
+      },
+    ];
+    await updateReport({
+      token,
+      body: data,
+      id: templateData?.id,
+    })
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Report approved successfully.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setIsOpen(false);
+      })
+      .catch((error) => {
+        toast({
+          title: "An error occurred.",
+          description: error.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
+  };
+
   return (
     <VStack align="flex-start" spacing={4} mt={10} mb={5}>
       <Text
@@ -36,7 +87,7 @@ const ApproveReport = ({ setIsOpen }: any) => {
             fontWeight={"500"}
             fontFamily={"body"}
           >
-            Contractual Agreement | January 3, 2023
+            {templateData?.title} | {formatDate2(templateData?.createdAt)}
           </Text>
         </VStack>
       </VStack>
@@ -54,8 +105,9 @@ const ApproveReport = ({ setIsOpen }: any) => {
         <HStack spacing={2}>
           <Avatar
             size="sm"
-            name="Segun Adebayo"
-            src="https://bit.ly/sage-adebayo"
+            name={templateData?.creator?.name}
+            bg="primary"
+            color="white"
           >
             <AvatarBadge boxSize="1.25em" bg="green.500" />
           </Avatar>
@@ -66,7 +118,7 @@ const ApproveReport = ({ setIsOpen }: any) => {
               fontWeight={"500"}
               color={"maintText.200"}
             >
-              Segun Adebayo
+              {templateData?.creator?.name}
             </Text>
             <Text
               fontSize={"11px"}
@@ -93,7 +145,15 @@ const ApproveReport = ({ setIsOpen }: any) => {
           onClick={() => setIsOpen(false)}
         />
 
-        <Button text="Approve" px={4} py={4} type="submit" />
+        <Button
+          text="Approve"
+          px={4}
+          py={4}
+          type="submit"
+          isLoading={updateReportLoading}
+          isDisabled={updateReportLoading}
+          onClick={handleUpdateReport}
+        />
       </HStack>
     </VStack>
   );

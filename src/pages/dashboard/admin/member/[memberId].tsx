@@ -33,88 +33,46 @@ const Member = () => {
   const userDetail = user?.data;
 
   const data = [
-    {
-      sn: "1",
-      report: "2023 Annual Financial Budget Report v1.0",
-      Action: "Update",
-      time: "01:57am",
-      date: "23, May 2023",
-    },
-    {
-      sn: "1",
-      report: "2023 Annual Financial Budget Report v1.0",
-      Action: "Update",
-      time: "01:57am",
-      date: "23, May 2023",
-    },
-    {
-      sn: "1",
-      report: "2023 Annual Financial Budget Report v1.0",
-      Action: "Update",
-      time: "01:57am",
-      date: "23, May 2023",
-    },
-    {
-      sn: "1",
-      report: "2023 Annual Financial Budget Report v1.0",
-      Action: "Update",
-      time: "01:57am",
-      date: "23, May 2023",
-    },
-    {
-      sn: "1",
-      report: "2023 Annual Financial Budget Report v1.0",
-      Action: "Update",
-      time: "01:57am",
-      date: "23, May 2023",
-    },
-    {
-      sn: "1",
-      report: "2023 Annual Financial Budget Report v1.0",
-      Action: "Update",
-      time: "01:57am",
-      date: "23, May 2023",
-    },
-    {
-      sn: "1",
-      report: "2023 Annual Financial Budget Report v1.0",
-      Action: "Update",
-      time: "01:57am",
-      date: "23, May 2023",
-    },
-  ];
+    // {
+    //   sn: "1",
+    //   report: "2023 Annual Financial Budget Report v1.0",
+    //   Action: "Update",
+    //   time: "01:57am",
+    //   date: "23, May 2023",
+    // },
+  ] as any;
 
   const data2 = [
     {
       name: "Level",
       role: userDetail?.level?.name,
-      btnText: "Edit",
+      // btnText: "Edit",
     },
     {
       name: "Department",
       role: userDetail?.department?.name,
-      btnText: "Edit",
+      // btnText: "Edit",
     },
     {
       name: "Email",
       role: userDetail?.email,
-      btnText: "Edit",
+      // btnText: "Edit",
     },
     {
       name: "Phone Number",
       role: userDetail?.phone,
-      btnText: "Edit",
+      // btnText: "Edit",
     },
     {
       name: "Date Joined",
       role: formatDate2(userDetail?.createdAt),
-      btnText: "",
+      // btnText: "",
     },
-    {
-      name: "Generate New Password",
-      role: "",
-      btnText: "GENERATE",
-    },
+    // {
+    //   name: "Generate New Password",
+    //   role: "",
+    //   btnText: "GENERATE",
+    // },
   ];
 
   return (
@@ -149,7 +107,12 @@ const Member = () => {
 
           <>
             <HStack mb={6}>
-              <Avatar size="lg" name={userDetail?.name} bg="primary" />
+              <Avatar
+                size="lg"
+                name={userDetail?.name}
+                bg="primary"
+                color="white"
+              />
               <VStack align="flex-start">
                 <Text
                   fontSize="22px"
@@ -184,7 +147,7 @@ const Member = () => {
                   <MemberCard
                     name={item.name}
                     role={item.role}
-                    btnText={item.btnText}
+                    // btnText={item.btnText}
                   />
                 </GridItem>
               ))}

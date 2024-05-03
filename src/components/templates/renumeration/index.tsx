@@ -1,9 +1,13 @@
 import PageOne from "./PageOne";
 
-const Renumeration = ({ isEdit }: any) => {
+const Renumeration = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>
-      <PageOne isEdit={isEdit} />
+      <PageOne
+        isEdit={isEdit}
+        reportToEdit={reportToEdit}
+        setReportToEdit={setReportToEdit}
+      />
     </>
   );
 };

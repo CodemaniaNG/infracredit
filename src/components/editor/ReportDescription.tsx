@@ -16,7 +16,13 @@ import { useState } from "react";
 import Modal from "../ui/Modal";
 import AddReviewer from "../modals/AddReviewer";
 
-const ReportDescription = ({ templateData }: any) => {
+const ReportDescription = ({
+  templateData,
+  reportTitle,
+  setReportTitle,
+  handleUpdateReport,
+  updateReportLoading,
+}: any) => {
   const [showCollaborators, setShowCollaborators] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -57,7 +63,8 @@ const ReportDescription = ({ templateData }: any) => {
             fontFamily={"body"}
             fontWeight="500"
             fontSize={"13px"}
-            value={templateData?.description}
+            value={reportTitle}
+            onChange={(e) => setReportTitle(e.target.value)}
           />
           <InputRightElement>
             <Button
@@ -76,6 +83,9 @@ const ReportDescription = ({ templateData }: any) => {
               _hover={{
                 bg: "transparent",
               }}
+              isLoading={updateReportLoading}
+              isDisabled={updateReportLoading}
+              onClick={handleUpdateReport}
             >
               Save
             </Button>

@@ -44,7 +44,7 @@ const OrganizationTask = () => {
                   fontFamily={"body"}
                   mb={3}
                 >
-                  (344)
+                  (0)
                 </Text>
               </Text>
             </VStack>
@@ -69,7 +69,7 @@ const OrganizationTask = () => {
                   fontFamily={"body"}
                   mb={3}
                 >
-                  (344)
+                  (0)
                 </Text>
               </Text>
             </VStack>
@@ -94,7 +94,7 @@ const OrganizationTask = () => {
                   fontFamily={"body"}
                   mb={3}
                 >
-                  (344)
+                  (0)
                 </Text>
               </Text>
             </VStack>
@@ -119,7 +119,7 @@ const OrganizationTask = () => {
                   fontFamily={"body"}
                   mb={3}
                 >
-                  (344)
+                  (0)
                 </Text>
               </Text>
             </VStack>

@@ -7,18 +7,30 @@ import {
   Text,
   Divider,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 type TaskCardProps = {
   title: string;
   desc: string;
+  id: string;
 };
 
-const DocumentCard = ({ title, desc }: TaskCardProps) => {
+const DocumentCard = ({ title, desc, id }: TaskCardProps) => {
+  const router = useRouter();
   return (
     <>
-      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}>
+      <Card
+        variant="outline"
+        maxW="sm"
+        bg="#fff"
+        borderRadius={16}
+        onClick={() => {
+          router.push(`/template/${id}`);
+        }}
+        cursor="pointer"
+      >
         <CardBody p={2}>
-          <Image src="/images/doc.svg" alt="Document" />
+          <Image src="/images/template.svg" alt="Document" />
           <Divider borderColor="border.200" />
           <VStack align="flex-start" spacing={4} py={2}>
             <VStack align="flex-start">
@@ -34,7 +46,7 @@ const DocumentCard = ({ title, desc }: TaskCardProps) => {
               >
                 {title}
               </Text>
-              <Text
+              {/* <Text
                 fontSize={"10px"}
                 fontWeight="500"
                 color="subText.300"
@@ -42,10 +54,10 @@ const DocumentCard = ({ title, desc }: TaskCardProps) => {
                 mt={-2}
               >
                 {desc}
-              </Text>
+              </Text> */}
             </VStack>
 
-            <HStack>
+            {/* <HStack>
               <Image src="/images/comment.svg" alt="Like" />
               <Text
                 fontSize={"12px"}
@@ -55,7 +67,7 @@ const DocumentCard = ({ title, desc }: TaskCardProps) => {
               >
                 13 Comments
               </Text>
-            </HStack>
+            </HStack> */}
           </VStack>
         </CardBody>
       </Card>

@@ -1882,7 +1882,7 @@ export const managementReport = {
                 text6: "76",
               },
               {
-                text1: "Auditors remuneration",
+                text1: "Auditors renumeration",
                 text2: "3,890",
                 text3: "4,878",
                 text4: "12%",
@@ -2713,7 +2713,7 @@ export const managementReport = {
                 text6: "76",
               },
               {
-                text1: "Auditors remuneration",
+                text1: "Auditors renumeration",
                 text2: "3,890",
                 text3: "4,878",
                 text4: "12%",
@@ -3046,4 +3046,229 @@ export const managementReport = {
       },
     ],
   },
+};
+
+export const financeAndAuditCommittee = {
+  title: "Finance and Audit Committee",
+  table: [
+    {
+      tableHeader: ["S/N", "MEETING", "DELIBERATION AND OUTCOME"],
+    },
+    {
+      data: [
+        {
+          item1: "1",
+          item2:
+            "The meeting of the Finance and Audit Committee held on the 17th of March 2022 via teleconference at 5:30 pm prompt to consider / review / deliberate on the: LTI impact for legacy staff in 2021 and impact on 2022 budget; Recommendation of Dividend Declaration for 2020 FY; Presentation of 2022 internal audit plan; Presentation of procurement report; Presentation of outsourced projects; Presentation of 2021 Audited Financial Statements and Management Letter; Presentation of valuation report",
+          item3: [
+            {
+              text1:
+                "1. Management Presentation on Implications of LTI Computations for Legacy Staff on 2021 Financials and 2022 Budget",
+              text2:
+                "The Committee noted the report. The Committee further noted that the computation was not based on the final set of recommendations made by the Board, and requested that Management review the LTI computation based on the final set of recommendations.",
+            },
+            {
+              text1: "2. Recommendation of Dividend Declaration for 2020 FY",
+              text2:
+                "The Committee noted and approved the following, subject to Board approval: Declaration and capitalization of preference dividends of N1,208,389,986 (One Billion, Two Hundred and Eight Million, Three Hundred and Eighty-Nine Thousand, Nine Hundred and Eighty-Seven Naira only) for the existing preference shareholders as at 31st December 2020.",
+            },
+            {
+              text1: "3. Presentation of EY 2022 Internal Audit Plan",
+              text2:
+                "The Committee noted and approved EY’s 2022 Internal Audit Plan, subject to adoption of the Committee’s comments. The Committee stated that in the future, the internal audit plan should be presented for approval on or before year-end to prevent delays in internal audit review in the subsequent year.",
+            },
+            {
+              text1: "4. Presentation of Procurement Report",
+              text2:
+                "The Committee noted the report and requested that in future procurement reports, Management should provide an explanation when utilizing single sourcing in its procurement, given that single sourcing does not allow for a competitive bidding process.",
+            },
+            {
+              text1: "5. Presentation of Outsourced Projects",
+              text2:
+                "The Committee noted the report and requested that Management outsource the review of its cyber security services to a qualified expert, or consider seeking out cyber risk expertise on the Board. Management noted that as part of its IT strategy, it is considering whether to bring in a second firm (IT-specific or qualified specialists from the internal auditor or external auditor), to review any potential gaps in the Company’s IT systems and cyber security.",
+            },
+            {
+              text1:
+                "6. Presentation of 2021 Audited Financial Statements and Management Letter Points",
+              text2:
+                "The Committee noted the presentations and committed to work with Management to resolve the item flagged as a “significant deficiency” (i.e., the Company’s ECL process). The Committee requested that Management present a status update on the open issues from the internal audit and those raised in the management letter, at the next Committee meeting.",
+            },
+            {
+              text1: "7. Presentation of Valuation Report",
+              text2: "The Committee noted the report.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const renumerationAndNominationCommittee = {
+  title: "RENUMERATION AND NOMINATION COMMITTEE",
+  table: [
+    {
+      tableHeader: ["S/N", "MEETING", "DELIBERATION AND OUTCOME"],
+    },
+    {
+      data: [
+        {
+          item1: "1",
+          item2:
+            "The meeting of the renumeration and Nomination Committee (the Committee) held on the 17th of March 2022 via teleconference at 02:00 pm prompt to consider / review / deliberate on the general update on human resources; and the report on the end of the year appraisal.",
+          item3: [
+            {
+              text1: "1. Human Resources & Administration Operational Report.",
+              text2: "The Committee noted the report.",
+            },
+            {
+              text1:
+                "2. Performance Appraisal Summary Report for the year ended 2021",
+              text2:
+                "The Committee noted the report and requested that Management update the report format in future to ensure assessment scoring and comments will be easily understood by the Committee (e.g. limited to main achievements with no element of subjectivity). The Committee also requested that Management revert with suggestions on the reward system for high performing staff, to be incorporated into the talent management process.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const riskAndCapitalCommittee = {
+  title: "RISK AND CAPITAL COMMITTEE",
+  table: [
+    {
+      tableHeader: ["S/N", "MEETING", "DELIBERATION AND OUTCOME"],
+    },
+    {
+      data: [
+        {
+          item1: "1",
+          item2:
+            "The meeting of the Risk and Capital Committee (the Committee) held on the 18th of March 2022 via teleconference at 10:30 am to consider / review / deliberate on: the update on the guarantee portfolio report; update on the treasury report; proposal for diversification of investments; and Viathan’s presentation of 5 – 7 year forecast.",
+          item3: [
+            {
+              text1: "1. Management Update on the Guarantee Portfolio",
+              text2:
+                "The Committee noted the report. Following the disclosure of some anticipated financial covenant breaches on the recently-closed GPC and LFTZ transactions, which Management explained were not unexpected given how leverage increases at closing until capital works are completed, the Committee agreed to convene a one (1) hour portfolio review meeting in the first week of April, during which Management is to present further details on these and other portfolio companies.",
+            },
+            {
+              text1: "2. Management Update on the Treasury Report",
+              text2: "The Committee noted the report.",
+            },
+            {
+              text1: "3. Update/Proposal on Diversification of Investments",
+              text2:
+                "The Committee noted the report and agreed with Management’s decision to place diversification efforts on hold temporarily.",
+            },
+            {
+              text1: "4. Viathan Presentation",
+              text2:
+                "Viathan’s management and shareholder representative presented on its 5-7 year forecast, including how the Company has extended agreements with Lagos State to 2032 and is steadily reducing its overall dependence on Lagos State revenue. However, the Committee noted that Viathan may be considered a distressed asset until breaches are restored and requested that Management provide further information on the type of shareholder support (near-term, intermediate-term) that Viathan is likely to receive to restore the breaches. The Committee further requested to receive feedback on whether Viathan receives the expected NGN1.1 billion inflow from the Lagos State Government by the end of the month.",
+            },
+            {
+              text1: "5. Update on Impact of Russia-Ukraine Conflict",
+              text2:
+                "Following Management’s presentation of the effect of the Russia Ukraine Conflict on the Company’s portfolio, the Committee requested a report from management on any potential portfolio impact or business disruption due to the consequences (direct or indirect) of the conflict. The management confirmed that a Portfolio Stress test is ongoing and report will be shared at the RCC meeting of the 1st week of April (date to be agreed).",
+            },
+            {
+              text1: "6. Update on Tier 2 Capital Recognition for Leverage",
+              text2:
+                "The Committee requested that this should remain as a standing agenda item until ongoing management discussions with rating agencies and capital providers are satisfactorily addressed.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const creditCommittee = {
+  title:
+    "NEW BUSINESS/CREDIT COMMITTEE MEETINGS HELD BY CIRCULATION AND VIA TELECONFERENCE",
+  table: [
+    {
+      tableHeader: ["S/N", "MEETING", "DELIBERATION AND OUTCOME"],
+    },
+    {
+      data: [
+        {
+          item1: "1",
+          item2: "PROJECT TWENTY-THREE (LADOL SERVICES FREE ZONE ENTERPRISE)",
+          item3: [
+            {
+              text1:
+                "LADOL Services Free Zone Enterprise is a special purpose vehicle (SPV) fully owned by LADOL Integrated Logistics Free Zone Enterprises (LILE) and established for the provision of utilities in the free zone, including power generation. LILE is an industrial park developer, operator, and manager of the Lagos Deep Offshore Logistics Base in Lagos, registered under the Nigeria Export Processing Zone Authority. LILE was incorporated in October 2010 and offers a wide range of services including the leasing of industrial space (land and buildings), provision of utilities (energy, water, and waste management), and a range of ancillary services (workers housing, basic and high-end catering services, WIFI, office space, people movement services and recruitment support) to industrial tenants. The Company is seeking InfraCredit’s guarantee on the existing NGN5.1 billion PAIF Facility previously drawn and deployed towards the development of a 12MW power station responsible for the generation and distribution of power within the zone. This is expected to serve as the 1st phase of the transaction followed by the bond issuance from the debt capital market to support the growth and development of the industrial park as a sustainable special economic zone (SSEZ). The CC Meeting held via email correspondence; and on 18 January 2022, the Committee resolved that “InfraCredit may proceed with the proposed guarantee of up to N5.1 billion, PAIF Facility in favour of LADOL Services Free Zone Enterprise, subject to terms and conditions set out by the Committee”.",
+            },
+          ],
+        },
+
+        {
+          item1: "2",
+          item2: "PROJECT TWENTY-FOUR (COLEMAN TECHNICAL INDUSTRIES LIMITED)",
+          item3: [
+            {
+              text1:
+                "Coleman Technical Industries Limited is an indigenous company engaged in the manufacturing and distribution of copper and aluminum wires and cables which is the market leader in the provision of critically important input to infrastructure – wires and cables. Coleman is seeking InfraCredit’s guarantee to enable the Company access funds from Bank of Industry of up to NGN10 billion with a tenor of up to 7 years in two tranches of NGN5 billion respectively for the completion of its fibre optics cable project at Arepo (“Arepo III”) and the construction of Sagamu IV factory for the production of high-capacity distribution power cables. The CC Meeting held via email correspondence; and on 28 January 2022, the Committee resolved that “InfraCredit may proceed with the proposed guarantee of up to NGN10.0 Billion in two tranches of NGN5.0 Billion, with a tenor of up to 7-years in favour of Coleman Technical Industries Limited, subject to terms and conditions set out by the Committee”. ",
+            },
+          ],
+        },
+
+        {
+          item1: "3",
+          item2: "PROJECT TWENTY-FIVE (DARWAY COAST NIGERIA LIMITED)",
+          item3: [
+            {
+              text1:
+                "Darway Coast is a renewable energy company with expertise in the development and operation of mini-grids to serve offgrid and underserved households and businesses in Nigeria The Company is seeking InfraCredit’s guarantee to secure up to NGN0.74 billion of debt financing required for the construction and commissioning of six solar hybrid mini grids with a cumulative solar and battery capacity of 526.1 kWp and 860kWh, respectively, as part of a blended facility of up to NGN1.48 billion. These mini grids are expected to serve a total of 7,711 residential, commercial and productive use customers. The CC Meeting held on 31 January 2022 at 3pm via teleconference; and the Committee resolved that “InfraCredit may proceed with the proposed guarantee of up to NGN0.74 Billion, with a tenor of up to 8-years, in favour of Darway Coast Nigeria Limited, subject to terms and conditions set out by the Committee”.",
+            },
+          ],
+        },
+
+        {
+          item1: "4",
+          item2: "PROJECT NINE (LAGOS FREE ZONE COMPANY – SERIES 2)",
+          item3: [
+            {
+              text1:
+                "The Lagos Free Zone Company is a free zone developer and management company responsible for the Lagos Free Zone, registered under the Nigeria Export Processing Zone Authority. LFZC is the first privately-owned free trade zone in Nigeria, with 830 hectares of land and 9 designated zones. The Company is developing an Industrial and Logistics Zone with numerous infrastructure facilities at Ibeju Lekki, Lagos which will contribute to Nigeria’s economic development. Following the Company’s NGN10.5 billion 20-year Series I Senior Guaranteed bond issuance concluded in September 2021, LFZC is seeking to raise an additional (up to) NGN25 billion under the NGN50 billion debt issuance programme – supported by InfraCredit’s Guarantee. The proceeds of the new issuance will be used to refinance LFZC’s existing (bridge-to-bond) debt facility, as well as finance the capital expenditure required for further development of the Free Zone. The CC Meeting was held on 31 January 2022 at 3pm via teleconference; and the Committee resolved that “InfraCredit may proceed with the proposed guarantee of up to N25.0 billion, 20-year Series II bond under a NGN50 billion bond issuance programme in favour of LFZC Funding SPV Plc, subject to terms and conditions set out by the Committee”.",
+            },
+          ],
+        },
+
+        {
+          item1: "5",
+          item2: "PRADO POWER LIMITED",
+          item3: [
+            {
+              text1:
+                "Prado Power Limited Prado Power or the Company is a locally owned company that is focused on providing electricity access to unserved and underserved communities in Nigeria using renewable energy solutions. The Company’s renewable energy solutions include solar home systems and solar hybrid mini-grids targeted at commercial, industrial, and residential customers in both urban and rural regions. Prado Power is looking to deploy 11 solar-hybrid mini-grids and create agro-processing hubs within off-grid communities in Niger State and Akwa Ibom State (the “Projects”). The Projects are approved under the World Bank Nigeria Electrification Project (“NEP”) Performance Based Grants programme for mini-grids that has been designed to provide US$600 per connection established in off-grid communities in Nigeria. The Company is requesting to leverage InfraCredit’s Contingent Refinancing Guarantee (CRG) to raise financing of up to NGN1.56 billion from project lenders to construct and commission the Projects. The NBC Meeting held via email correspondence; and on 14 March 2022, the Committee resolved that “the Transaction Team may proceed to the due diligence and negotiation phase with respect to the proposed transaction by Prado Power seeking to raise a 7-year bond of up to NGN1.56 billion, taking into consideration the additional aspects for due diligence highlighted by the Committee”.",
+            },
+          ],
+        },
+
+        {
+          item1: "6",
+          item2: "VICTORIA ISLAND INDEPENDENT POWER PROJECT",
+          item3: [
+            {
+              text1:
+                "Victoria Island Independent Power Project (VI Power or the Company) is a special purpose vehicle incorporated by Elektron Energy to develop and own a 30MW independent gas-fired embedded power generation plant in Victoria Island, Lagos in collaboration with Eko Electricity Distribution Company (EKEDC) while Elektron Energy is an energy infrastructure development company focused on developing and operating sustainable energy infrastructure projects in Nigeria and currently supplies power to Lagos State Government (LASG) in the Alausa Secretariat through its wholly-owned subsidiary Alausa Power Limited (APL). The Project is expected to cost about US$48 million, with the Sponsors expected to contribute approximately US$18 million in equity. Elektron Energy has contributed its equity amount of US$4 million while ARMHIF’s investment of US$14 million is tied to the debt financing being procured and has entered into Shareholders Agreement with Elektron Energy, as well as a subordinated loan agreement with VI Power. VI Power has requested InfraCredit’s guarantee to support a debt capital raise of up to NGN16 Billion with a tenor of up to seven years from the Bank of Industry (BOI) and or via the Debt Capital Market (DCM). The NBC Meeting held via email correspondence; and on 6 March 2022, the Committee resolved that “the Transaction Team may proceed to the due diligence and negotiation phase with respect to the proposed transaction by VI Power seeking to raise a 15-year bond of up to NGN16 billion, taking into consideration the additional aspects for due diligence highlighted by the Committee”.",
+            },
+          ],
+        },
+
+        {
+          item1: "7",
+          item2: "FCDO RISK SHARING ARRANGEMENT",
+          item3: [
+            {
+              text1:
+                "On 28 September 2021, the New Business and Credit Committee (NBCC) gave its approval for InfraCredit to enter into risk-sharing collaboration negotiations with the Foreign, Commonwealth, and Development Office (FCDO) funded, UK Nigeria Infrastructure Advisory Facility (UKNAIF) to support private sector off-grid energy solutions such as solar mini-grid and home systems, clean cooking infrastructure and SME cold storage infrastructure. On 20 January 2022, the NBCC gave its final approval for InfraCredit to conclude negotiations and agree final terms and execute such agreements as may be required to give effect to the proposed risk sharing arrangement.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

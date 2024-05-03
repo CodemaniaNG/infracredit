@@ -1,5 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import Button from "@/components/ui/Button";
+import { useAppSelector } from "@/redux/store";
 
 const ActionBtns = ({
   isEdit,
@@ -14,39 +15,15 @@ const ActionBtns = ({
   handleModal8,
   template,
   role,
+  handleUpdateReport,
+  updateReportLoading,
+  templateData,
 }: any) => {
+  const { userInfo } = useAppSelector((state) => state.app.auth);
+  const userRole = userInfo?.role.name;
   return (
     <>
-      <HStack justify="flex-end">
-        {isEdit && (
-          <Button
-            text={"Cancel Edit"}
-            bg="transparent"
-            border="#FFCB8A"
-            color="#FF8F00"
-            borderWidth="1px"
-            px={6}
-            onClick={() => setIsEdit(!isEdit)}
-          />
-        )}
-        {!isEdit && (
-          <Button
-            text="Share Report"
-            bg="#F0FFFF"
-            border="#8CDBB4"
-            color="greens.100"
-            borderWidth="1px"
-            px={6}
-            onClick={handleModal8}
-          />
-        )}
-        <Button
-          text={isEdit ? "Save" : "Edit Report"}
-          onClick={() => setIsEdit(!isEdit)}
-        />
-      </HStack>
-
-      {template === "report" && role === "user-reports" && (
+      {userRole === "User" && (
         <HStack justify="flex-end">
           {isEdit && (
             <Button
@@ -61,23 +38,37 @@ const ActionBtns = ({
           )}
           {!isEdit && (
             <Button
-              text="Share Report"
+              text="Submit"
               bg="#F0FFFF"
               border="#8CDBB4"
               color="greens.100"
               borderWidth="1px"
               px={6}
-              onClick={handleModal8}
+              onClick={handleModal7}
+              isDisabled={
+                templateData?.status !== 0 || templateData?.status !== 1
+              }
             />
           )}
           <Button
             text={isEdit ? "Save" : "Edit Report"}
-            onClick={() => setIsEdit(!isEdit)}
+            onClick={() => {
+              if (isEdit) {
+                handleUpdateReport();
+              }
+              setIsEdit(!isEdit);
+            }}
+            isLoading={updateReportLoading}
+            isDisabled={
+              updateReportLoading ||
+              templateData?.status !== 0 ||
+              templateData?.status !== 1
+            }
           />
         </HStack>
       )}
 
-      {template === "report" && role === "manager" && (
+      {userRole === "Manager" && (
         <HStack justify="flex-end">
           <Button
             text="Disapprove"
@@ -93,7 +84,57 @@ const ActionBtns = ({
         </HStack>
       )}
 
-      {template === "contract" && role === "user-contracts" && (
+      {userRole === "Supervisor" && (
+        <HStack justify="flex-end">
+          {isEdit && (
+            <Button
+              text={"Cancel Edit"}
+              bg="transparent"
+              border="#FFCB8A"
+              color="#FF8F00"
+              borderWidth="1px"
+              px={6}
+              onClick={() => setIsEdit(!isEdit)}
+            />
+          )}
+          {!isEdit && (
+            <Button
+              text={"Return"}
+              bg="transparent"
+              border="#FF9D98"
+              color="#FF3B30"
+              borderWidth="1px"
+              px={6}
+              onClick={handleModal6}
+              isDisabled={templateData?.status === 3}
+            />
+          )}
+          <Button
+            text={isEdit ? "Save" : "Edit Report"}
+            bg="#F0FFFF"
+            color="greens.100"
+            px={6}
+            onClick={() => {
+              if (isEdit) {
+                handleUpdateReport();
+              }
+              setIsEdit(!isEdit);
+            }}
+            isLoading={updateReportLoading}
+            isDisabled={updateReportLoading || templateData?.status === 3}
+          />
+          {!isEdit && (
+            <Button
+              text={"Submit"}
+              px={6}
+              onClick={handleModal7}
+              isDisabled={templateData?.status === 3}
+            />
+          )}
+        </HStack>
+      )}
+
+      {/* {template === "contract" && role === "user-contracts" && (
         <HStack justify="flex-end">
           <Button
             text="Share Contract"
@@ -118,42 +159,7 @@ const ActionBtns = ({
           />
           <Button text="Upload Signed PDF" px={6} onClick={handleModal5} />
         </HStack>
-      )}
-
-      {template === "report" && role === "supervisor" && (
-        <HStack justify="flex-end">
-          {isEdit && (
-            <Button
-              text={"Cancel Edit"}
-              bg="transparent"
-              border="#FFCB8A"
-              color="#FF8F00"
-              borderWidth="1px"
-              px={6}
-              onClick={() => setIsEdit(!isEdit)}
-            />
-          )}
-          {!isEdit && (
-            <Button
-              text={"Return"}
-              bg="transparent"
-              border="#FF9D98"
-              color="#FF3B30"
-              borderWidth="1px"
-              px={6}
-              onClick={handleModal6}
-            />
-          )}
-          <Button
-            text={isEdit ? "Save" : "Edit Report"}
-            bg="#F0FFFF"
-            color="greens.100"
-            px={6}
-            onClick={() => setIsEdit(!isEdit)}
-          />
-          {!isEdit && <Button text={"Submit"} px={6} onClick={handleModal7} />}
-        </HStack>
-      )}
+      )} */}
     </>
   );
 };

@@ -8,9 +8,11 @@ import {
   Divider,
   Avatar,
   AvatarGroup,
+  Stack,
 } from "@chakra-ui/react";
 import Button from "../ui/Button";
 import { useRouter } from "next/router";
+import { useAppSelector } from "@/redux/store";
 
 type TaskCardProps = {
   title: string;
@@ -30,6 +32,9 @@ const TaskCard = ({
   id,
 }: TaskCardProps) => {
   const router = useRouter();
+  const { token, userInfo } = useAppSelector((state) => state.app.auth);
+  const role = userInfo?.role.name;
+
   return (
     <>
       <Card
@@ -49,8 +54,8 @@ const TaskCard = ({
               <Text
                 fontSize={{
                   base: "16px",
-                  md: "18px",
-                  lg: "18px",
+                  md: "16px",
+                  lg: "16px",
                 }}
                 fontWeight="600"
                 color="maintText.100"
@@ -82,7 +87,7 @@ const TaskCard = ({
 
             <Divider borderColor="border.200" />
 
-            <HStack justify="space-between" w="100%">
+            <Stack direction="column" spacing={2} w="100%">
               <HStack>
                 <Image src="/images/comment.svg" alt="Like" />
                 <Text
@@ -95,18 +100,19 @@ const TaskCard = ({
                 </Text>
               </HStack>
 
-              {["completed"].includes(status) && (
+              {status === 4 && (
                 <Text
                   fontSize={"12px"}
                   fontWeight="600"
                   color="greens.100"
                   fontFamily={"body"}
                 >
-                  Complete
+                  Completed
                 </Text>
               )}
-            </HStack>
-            {["todo", "progress"].includes(status) && (
+            </Stack>
+
+            {status === 0 && (
               <Button
                 text="Edit Report"
                 type="submit"
@@ -116,9 +122,43 @@ const TaskCard = ({
                 }}
               />
             )}
-            {["review"].includes(status) && (
+
+            {status === 1 && (
+              <Button
+                text="Continue Report"
+                type="submit"
+                size="md"
+                onClick={() => {
+                  router.push(`/editor/${id}`);
+                }}
+              />
+            )}
+
+            {status === 2 && role !== "User" && (
               <Button
                 text="Review"
+                type="submit"
+                size="md"
+                onClick={() => {
+                  router.push(`/editor/${id}`);
+                }}
+              />
+            )}
+
+            {status === 3 && role !== "User" && (
+              <Button
+                text="View"
+                type="submit"
+                size="md"
+                onClick={() => {
+                  router.push(`/editor/${id}`);
+                }}
+              />
+            )}
+
+            {status === 4 && (
+              <Button
+                text="View Report"
                 type="submit"
                 size="md"
                 onClick={() => {

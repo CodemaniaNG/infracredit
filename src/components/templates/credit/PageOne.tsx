@@ -7,6 +7,7 @@ import {
   Th,
   Td,
   TableContainer,
+  Text,
   Stack,
 } from "@chakra-ui/react";
 import EditableTextArea from "@/components/ui/EditableTextArea";
@@ -23,7 +24,7 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
         value={reportToEdit?.title}
         fontSize="12px"
         color="black"
-        fontWeight="600"
+        fontWeight="700"
         textAlign="left"
         isEdit={isEdit}
         onChange={(e: any) => {
@@ -89,15 +90,20 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                         ...reportToEdit,
                         table: [
                           {
-                            ...reportToEdit?.table[0],
+                            tableHeader: reportToEdit.table[0].tableHeader,
                           },
                           {
-                            data: [
-                              {
-                                ...reportToEdit?.table[1].data[0],
-                                item1: e.target.value,
+                            data: reportToEdit.table[1].data.map(
+                              (subItem: any, subIndex: number) => {
+                                if (index === subIndex) {
+                                  return {
+                                    ...subItem,
+                                    item1: e.target.value,
+                                  };
+                                }
+                                return subItem;
                               },
-                            ],
+                            ),
                           },
                         ],
                       });
@@ -123,15 +129,20 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                         ...reportToEdit,
                         table: [
                           {
-                            ...reportToEdit?.table[0],
+                            tableHeader: reportToEdit.table[0].tableHeader,
                           },
                           {
-                            data: [
-                              {
-                                ...reportToEdit?.table[1].data[0],
-                                item2: e.target.value,
+                            data: reportToEdit.table[1].data.map(
+                              (subItem: any, subIndex: number) => {
+                                if (index === subIndex) {
+                                  return {
+                                    ...subItem,
+                                    item2: e.target.value,
+                                  };
+                                }
+                                return subItem;
                               },
-                            ],
+                            ),
                           },
                         ],
                       });
@@ -161,70 +172,28 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                         fontWeight="700"
                         isEdit={isEdit}
                         onChange={(e: any) => {
-                          const newTable =
-                            reportToEdit?.table[1].data[0].item3.map(
-                              (item: any, i: number) => {
-                                if (i === index) {
-                                  return {
-                                    ...item,
-                                    text1: e.target.value,
-                                  };
-                                }
-                                return item;
-                              },
-                            );
-
                           setReportToEdit({
                             ...reportToEdit,
                             table: [
                               {
-                                ...reportToEdit?.table[0],
+                                tableHeader: reportToEdit.table[0].tableHeader,
                               },
                               {
-                                data: [
-                                  {
-                                    ...reportToEdit?.table[1].data[0],
-                                    item3: newTable,
+                                data: reportToEdit.table[1].data.map(
+                                  (subItem: any, subIndex: number) => {
+                                    if (index === subIndex) {
+                                      return {
+                                        ...subItem,
+                                        item3: [
+                                          {
+                                            text1: e.target.value,
+                                          },
+                                        ],
+                                      };
+                                    }
+                                    return subItem;
                                   },
-                                ],
-                              },
-                            ],
-                          });
-                        }}
-                      />
-                      <EditableTextArea
-                        value={subItem.text2}
-                        fontSize="12px"
-                        color="#383838"
-                        fontWeight="500"
-                        isEdit={isEdit}
-                        onChange={(e: any) => {
-                          const newTable =
-                            reportToEdit?.table[1].data[0].item3.map(
-                              (item: any, i: number) => {
-                                if (i === index) {
-                                  return {
-                                    ...item,
-                                    text2: e.target.value,
-                                  };
-                                }
-                                return item;
-                              },
-                            );
-
-                          setReportToEdit({
-                            ...reportToEdit,
-                            table: [
-                              {
-                                ...reportToEdit?.table[0],
-                              },
-                              {
-                                data: [
-                                  {
-                                    ...reportToEdit?.table[1].data[0],
-                                    item3: newTable,
-                                  },
-                                ],
+                                ),
                               },
                             ],
                           });

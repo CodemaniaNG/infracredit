@@ -5,6 +5,7 @@ import {
   IconButton,
   useToast,
   Spinner,
+  Stack,
 } from "@chakra-ui/react";
 import Button from "../ui/Button";
 import { Formik, Form, FieldArray } from "formik";
@@ -17,6 +18,7 @@ import { useAppSelector } from "@/redux/store";
 import { useCreateReportMutation } from "@/redux/services/reports.service";
 import { useGetUsersQuery } from "@/redux/services/onboard.service";
 import { useGetTemplatesQuery } from "@/redux/services/templates.service";
+import { useMemo } from "react";
 
 const CreateReport = ({ setIsOpen }: any) => {
   const toast = useToast();
@@ -28,10 +30,30 @@ const CreateReport = ({ setIsOpen }: any) => {
   const { data: templates, isLoading: templatesLoading } =
     useGetTemplatesQuery(token);
 
-  const allUsers = users?.data?.map((user: any) => ({
-    value: user.id,
-    label: user.name,
-  }));
+  const allUsers = useMemo(() => {
+    return users?.data;
+  }, [users]);
+
+  const allManagers = allUsers
+    ?.filter((user: any) => user.role.name === "Manager")
+    .map((user: any) => ({
+      value: user.id,
+      label: user.name,
+    }));
+
+  const allSupervisors = allUsers
+    ?.filter((user: any) => user.role.name === "Supervisor")
+    .map((user: any) => ({
+      value: user.id,
+      label: user.name,
+    }));
+
+  const allUsersUser = allUsers
+    ?.filter((user: any) => user.role.name === "User")
+    .map((user: any) => ({
+      value: user.id,
+      label: user.name,
+    }));
 
   const allTemplates = templates?.data?.map((template: any) => ({
     value: template.id,
@@ -105,18 +127,23 @@ const CreateReport = ({ setIsOpen }: any) => {
                   placeholder="Report Title"
                 />
 
-                <Select
-                  label="Select Template"
-                  name="TemplateId"
-                  options={allTemplates}
-                  placeholder="Select template"
-                  onChange={(e: any) => {
-                    const selectedTemplate = allTemplates?.find(
-                      (template: any) => template.value === e.target.value,
-                    );
-                    props.setFieldValue("Body", selectedTemplate?.body);
-                  }}
-                />
+                <Stack direction={"row"} align="center" w={"100%"} spacing={1}>
+                  <Select
+                    label="Select Template"
+                    name="TemplateId"
+                    options={allTemplates}
+                    placeholder="Select template"
+                    onChange={(e: any) => {
+                      const selectedTemplate = allTemplates?.find(
+                        (template: any) => template.value === e.target.value,
+                      );
+                      props.setFieldValue("Body", selectedTemplate?.body);
+                    }}
+                  />
+                  {templatesLoading && (
+                    <Spinner size="sm" color="green.500" mt={5} />
+                  )}
+                </Stack>
 
                 <Input
                   label="Description"
@@ -141,19 +168,29 @@ const CreateReport = ({ setIsOpen }: any) => {
                   />
                 </HStack>
 
-                <Select
-                  label="Select Manager"
-                  name="ManagerId"
-                  options={allUsers}
-                  placeholder="Select Manager"
-                />
+                <Stack direction={"row"} align="center" w={"100%"} spacing={1}>
+                  <Select
+                    label="Select Manager"
+                    name="ManagerId"
+                    options={allManagers}
+                    placeholder="Select Manager"
+                  />
+                  {usersLoading && (
+                    <Spinner size="sm" color="green.500" mt={5} />
+                  )}
+                </Stack>
 
-                <Select
-                  label="Select Supervisor"
-                  name="SupervisorId"
-                  options={allUsers}
-                  placeholder="Select Supervisor"
-                />
+                <Stack direction={"row"} align="center" w={"100%"} spacing={1}>
+                  <Select
+                    label="Select Supervisor"
+                    name="SupervisorId"
+                    options={allSupervisors}
+                    placeholder="Select Supervisor"
+                  />
+                  {usersLoading && (
+                    <Spinner size="sm" color="green.500" mt={5} />
+                  )}
+                </Stack>
 
                 <FieldArray
                   name="UserIds"
@@ -164,7 +201,7 @@ const CreateReport = ({ setIsOpen }: any) => {
                           <Select
                             label="Select User(s)"
                             name={`UserIds.${index}`}
-                            options={allUsers}
+                            options={allUsersUser}
                             placeholder="Select User"
                           />
                           {index > 0 && (

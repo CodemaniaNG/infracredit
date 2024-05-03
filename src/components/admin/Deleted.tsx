@@ -41,7 +41,7 @@ const Deleted = () => {
           >
             Recent
           </Text>
-          
+
           <Grid
             templateColumns={{
               sm: "repeat(1, 1fr)",
@@ -53,7 +53,11 @@ const Deleted = () => {
           >
             {tasks.map((task, index) => (
               <GridItem colSpan={1} key={index}>
-                <DocumentCard title={task.title} desc={task.desc} />
+                <DocumentCard
+                  title={task.title}
+                  desc={task.desc}
+                  id={index.toString()}
+                />
               </GridItem>
             ))}
           </Grid>
@@ -83,7 +87,11 @@ const Deleted = () => {
           >
             {tasks.map((task, index) => (
               <GridItem colSpan={1} key={index}>
-                <DocumentCard title={task.title} desc={task.desc} />
+                <DocumentCard
+                  title={task.title}
+                  desc={task.desc}
+                  id={index.toString()}
+                />
               </GridItem>
             ))}
           </Grid>

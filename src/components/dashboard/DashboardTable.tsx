@@ -6,25 +6,15 @@ import {
   Th,
   Td,
   TableContainer,
-  Menu,
-  MenuButton,
-  IconButton,
-  Image,
 } from "@chakra-ui/react";
 import { formatDate2 } from "@/utils/functions";
-import { useRouter } from "next/router";
 import Empty from "../admin/Empty";
+import { useAppSelector } from "@/redux/store";
 
 const DashboardTable = ({ data }: any) => {
-  const router = useRouter();
-  const headers = [
-    "S/N",
-    "Title",
-    "Edited By",
-    "Edited On",
-    "Current User",
-    "Action",
-  ];
+  const headers = ["S/N", "Action", "Date", "User", "Current User"];
+
+  const { userInfo } = useAppSelector((state) => state.app.auth);
 
   return (
     <TableContainer w="100%" bg="white">
@@ -64,7 +54,7 @@ const DashboardTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.sn}
+                {index + 1}
               </Td>
 
               <Td
@@ -75,7 +65,7 @@ const DashboardTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.title}
+                {item?.action}
               </Td>
 
               <Td
@@ -86,7 +76,7 @@ const DashboardTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.editedBy}
+                {formatDate2(item?.createdAt)}
               </Td>
 
               <Td
@@ -97,7 +87,7 @@ const DashboardTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.editedOn}
+                {item?.user?.username}
               </Td>
 
               <Td
@@ -108,40 +98,7 @@ const DashboardTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.currentUser}
-              </Td>
-
-              <Td
-                textAlign="left"
-                fontSize={14}
-                fontWeight={500}
-                color="subText2"
-                textTransform="capitalize"
-              >
-                <Menu>
-                  <MenuButton
-                    as={IconButton}
-                    aria-label="Options"
-                    icon={<Image src="/images/action.svg" alt="more" />}
-                    variant="ghost"
-                  />
-                  {/* <MenuList>
-                    <MenuItem
-                      // icon={<Image src="/images/edit.svg" alt="more" />}
-                      fontSize={14}
-                      fontWeight={400}
-                      color="mainTex.200"
-                      fontFamily="body"
-                      onClick={() =>
-                        router.push(
-                          `/dashboard/admin/member/${item?.name}`
-                        )
-                      }
-                    >
-                      View Logs
-                    </MenuItem>
-                  </MenuList> */}
-                </Menu>
+                {userInfo?.username}
               </Td>
             </Tr>
           ))}

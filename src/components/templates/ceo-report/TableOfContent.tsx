@@ -37,6 +37,19 @@ const TableOfContent = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
                       color="subText.800"
                       fontWeight="600"
                       textAlign="left"
+                      onChange={(e: any) => {
+                        setReportToEdit({
+                          ...reportToEdit,
+                          tableOfContent: [
+                            ...reportToEdit?.tableOfContent.slice(0, i),
+                            {
+                              ...reportToEdit?.tableOfContent[i],
+                              title: e.target.value,
+                            },
+                            ...reportToEdit?.tableOfContent.slice(i + 1),
+                          ],
+                        });
+                      }}
                     />
                   </HStack>
 

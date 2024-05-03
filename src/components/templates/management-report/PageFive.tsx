@@ -11,7 +11,7 @@ import {
 import EditableInput from "@/components/ui/EditableInput";
 import ManagementLayOut from "./ManagementLayOut";
 
-const PageFive = ({ data, isEdit }: any) => {
+const PageFive = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>
       <ManagementLayOut page={6} isEdit={isEdit}>
@@ -19,7 +19,7 @@ const PageFive = ({ data, isEdit }: any) => {
           <VStack align={"flex-start"} w="100%" spacing={0}>
             <EditableInput
               isEdit={isEdit}
-              value={data[0]?.title}
+              value={reportToEdit?.subTitleFive[0]?.title}
               fontSize="18px"
               color="black"
               fontWeight="800"
@@ -37,7 +37,7 @@ const PageFive = ({ data, isEdit }: any) => {
             >
               <Thead>
                 <Tr>
-                  {data[0].table1[0].tableHeader.map(
+                  {reportToEdit?.subTitleFive[0].table1[0].tableHeader.map(
                     (item: any, index: number) => (
                       <Th
                         key={index}
@@ -54,11 +54,11 @@ const PageFive = ({ data, isEdit }: any) => {
                           fontWeight="600"
                         />
                       </Th>
-                    )
+                    ),
                   )}
                 </Tr>
                 <Tr>
-                  {data[0].table1[0].tableHeader2.map(
+                  {reportToEdit?.subTitleFive[0].table1[0].tableHeader2.map(
                     (item: any, index: number) => (
                       <Th
                         key={index}
@@ -75,56 +75,58 @@ const PageFive = ({ data, isEdit }: any) => {
                           fontWeight="600"
                         />
                       </Th>
-                    )
+                    ),
                   )}
                 </Tr>
               </Thead>
 
               <Tbody>
-                {data[0].table1[1].data.map((item: any, index: number) => (
-                  <Tr key={index}>
-                    <Td borderColor="#676767" py={2}>
-                      <EditableInput
-                        value={item?.text1}
-                        isEdit={isEdit}
-                        textAlign="left"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                    <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
-                      <EditableInput
-                        value={item?.text2}
-                        isEdit={isEdit}
-                        textAlign="right"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                    <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
-                      <EditableInput
-                        value={item?.text3}
-                        isEdit={isEdit}
-                        textAlign="right"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                    <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
-                      <EditableInput
-                        value={item?.text4}
-                        isEdit={isEdit}
-                        textAlign="right"
-                        fontSize="10px"
-                        color="black"
-                        fontWeight="600"
-                      />
-                    </Td>
-                  </Tr>
-                ))}
+                {reportToEdit?.subTitleFive[0].table1[1].data.map(
+                  (item: any, index: number) => (
+                    <Tr key={index}>
+                      <Td borderColor="#676767" py={2}>
+                        <EditableInput
+                          value={item?.text1}
+                          isEdit={isEdit}
+                          textAlign="left"
+                          fontSize="10px"
+                          color="black"
+                          fontWeight="600"
+                        />
+                      </Td>
+                      <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
+                        <EditableInput
+                          value={item?.text2}
+                          isEdit={isEdit}
+                          textAlign="right"
+                          fontSize="10px"
+                          color="black"
+                          fontWeight="600"
+                        />
+                      </Td>
+                      <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
+                        <EditableInput
+                          value={item?.text3}
+                          isEdit={isEdit}
+                          textAlign="right"
+                          fontSize="10px"
+                          color="black"
+                          fontWeight="600"
+                        />
+                      </Td>
+                      <Td borderColor="#676767" py={2} bg={"#D9D9D9"}>
+                        <EditableInput
+                          value={item?.text4}
+                          isEdit={isEdit}
+                          textAlign="right"
+                          fontSize="10px"
+                          color="black"
+                          fontWeight="600"
+                        />
+                      </Td>
+                    </Tr>
+                  ),
+                )}
               </Tbody>
             </Table>
           </TableContainer>

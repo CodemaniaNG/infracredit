@@ -80,7 +80,7 @@ const Admin = () => {
         <>
           <DashboardHeader title="Staff">
             <Button
-              text="Create New Staff"
+              text="Onboard Staff"
               icon="/images/add2.svg"
               iconPosition="left"
               onClick={handleModal}
@@ -99,7 +99,7 @@ const Admin = () => {
               <GridItem colSpan={1}>
                 <DashboardCard
                   label={"Users"}
-                  value={20}
+                  value={userUsers?.length}
                   isPrefix={false}
                   image="/images/reports.svg"
                 />
@@ -107,7 +107,7 @@ const Admin = () => {
               <GridItem colSpan={1}>
                 <DashboardCard
                   label={"Supervisors"}
-                  value={40}
+                  value={supervisorUsers?.length}
                   isPrefix={false}
                   image="/images/drafted.svg"
                 />
@@ -115,7 +115,7 @@ const Admin = () => {
               <GridItem colSpan={1}>
                 <DashboardCard
                   label={"Administrators"}
-                  value={63}
+                  value={adminUsers?.length}
                   isPrefix={false}
                   image="/images/deleted2.svg"
                 />
@@ -123,7 +123,7 @@ const Admin = () => {
               <GridItem colSpan={1}>
                 <DashboardCard
                   label={"Managers"}
-                  value={30}
+                  value={managerUsers?.length}
                   isPrefix={false}
                   image="/images/collaborators.svg"
                 />

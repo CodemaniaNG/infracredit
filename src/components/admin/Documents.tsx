@@ -81,7 +81,11 @@ const Documents = () => {
           >
             {tasks.map((task, index) => (
               <GridItem colSpan={1} key={index}>
-                <DocumentCard title={task.title} desc={task.desc} />
+                <DocumentCard
+                  title={task.title}
+                  desc={task.desc}
+                  id={index.toString()}
+                />
               </GridItem>
             ))}
           </Grid>

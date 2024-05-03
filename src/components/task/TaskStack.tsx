@@ -18,7 +18,7 @@ const TaskStack = ({ children, title, count, borderColor }: any) => {
         mb={3}
       >
         <Text
-          fontSize="18px"
+          fontSize="16px"
           fontWeight="600"
           color="subText.200"
           fontFamily={"body"}
@@ -42,7 +42,7 @@ const TaskStack = ({ children, title, count, borderColor }: any) => {
           {count}
         </Box>
       </HStack>
-      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}>
+      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16} h="100%">
         <CardBody p={2}>{children}</CardBody>
       </Card>
     </>

@@ -8,7 +8,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "chart.js/auto";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PageFourteen = ({ data, isEdit }: any) => {
+const PageFourteen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   const [chartData, setChartData] = useState<any>({
     data: {
       datasets: [
@@ -47,13 +47,14 @@ const PageFourteen = ({ data, isEdit }: any) => {
       },
     },
   });
+
   return (
     <>
       <ManagementLayOut page={15} isEdit={isEdit}>
         <VStack align="flex-start" w="100%" spacing={4}>
           <EditableInput
             isEdit={isEdit}
-            value={data[0]?.title}
+            value={reportToEdit?.subTitleFourteen[0]?.title}
             fontSize="24px"
             color="black"
             fontWeight="600"
@@ -61,7 +62,7 @@ const PageFourteen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemOne}
+            value={reportToEdit?.subTitleFourteen[0]?.itemOne}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -76,7 +77,7 @@ const PageFourteen = ({ data, isEdit }: any) => {
 
           <EditableInput
             isEdit={isEdit}
-            value={data[0]?.title2}
+            value={reportToEdit?.subTitleFourteen[0]?.title2}
             fontSize="24px"
             color="greens.200"
             fontWeight="600"
@@ -84,7 +85,7 @@ const PageFourteen = ({ data, isEdit }: any) => {
           />
 
           <EditableTextArea
-            value={data[0]?.itemsTwo}
+            value={reportToEdit?.subTitleFourteen[0]?.itemsTwo}
             fontSize="14px"
             color="black"
             fontWeight="500"
@@ -92,20 +93,22 @@ const PageFourteen = ({ data, isEdit }: any) => {
           />
 
           <VStack align={"flex-start"} bg={"#F5F5F5"} p={2}>
-            {data[0]?.transactions.map((item: any, index: number) => (
-              <EditableTextArea
-                key={index}
-                value={item}
-                fontSize="14px"
-                color="black"
-                fontWeight="500"
-                isEdit={isEdit}
-              />
-            ))}
+            {reportToEdit?.subTitleFourteen[0]?.transactions.map(
+              (item: any, index: number) => (
+                <EditableTextArea
+                  key={index}
+                  value={item}
+                  fontSize="14px"
+                  color="black"
+                  fontWeight="500"
+                  isEdit={isEdit}
+                />
+              ),
+            )}
           </VStack>
 
           <EditableTextArea
-            value={data[0]?.itemsThree}
+            value={reportToEdit?.subTitleFourteen[0]?.itemsThree}
             fontSize="14px"
             color="black"
             fontWeight="500"

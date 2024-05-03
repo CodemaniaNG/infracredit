@@ -18,40 +18,90 @@ import PageSixteen from "./PageSixteen";
 import CoverPage from "./CoverPage";
 import Footer from "./Footer";
 
-const ManagementReport = ({ isEdit, managementReport }: any) => {
-  // const body = managementReport?.body;
-  // const parsedBody = body && JSON.parse(body);
+const ManagementReport = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
     <>
-      {managementReport && (
+      {reportToEdit && (
         <>
           <CoverPage />
-          <PageOne data={managementReport?.subTitle} isEdit={isEdit} />
-          <PageTwo data={managementReport?.subTitleTwo} isEdit={isEdit} />
-          <Page3 data={managementReport?.subTitleThree} isEdit={isEdit} />
-          <PageFour data={managementReport?.subTitleFour} isEdit={isEdit} />
-          <PageFive data={managementReport?.subTitleFive} isEdit={isEdit} />
-          <PageSix data={managementReport?.subTitleSix} isEdit={isEdit} />
-          <PageSeven data={managementReport?.subTitleSeven} isEdit={isEdit} />
-          <PageEight data={managementReport?.subTitleEight} isEdit={isEdit} />
-          <PageNine data={managementReport?.subTitleNine} isEdit={isEdit} />
-          <PageTen data={managementReport?.subTitleTen} isEdit={isEdit} />
-          <PageEleven data={managementReport?.subTitleEleven} isEdit={isEdit} />
-          <PageTwelve data={managementReport?.subTitleTwelve} isEdit={isEdit} />
+          <PageOne
+            isEdit={isEdit}
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+          />
+          <PageTwo
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <Page3
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageFour
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageFive
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageSix
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageSeven
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageEight
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageNine
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageTen
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageEleven
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
+          <PageTwelve
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
+            isEdit={isEdit}
+          />
           <PageThirteen
-            data={managementReport?.subTitleThirteen}
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
             isEdit={isEdit}
           />
           <PageFourteen
-            data={managementReport?.subTitleFourteen}
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
             isEdit={isEdit}
           />
           <PageFifteen
-            data={managementReport?.subTitleFifteen}
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
             isEdit={isEdit}
           />
           <PageSixteen
-            data={managementReport?.subTitleSixteen}
+            reportToEdit={reportToEdit}
+            setReportToEdit={setReportToEdit}
             isEdit={isEdit}
           />
           <Footer />

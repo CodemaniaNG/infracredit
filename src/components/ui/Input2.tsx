@@ -20,6 +20,9 @@ const Input2 = ({
   maxLength,
   icon,
   iconPosition,
+  onChange,
+  isReadOnly,
+  value,
 }: InputProps) => {
   const [show, setShow] = useState<boolean>(false);
   const handleClick = () => setShow(!show);
@@ -45,6 +48,7 @@ const Input2 = ({
 
             <ChakraInput
               {...field}
+              isReadOnly={isReadOnly}
               placeholder={placeholder}
               borderRadius={"8px"}
               borderWidth={1}
@@ -60,6 +64,13 @@ const Input2 = ({
               type={type === "password" ? (show ? "text" : "password") : type}
               backgroundColor="white"
               maxLength={maxLength}
+              onChange={(e) => {
+                form.setFieldValue(name, e.target.value);
+                if (onChange) {
+                  onChange(e);
+                }
+              }}
+              value={value}
             />
             {icon && iconPosition === "right" && (
               <InputRightElement position="absolute" top="5px">
