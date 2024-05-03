@@ -69,6 +69,7 @@ const Tasks = () => {
                           isStack={true}
                           status={report?.status}
                           id={report?.id}
+                          commentCount={report?.commentCount}
                         />
                       )}
                     </>
@@ -95,6 +96,7 @@ const Tasks = () => {
                           isStack={true}
                           status={report?.status}
                           id={report?.id}
+                          commentCount={report?.commentCount}
                         />
                       )}
                     </>
@@ -121,6 +123,7 @@ const Tasks = () => {
                           isStack={true}
                           status={report?.status}
                           id={report?.id}
+                          commentCount={report?.commentCount}
                         />
                       )}
                     </>
@@ -147,6 +150,7 @@ const Tasks = () => {
                           isStack={true}
                           status={report?.status}
                           id={report?.id}
+                          commentCount={report?.commentCount}
                         />
                       )}
                     </>
@@ -173,6 +177,7 @@ const Tasks = () => {
                           isStack={true}
                           status={report?.status}
                           id={report?.id}
+                          commentCount={report?.commentCount}
                         />
                       )}
                     </>

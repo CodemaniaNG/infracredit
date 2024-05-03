@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../baseUrl";
+import { get } from "lodash";
 
 export const reportsApi = createApi({
   reducerPath: "reportsApi",
@@ -87,6 +88,17 @@ export const reportsApi = createApi({
       invalidatesTags: ["Reports"],
     }),
 
+    getReviewers: builder.query({
+      query: ({ token, reportId }) => ({
+        url: `api/reports/${reportId}/reviewers`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ["Reports"],
+    }),
+
     //comments
     createComment: builder.mutation({
       query: ({ token, body }) => ({
@@ -148,4 +160,5 @@ export const {
   useUpdateCommentMutation,
   useDeleteCommentMutation,
   useGetCommentsQuery,
+  useGetReviewersQuery,
 } = reportsApi;

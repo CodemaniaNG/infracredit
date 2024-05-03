@@ -12,8 +12,10 @@ import Input from "@/components/ui/Input2";
 import { useAppSelector } from "@/redux/store";
 import { useUpdateReportMutation } from "@/redux/services/reports.service";
 import { formatDate2 } from "@/utils/functions";
+import { useRouter } from "next/router";
 
 const DisapproveReport = ({ setIsOpen, templateData }: any) => {
+  const router = useRouter();
   const toast = useToast();
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
@@ -43,6 +45,7 @@ const DisapproveReport = ({ setIsOpen, templateData }: any) => {
           isClosable: true,
         });
         setIsOpen(false);
+        router.back();
       })
       .catch((error) => {
         toast({

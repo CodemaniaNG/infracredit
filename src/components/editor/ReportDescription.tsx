@@ -16,6 +16,9 @@ import { useState } from "react";
 import Modal from "../ui/Modal";
 import AddReviewer from "../modals/AddReviewer";
 
+import { useAppSelector } from "@/redux/store";
+import { useGetReviewersQuery } from "@/redux/services/reports.service";
+
 const ReportDescription = ({
   templateData,
   reportTitle,
@@ -23,6 +26,17 @@ const ReportDescription = ({
   handleUpdateReport,
   updateReportLoading,
 }: any) => {
+  const { token } = useAppSelector((state) => state.app.auth);
+
+  const { data: reviewers, isLoading: reviewersLoading } = useGetReviewersQuery(
+    {
+      token: token,
+      reportId: templateData?.id,
+    },
+  );
+
+  const allReviewers = reviewers?.data;
+
   const [showCollaborators, setShowCollaborators] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -139,7 +153,7 @@ const ReportDescription = ({
               color="greens.100"
               fontFamily={"body"}
             >
-              Reviewers (5)
+              Collaborators ({allReviewers?.length})
             </Text>
 
             <IconButton
@@ -155,28 +169,27 @@ const ReportDescription = ({
 
           {showCollaborators && (
             <HStack flexWrap="wrap">
-              {Array(5)
-                .fill(0)
-                .map((_, i) => (
-                  <VStack align="flex-start" key={i}>
-                    <Avatar
-                      size="sm"
-                      name="Segun Adebayo"
-                      src="https://bit.ly/sage-adebayo"
-                    >
-                      <AvatarBadge boxSize="1.25em" bg="green.500" />
-                    </Avatar>
+              {allReviewers?.map((reviewer: any, i: any) => (
+                <VStack align="flex-start" key={i}>
+                  <Avatar
+                    size="sm"
+                    name={reviewer?.user?.name}
+                    bg="primary"
+                    color="white"
+                  >
+                    <AvatarBadge boxSize="1.25em" bg="green.500" />
+                  </Avatar>
 
-                    <Text
-                      fontSize={"12px"}
-                      fontFamily={"body"}
-                      fontWeight={"500"}
-                      color={"subText.600"}
-                    >
-                      Segun
-                    </Text>
-                  </VStack>
-                ))}
+                  <Text
+                    fontSize={"12px"}
+                    fontFamily={"body"}
+                    fontWeight={"500"}
+                    color={"subText.600"}
+                  >
+                    {reviewer?.user?.name}
+                  </Text>
+                </VStack>
+              ))}
             </HStack>
           )}
         </VStack>
@@ -201,7 +214,7 @@ const ReportDescription = ({
           />
         </HStack>
 
-        <VStack align="flex-start" w="100%">
+        {/* <VStack align="flex-start" w="100%">
           <Text
             fontSize={"14px"}
             fontWeight="500"
@@ -229,7 +242,7 @@ const ReportDescription = ({
               Segun
             </Text>
           </VStack>
-        </VStack>
+        </VStack> */}
       </VStack>
 
       <Modal

@@ -10,9 +10,11 @@ import Button from "../ui/Button";
 import { useAppSelector } from "@/redux/store";
 import { useUpdateReportMutation } from "@/redux/services/reports.service";
 import { formatDate2 } from "@/utils/functions";
+import { useRouter } from "next/router";
 
 const SubmitReport = ({ setIsOpen, templateData }: any) => {
   const toast = useToast();
+  const router = useRouter();
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
 
@@ -41,6 +43,7 @@ const SubmitReport = ({ setIsOpen, templateData }: any) => {
           isClosable: true,
         });
         setIsOpen(false);
+        router.back();
       })
       .catch((error) => {
         toast({
@@ -52,6 +55,7 @@ const SubmitReport = ({ setIsOpen, templateData }: any) => {
         });
       });
   };
+
   return (
     <VStack align="flex-start" spacing={4} mt={10} mb={5}>
       <Text
