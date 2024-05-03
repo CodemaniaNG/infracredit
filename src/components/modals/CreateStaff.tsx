@@ -87,8 +87,8 @@ const CreateStaff = ({ setIsOpen }: any) => {
   }, [email, refetch]);
 
   useEffect(() => {
-    if (userDetail?.data?.givenName) {
-      setName(userDetail?.data?.givenName);
+    if (userDetail?.data?.displayName) {
+      setName(userDetail?.data?.displayName);
     }
   }, [userDetail]);
 
