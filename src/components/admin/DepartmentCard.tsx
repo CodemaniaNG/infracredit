@@ -46,14 +46,11 @@ const DepartmentCard = ({ title, desc, id }: DepartmentCardProps) => {
             </VStack>
 
             <AvatarGroup size="sm" max={3}>
-              <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
-              <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
-              <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
-              <Avatar
-                name="Prosper Otemuyiwa"
-                src="https://bit.ly/prosper-baba"
-              />
-              <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
+              <Avatar name="Ryan Florence" bg="primary" color="white" />
+              <Avatar name="Segun Adebayo" bg="primary" color="white" />
+              <Avatar name="Kent Dodds" bg="primary" color="white" />
+              <Avatar name="Prosper Otemuyiwa" bg="primary" color="white" />
+              <Avatar name="Christian Nwamba" bg="primary" color="white" />
             </AvatarGroup>
 
             <Text
@@ -63,20 +60,8 @@ const DepartmentCard = ({ title, desc, id }: DepartmentCardProps) => {
               fontFamily={"body"}
               textAlign="center"
             >
-              {desc || "No description"}
+              {"No description"}
             </Text>
-
-            {/* <HStack>
-              <Image src="/images/comment.svg" alt="Like" />
-              <Text
-                fontSize={"12px"}
-                fontWeight="500"
-                color="subText.300"
-                fontFamily={"body"}
-              >
-                13 Comments
-              </Text>
-            </HStack> */}
           </VStack>
         </CardBody>
       </Card>

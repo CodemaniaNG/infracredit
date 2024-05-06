@@ -18,122 +18,140 @@ const ActionBtns = ({
   handleUpdateReport,
   updateReportLoading,
   templateData,
+  handlePrint,
 }: any) => {
   const { userInfo } = useAppSelector((state) => state.app.auth);
   const userRole = userInfo?.role.name;
   return (
     <>
-      {userRole === "User" && (
-        <HStack justify="flex-end">
-          {isEdit && (
-            <Button
-              text={"Cancel Edit"}
-              bg="transparent"
-              border="#FFCB8A"
-              color="#FF8F00"
-              borderWidth="1px"
-              px={6}
-              onClick={() => setIsEdit(!isEdit)}
-            />
+      {templateData?.status !== 4 && (
+        <>
+          {userRole === "User" && (
+            <HStack justify="flex-end">
+              {isEdit && (
+                <Button
+                  text={"Cancel Edit"}
+                  bg="transparent"
+                  border="#FFCB8A"
+                  color="#FF8F00"
+                  borderWidth="1px"
+                  px={6}
+                  onClick={() => setIsEdit(!isEdit)}
+                />
+              )}
+              {!isEdit && (
+                <Button
+                  text="Submit"
+                  bg="#F0FFFF"
+                  border="#8CDBB4"
+                  color="greens.100"
+                  borderWidth="1px"
+                  px={6}
+                  onClick={handleModal7}
+                  isDisabled={
+                    templateData?.status === 2 ||
+                    templateData?.status === 3 ||
+                    templateData?.status === 4
+                  }
+                />
+              )}
+              <Button
+                text={isEdit ? "Save" : "Edit Report"}
+                onClick={() => {
+                  if (isEdit) {
+                    handleUpdateReport();
+                  }
+                  setIsEdit(!isEdit);
+                }}
+                isLoading={updateReportLoading}
+                isDisabled={
+                  updateReportLoading ||
+                  templateData?.status === 2 ||
+                  templateData?.status === 3 ||
+                  templateData?.status === 4
+                }
+              />
+            </HStack>
           )}
-          {!isEdit && (
-            <Button
-              text="Submit"
-              bg="#F0FFFF"
-              border="#8CDBB4"
-              color="greens.100"
-              borderWidth="1px"
-              px={6}
-              onClick={handleModal7}
-              isDisabled={
-                templateData?.status === 2 ||
-                templateData?.status === 3 ||
-                templateData?.status === 4
-              }
-            />
+
+          {userRole === "Manager" && (
+            <HStack justify="flex-end">
+              <Button
+                text="Disapprove"
+                bg="transparent"
+                border="#FF9D98"
+                color="#FF3B30"
+                borderWidth="1px"
+                px={6}
+                variant="outline"
+                onClick={handleModal4}
+              />
+              <Button text={"Approve"} onClick={handleModal3} />
+            </HStack>
           )}
-          <Button
-            text={isEdit ? "Save" : "Edit Report"}
-            onClick={() => {
-              if (isEdit) {
-                handleUpdateReport();
-              }
-              setIsEdit(!isEdit);
-            }}
-            isLoading={updateReportLoading}
-            isDisabled={
-              updateReportLoading ||
-              templateData?.status === 2 ||
-              templateData?.status === 3 ||
-              templateData?.status === 4
-            }
-          />
-        </HStack>
+
+          {userRole === "Supervisor" && (
+            <HStack justify="flex-end">
+              {isEdit && (
+                <Button
+                  text={"Cancel Edit"}
+                  bg="transparent"
+                  border="#FFCB8A"
+                  color="#FF8F00"
+                  borderWidth="1px"
+                  px={6}
+                  onClick={() => setIsEdit(!isEdit)}
+                />
+              )}
+              {!isEdit && (
+                <Button
+                  text={"Return"}
+                  bg="transparent"
+                  border="#FF9D98"
+                  color="#FF3B30"
+                  borderWidth="1px"
+                  px={6}
+                  onClick={handleModal6}
+                  isDisabled={templateData?.status === 3}
+                />
+              )}
+              <Button
+                text={isEdit ? "Save" : "Edit Report"}
+                bg="#F0FFFF"
+                color="greens.100"
+                px={6}
+                onClick={() => {
+                  if (isEdit) {
+                    handleUpdateReport();
+                  }
+                  setIsEdit(!isEdit);
+                }}
+                isLoading={updateReportLoading}
+                isDisabled={updateReportLoading || templateData?.status === 3}
+              />
+              {!isEdit && (
+                <Button
+                  text={"Submit"}
+                  px={6}
+                  onClick={handleModal7}
+                  isDisabled={templateData?.status === 3}
+                />
+              )}
+            </HStack>
+          )}
+        </>
       )}
 
-      {userRole === "Manager" && (
+      {templateData?.status === 4 && (
         <HStack justify="flex-end">
           <Button
-            text="Disapprove"
-            bg="transparent"
-            border="#FF9D98"
-            color="#FF3B30"
-            borderWidth="1px"
-            px={6}
-            variant="outline"
-            onClick={handleModal4}
-          />
-          <Button text={"Approve"} onClick={handleModal3} />
-        </HStack>
-      )}
-
-      {userRole === "Supervisor" && (
-        <HStack justify="flex-end">
-          {isEdit && (
-            <Button
-              text={"Cancel Edit"}
-              bg="transparent"
-              border="#FFCB8A"
-              color="#FF8F00"
-              borderWidth="1px"
-              px={6}
-              onClick={() => setIsEdit(!isEdit)}
-            />
-          )}
-          {!isEdit && (
-            <Button
-              text={"Return"}
-              bg="transparent"
-              border="#FF9D98"
-              color="#FF3B30"
-              borderWidth="1px"
-              px={6}
-              onClick={handleModal6}
-              isDisabled={templateData?.status === 3}
-            />
-          )}
-          <Button
-            text={isEdit ? "Save" : "Edit Report"}
+            text="Download Document"
             bg="#F0FFFF"
+            border="#8CDBB4"
             color="greens.100"
-            px={6}
-            onClick={() => {
-              if (isEdit) {
-                handleUpdateReport();
-              }
-              setIsEdit(!isEdit);
-            }}
-            isLoading={updateReportLoading}
-            isDisabled={updateReportLoading || templateData?.status === 3}
+            borderWidth="1px"
+            onClick={handlePrint}
           />
-          {!isEdit && (
-            <Button
-              text={"Submit"}
-              px={6}
-              onClick={handleModal7}
-              isDisabled={templateData?.status === 3}
-            />
-          )}
         </HStack>
       )}
 

@@ -29,8 +29,8 @@ export const onboardApi = createApi({
     }),
 
     getUsers: builder.query({
-      query: ({ token }) => ({
-        url: `api/users`,
+      query: ({ token, data }) => ({
+        url: `api/users?RoleName=${data.RoleName}&Department=${data.Department}&PageNumber=${data.PageNumber}&PageSize=${data.PageSize}`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

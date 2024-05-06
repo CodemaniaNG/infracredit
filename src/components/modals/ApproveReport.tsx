@@ -10,8 +10,10 @@ import Button from "../ui/Button";
 import { useAppSelector } from "@/redux/store";
 import { useUpdateReportMutation } from "@/redux/services/reports.service";
 import { formatDate2 } from "@/utils/functions";
+import { useRouter } from "next/router";
 
 const ApproveReport = ({ setIsOpen, templateData }: any) => {
+  const router = useRouter();
   const toast = useToast();
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
@@ -41,6 +43,7 @@ const ApproveReport = ({ setIsOpen, templateData }: any) => {
           isClosable: true,
         });
         setIsOpen(false);
+        router.back();
       })
       .catch((error) => {
         toast({

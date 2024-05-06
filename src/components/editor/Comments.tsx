@@ -77,6 +77,7 @@ const Comments = ({ id, comments }: any) => {
                           size="sm"
                           name={comment?.user?.name}
                           bg="primary"
+                          color="white"
                         >
                           <AvatarBadge boxSize="1.25em" bg="green.500" />
                         </Avatar>
