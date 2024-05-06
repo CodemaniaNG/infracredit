@@ -7,12 +7,14 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  Stack,
+  Spinner,
 } from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import MemberTable from "@/components/admin/MemberTable";
 import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardHeader from "../dashboard/DashboardHeader";
 import CreateStaff from "../modals/CreateStaff";
 import OrganizationTask from "./OrganizationTask";
@@ -21,13 +23,31 @@ import { useAppSelector } from "@/redux/store";
 import { useGetUsersQuery } from "@/redux/services/onboard.service";
 import Loader from "../ui/Loader";
 import { useMemo } from "react";
+import { useRouter } from "next/router";
 
 const Admin = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { token } = useAppSelector((state) => state.app.auth);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [roleName, setRoleName] = useState("");
+  const [department, setDepartment] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
-  const { data: users, isLoading: usersLoading } = useGetUsersQuery({
+  const {
+    data: users,
+    isLoading: usersLoading,
+    refetch: refetchUsers,
+    isFetching: isFetchingUsers,
+  } = useGetUsersQuery({
     token: token,
+    data: {
+      RoleName: roleName || "",
+      Department: department || "",
+      PageNumber: pageNumber,
+      PageSize: pageSize,
+    },
   });
 
   const allUsers = useMemo(() => {
@@ -50,6 +70,10 @@ const Admin = () => {
     return allUsers?.filter((user: any) => user.role.name === "User");
   }, [allUsers]);
 
+  useEffect(() => {
+    refetchUsers();
+  }, [roleName, department, pageNumber, pageSize, refetchUsers]);
+
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
@@ -71,6 +95,29 @@ const Admin = () => {
       title: "Manager",
     },
   ];
+
+  const handleTabChange = (index: number) => {
+    setActiveIndex(index);
+    setRoleName(
+      index === 0
+        ? ""
+        : index === 1
+        ? "User"
+        : index === 2
+        ? "Supervisor"
+        : index === 3
+        ? "Admin"
+        : "Manager",
+    );
+    router.push(`/dashboard/admin?tab=${index}`);
+  };
+
+  useEffect(() => {
+    const tab = router.query.tab;
+    if (tab) {
+      setActiveIndex(Number(tab));
+    }
+  }, [router.query.tab]);
 
   return (
     <>
@@ -133,20 +180,27 @@ const Admin = () => {
             <OrganizationTask />
 
             <>
-              <Text
-                fontSize={{
-                  base: "16px",
-                  md: "18px",
-                  lg: "20px",
-                }}
-                fontWeight="600"
-                color="subText.400"
-                fontFamily={"body"}
-                mb={3}
+              <Stack direction="row" spacing={4} mb={3} align="center">
+                <Text
+                  fontSize={{
+                    base: "16px",
+                    md: "18px",
+                    lg: "20px",
+                  }}
+                  fontWeight="600"
+                  color="subText.400"
+                  fontFamily={"body"}
+                >
+                  Manage members
+                </Text>
+                {isFetchingUsers && <Spinner size="sm" color="greens.100" />}
+              </Stack>
+
+              <Tabs
+                isLazy
+                index={activeIndex}
+                onChange={(index) => handleTabChange(index)}
               >
-                Manage members
-              </Text>
-              <Tabs>
                 <TabList>
                   {tabs.map((tab, index) => (
                     <Tab
@@ -180,19 +234,49 @@ const Admin = () => {
 
                 <TabPanels px={0}>
                   <TabPanel px={0}>
-                    <MemberTable data={allUsers} />
+                    <MemberTable
+                      data={allUsers}
+                      pageSize={pageSize}
+                      setPageSize={setPageSize}
+                      pageNumber={pageNumber}
+                      setPageNumber={setPageNumber}
+                    />
                   </TabPanel>
                   <TabPanel px={0}>
-                    <MemberTable data={userUsers} />
+                    <MemberTable
+                      data={allUsers}
+                      pageSize={pageSize}
+                      setPageSize={setPageSize}
+                      pageNumber={pageNumber}
+                      setPageNumber={setPageNumber}
+                    />
                   </TabPanel>
                   <TabPanel px={0}>
-                    <MemberTable data={supervisorUsers} />
+                    <MemberTable
+                      data={allUsers}
+                      pageSize={pageSize}
+                      setPageSize={setPageSize}
+                      pageNumber={pageNumber}
+                      setPageNumber={setPageNumber}
+                    />
                   </TabPanel>
                   <TabPanel px={0}>
-                    <MemberTable data={adminUsers} />
+                    <MemberTable
+                      data={allUsers}
+                      pageSize={pageSize}
+                      setPageSize={setPageSize}
+                      pageNumber={pageNumber}
+                      setPageNumber={setPageNumber}
+                    />
                   </TabPanel>
                   <TabPanel px={0}>
-                    <MemberTable data={managerUsers} />
+                    <MemberTable
+                      data={allUsers}
+                      pageSize={pageSize}
+                      setPageSize={setPageSize}
+                      pageNumber={pageNumber}
+                      setPageNumber={setPageNumber}
+                    />
                   </TabPanel>
                 </TabPanels>
               </Tabs>

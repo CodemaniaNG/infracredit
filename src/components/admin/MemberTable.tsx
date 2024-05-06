@@ -12,15 +12,20 @@ import {
   MenuItem,
   IconButton,
   Image,
-  Stack,
-  Text,
 } from "@chakra-ui/react";
 import { formatDate2 } from "@/utils/functions";
 import { useRouter } from "next/router";
-import Button from "../ui/Button";
 import Empty from "./Empty";
+import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import Pagination from "../ui/Pagination";
 
-const MemberTable = ({ data }: any) => {
+const MemberTable = ({
+  data,
+  pageSize,
+  setPageSize,
+  pageNumber,
+  setPageNumber,
+}: any) => {
   const router = useRouter();
   const headers = ["S/N", "Name", "Email", "Role", "Joined On", "Action"];
 
@@ -150,6 +155,15 @@ const MemberTable = ({ data }: any) => {
           desc="No member has been added to this department yet"
         />
       )}
+
+      {/*  */}
+      <Pagination
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        data={data}
+      />
     </TableContainer>
   );
 };

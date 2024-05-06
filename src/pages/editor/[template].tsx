@@ -14,7 +14,7 @@ import ReportDescription from "@/components/editor/ReportDescription";
 import Comments from "@/components/editor/Comments";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
 import {
@@ -27,9 +27,11 @@ import ActionBtns from "@/components/editor/ActionBtns";
 import TemplateModals from "@/components/editor/TemplateModals";
 import Renumeration from "@/components/templates/renumeration";
 import Credit from "@/components/templates/credit";
+import { useReactToPrint } from "react-to-print";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
+  const componentRef = useRef() as any;
   const toast = useToast();
   const router = useRouter();
   const { template } = router.query;
@@ -188,6 +190,11 @@ const Editor = () => {
       });
   };
 
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: templateData?.title,
+  });
+
   return (
     <>
       <Layout showSidebar={false}>
@@ -239,6 +246,7 @@ const Editor = () => {
                 handleUpdateReport={handleUpdateReport}
                 updateReportLoading={updateReportLoading}
                 templateData={templateData}
+                handlePrint={handlePrint}
               />
             </HStack>
 
@@ -269,7 +277,7 @@ const Editor = () => {
               </GridItem>
 
               <GridItem colSpan={3}>
-                <Box>
+                <Box ref={componentRef}>
                   {templateData?.title?.toLowerCase().includes("ceo") && (
                     <CeoReport
                       isEdit={isEdit}

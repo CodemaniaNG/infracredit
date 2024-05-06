@@ -99,6 +99,7 @@ const Dashboard = () => {
                     key={report?.id}
                     status={report?.status}
                     id={report?.id}
+                    commentCount={report?.commentCount}
                   />
                 </GridItem>
               ))}
