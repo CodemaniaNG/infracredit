@@ -38,3 +38,7 @@ export const createReportSchema = yup.object().shape({
   Body: yup.string().required("Body is required"),
   UserIds: yup.array().of(yup.string()).min(1, "Atleast one user is required"),
 });
+
+export const rejectReportSchema = yup.object().shape({
+  Comment: yup.string().required("Comment is required"),
+});

@@ -10,9 +10,10 @@ import Button from "../ui/Button";
 import { Formik, Form } from "formik";
 import Input from "@/components/ui/Input2";
 import { useAppSelector } from "@/redux/store";
-import { useUpdateReportMutation } from "@/redux/services/reports.service";
+import { useRejectReportMutation } from "@/redux/services/reports.service";
 import { formatDate2 } from "@/utils/functions";
 import { useRouter } from "next/router";
+import { rejectReportSchema } from "@/schemas/admin.schema";
 
 const ReturnReport = ({ setIsOpen, templateData }: any) => {
   const router = useRouter();
@@ -20,20 +21,16 @@ const ReturnReport = ({ setIsOpen, templateData }: any) => {
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
 
-  const [updateReport, { isLoading: updateReportLoading }] =
-    useUpdateReportMutation();
+  const [rejectReport, { isLoading: rejectReportLoading }] =
+    useRejectReportMutation();
 
-  const handleUpdateReport = async () => {
-    const data = [
-      {
-        op: "replace",
-        path: "Status",
-        value: 1,
-      },
-    ];
-    await updateReport({
+  const handleUpdateReport = async (values: any) => {
+    await rejectReport({
       token,
-      body: data,
+      body: {
+        Comment: values.Comment,
+        Status: 1,
+      },
       id: templateData?.id,
     })
       .unwrap()
@@ -91,7 +88,6 @@ const ReturnReport = ({ setIsOpen, templateData }: any) => {
             fontWeight={"500"}
             fontFamily={"body"}
           >
-            {/* Contractual Agreement | January 3, 2023 */}
             {templateData?.title} | {formatDate2(templateData?.createdAt)}
           </Text>
         </VStack>
@@ -137,7 +133,7 @@ const ReturnReport = ({ setIsOpen, templateData }: any) => {
         </HStack>
       </VStack>
 
-      <VStack align="flex-start">
+      {/* <VStack align="flex-start">
         <Text
           fontSize={"14px"}
           fontFamily={"body"}
@@ -174,58 +170,58 @@ const ReturnReport = ({ setIsOpen, templateData }: any) => {
             </Text>
           </VStack>
         </HStack>
-      </VStack>
+      </VStack> */}
 
       <Formik
         initialValues={{
-          comment: "",
+          Comment: "",
         }}
         onSubmit={(values, actions) => {
           console.log(values);
         }}
+        validationSchema={rejectReportSchema}
       >
         {(props) => (
           <Form style={{ width: "100%" }}>
             <VStack>
               <Input
                 label="Comment"
-                name="comment"
+                name="Comment"
                 type="text"
-                placeholder="Comment"
+                placeholder="Enter comment here"
               />
 
-              {/* <VStack align="stretch" w={"100%"} mt={4}>
-                      <Button text="Share" px={4} py={4} type="submit" />
-                    </VStack> */}
+              <VStack align="stretch" w={"100%"} mt={4}>
+                <HStack w={"100%"} justify="space-between">
+                  <Button
+                    text="Cancel"
+                    px={4}
+                    py={4}
+                    type="button"
+                    variant="outline"
+                    bg="transparent"
+                    color="#FF3B30"
+                    border="#FF9D98"
+                    onClick={() => setIsOpen(false)}
+                    isDisabled={rejectReportLoading}
+                  />
+
+                  <Button
+                    text="Return"
+                    px={4}
+                    py={4}
+                    type="submit"
+                    bg="#FF3B30"
+                    onClick={handleUpdateReport}
+                    isLoading={rejectReportLoading}
+                    isDisabled={rejectReportLoading}
+                  />
+                </HStack>
+              </VStack>
             </VStack>
           </Form>
         )}
       </Formik>
-
-      <HStack w={"100%"} justify="space-between">
-        <Button
-          text="Cancel"
-          px={4}
-          py={4}
-          type="submit"
-          variant="outline"
-          bg="transparent"
-          color="#FF3B30"
-          border="#FF9D98"
-          onClick={() => setIsOpen(false)}
-        />
-
-        <Button
-          text="Return"
-          px={4}
-          py={4}
-          type="submit"
-          bg="#FF3B30"
-          onClick={handleUpdateReport}
-          isLoading={updateReportLoading}
-          isDisabled={updateReportLoading}
-        />
-      </HStack>
     </VStack>
   );
 };
