@@ -90,8 +90,7 @@ const ActionBtns = ({
             </HStack>
           )}
 
-          {/* superVisor to admin */}
-          {userRole === "Admin" && (
+          {userRole === "Supervisor" && (
             <HStack justify="flex-end">
               {isEdit && (
                 <Button
