@@ -291,7 +291,7 @@ const Editor = () => {
 
               <GridItem colSpan={3}>
                 <Box ref={componentRef}>
-                  {templateData?.title?.toLowerCase().includes("ceo") && (
+                  {type === "ceo" && (
                     <CeoReport
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
@@ -299,9 +299,7 @@ const Editor = () => {
                     />
                   )}
 
-                  {templateData?.title
-                    ?.toLowerCase()
-                    .includes("management") && (
+                  {type === "management" && (
                     <ManagementReport
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
