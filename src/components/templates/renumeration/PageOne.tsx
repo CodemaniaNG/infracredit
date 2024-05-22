@@ -23,7 +23,7 @@ const PageOne = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
         value={reportToEdit?.title}
         fontSize="12px"
         color="black"
-        fontWeight="600"
+        fontWeight="700"
         textAlign="left"
         isEdit={isEdit}
         onChange={(e: any) => {

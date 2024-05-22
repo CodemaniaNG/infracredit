@@ -19,6 +19,7 @@ import Loader from "@/components/ui/Loader";
 import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
 import Renumeration from "@/components/templates/renumeration";
 import Credit from "@/components/templates/credit";
+import { templateIDs } from "@/utils/constant";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
@@ -38,32 +39,42 @@ const Editor = () => {
 
   const templateData = data?.data;
 
+  // useEffect(() => {
+  //   if (templateData?.title?.toLowerCase().includes("ceo")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("ceo"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("management")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("management"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("credit")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("credit"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("renumeration")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("renumeration"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("finance")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("finance"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("risk")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("risk"));
+  //   }
+  // }, [templateData, dispatch]);
+
   useEffect(() => {
-    if (templateData?.title?.toLowerCase().includes("ceo")) {
-      dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("ceo"));
+    if (templateData) {
+      const matchedTemplate = templateIDs.find((t) => t.id === template);
+      if (matchedTemplate) {
+        dispatch(setTemplateContent(JSON.parse(templateData?.body)));
+        dispatch(setType(matchedTemplate?.title));
+      }
     }
-    if (templateData?.title?.toLowerCase().includes("management")) {
-      dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("management"));
-    }
-    if (templateData?.title?.toLowerCase().includes("credit")) {
-      dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("credit"));
-    }
-    if (templateData?.title?.toLowerCase().includes("renumeration")) {
-      dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("renumeration"));
-    }
-    if (templateData?.title?.toLowerCase().includes("finance")) {
-      dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("finance"));
-    }
-    if (templateData?.title?.toLowerCase().includes("risk")) {
-      dispatch(setTemplateContent(JSON.parse(templateData.body)));
-      dispatch(setType("risk"));
-    }
-  }, [templateData, dispatch]);
+  }, [templateData, dispatch, template]);
 
   useEffect(() => {
     if (templateContent) {

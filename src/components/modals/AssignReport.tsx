@@ -18,14 +18,26 @@ import { useAppSelector } from "@/redux/store";
 import { useCreateReportMutation } from "@/redux/services/reports.service";
 import { useGetUsersQuery } from "@/redux/services/onboard.service";
 import { useGetTemplatesQuery } from "@/redux/services/templates.service";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const AssignReport = ({ setIsOpen }: any) => {
   const toast = useToast();
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
+
+  const [roleName, setRoleName] = useState("");
+  const [department, setDepartment] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
   const [createReport, { isLoading }] = useCreateReportMutation();
   const { data: users, isLoading: usersLoading } = useGetUsersQuery({
     token: token,
+    data: {
+      RoleName: roleName || "",
+      Department: department || "",
+      PageNumber: pageNumber,
+      PageSize: pageSize,
+    },
   });
   const { data: templates, isLoading: templatesLoading } =
     useGetTemplatesQuery(token);

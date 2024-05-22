@@ -6,14 +6,26 @@ import { useAppSelector } from "@/redux/store";
 import { useAddReviewerMutation } from "@/redux/services/reports.service";
 import { useGetUsersQuery } from "@/redux/services/onboard.service";
 import Select2 from "../ui/Select2";
+import { useState } from "react";
 
 const AddReviewer = ({ setIsOpen, id }: any) => {
   const toast = useToast();
   const { token } = useAppSelector((state) => state.app.auth);
 
+  const [roleName, setRoleName] = useState("");
+  const [department, setDepartment] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
   const [addReviewer, { isLoading }] = useAddReviewerMutation();
   const { data: users, isLoading: usersLoading } = useGetUsersQuery({
     token: token,
+    data: {
+      RoleName: roleName || "",
+      Department: department || "",
+      PageNumber: pageNumber,
+      PageSize: pageSize,
+    },
   });
 
   const allUsers = users?.data?.map((user: any) => ({
