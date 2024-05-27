@@ -43,9 +43,9 @@ const Select = ({
             backgroundColor="bg.100"
             {...rest}
           >
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+            {options?.map((option) => (
+              <option key={option?.value} value={option?.value}>
+                {option?.label}
               </option>
             ))}
           </ChakraSelect>

@@ -1,22 +1,13 @@
-import {
-  Card,
-  CardBody,
-  Image,
-  HStack,
-  VStack,
-  Text,
-  Divider,
-  Avatar,
-  AvatarGroup,
-} from "@chakra-ui/react";
+import { Card, CardBody, Image, VStack, Text, Divider } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 type TaskCardProps = {
   title: string;
   desc: string;
+  id: string;
 };
 
-const Folder = ({ title }: TaskCardProps) => {
+const Folder = ({ title, id }: TaskCardProps) => {
   const router = useRouter();
   return (
     <>
@@ -26,11 +17,7 @@ const Folder = ({ title }: TaskCardProps) => {
         bg="#fff"
         borderRadius={16}
         cursor={"pointer"}
-        onClick={() =>
-          router.push(
-            `/dashboard/documents/folder/${encodeURIComponent(title)}`
-          )
-        }
+        onClick={() => router.push(`/dashboard/documents/folder/${id}`)}
       >
         <CardBody px={0}>
           <Image src="/images/folder.svg" alt="Document" />

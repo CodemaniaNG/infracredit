@@ -19,6 +19,7 @@ import { useAppSelector } from "@/redux/store";
 import { useGetUserByIdQuery } from "@/redux/services/onboard.service";
 import Loader from "@/components/ui/Loader";
 import { formatDate2 } from "@/utils/functions";
+import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Member = () => {
   const router = useRouter();
@@ -76,7 +77,7 @@ const Member = () => {
   ];
 
   return (
-    <Layout showSidebar={false}>
+    <DashboardLayout showSidebar={false}>
       {userLoading ? (
         <Loader />
       ) : (
@@ -173,7 +174,7 @@ const Member = () => {
           </>
         </Box>
       )}
-    </Layout>
+    </DashboardLayout>
   );
 };
 

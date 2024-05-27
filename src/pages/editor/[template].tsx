@@ -29,6 +29,7 @@ import Renumeration from "@/components/templates/renumeration";
 import Credit from "@/components/templates/credit";
 import { useReactToPrint } from "react-to-print";
 import { templateIDs } from "@/utils/constant";
+import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
@@ -210,7 +211,7 @@ const Editor = () => {
 
   return (
     <>
-      <Layout showSidebar={false}>
+      <DashboardLayout showSidebar={false}>
         {reportsLoading || commentsLoading ? (
           <Loader />
         ) : (
@@ -373,7 +374,7 @@ const Editor = () => {
           handleModal8={handleModal8}
           templateData={templateData}
         />
-      </Layout>
+      </DashboardLayout>
     </>
   );
 };

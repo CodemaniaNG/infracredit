@@ -6,6 +6,7 @@ import DocumentsManager from "@/components/manager/Documents";
 import DocumentsSupervisor from "@/components/supervisor/Documents";
 import DocumentsViewer from "@/components/viewer/Documents";
 import DocumentsAdmin from "@/components/admin/Documents";
+import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 export default function Documents() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
@@ -13,14 +14,14 @@ export default function Documents() {
 
   return (
     <>
-      <Layout>
+      <DashboardLayout>
         {role === "User" && <DocumentsReport />}
         {/* {role === "user-contracts" && <DocumentsContract />} */}
         {role === "Manager" && <DocumentsManager />}
         {role === "Supervisor" && <DocumentsSupervisor />}
         {role === "Viewer" && <DocumentsViewer />}
         {role === "Admin" && <DocumentsAdmin />}
-      </Layout>
+      </DashboardLayout>
     </>
   );
 }
