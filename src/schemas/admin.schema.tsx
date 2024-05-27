@@ -42,3 +42,9 @@ export const createReportSchema = yup.object().shape({
 export const rejectReportSchema = yup.object().shape({
   Comment: yup.string().required("Comment is required"),
 });
+
+export const createFolderSchema = yup.object().shape({
+  Name: yup.string().required("Name is required"),
+  Description: yup.string().required("Description is required"),
+  UserIds: yup.array().of(yup.string()).min(1, "Atleast one user is required"),
+});

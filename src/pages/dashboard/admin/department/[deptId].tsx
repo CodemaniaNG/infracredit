@@ -21,6 +21,7 @@ import AddLevel from "@/components/modals/AddLevel";
 import { useAppSelector } from "@/redux/store";
 import { useGetDepartmentByIdQuery } from "@/redux/services/department.service";
 import Loader from "@/components/ui/Loader";
+import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Department = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,7 +78,7 @@ const Department = () => {
 
   return (
     <>
-      <Layout showSidebar={false}>
+      <DashboardLayout showSidebar={false}>
         {departmentLoading ? (
           <Loader />
         ) : (
@@ -319,9 +320,15 @@ const Department = () => {
         <Modal
           isOpen={isOpen}
           onClose={handleModal}
-          body={<AddLevel setIsOpen={setIsOpen} deptId={deptId} name={department?.name} />}
+          body={
+            <AddLevel
+              setIsOpen={setIsOpen}
+              deptId={deptId}
+              name={department?.name}
+            />
+          }
         />
-      </Layout>
+      </DashboardLayout>
     </>
   );
 };

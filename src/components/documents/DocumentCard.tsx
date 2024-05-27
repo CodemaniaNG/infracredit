@@ -2,12 +2,18 @@ import {
   Card,
   CardBody,
   Image,
-  HStack,
   VStack,
   Text,
   Divider,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  Box,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { BsThreeDotsVertical, BsFillCloudDownloadFill } from "react-icons/bs";
 
 type TaskCardProps = {
   title: string;
@@ -24,13 +30,35 @@ const DocumentCard = ({ title, desc, id }: TaskCardProps) => {
         maxW="sm"
         bg="#fff"
         borderRadius={16}
-        onClick={() => {
-          router.push(`/template/${id}`);
-        }}
-        cursor="pointer"
+        position="relative"
+        overflow="hidden"
       >
         <CardBody p={2}>
           <Image src="/images/template.svg" alt="Document" />
+          <Box position="absolute" top={2} right={1} zIndex={1}>
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                aria-label="Options"
+                icon={<BsThreeDotsVertical color="white" size={24} />}
+                variant="ghost"
+                _hover={{ bg: "transparent" }}
+                _active={{ bg: "transparent" }}
+              />
+              <MenuList>
+                <MenuItem
+                  icon={
+                    <BsFillCloudDownloadFill size={16} color="maintText.100" />
+                  }
+                  color="maintText.100"
+                  fontFamily={"body"}
+                  fontSize={14}
+                >
+                  Download
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
           <Divider borderColor="border.200" />
           <VStack align="flex-start" spacing={4} py={2}>
             <VStack align="flex-start">
@@ -46,7 +74,7 @@ const DocumentCard = ({ title, desc, id }: TaskCardProps) => {
               >
                 {title}
               </Text>
-              {/* <Text
+              <Text
                 fontSize={"10px"}
                 fontWeight="500"
                 color="subText.300"
@@ -54,20 +82,8 @@ const DocumentCard = ({ title, desc, id }: TaskCardProps) => {
                 mt={-2}
               >
                 {desc}
-              </Text> */}
-            </VStack>
-
-            {/* <HStack>
-              <Image src="/images/comment.svg" alt="Like" />
-              <Text
-                fontSize={"12px"}
-                fontWeight="500"
-                color="subText.300"
-                fontFamily={"body"}
-              >
-                13 Comments
               </Text>
-            </HStack> */}
+            </VStack>
           </VStack>
         </CardBody>
       </Card>

@@ -7,6 +7,7 @@ import Loader from "../ui/Loader";
 import { useGetTemplatesQuery } from "@/redux/services/templates.service";
 import { useGetLogsQuery } from "@/redux/services/logs.service";
 import Welcome from "../dashboard/Welcome";
+import TemplateCard from "./TemplateCard";
 
 const Dashboard = () => {
   const { token } = useAppSelector((state) => state.app.auth);
@@ -93,11 +94,7 @@ const Dashboard = () => {
               >
                 {templates?.slice(0, 4)?.map((template: any, index: any) => (
                   <GridItem colSpan={1} key={index}>
-                    <DocumentCard
-                      title={template?.title}
-                      desc={template?.description}
-                      id={template?.id}
-                    />
+                    <TemplateCard item={template} />
                   </GridItem>
                 ))}
               </Grid>

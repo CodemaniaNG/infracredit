@@ -5,12 +5,52 @@ import {
   IconButton,
   Image,
   Input as ChakraInput,
+  useToast,
 } from "@chakra-ui/react";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
+import { useCreateResourceMutation } from "@/redux/services/document.service";
+import { useAppSelector } from "@/redux/store";
 
 const UploadDocument = ({ setIsOpen }: any) => {
   const [file, setFile] = useState<any>(null);
+  const toast = useToast();
+  const { token } = useAppSelector((state) => state.app.auth);
+
+  const [createResource, { isLoading: createResourceLoading }] =
+    useCreateResourceMutation();
+
+  const handleCreateResource = async () => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    await createResource({
+      token,
+      body: formData,
+    })
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Document uploaded successfully.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+        setIsOpen(false);
+      })
+      .catch((error) => {
+        toast({
+          title: "An error occurred.",
+          description: error.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+      });
+  };
+
   return (
     <VStack align="flex-start" spacing={4} mt={10} mb={5}>
       <Text
@@ -113,7 +153,16 @@ const UploadDocument = ({ setIsOpen }: any) => {
         </HStack>
       )}
 
-      {file && <Button text="Upload" py={4} type="submit" />}
+      {file && (
+        <Button
+          text="Upload"
+          py={4}
+          type="button"
+          onClick={handleCreateResource}
+          isLoading={createResourceLoading}
+          isDisabled={createResourceLoading}
+        />
+      )}
     </VStack>
   );
 };

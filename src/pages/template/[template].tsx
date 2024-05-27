@@ -20,6 +20,7 @@ import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
 import Renumeration from "@/components/templates/renumeration";
 import Credit from "@/components/templates/credit";
 import { templateIDs } from "@/utils/constant";
+import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Editor = () => {
   const dispatch = useAppDispatch();
@@ -39,33 +40,6 @@ const Editor = () => {
 
   const templateData = data?.data;
 
-  // useEffect(() => {
-  //   if (templateData?.title?.toLowerCase().includes("ceo")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("ceo"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("management")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("management"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("credit")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("credit"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("renumeration")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("renumeration"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("finance")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("finance"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("risk")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("risk"));
-  //   }
-  // }, [templateData, dispatch]);
-
   useEffect(() => {
     if (templateData) {
       const matchedTemplate = templateIDs.find((t) => t.id === template);
@@ -84,7 +58,7 @@ const Editor = () => {
 
   return (
     <>
-      <Layout showSidebar={false}>
+      <DashboardLayout showSidebar={false}>
         {isLoading ? (
           <Loader />
         ) : (
@@ -194,7 +168,7 @@ const Editor = () => {
             </Grid>
           </Box>
         )}
-      </Layout>
+      </DashboardLayout>
     </>
   );
 };

@@ -1,0 +1,87 @@
+client id: 9dae18a6-567d-4555-9dce-2c50a3ad3ecf
+authority: ...../3d1d815e-5346-4244-9f7b-62b78fb742b1
+redirecturl: https://testenv.icgc.local/InfracreditBusinessReportFE
+scopes: api://aba68f74-198c-4271-bbb1-8331688b4a09/Grant.API.Access
+
+
+
+import { LogLevel } from "@azure/msal-browser";
+
+export const msalConfig = {
+  auth: {
+    clientId: "9dae18a6-567d-4555-9dce-2c50a3ad3ecf",
+    authority:
+      "https://login.microsoftonline.com/3d1d815e-5346-4244-9f7b-62b78fb742b1",
+    redirectUri: "https://testenv.icgc.local/InfracreditBusinessReportFE/",
+    // redirectUri: "http://localhost:3000/",
+  },
+  cache: {
+    cacheLocation: "sessionStorage", // This configures where your cache will be stored
+    storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+  },
+  system: {
+    loggerOptions: {
+      loggerCallback: (level: any, message: any, containsPii: any) => {
+        if (containsPii) {
+          return;
+        }
+        switch (level) {
+          case LogLevel.Error:
+            console.error(message);
+            return;
+          case LogLevel.Info:
+            console.info(message);
+            return;
+          case LogLevel.Verbose:
+            console.debug(message);
+            return;
+          case LogLevel.Warning:
+            console.warn(message);
+            return;
+          default:
+            return;
+        }
+      },
+    },
+  },
+};
+
+export const loginRequest = {
+  scopes: ["api://aba68f74-198c-4271-bbb1-8331688b4a09/Grant.API.Access"],
+  // scopes: ["User.Read"],
+};
+
+export const graphConfig = {
+  graphMeEndpoint: "https://graph.microsoft.com/v1.0/me", //e.g. https://graph.microsoft.com/v1.0/me
+};
+
+
+
+
+
+  // useEffect(() => {
+  //   if (templateData?.title?.toLowerCase().includes("ceo")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("ceo"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("management")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("management"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("credit")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("credit"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("renumeration")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("renumeration"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("finance")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("finance"));
+  //   }
+  //   if (templateData?.title?.toLowerCase().includes("risk")) {
+  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
+  //     dispatch(setType("risk"));
+  //   }
+  // }, [templateData, dispatch]);

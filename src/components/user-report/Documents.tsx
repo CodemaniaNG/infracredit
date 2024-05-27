@@ -1,121 +1,135 @@
-import { Text, VStack, Grid, GridItem, HStack } from "@chakra-ui/react";
+import { Text, Grid, GridItem } from "@chakra-ui/react";
 import DocumentCard from "@/components/documents/DocumentCard";
 import Folder from "../documents/Folder";
-
-const tasks = [
-  {
-    title: "Annual report",
-    desc: "This is a commment, This is a commment, This is a commment",
-  },
-  {
-    title: "Annual report",
-    desc: "This is a commment, This is a commment, This is a commment",
-  },
-  {
-    title: "Annual report",
-    desc: "This is a commment, This is a commment, This is a commment",
-  },
-  {
-    title: "Annual report",
-    desc: "This is a commment, This is a commment, This is a commment",
-  },
-];
+import DashboardHeader from "../dashboard/DashboardHeader";
+import { useAppSelector } from "@/redux/store";
+import {
+  useGetResourcesQuery,
+  useGetFoldersQuery,
+} from "@/redux/services/document.service";
+import Loader from "../ui/Loader";
 
 const Documents = () => {
+  const { token } = useAppSelector((state) => state.app.auth);
+
+  const { data: resources, isLoading: resourcesLoading } =
+    useGetResourcesQuery(token);
+  const allDocuments = resources?.data;
+
+  const { data: folders, isLoading: foldersLoading } =
+    useGetFoldersQuery(token);
+  const allFolders = folders?.data;
+
   return (
     <>
-      <HStack justify="space-between" mb={"3"}>
-        <VStack align="flex-start">
-          <Text
-            fontSize={{
-              base: "20px",
-              md: "24px",
-              lg: "32px",
-            }}
-            fontWeight="600"
-            color="maintText.200"
-            fontFamily={"body"}
-          >
-            Documents
-          </Text>
-          <Text
-            fontSize={"16px"}
-            fontWeight="500"
-            color="subText.400"
-            mt={-2}
-            fontFamily={"body"}
-          >
-            All of your documents are managed here
-          </Text>
-        </VStack>
-      </HStack>
-      <>
+      {resourcesLoading || foldersLoading ? (
+        <Loader />
+      ) : (
         <>
-          <Text
-            fontSize={{
-              base: "16px",
-              md: "18px",
-              lg: "20px",
-            }}
-            fontWeight="600"
-            color="subText.400"
-            fontFamily={"body"}
-            mb={3}
-          >
-            Recent Documents
-          </Text>
-          <Grid
-            templateColumns={{
-              sm: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap={2}
-            mb={5}
-          >
-            {tasks.map((task, index) => (
-              <GridItem colSpan={1} key={index}>
-                <DocumentCard
-                  title={task.title}
-                  desc={task.desc}
-                  id={index.toString()}
-                />
-              </GridItem>
-            ))}
-          </Grid>
-        </>
+          <DashboardHeader
+            title="Documents"
+            description="All of your documents are managed here"
+          />
 
-        <>
-          <Text
-            fontSize={{
-              base: "16px",
-              md: "18px",
-              lg: "20px",
-            }}
-            fontWeight="600"
-            color="subText.400"
-            fontFamily={"body"}
-            mb={3}
-          >
-            Folders
-          </Text>
-          <Grid
-            templateColumns={{
-              sm: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap={2}
-            mb={5}
-          >
-            {tasks.map((task, index) => (
-              <GridItem colSpan={1} key={index}>
-                <Folder title={task.title} desc={task.desc} />
-              </GridItem>
-            ))}
-          </Grid>
+          <>
+            <>
+              <Text
+                fontSize={{
+                  base: "16px",
+                  md: "18px",
+                  lg: "20px",
+                }}
+                fontWeight="600"
+                color="subText.400"
+                fontFamily={"body"}
+                mb={3}
+              >
+                Recent Documents
+              </Text>
+              {allDocuments?.length === 0 && (
+                <Text
+                  fontSize={16}
+                  color="subText.400"
+                  fontFamily={"body"}
+                  mb={3}
+                >
+                  No documents found
+                </Text>
+              )}
+
+              {allFolders?.length > 0 && (
+                <Grid
+                  templateColumns={{
+                    sm: "repeat(1, 1fr)",
+                    md: "repeat(2, 1fr)",
+                    lg: "repeat(4, 1fr)",
+                  }}
+                  gap={2}
+                  mb={5}
+                >
+                  {allDocuments?.map((task: any, index: any) => (
+                    <GridItem colSpan={1} key={index}>
+                      <DocumentCard
+                        title={task.name}
+                        desc={task.description}
+                        id={index.toString()}
+                      />
+                    </GridItem>
+                  ))}
+                </Grid>
+              )}
+            </>
+
+            <>
+              <Text
+                fontSize={{
+                  base: "16px",
+                  md: "18px",
+                  lg: "20px",
+                }}
+                fontWeight="600"
+                color="subText.400"
+                fontFamily={"body"}
+                mb={3}
+              >
+                Folders
+              </Text>
+              {allFolders?.length === 0 && (
+                <Text
+                  fontSize={16}
+                  color="subText.400"
+                  fontFamily={"body"}
+                  mb={3}
+                >
+                  No folders found
+                </Text>
+              )}
+
+              {allFolders?.length > 0 && (
+                <Grid
+                  templateColumns={{
+                    sm: "repeat(1, 1fr)",
+                    md: "repeat(2, 1fr)",
+                    lg: "repeat(4, 1fr)",
+                  }}
+                  gap={2}
+                  mb={5}
+                >
+                  {allFolders?.map((task: any, index: any) => (
+                    <GridItem colSpan={1} key={index}>
+                      <Folder
+                        title={task.name}
+                        desc={task.description}
+                        id={task.id}
+                      />
+                    </GridItem>
+                  ))}
+                </Grid>
+              )}
+            </>
+          </>
         </>
-      </>
+      )}
     </>
   );
 };
