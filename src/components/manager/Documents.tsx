@@ -95,7 +95,7 @@ const Documents = () => {
                   {allDocuments?.map((task: any, index: any) => (
                     <GridItem colSpan={1} key={index}>
                       <DocumentCard
-                        title={task.name}
+                        title={task.resource}
                         desc={task.description}
                         id={index.toString()}
                       />

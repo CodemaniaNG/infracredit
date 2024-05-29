@@ -48,3 +48,7 @@ export const createFolderSchema = yup.object().shape({
   Description: yup.string().required("Description is required"),
   UserIds: yup.array().of(yup.string()).min(1, "Atleast one user is required"),
 });
+
+export const createResourceSchema = yup.object().shape({
+  FolderId: yup.string().required("Folder is required"),
+});

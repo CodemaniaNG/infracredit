@@ -2,7 +2,7 @@ import { useAppSelector } from "@/redux/store";
 import { Text, VStack } from "@chakra-ui/react";
 import { formatDate2 } from "@/utils/functions";
 
-const Welcome = () => {
+const Welcome = ({ isHome = false }: any) => {
   const { userInfo } = useAppSelector((state) => state.app.auth);
   return (
     <VStack align="flex-start" mb={"3"}>
@@ -30,7 +30,7 @@ const Welcome = () => {
           textTransform={"capitalize"}
         >
           {" "}
-          {userInfo?.name}
+          {isHome ? "to InfraCredit Management System" : userInfo?.name}
         </Text>
       </Text>
       <Text

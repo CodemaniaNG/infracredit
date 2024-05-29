@@ -6,11 +6,19 @@ import {
   Image,
   Input as ChakraInput,
   useToast,
+  Spinner,
+  Stack,
 } from "@chakra-ui/react";
-import Button from "@/components/ui/Button";
-import { useState } from "react";
-import { useCreateResourceMutation } from "@/redux/services/document.service";
+import { useState, useMemo } from "react";
+import {
+  useCreateResourceMutation,
+  useGetFoldersQuery,
+} from "@/redux/services/document.service";
 import { useAppSelector } from "@/redux/store";
+import Select from "../ui/Select2";
+import Button from "@/components/ui/Button";
+import { Formik, Form } from "formik";
+import { createResourceSchema } from "@/schemas/admin.schema";
 
 const UploadDocument = ({ setIsOpen }: any) => {
   const [file, setFile] = useState<any>(null);
@@ -20,9 +28,19 @@ const UploadDocument = ({ setIsOpen }: any) => {
   const [createResource, { isLoading: createResourceLoading }] =
     useCreateResourceMutation();
 
-  const handleCreateResource = async () => {
+  const { data: folders, isLoading } = useGetFoldersQuery(token);
+
+  const allFolders = useMemo(() => {
+    return folders?.data.map((folder: any) => ({
+      value: folder.id,
+      label: folder.name,
+    }));
+  }, [folders]);
+
+  const handleCreateResource = async (values: any) => {
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("FolderId", values.FolderId);
 
     await createResource({
       token,
@@ -154,14 +172,42 @@ const UploadDocument = ({ setIsOpen }: any) => {
       )}
 
       {file && (
-        <Button
-          text="Upload"
-          py={4}
-          type="button"
-          onClick={handleCreateResource}
-          isLoading={createResourceLoading}
-          isDisabled={createResourceLoading}
-        />
+        <Formik
+          initialValues={{
+            FolderId: "",
+          }}
+          onSubmit={(values, actions) => {
+            handleCreateResource(values);
+          }}
+          validationSchema={createResourceSchema}
+        >
+          {(props) => (
+            <Form style={{ width: "100%" }}>
+              <VStack>
+                <Stack direction={"row"} align="center" w={"100%"} spacing={1}>
+                  <Select
+                    label="Select Folder"
+                    name="FolderId"
+                    options={allFolders}
+                    placeholder="Select Folder"
+                  />
+                  {isLoading && <Spinner size="sm" color="green.500" mt={5} />}
+                </Stack>
+
+                <VStack align="stretch" w={"100%"} mt={4}>
+                  <Button
+                    text="Upload"
+                    px={4}
+                    py={4}
+                    type="submit"
+                    isLoading={createResourceLoading}
+                    isDisabled={createResourceLoading}
+                  />
+                </VStack>
+              </VStack>
+            </Form>
+          )}
+        </Formik>
       )}
     </VStack>
   );
