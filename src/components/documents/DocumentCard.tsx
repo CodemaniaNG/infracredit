@@ -12,17 +12,32 @@ import {
   IconButton,
   Box,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import { BsThreeDotsVertical, BsFillCloudDownloadFill } from "react-icons/bs";
 
 type TaskCardProps = {
   title: string;
   desc: string;
   id: string;
+  meta?: string;
+  url?: string;
 };
 
-const DocumentCard = ({ title, desc, id }: TaskCardProps) => {
-  const router = useRouter();
+const DocumentCard = ({
+  title,
+  desc,
+  id,
+  meta,
+  url = "https://res.cloudinary.com/gatsby-portfolio/image/upload/v1716972699/Frame_1000007483_zde4zy.png",
+}: TaskCardProps) => {
+  // const handleDownload = () => {
+  //   // Create a temporary anchor element
+  //   const link = document.createElement("a");
+  //   link.href = url;
+  //   link.download = title; // Set the file name to be downloaded
+  //   link.target = "_blank"; // Open the file in a new tab
+  //   link.click(); // Trigger the download
+  // };
+
   return (
     <>
       <Card
@@ -53,6 +68,7 @@ const DocumentCard = ({ title, desc, id }: TaskCardProps) => {
                   color="maintText.100"
                   fontFamily={"body"}
                   fontSize={14}
+                  // onClick={handleDownload}
                 >
                   Download
                 </MenuItem>
@@ -65,8 +81,8 @@ const DocumentCard = ({ title, desc, id }: TaskCardProps) => {
               <Text
                 fontSize={{
                   base: "16px",
-                  md: "18px",
-                  lg: "18px",
+                  md: "16px",
+                  lg: "16px",
                 }}
                 fontWeight="600"
                 color="maintText.100"

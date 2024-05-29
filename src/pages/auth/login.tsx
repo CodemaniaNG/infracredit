@@ -21,7 +21,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      router.push("/");
+      router.push("/home");
     }
   }, [router, userInfo]);
 

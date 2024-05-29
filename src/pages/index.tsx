@@ -9,7 +9,7 @@ import DashboardAdmin from "@/components/admin/Dashboard";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 export default function Home() {
-  const { userInfo } = useAppSelector((state) => state.app.auth);
+  const { userInfo, token } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
 
   return (

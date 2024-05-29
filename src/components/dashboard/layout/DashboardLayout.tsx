@@ -6,16 +6,18 @@ import SidebarContent from "./SidebarContent";
 interface DashboardLayoutProps {
   children: React.ReactNode;
   showSidebar?: boolean;
+  bgColor?: string;
 }
 
 const DashboardLayout = ({
   children,
   showSidebar = true,
+  bgColor = "bg.100",
 }: DashboardLayoutProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box minH="100vh" bg="bg.100" position="relative">
+    <Box minH="100vh" bg={bgColor} position="relative">
       <SidebarContent
         onClose={() => onClose}
         display={{
@@ -39,7 +41,12 @@ const DashboardLayout = ({
 
       <MobileNav onOpen={onOpen} showSidebar={showSidebar} />
 
-      <Box ml={{ base: 0, lg: showSidebar ? 60 : 0 }} p="4" bg="bg.100" pt="20">
+      <Box
+        ml={{ base: 0, lg: showSidebar ? 60 : 0 }}
+        p="4"
+        bg={bgColor}
+        pt="20"
+      >
         {children}
       </Box>
     </Box>

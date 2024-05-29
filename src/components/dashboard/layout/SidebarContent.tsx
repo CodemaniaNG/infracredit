@@ -7,6 +7,7 @@ import {
   Image,
   HStack,
   VStack,
+  Stack,
 } from "@chakra-ui/react";
 
 import NavItem from "./NavItem";
@@ -153,6 +154,25 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             onClick={onClose}
           />
         </Flex>
+
+        <HStack
+          spacing={2}
+          align="flex-start"
+          mt={10}
+          onClick={() => router.push("/home")}
+          cursor="pointer"
+          ml={4}
+        >
+          <Image src="/images/undo2.svg" alt="logo" boxSize={6} />
+          <Text
+            fontSize="16px"
+            fontWeight="500"
+            color="secondary"
+            fontFamily="body"
+          >
+            Go Home
+          </Text>
+        </HStack>
 
         <Text
           fontSize="14px"
