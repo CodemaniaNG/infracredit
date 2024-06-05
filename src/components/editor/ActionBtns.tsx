@@ -27,7 +27,7 @@ const ActionBtns = ({
     <>
       {templateData?.status !== 4 && (
         <>
-          {userRole === "Admin" && (
+          {userRole === "User" && (
             <HStack justify="flex-end">
               {isEdit && (
                 <Button

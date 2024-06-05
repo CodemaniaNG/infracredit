@@ -10,9 +10,16 @@ import {
 import { formatDate2 } from "@/utils/functions";
 import Empty from "../admin/Empty";
 import { useAppSelector } from "@/redux/store";
+import Pagination from "../ui/Pagination";
 
-const DashboardTable = ({ data }: any) => {
-  const headers = ["S/N", "Action", "Date", "User", "Current User"];
+const DashboardTable = ({
+  data,
+  pageSize,
+  setPageSize,
+  pageNumber,
+  setPageNumber,
+}: any) => {
+  const headers = ["S/N", "Name", "Email", "Role", "Joined On"];
 
   const { userInfo } = useAppSelector((state) => state.app.auth);
 
@@ -65,7 +72,29 @@ const DashboardTable = ({ data }: any) => {
                 textTransform="capitalize"
                 fontFamily={"body"}
               >
-                {item?.action}
+                {item?.name}
+              </Td>
+
+              <Td
+                textAlign="left"
+                fontSize={16}
+                fontWeight={400}
+                color="subText.200"
+                textTransform="lowercase"
+                fontFamily={"body"}
+              >
+                {item?.email}
+              </Td>
+
+              <Td
+                textAlign="left"
+                fontSize={16}
+                fontWeight={400}
+                color="subText.200"
+                textTransform="capitalize"
+                fontFamily={"body"}
+              >
+                {item?.role?.name}
               </Td>
 
               <Td
@@ -78,38 +107,19 @@ const DashboardTable = ({ data }: any) => {
               >
                 {formatDate2(item?.createdAt)}
               </Td>
-
-              <Td
-                textAlign="left"
-                fontSize={16}
-                fontWeight={400}
-                color="subText.200"
-                textTransform="capitalize"
-                fontFamily={"body"}
-              >
-                {item?.user?.username}
-              </Td>
-
-              <Td
-                textAlign="left"
-                fontSize={16}
-                fontWeight={400}
-                color="subText.200"
-                textTransform="capitalize"
-                fontFamily={"body"}
-              >
-                {userInfo?.username}
-              </Td>
             </Tr>
           ))}
         </Tbody>
       </Table>
-      {!data?.length && (
-        <Empty
-          title="No activity Found"
-          desc="User''s activity will be displayed here."
-        />
-      )}
+      {!data?.length && <Empty title="No members found." desc="" />}
+
+      <Pagination
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        data={data}
+      />
     </TableContainer>
   );
 };
