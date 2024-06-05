@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import EditableInput from "@/components/ui/EditableInput";
 import ManagementLayOut from "./ManagementLayOut";
+import { memo } from "react";
 
 const PageTen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
@@ -136,4 +137,4 @@ const PageTen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageTen;
+export default memo(PageTen);

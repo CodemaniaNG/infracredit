@@ -16,8 +16,14 @@ import PageFifteen from "./PageFifteen";
 import PageSixteen from "./PageSixteen";
 import CoverPage from "./CoverPage";
 import Footer from "./Footer";
+import { HStack, IconButton, Text, Box } from "@chakra-ui/react";
+import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import React, { useState, useRef } from "react";
+
+const PAGE_SIZE = 1;
 
 const pages = [
+  CoverPage,
   PageOne,
   PageTwo,
   Page3,
@@ -34,14 +40,77 @@ const pages = [
   PageFourteen,
   PageFifteen,
   PageSixteen,
+  Footer,
 ];
 
 const ManagementReport = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  // ref to control the scroll position
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleNext = () => {
+    if ((currentPage + 1) * PAGE_SIZE < pages.length) {
+      setCurrentPage(currentPage + 1);
+      ref.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      ref.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const startIndex = currentPage * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
+  const currentPages = pages.slice(startIndex, endIndex);
   return (
-    <>
-      {reportToEdit && (
+    <Box ref={ref}>
+      {reportToEdit && isEdit && (
         <>
-          <CoverPage />
+          {currentPages.map((PageComponent, index) => (
+            <PageComponent
+              key={startIndex + index}
+              reportToEdit={reportToEdit}
+              setReportToEdit={setReportToEdit}
+              isEdit={isEdit}
+            />
+          ))}
+
+          <HStack
+            direction="row"
+            spacing={2}
+            align="center"
+            justify="space-between"
+          >
+            <IconButton
+              aria-label="previous"
+              icon={<ArrowBackIcon />}
+              variant="outline"
+              borderRadius="full"
+              borderColor="mainText.200"
+              onClick={() => handlePrev()}
+              isDisabled={currentPage === 0}
+            />
+            <Text fontSize={14} fontWeight={500} color="subText.200">
+              Page {currentPage + 1}
+            </Text>
+            <IconButton
+              aria-label="next"
+              icon={<ArrowForwardIcon />}
+              variant="outline"
+              borderRadius="full"
+              borderColor="mainText.200"
+              onClick={() => handleNext()}
+              isDisabled={endIndex >= pages.length}
+            />
+          </HStack>
+        </>
+      )}
+
+      {reportToEdit && !isEdit && (
+        <>
           {pages.map((PageComponent, index) => (
             <PageComponent
               key={index}
@@ -50,126 +119,10 @@ const ManagementReport = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
               setReportToEdit={setReportToEdit}
             />
           ))}
-          <Footer />
         </>
       )}
-    </>
+    </Box>
   );
 };
 
 export default ManagementReport;
-
-// import Page3 from "./PageThree";
-// import PageOne from "./PageOne";
-// import PageTwo from "./PageTwo";
-// // import { managementReport } from "@/utils/data";
-// import PageFour from "./PageFour";
-// import PageFive from "./PageFive";
-// import PageSix from "./PageSix";
-// import PageSeven from "./PageSeven";
-// import PageEight from "./PageEight";
-// import PageNine from "./PageNine";
-// import PageTen from "./PageTen";
-// import PageEleven from "./PageEleven";
-// import PageTwelve from "./PageTwelve";
-// import PageThirteen from "./PageThirteen";
-// import PageFourteen from "./PageFourteen";
-// import PageFifteen from "./PageFifteen";
-// import PageSixteen from "./PageSixteen";
-// import CoverPage from "./CoverPage";
-// import Footer from "./Footer";
-
-// const ManagementReport = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
-//   return (
-//     <>
-//       {reportToEdit && (
-//         <>
-//           <CoverPage />
-//           <PageOne
-//             isEdit={isEdit}
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//           />
-//           <PageTwo
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <Page3
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageFour
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageFive
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageSix
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageSeven
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageEight
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageNine
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageTen
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageEleven
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageTwelve
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageThirteen
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageFourteen
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageFifteen
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <PageSixteen
-//             reportToEdit={reportToEdit}
-//             setReportToEdit={setReportToEdit}
-//             isEdit={isEdit}
-//           />
-//           <Footer />
-//         </>
-//       )}
-//     </>
-//   );
-// };
-
-// export default ManagementReport;

@@ -16,7 +16,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import type { ChartData, ChartOptions } from "chart.js";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -155,4 +155,4 @@ const PageEight = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageEight;
+export default memo(PageEight);

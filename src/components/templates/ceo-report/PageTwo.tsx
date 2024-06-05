@@ -16,7 +16,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 ChartJS.register(ArcElement, Tooltip, Legend);
-import { useState } from "react";
+import { memo, useState } from "react";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 
@@ -282,4 +282,4 @@ const PageTwo = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageTwo;
+export default memo(PageTwo);

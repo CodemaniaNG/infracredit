@@ -7,14 +7,15 @@ import {
   HStack,
   Image,
   useToast,
+  Spinner,
+  VStack,
 } from "@chakra-ui/react";
-import Layout from "@/components/dashboard/Layout";
 import { useRouter } from "next/router";
 import ReportDescription from "@/components/editor/ReportDescription";
 import Comments from "@/components/editor/Comments";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
 import {
@@ -22,7 +23,6 @@ import {
   useGetCommentsQuery,
   useUpdateReportMutation,
 } from "@/redux/services/reports.service";
-import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
 import ActionBtns from "@/components/editor/ActionBtns";
 import TemplateModals from "@/components/editor/TemplateModals";
 import Renumeration from "@/components/templates/renumeration";
@@ -47,11 +47,9 @@ const Editor = () => {
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
   const [reportToEdit, setReportToEdit] = useState<any>(null);
+  console.log(reportToEdit);
   const [reportTitle, setReportTitle] = useState("");
-
-  const { templateContent, type } = useAppSelector(
-    (state) => state.app.template,
-  );
+  const [type, setType] = useState("");
 
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
@@ -82,50 +80,17 @@ const Editor = () => {
     }
   }, [templateData]);
 
-  // useEffect(() => {
-  //   if (templateData?.title?.toLowerCase().includes("ceo")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("ceo"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("management")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("management"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("credit")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("credit"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("renumeration")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("renumeration"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("finance")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("finance"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("risk")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("risk"));
-  //   }
-  // }, [templateData, dispatch]);
-
   useEffect(() => {
     if (templateData) {
       const matchedTemplate = templateIDs.find(
         (t) => t.id === templateData?.templateId,
       );
       if (matchedTemplate) {
-        dispatch(setTemplateContent(JSON.parse(templateData?.body)));
-        dispatch(setType(matchedTemplate?.title));
+        setReportToEdit(JSON.parse(templateData?.body));
+        setType(matchedTemplate?.title);
       }
     }
   }, [templateData, dispatch]);
-
-  useEffect(() => {
-    if (templateContent) {
-      setReportToEdit(templateContent);
-    }
-  }, [templateContent]);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
@@ -222,8 +187,6 @@ const Editor = () => {
                   icon={<Image src="/images/undo.svg" alt="back" />}
                   bg="white"
                   onClick={() => {
-                    dispatch(setTemplateContent(null));
-                    dispatch(setType(""));
                     router.back();
                   }}
                   aria-label="back"
@@ -273,14 +236,7 @@ const Editor = () => {
               gap={2}
               mb={5}
             >
-              <GridItem
-                colSpan={1}
-                sx={{
-                  position: "sticky",
-                  top: "0",
-                  zIndex: "1",
-                }}
-              >
+              <GridItem colSpan={1}>
                 <ReportDescription
                   templateData={templateData}
                   setReportTitle={setReportTitle}
@@ -291,56 +247,68 @@ const Editor = () => {
               </GridItem>
 
               <GridItem colSpan={3}>
-                <Box ref={componentRef}>
-                  {type === "ceo" && (
-                    <CeoReport
-                      isEdit={isEdit}
-                      reportToEdit={reportToEdit}
-                      setReportToEdit={setReportToEdit}
-                    />
-                  )}
+                {reportToEdit && type ? (
+                  <Box ref={componentRef}>
+                    {type === "ceo" && (
+                      <CeoReport
+                        isEdit={isEdit}
+                        reportToEdit={reportToEdit}
+                        setReportToEdit={setReportToEdit}
+                      />
+                    )}
 
-                  {type === "management" && (
-                    <ManagementReport
-                      isEdit={isEdit}
-                      reportToEdit={reportToEdit}
-                      setReportToEdit={setReportToEdit}
-                    />
-                  )}
+                    {type === "management" && (
+                      <ManagementReport
+                        isEdit={isEdit}
+                        reportToEdit={reportToEdit}
+                        setReportToEdit={setReportToEdit}
+                      />
+                    )}
 
-                  {type === "credit" && (
-                    <Credit
-                      isEdit={isEdit}
-                      reportToEdit={reportToEdit}
-                      setReportToEdit={setReportToEdit}
-                    />
-                  )}
+                    {type === "credit" && (
+                      <Credit
+                        isEdit={isEdit}
+                        reportToEdit={reportToEdit}
+                        setReportToEdit={setReportToEdit}
+                      />
+                    )}
 
-                  {type === "renumeration" && (
-                    <Renumeration
-                      isEdit={isEdit}
-                      reportToEdit={reportToEdit}
-                      setReportToEdit={setReportToEdit}
+                    {type === "renumeration" && (
+                      <Renumeration
+                        isEdit={isEdit}
+                        reportToEdit={reportToEdit}
+                        setReportToEdit={setReportToEdit}
+                      />
+                    )}
+                    {type === "risk" && (
+                      <Renumeration
+                        isEdit={isEdit}
+                        reportToEdit={reportToEdit}
+                        setReportToEdit={setReportToEdit}
+                      />
+                    )}
+                    {type === "finance" && (
+                      <Renumeration
+                        isEdit={isEdit}
+                        reportToEdit={reportToEdit}
+                        setReportToEdit={setReportToEdit}
+                      />
+                    )}
+                  </Box>
+                ) : (
+                  <VStack align="center" justify="center" h="100%">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="greens.200"
+                      size="lg"
                     />
-                  )}
-                  {type === "risk" && (
-                    <Renumeration
-                      isEdit={isEdit}
-                      reportToEdit={reportToEdit}
-                      setReportToEdit={setReportToEdit}
-                    />
-                  )}
-                  {type === "finance" && (
-                    <Renumeration
-                      isEdit={isEdit}
-                      reportToEdit={reportToEdit}
-                      setReportToEdit={setReportToEdit}
-                    />
-                  )}
-                </Box>
+                  </VStack>
+                )}
               </GridItem>
 
-              <GridItem colSpan={1} position="sticky" right="0">
+              <GridItem colSpan={1}>
                 <Comments id={templateData?.id} comments={commentsData} />
               </GridItem>
             </Grid>
@@ -379,4 +347,4 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default memo(Editor);

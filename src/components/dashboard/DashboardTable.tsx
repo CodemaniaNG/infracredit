@@ -104,12 +104,7 @@ const DashboardTable = ({ data }: any) => {
           ))}
         </Tbody>
       </Table>
-      {!data?.length && (
-        <Empty
-          title="No activity Found"
-          desc="User''s activity will be displayed here."
-        />
-      )}
+      {!data?.length && <Empty title="No members found." desc="" />}
     </TableContainer>
   );
 };

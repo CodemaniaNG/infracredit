@@ -6,6 +6,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import Title from "./Title";
+import { memo } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -127,4 +128,4 @@ const PageTen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageTen;
+export default memo(PageTen);

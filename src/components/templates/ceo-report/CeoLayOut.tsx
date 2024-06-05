@@ -1,5 +1,6 @@
 import { Text, VStack, Box, HStack, Image } from "@chakra-ui/react";
 import EditableInput from "@/components/ui/EditableInput";
+import { memo } from "react";
 
 const CeoLayOut = ({ children, page, isEdit, title, onChange }: any) => {
   return (
@@ -91,4 +92,4 @@ const CeoLayOut = ({ children, page, isEdit, title, onChange }: any) => {
   );
 };
 
-export default CeoLayOut;
+export default memo(CeoLayOut);

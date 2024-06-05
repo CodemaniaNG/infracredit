@@ -1,6 +1,7 @@
 import { HStack } from "@chakra-ui/react";
 import Button from "@/components/ui/Button";
 import { useAppSelector } from "@/redux/store";
+import { memo } from "react";
 
 const ActionBtns = ({
   isEdit,
@@ -26,7 +27,7 @@ const ActionBtns = ({
     <>
       {templateData?.status !== 4 && (
         <>
-          {userRole === "User" && (
+          {userRole === "Admin" && (
             <HStack justify="flex-end">
               {isEdit && (
                 <Button
@@ -185,4 +186,4 @@ const ActionBtns = ({
   );
 };
 
-export default ActionBtns;
+export default memo(ActionBtns);
