@@ -5,8 +5,8 @@ export const msalConfig = {
     clientId: "09c7d2b1-b72c-4ea5-b4a0-bb3db24f4c1a",
     authority:
       "https://login.microsoftonline.com/f2c465ef-ecef-47df-bc31-9fc90ed38aa9",
-    // redirectUri: "https://infra-credit.vercel.app/",
-    redirectUri: "http://localhost:3000/",
+    redirectUri: "https://infra-credit.vercel.app/",
+    // redirectUri: "http://localhost:3000/",
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
