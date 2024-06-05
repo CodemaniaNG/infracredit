@@ -1,38 +1,65 @@
 import {
   Text,
-  VStack,
   Grid,
   GridItem,
   Box,
   IconButton,
   HStack,
   Image,
-  Avatar,
-  AvatarBadge,
 } from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import DashboardTable from "@/components/dashboard/DashboardTable";
 import { useRouter } from "next/router";
 import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
-import { useState } from "react";
-import Layout from "@/components/dashboard/Layout";
+import { useState, useMemo, useEffect } from "react";
 import AddLevel from "@/components/modals/AddLevel";
 import { useAppSelector } from "@/redux/store";
 import { useGetDepartmentByIdQuery } from "@/redux/services/department.service";
+import { useGetUsersQuery } from "@/redux/services/onboard.service";
 import Loader from "@/components/ui/Loader";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
+import MemberTable2 from "@/components/admin/MemberTable2";
 
 const Department = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const { deptId } = router.query;
+  const { deptId, title } = router.query;
+  const [roleName, setRoleName] = useState("");
+  const [department, setDepartment] = useState(title);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  useEffect(() => {
+    if (title) {
+      setDepartment(title);
+    }
+  }, [title]);
 
   const { token } = useAppSelector((state) => state.app.auth);
 
   const { data: departmentData, isLoading: departmentLoading } =
     useGetDepartmentByIdQuery({ token, id: deptId });
-  const department = departmentData?.data;
+  const dept = departmentData?.data;
+
+  const {
+    data: users,
+    isLoading: usersLoading,
+    refetch: refetchUsers,
+    isFetching: isFetchingUsers,
+  } = useGetUsersQuery({
+    token: token,
+    data: {
+      RoleName: roleName || "",
+      Department: department || "",
+      PageNumber: pageNumber,
+      PageSize: pageSize,
+    },
+  });
+
+  const allUsers = useMemo(() => {
+    return users?.data;
+  }, [users]);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
@@ -65,7 +92,7 @@ const Department = () => {
                   color="maintText.200"
                   fontFamily={"body"}
                 >
-                  {department?.name}
+                  {dept?.name}
                 </Text>
               </HStack>
 
@@ -95,7 +122,7 @@ const Department = () => {
                 <GridItem colSpan={1}>
                   <DashboardCard
                     label={"Members"}
-                    value={0}
+                    value={allUsers?.length || 0}
                     isPrefix={false}
                     image="/images/reports.svg"
                   />
@@ -142,7 +169,13 @@ const Department = () => {
                 </Text>
                 {/*  */}
 
-                <DashboardTable data={department?.users} />
+                <MemberTable2
+                  data={allUsers}
+                  pageSize={pageSize}
+                  setPageSize={setPageSize}
+                  pageNumber={pageNumber}
+                  setPageNumber={setPageNumber}
+                />
               </>
             </>
           </Box>
@@ -151,11 +184,7 @@ const Department = () => {
           isOpen={isOpen}
           onClose={handleModal}
           body={
-            <AddLevel
-              setIsOpen={setIsOpen}
-              deptId={deptId}
-              name={department?.name}
-            />
+            <AddLevel setIsOpen={setIsOpen} deptId={deptId} name={dept?.name} />
           }
         />
       </DashboardLayout>

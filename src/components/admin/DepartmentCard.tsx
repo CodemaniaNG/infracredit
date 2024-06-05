@@ -29,7 +29,9 @@ const DepartmentCard = ({ title, desc, id }: DepartmentCardProps) => {
         justifyContent="center"
         alignItems="center"
         boxShadow="0px 4px 8px rgba(38, 105, 93, 0.1)"
-        onClick={() => router.push(`/dashboard/admin/department/${id}`)}
+        onClick={() =>
+          router.push(`/dashboard/admin/department/${id}?title=${title}`)
+        }
         cursor={"pointer"}
       >
         <CardBody>

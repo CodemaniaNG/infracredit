@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Card,
   CardBody,
@@ -19,24 +20,46 @@ type TaskCardProps = {
   desc: string;
   id: string;
   meta?: string;
-  url?: string;
 };
 
-const DocumentCard = ({
-  title,
-  desc,
-  id,
-  meta,
-  url = "https://res.cloudinary.com/gatsby-portfolio/image/upload/v1716972699/Frame_1000007483_zde4zy.png",
-}: TaskCardProps) => {
-  // const handleDownload = () => {
-  //   // Create a temporary anchor element
-  //   const link = document.createElement("a");
-  //   link.href = url;
-  //   link.download = title; // Set the file name to be downloaded
-  //   link.target = "_blank"; // Open the file in a new tab
-  //   link.click(); // Trigger the download
-  // };
+const DocumentCard = ({ title, desc, id, meta }: TaskCardProps) => {
+  const handleDownload = async () => {
+    if (!meta) {
+      console.error("Metadata not available");
+      return;
+    }
+
+    let parsedMeta;
+    try {
+      parsedMeta = JSON.parse(meta);
+    } catch (error) {
+      console.error("Failed to parse metadata", error);
+      return;
+    }
+
+    const downloadUrl = parsedMeta["@microsoft.graph.downloadUrl"];
+    if (!downloadUrl) {
+      console.error("Download URL not available in metadata");
+      return;
+    }
+
+    try {
+      const response = await fetch(downloadUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = parsedMeta["name"] || "downloaded_file";
+      document.body.appendChild(a);
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Failed to download the file", error);
+    }
+  };
 
   return (
     <>
@@ -68,7 +91,7 @@ const DocumentCard = ({
                   color="maintText.100"
                   fontFamily={"body"}
                   fontSize={14}
-                  // onClick={handleDownload}
+                  onClick={handleDownload}
                 >
                   Download
                 </MenuItem>
