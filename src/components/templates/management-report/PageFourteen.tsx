@@ -3,7 +3,7 @@ import ManagementLayOut from "./ManagementLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 import { Doughnut } from "react-chartjs-2";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "chart.js/auto";
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -120,4 +120,4 @@ const PageFourteen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageFourteen;
+export default memo(PageFourteen);

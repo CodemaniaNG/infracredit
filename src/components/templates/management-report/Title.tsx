@@ -1,5 +1,6 @@
 import { VStack, Box } from "@chakra-ui/react";
 import EditableInput from "@/components/ui/EditableInput";
+import { memo } from "react";
 
 const Title = ({ title, color = "greens.200", isEdit }: any) => {
   return (
@@ -24,4 +25,4 @@ const Title = ({ title, color = "greens.200", isEdit }: any) => {
   );
 };
 
-export default Title;
+export default memo(Title);

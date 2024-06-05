@@ -2,6 +2,7 @@ import { VStack } from "@chakra-ui/react";
 import CeoLayOut from "./CeoLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
+import { memo } from "react";
 
 const PageSeven = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
@@ -80,4 +81,4 @@ const PageSeven = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageSeven;
+export default memo(PageSeven);

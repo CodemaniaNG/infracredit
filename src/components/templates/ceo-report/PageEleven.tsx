@@ -5,7 +5,7 @@ import EditableTextArea from "@/components/ui/EditableTextArea";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import type { ChartData, ChartOptions } from "chart.js";
-import { useState } from "react";
+import { memo, useState } from "react";
 import Title from "./Title";
 
 const PageEleven = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
@@ -176,4 +176,4 @@ const PageEleven = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageEleven;
+export default memo(PageEleven);

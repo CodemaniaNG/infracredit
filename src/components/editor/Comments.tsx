@@ -7,7 +7,7 @@ import {
   Avatar,
   AvatarBadge,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { formatDate2 } from "@/utils/functions";
 import Modal from "../ui/Modal";
 import AddComment from "../modals/AddComment";
@@ -158,4 +158,4 @@ const Comments = ({ id, comments }: any) => {
   );
 };
 
-export default Comments;
+export default memo(Comments);

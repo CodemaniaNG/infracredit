@@ -7,8 +7,6 @@ import {
   HStack,
   Image,
 } from "@chakra-ui/react";
-import Layout from "@/components/dashboard/Layout";
-import Button from "@/components/ui/Button";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
 import { useEffect, useState } from "react";

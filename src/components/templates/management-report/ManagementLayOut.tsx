@@ -1,5 +1,6 @@
 import { Text, VStack, Box, HStack, Image } from "@chakra-ui/react";
 import EditableInput from "@/components/ui/EditableInput";
+import { memo } from "react";
 
 const ManagementLayOut = ({ children, page, isEdit }: any) => {
   return (
@@ -46,4 +47,4 @@ const ManagementLayOut = ({ children, page, isEdit }: any) => {
   );
 };
 
-export default ManagementLayOut;
+export default memo(ManagementLayOut);

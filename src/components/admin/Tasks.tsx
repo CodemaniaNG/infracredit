@@ -179,13 +179,13 @@ const Tasks = () => {
                             }
                             borderColor="#FF3B30"
                           >
-                            {reports?.map((report: any) => (
+                            {reports?.map((report: any, index: any) => (
                               <>
                                 {report?.status === 0 && (
                                   <TaskCard
+                                    key={index}
                                     title={report?.title}
                                     desc={report?.description}
-                                    key={report?.id}
                                     isStack={true}
                                     status={report?.status}
                                     id={report?.id}
@@ -207,13 +207,13 @@ const Tasks = () => {
                             }
                             borderColor="#3C76F1"
                           >
-                            {reports?.map((report: any) => (
+                            {reports?.map((report: any, index: any) => (
                               <>
                                 {report?.status === 1 && (
                                   <TaskCard
                                     title={report?.title}
                                     desc={report?.description}
-                                    key={report?.id}
+                                    key={index}
                                     isStack={true}
                                     status={report?.status}
                                     id={report?.id}
@@ -235,13 +235,13 @@ const Tasks = () => {
                             }
                             borderColor="#FF8F00"
                           >
-                            {reports?.map((report: any) => (
+                            {reports?.map((report: any, index: any) => (
                               <>
                                 {report?.status === 2 && (
                                   <TaskCard
                                     title={report?.title}
                                     desc={report?.description}
-                                    key={report?.id}
+                                    key={index}
                                     isStack={true}
                                     status={report?.status}
                                     id={report?.id}
@@ -263,13 +263,13 @@ const Tasks = () => {
                             }
                             borderColor="#FF9500"
                           >
-                            {reports?.map((report: any) => (
+                            {reports?.map((report: any, index: any) => (
                               <>
                                 {report?.status === 3 && (
                                   <TaskCard
                                     title={report?.title}
                                     desc={report?.description}
-                                    key={report?.id}
+                                    key={index}
                                     isStack={true}
                                     status={report?.status}
                                     id={report?.id}
@@ -291,13 +291,13 @@ const Tasks = () => {
                             }
                             borderColor="#34C759"
                           >
-                            {reports?.map((report: any) => (
+                            {reports?.map((report: any, index: any) => (
                               <>
                                 {report?.status === 4 && (
                                   <TaskCard
                                     title={report?.title}
                                     desc={report?.description}
-                                    key={report?.id}
+                                    key={index}
                                     isStack={true}
                                     status={report?.status}
                                     id={report?.id}

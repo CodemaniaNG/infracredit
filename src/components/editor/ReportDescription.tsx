@@ -12,7 +12,7 @@ import {
   InputRightElement,
   Button,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { memo, useState } from "react";
 import Modal from "../ui/Modal";
 import AddReviewer from "../modals/AddReviewer";
 
@@ -254,4 +254,4 @@ const ReportDescription = ({
   );
 };
 
-export default ReportDescription;
+export default memo(ReportDescription);

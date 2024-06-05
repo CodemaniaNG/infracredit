@@ -5,6 +5,7 @@ import EditableTextArea from "@/components/ui/EditableTextArea";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
+import { memo } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PageTwo = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
@@ -96,4 +97,4 @@ const PageTwo = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageTwo;
+export default memo(PageTwo);

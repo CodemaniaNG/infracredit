@@ -4,6 +4,7 @@ import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "chart.js/auto";
+import { memo } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PageFifteen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
@@ -103,4 +104,4 @@ const PageFifteen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageFifteen;
+export default memo(PageFifteen);

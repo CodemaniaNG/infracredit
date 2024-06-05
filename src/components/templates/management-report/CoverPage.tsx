@@ -1,5 +1,6 @@
 import { Text, VStack, Box, HStack, Image } from "@chakra-ui/react";
 import EditableInput from "@/components/ui/EditableInput";
+import { memo } from "react";
 
 const CoverPage = () => {
   return (
@@ -72,4 +73,4 @@ const CoverPage = () => {
   );
 };
 
-export default CoverPage;
+export default memo(CoverPage);

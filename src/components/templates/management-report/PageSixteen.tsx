@@ -11,6 +11,7 @@ import {
 import ManagementLayOut from "./ManagementLayOut";
 import EditableInput from "@/components/ui/EditableInput";
 import EditableTextArea from "@/components/ui/EditableTextArea";
+import { memo } from "react";
 
 const PageSixteen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   return (
@@ -129,4 +130,4 @@ const PageSixteen = ({ isEdit, reportToEdit, setReportToEdit }: any) => {
   );
 };
 
-export default PageSixteen;
+export default memo(PageSixteen);
