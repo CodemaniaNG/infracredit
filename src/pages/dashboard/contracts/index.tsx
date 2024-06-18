@@ -4,6 +4,7 @@ import ContractsC from "@/components/user-contract/Contracts";
 import ContractsAdmin from "@/components/admin/Contracts";
 import ContractsManager from "@/components/manager/Contracts";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
+import ContractsC2 from "@/components/user-contract/Contracts";
 
 export default function Contracts() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
@@ -13,7 +14,8 @@ export default function Contracts() {
     <>
       <DashboardLayout>
         {role === "User" && <ContractsC />}
-        {role === "Admin" && <ContractsAdmin />}
+        {role === "Admin" && <ContractsC2 />}
+        {/* {role === "Admin" && <ContractsAdmin />} */}
         {role === "Manager" && <ContractsManager />}
       </DashboardLayout>
     </>

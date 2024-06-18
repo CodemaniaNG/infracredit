@@ -70,12 +70,12 @@ const AddDepartment = ({ setIsOpen }: any) => {
                 placeholder="Department Name"
               />
 
-              <Input
+              {/* <Input
                 label="Department Description"
                 name="Description"
                 type="text"
                 placeholder="Department Description"
-              />
+              /> */}
 
               {/* <Input
                 label="Department Description"

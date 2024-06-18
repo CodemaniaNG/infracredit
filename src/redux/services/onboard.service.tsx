@@ -87,7 +87,7 @@ export const onboardApi = createApi({
 
     getUserRoles: builder.query({
       query: ({ token }) => ({
-        url: `api/roles/remote`,
+        url: `api/roles`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

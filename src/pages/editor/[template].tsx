@@ -28,7 +28,6 @@ import TemplateModals from "@/components/editor/TemplateModals";
 import Renumeration from "@/components/templates/renumeration";
 import Credit from "@/components/templates/credit";
 import { useReactToPrint } from "react-to-print";
-import { templateIDs } from "@/utils/constant";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Editor = () => {
@@ -47,9 +46,8 @@ const Editor = () => {
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
   const [reportToEdit, setReportToEdit] = useState<any>(null);
-  console.log(reportToEdit);
   const [reportTitle, setReportTitle] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState<any>(null);
 
   const { token, userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
@@ -82,13 +80,8 @@ const Editor = () => {
 
   useEffect(() => {
     if (templateData) {
-      const matchedTemplate = templateIDs.find(
-        (t) => t.id === templateData?.templateId,
-      );
-      if (matchedTemplate) {
-        setReportToEdit(JSON.parse(templateData?.body));
-        setType(matchedTemplate?.title);
-      }
+      setReportToEdit(JSON.parse(templateData?.body));
+      setType(templateData?.type);
     }
   }, [templateData, dispatch]);
 
@@ -249,7 +242,7 @@ const Editor = () => {
               <GridItem colSpan={3}>
                 {reportToEdit && type ? (
                   <Box ref={componentRef}>
-                    {type === "ceo" && (
+                    {type === 1 && (
                       <CeoReport
                         isEdit={isEdit}
                         reportToEdit={reportToEdit}
@@ -257,7 +250,7 @@ const Editor = () => {
                       />
                     )}
 
-                    {type === "management" && (
+                    {type === 2 && (
                       <ManagementReport
                         isEdit={isEdit}
                         reportToEdit={reportToEdit}
@@ -265,30 +258,31 @@ const Editor = () => {
                       />
                     )}
 
-                    {type === "credit" && (
-                      <Credit
+                    {type === 3 && (
+                      <Renumeration
                         isEdit={isEdit}
                         reportToEdit={reportToEdit}
                         setReportToEdit={setReportToEdit}
                       />
                     )}
 
-                    {type === "renumeration" && (
+                    {type === 4 && (
                       <Renumeration
                         isEdit={isEdit}
                         reportToEdit={reportToEdit}
                         setReportToEdit={setReportToEdit}
                       />
                     )}
-                    {type === "risk" && (
+                    {type === 5 && (
                       <Renumeration
                         isEdit={isEdit}
                         reportToEdit={reportToEdit}
                         setReportToEdit={setReportToEdit}
                       />
                     )}
-                    {type === "finance" && (
-                      <Renumeration
+
+                    {type === 6 && (
+                      <Credit
                         isEdit={isEdit}
                         reportToEdit={reportToEdit}
                         setReportToEdit={setReportToEdit}

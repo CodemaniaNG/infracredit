@@ -34,7 +34,7 @@ const CreateStaff = ({ setIsOpen }: any) => {
 
   const roles = rolesData?.data?.map((role: any) => ({
     value: role.id,
-    label: role.value,
+    label: role.name,
   }));
 
   const { data: departmentsData, isLoading: departmentsLoading } =

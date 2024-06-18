@@ -12,7 +12,7 @@ export const createStaffSchema = yup.object().shape({
 
 export const createDeptSchema = yup.object().shape({
   Name: yup.string().required("Name is required"),
-  Description: yup.string().required("Description is required"),
+  // Description: yup.string().required("Description is required"),
 });
 
 export const createDeptLevelSchema = yup.object().shape({

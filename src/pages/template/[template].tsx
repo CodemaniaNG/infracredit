@@ -14,10 +14,8 @@ import { useRouter } from "next/router";
 import { useAppSelector, useAppDispatch } from "@/redux/store";
 import { useGetTemplateByIdQuery } from "@/redux/services/templates.service";
 import Loader from "@/components/ui/Loader";
-import { setTemplateContent, setType } from "@/redux/slices/templateSlice";
 import Renumeration from "@/components/templates/renumeration";
 import Credit from "@/components/templates/credit";
-import { templateIDs } from "@/utils/constant";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Editor = () => {
@@ -25,11 +23,9 @@ const Editor = () => {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
   const [reportToEdit, setReportToEdit] = useState<any>(null);
+  const [type, setType] = useState<any>(null);
   const { template } = router.query;
   const { token } = useAppSelector((state) => state.app.auth);
-  const { templateContent, type } = useAppSelector(
-    (state) => state.app.template,
-  );
 
   const { data, isLoading } = useGetTemplateByIdQuery({
     token: token,
@@ -40,19 +36,10 @@ const Editor = () => {
 
   useEffect(() => {
     if (templateData) {
-      const matchedTemplate = templateIDs.find((t) => t.id === template);
-      if (matchedTemplate) {
-        dispatch(setTemplateContent(JSON.parse(templateData?.body)));
-        dispatch(setType(matchedTemplate?.title));
-      }
+      setReportToEdit(JSON.parse(templateData?.body));
+      setType(templateData?.type);
     }
-  }, [templateData, dispatch, template]);
-
-  useEffect(() => {
-    if (templateContent) {
-      setReportToEdit(templateContent);
-    }
-  }, [templateContent]);
+  }, [templateData, dispatch]);
 
   return (
     <>
@@ -67,8 +54,6 @@ const Editor = () => {
                   icon={<Image src="/images/undo.svg" alt="back" />}
                   bg="white"
                   onClick={() => {
-                    dispatch(setTemplateContent(null));
-                    dispatch(setType(""));
                     router.back();
                   }}
                   aria-label="back"
@@ -112,7 +97,7 @@ const Editor = () => {
 
               <GridItem colSpan={3}>
                 <Box>
-                  {type === "ceo" && (
+                  {type === 1 && (
                     <CeoReport
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
@@ -120,7 +105,7 @@ const Editor = () => {
                     />
                   )}
 
-                  {type === "management" && (
+                  {type === 2 && (
                     <ManagementReport
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
@@ -128,30 +113,31 @@ const Editor = () => {
                     />
                   )}
 
-                  {type === "credit" && (
-                    <Credit
+                  {type === 3 && (
+                    <Renumeration
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
                       setReportToEdit={setReportToEdit}
                     />
                   )}
 
-                  {type === "renumeration" && (
+                  {type === 4 && (
                     <Renumeration
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
                       setReportToEdit={setReportToEdit}
                     />
                   )}
-                  {type === "risk" && (
+                  {type === 5 && (
                     <Renumeration
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
                       setReportToEdit={setReportToEdit}
                     />
                   )}
-                  {type === "finance" && (
-                    <Renumeration
+
+                  {type === 6 && (
+                    <Credit
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
                       setReportToEdit={setReportToEdit}

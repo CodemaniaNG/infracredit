@@ -17,26 +17,16 @@ type ContractCardProps = {
   role?: string;
 };
 
-const ContractCard = ({
+const ContractCardTemplate = ({
   title,
   desc,
   type = "contract",
   role,
 }: ContractCardProps) => {
   const router = useRouter();
-
   return (
     <>
-      <Card
-        variant="outline"
-        maxW="sm"
-        bg="#fff"
-        borderRadius={16}
-        onClick={() => {
-          router.push(`/editor/${type}?role=${role}`);
-        }}
-        cursor="pointer"
-      >
+      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}>
         <CardBody p={2}>
           <Image src="/images/contract.svg" alt="Document" />
           <Divider borderColor="border.200" />
@@ -79,14 +69,7 @@ const ContractCard = ({
               </Text>
             </HStack>
 
-            <Button
-              text="Open"
-              type="submit"
-              size="md"
-              onClick={() => {
-                router.push(`/editor/${type}?role=${role}`);
-              }}
-            />
+            <Button text="Create" type="button" size="md" />
           </VStack>
         </CardBody>
       </Card>
@@ -94,4 +77,4 @@ const ContractCard = ({
   );
 };
 
-export default ContractCard;
+export default ContractCardTemplate;
