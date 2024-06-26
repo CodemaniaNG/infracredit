@@ -115,7 +115,7 @@ const LoginPage = () => {
                 textAlign="center"
                 color="maintText.200"
               >
-                Sign In to InfraCredit
+                Sign In to InfraCredit.
               </Text>
               <Button
                 text="Continue with Azure"
