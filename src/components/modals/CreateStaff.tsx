@@ -117,7 +117,6 @@ const CreateStaff = ({ setIsOpen }: any) => {
         setIsOpen(false);
       })
       .catch((error) => {
-        console.log(error, "error");
         if (error.data && error.data.errors) {
           const errorMessages = Object.values(error.data.errors)
             .flat()

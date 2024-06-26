@@ -16,6 +16,7 @@ import { useGetTemplateByIdQuery } from "@/redux/services/templates.service";
 import Loader from "@/components/ui/Loader";
 import Renumeration from "@/components/templates/renumeration";
 import Credit from "@/components/templates/credit";
+import NDA from "@/components/templates/nda";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Editor = () => {
@@ -138,6 +139,14 @@ const Editor = () => {
 
                   {type === 6 && (
                     <Credit
+                      isEdit={isEdit}
+                      reportToEdit={reportToEdit}
+                      setReportToEdit={setReportToEdit}
+                    />
+                  )}
+
+                  {type === 7 && (
+                    <NDA
                       isEdit={isEdit}
                       reportToEdit={reportToEdit}
                       setReportToEdit={setReportToEdit}

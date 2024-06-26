@@ -16,7 +16,7 @@ import Comments from "@/components/editor/Comments";
 import CeoReport from "@/components/templates/ceo-report";
 import ManagementReport from "@/components/templates/management-report";
 import { useState, useEffect, useRef, memo } from "react";
-import { useAppSelector, useAppDispatch } from "@/redux/store";
+import { useAppSelector } from "@/redux/store";
 import Loader from "@/components/ui/Loader";
 import {
   useGetReportByIdQuery,
@@ -31,26 +31,21 @@ import { useReactToPrint } from "react-to-print";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 
 const Editor = () => {
-  const dispatch = useAppDispatch();
   const componentRef = useRef() as any;
   const toast = useToast();
   const router = useRouter();
   const { template } = router.query;
   const [isEdit, setIsEdit] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
+
   const [isOpen3, setIsOpen3] = useState(false);
   const [isOpen4, setIsOpen4] = useState(false);
-  const [isOpen5, setIsOpen5] = useState(false);
   const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen7, setIsOpen7] = useState(false);
-  const [isOpen8, setIsOpen8] = useState(false);
   const [reportToEdit, setReportToEdit] = useState<any>(null);
   const [reportTitle, setReportTitle] = useState("");
   const [type, setType] = useState<any>(null);
 
-  const { token, userInfo } = useAppSelector((state) => state.app.auth);
-  const role = userInfo?.role.name;
+  const { token } = useAppSelector((state) => state.app.auth);
 
   const [updateReport, { isLoading: updateReportLoading }] =
     useUpdateReportMutation();
@@ -81,17 +76,9 @@ const Editor = () => {
   useEffect(() => {
     if (templateData) {
       setReportToEdit(JSON.parse(templateData?.body));
-      setType(templateData?.type);
+      setType(templateData?.templateType);
     }
-  }, [templateData, dispatch]);
-
-  const handleModal = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleModal2 = () => {
-    setIsOpen2(!isOpen2);
-  };
+  }, [templateData]);
 
   const handleModal3 = () => {
     setIsOpen3(!isOpen3);
@@ -101,20 +88,12 @@ const Editor = () => {
     setIsOpen4(!isOpen4);
   };
 
-  const handleModal5 = () => {
-    setIsOpen5(!isOpen5);
-  };
-
   const handleModal6 = () => {
     setIsOpen6(!isOpen6);
   };
 
   const handleModal7 = () => {
     setIsOpen7(!isOpen7);
-  };
-
-  const handleModal8 = () => {
-    setIsOpen8(!isOpen8);
   };
 
   const handleUpdateReport = async () => {
@@ -203,16 +182,10 @@ const Editor = () => {
               <ActionBtns
                 isEdit={isEdit}
                 setIsEdit={setIsEdit}
-                handleModal={handleModal}
-                handleModal2={handleModal2}
                 handleModal3={handleModal3}
                 handleModal4={handleModal4}
-                handleModal5={handleModal5}
                 handleModal6={handleModal6}
                 handleModal7={handleModal7}
-                handleModal8={handleModal8}
-                template={template}
-                role={role}
                 handleUpdateReport={handleUpdateReport}
                 updateReportLoading={updateReportLoading}
                 templateData={templateData}
@@ -310,30 +283,18 @@ const Editor = () => {
         )}
 
         <TemplateModals
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          handleModal={handleModal}
-          isOpen2={isOpen2}
-          setIsOpen2={setIsOpen2}
-          handleModal2={handleModal2}
           isOpen3={isOpen3}
           setIsOpen3={setIsOpen3}
           handleModal3={handleModal3}
           isOpen4={isOpen4}
           setIsOpen4={setIsOpen4}
           handleModal4={handleModal4}
-          isOpen5={isOpen5}
-          setIsOpen5={setIsOpen5}
-          handleModal5={handleModal5}
           isOpen6={isOpen6}
           setIsOpen6={setIsOpen6}
           handleModal6={handleModal6}
           isOpen7={isOpen7}
           setIsOpen7={setIsOpen7}
           handleModal7={handleModal7}
-          isOpen8={isOpen8}
-          setIsOpen8={setIsOpen8}
-          handleModal8={handleModal8}
           templateData={templateData}
         />
       </DashboardLayout>

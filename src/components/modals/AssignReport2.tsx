@@ -19,6 +19,7 @@ import { useCreateReportMutation } from "@/redux/services/reports.service";
 import { useGetUsersQuery } from "@/redux/services/onboard.service";
 import { useGetTemplatesQuery } from "@/redux/services/templates.service";
 import { useMemo, useState } from "react";
+import { monthOptions, yearOptions } from "@/utils/constant";
 
 const AssignReport2 = ({ setIsOpen }: any) => {
   const toast = useToast();
@@ -157,18 +158,18 @@ const AssignReport2 = ({ setIsOpen }: any) => {
               />
 
               <HStack w={"100%"} justify="space-between" align="flex-start">
-                <Input
+                <Select
                   label="Month"
                   name="Month"
-                  type="number"
-                  placeholder="Month"
+                  options={monthOptions}
+                  placeholder="Select Month"
                 />
 
-                <Input
+                <Select
                   label="Year"
                   name="Year"
-                  type="number"
-                  placeholder="Year"
+                  options={yearOptions}
+                  placeholder="Select Year"
                 />
               </HStack>
 

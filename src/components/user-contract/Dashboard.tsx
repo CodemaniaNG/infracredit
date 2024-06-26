@@ -1,197 +1,247 @@
-import { Text, VStack, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Text,
+  Grid,
+  GridItem,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+} from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
-import DashboardTable from "@/components/dashboard/DashboardTable";
 import ContractCard from "@/components/contracts/ContractCard";
+import DashboardHeader from "../dashboard/DashboardHeader";
+import Button from "../ui/Button";
+import Modal from "../ui/Modal";
+import { useState } from "react";
+import CreateContractLegal from "../modals/CreateContractLegal";
+import { useAppSelector } from "@/redux/store";
+import { useGetContractsQuery } from "@/redux/services/contract.service";
+import Loader from "../ui/Loader";
+import Empty2 from "../admin/Empty2";
 
 const Dashboard = () => {
-  const tasks = [
+  const { token } = useAppSelector((state) => state.app.auth);
+
+  const { data, isLoading } = useGetContractsQuery(token);
+  const contracts = data?.data;
+
+  const [isOpen, setIsOpen] = useState(false);
+  const handleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const tabs = [
     {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
+      title: "All Contracts",
     },
     {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
-    },
-    {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
-    },
-    {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
+      title: "My Contracts",
     },
   ];
 
-  const data = [
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-  ];
   return (
     <>
-      <VStack align="flex-start" mb={"3"}>
-        <Text
-          fontSize={{
-            base: "20px",
-            md: "24px",
-            lg: "32px",
-          }}
-          fontWeight="600"
-          color="maintText.200"
-          fontFamily={"body"}
-        >
-          Welcome back,
-          <Text
-            as="span"
-            fontSize={{
-              base: "20px",
-              md: "24px",
-              lg: "32px",
-            }}
-            fontWeight="600"
-            color="secondary"
-            fontFamily={"body"}
-          >
-            Olusanya Ezekiel
-          </Text>
-        </Text>
-        <Text
-          fontSize={"16px"}
-          fontWeight="500"
-          color="subText.400"
-          mt={-2}
-          fontFamily={"body"}
-        >
-          12th May, 2023
-        </Text>
-      </VStack>
-      <>
-        <Grid
-          templateColumns={{
-            sm: "repeat(1, 1fr)",
-            md: "repeat(2, 1fr)",
-            lg: "repeat(4, 1fr)",
-          }}
-          gap={2}
-          mb={5}
-        >
-          <GridItem colSpan={1}>
-            <DashboardCard
-              label={"Contracts Created"}
-              value={20}
-              isPrefix={false}
-              image="/images/reports.svg"
-            />
-          </GridItem>
-          <GridItem colSpan={1}>
-            <DashboardCard
-              label={"Contracts Drafted"}
-              value={40}
-              isPrefix={false}
-              image="/images/drafted.svg"
-            />
-          </GridItem>
-          <GridItem colSpan={1}>
-            <DashboardCard
-              label={"Contracts Deleted"}
-              value={63}
-              isPrefix={false}
-              image="/images/deleted2.svg"
-            />
-          </GridItem>
-          <GridItem colSpan={1}>
-            <DashboardCard
-              label={"Collaborators"}
-              value={30}
-              isPrefix={false}
-              image="/images/collaborators.svg"
-            />
-          </GridItem>
-        </Grid>
-
+      {isLoading ? (
+        <Loader />
+      ) : (
         <>
-          <Text
-            fontSize={{
-              base: "16px",
-              md: "18px",
-              lg: "20px",
-            }}
-            fontWeight="600"
-            color="subText.400"
-            fontFamily={"body"}
-            mb={3}
-          >
-            Ongoing Contracts
-          </Text>
-
-          <Grid
-            templateColumns={{
-              sm: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap={2}
-            mb={5}
-          >
-            {tasks.map((task, index) => (
-              <GridItem colSpan={1} key={index}>
-                <ContractCard title={task.title} desc={task.desc} />
+          <DashboardHeader title="Contract System">
+            <Button
+              text="Create New Contract"
+              bg="#F0FFFF"
+              border="#8CDBB4"
+              color="greens.100"
+              icon="/images/export.svg"
+              iconPosition="left"
+              onClick={handleModal}
+            />
+          </DashboardHeader>
+          <>
+            <Grid
+              templateColumns={{
+                sm: "repeat(1, 1fr)",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(4, 1fr)",
+              }}
+              gap={2}
+              mb={5}
+            >
+              <GridItem colSpan={1}>
+                <DashboardCard
+                  label={"Contracts Created"}
+                  value={0}
+                  isPrefix={false}
+                  image="/images/reports.svg"
+                />
               </GridItem>
-            ))}
-          </Grid>
-        </>
+              <GridItem colSpan={1}>
+                <DashboardCard
+                  label={"Contracts Drafted"}
+                  value={0}
+                  isPrefix={false}
+                  image="/images/drafted.svg"
+                />
+              </GridItem>
+              <GridItem colSpan={1}>
+                <DashboardCard
+                  label={"Contracts Deleted"}
+                  value={0}
+                  isPrefix={false}
+                  image="/images/deleted2.svg"
+                />
+              </GridItem>
+              <GridItem colSpan={1}>
+                <DashboardCard
+                  label={"Collaborators"}
+                  value={0}
+                  isPrefix={false}
+                  image="/images/collaborators.svg"
+                />
+              </GridItem>
+            </Grid>
 
-        <>
-          <Text
-            fontSize={{
-              base: "16px",
-              md: "18px",
-              lg: "20px",
-            }}
-            fontWeight="600"
-            color="subText.400"
-            fontFamily={"body"}
-            mb={3}
-          >
-            History
-          </Text>
+            <>
+              <Tabs mb={5}>
+                <TabList>
+                  {tabs.map((tab, index) => (
+                    <Tab
+                      key={index}
+                      _selected={{
+                        color: "greens.100",
+                        bg: "white",
+                        fontWeight: "700",
+                        fontSize: "16px",
+                        borderBottom: "2px solid #287750",
+                        borderTopLeftRadius: "16px",
+                        borderTopRightRadius: "16px",
+                        borderBottomEndRadius: "0px",
+                        borderBottomStartRadius: "0px",
+                      }}
+                      px={4}
+                      py={2}
+                      color="subText.400"
+                      fontFamily={"body"}
+                      fontWeight="500"
+                      fontSize={"16px"}
+                      mr={3}
+                      w={"150px"}
+                    >
+                      {tab.title}
+                    </Tab>
+                  ))}
+                </TabList>
 
-          <DashboardTable data={data} />
+                <TabPanels px={0}>
+                  <TabPanel px={0}>
+                    {contracts?.length === 0 && (
+                      <Empty2
+                        title="No Contracts"
+                        desc="Create a new contract to get started"
+                      />
+                    )}
+                    <Grid
+                      templateColumns={{
+                        sm: "repeat(1, 1fr)",
+                        md: "repeat(2, 1fr)",
+                        lg: "repeat(4, 1fr)",
+                      }}
+                      gap={2}
+                      mb={5}
+                    >
+                      {contracts?.map((task: any, index: any) => (
+                        <GridItem colSpan={1} key={index}>
+                          <ContractCard
+                            title={task.title}
+                            desc={task.description}
+                            id={task.id}
+                            serialNo={task.serialNo}
+                          />
+                        </GridItem>
+                      ))}
+                    </Grid>
+                  </TabPanel>
+                  <TabPanel px={0}>
+                    {contracts?.length === 0 && (
+                      <Empty2
+                        title="No Contracts"
+                        desc="Create a new contract to get started"
+                      />
+                    )}
+                    <Grid
+                      templateColumns={{
+                        sm: "repeat(1, 1fr)",
+                        md: "repeat(2, 1fr)",
+                        lg: "repeat(4, 1fr)",
+                      }}
+                      gap={2}
+                      mb={5}
+                    >
+                      {contracts?.map((task: any, index: any) => (
+                        <GridItem colSpan={1} key={index}>
+                          <ContractCard
+                            title={task.title}
+                            desc={task.description}
+                            id={task.id}
+                            serialNo={task.serialNo}
+                          />
+                        </GridItem>
+                      ))}
+                    </Grid>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </>
+
+            <>
+              <Text
+                fontSize={{
+                  base: "16px",
+                  md: "18px",
+                  lg: "20px",
+                }}
+                fontWeight="600"
+                color="subText.400"
+                fontFamily={"body"}
+                mb={3}
+              >
+                Closed Out Contracts
+              </Text>
+              {contracts?.length === 0 && (
+                <Empty2
+                  title="No Closed Out Contracts"
+                  desc="Create a new contract to get started"
+                />
+              )}
+              <Grid
+                templateColumns={{
+                  sm: "repeat(1, 1fr)",
+                  md: "repeat(2, 1fr)",
+                  lg: "repeat(4, 1fr)",
+                }}
+                gap={2}
+              >
+                {contracts?.map((task: any, index: any) => (
+                  <GridItem colSpan={1} key={index}>
+                    <ContractCard
+                      title={task.title}
+                      desc={task.description}
+                      id={task.id}
+                      serialNo={task.serialNo}
+                    />
+                  </GridItem>
+                ))}
+              </Grid>
+            </>
+          </>
         </>
-      </>
+      )}
+
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModal}
+        body={<CreateContractLegal setIsOpen={setIsOpen} />}
+      />
     </>
   );
 };

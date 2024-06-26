@@ -1,34 +1,25 @@
-import {
-  Card,
-  CardBody,
-  Image,
-  HStack,
-  VStack,
-  Text,
-  Divider,
-} from "@chakra-ui/react";
+import { Card, CardBody, Image, VStack, Text, Divider } from "@chakra-ui/react";
 import Button from "../ui/Button";
-import { useRouter } from "next/router";
+import Modal from "../ui/Modal";
+import { useState } from "react";
+import CreateContract from "../modals/CreateContract";
 
 type ContractCardProps = {
   title: string;
-  desc: string;
-  type?: string;
-  role?: string;
+  body: string;
 };
 
-const ContractCardTemplate = ({
-  title,
-  desc,
-  type = "contract",
-  role,
-}: ContractCardProps) => {
-  const router = useRouter();
+const ContractCardTemplate = ({ title, body }: ContractCardProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}>
         <CardBody p={2}>
-          <Image src="/images/contract.svg" alt="Document" />
+          <Image src="/images/contract.svg" alt="Document" w="full" />
           <Divider borderColor="border.200" />
           <VStack align="flex-start" spacing={4} py={2}>
             <VStack align="flex-start">
@@ -44,35 +35,25 @@ const ContractCardTemplate = ({
               >
                 {title}
               </Text>
-              <Text
-                fontSize={"10px"}
-                fontWeight="500"
-                color="subText.300"
-                fontFamily={"body"}
-                mt={-2}
-              >
-                {desc}
-              </Text>
             </VStack>
 
             <Divider borderColor="border.200" />
 
-            <HStack>
-              <Image src="/images/comment.svg" alt="Like" />
-              <Text
-                fontSize={"12px"}
-                fontWeight="500"
-                color="subText.300"
-                fontFamily={"body"}
-              >
-                13 Comments
-              </Text>
-            </HStack>
-
-            <Button text="Create" type="button" size="md" />
+            <Button
+              text="Create"
+              type="button"
+              size="md"
+              onClick={handleModal}
+            />
           </VStack>
         </CardBody>
       </Card>
+
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModal}
+        body={<CreateContract setIsOpen={setIsOpen} body={body} />}
+      />
     </>
   );
 };

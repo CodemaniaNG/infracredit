@@ -13,6 +13,7 @@ import {
   useGetFoldersQuery,
 } from "@/redux/services/document.service";
 import Loader from "../ui/Loader";
+import Empty2 from "../admin/Empty2";
 
 const Documents = () => {
   const { token } = useAppSelector((state) => state.app.auth);
@@ -71,18 +72,15 @@ const Documents = () => {
               >
                 Recent Documents
               </Text>
+
               {allDocuments?.length === 0 && (
-                <Text
-                  fontSize={16}
-                  color="subText.400"
-                  fontFamily={"body"}
-                  mb={3}
-                >
-                  No documents found
-                </Text>
+                <Empty2
+                  title="No Documents"
+                  desc="All your documents will appear here"
+                />
               )}
 
-              {allFolders?.length > 0 && (
+              {allDocuments?.length > 0 && (
                 <Grid
                   templateColumns={{
                     sm: "repeat(1, 1fr)",
@@ -120,14 +118,10 @@ const Documents = () => {
                 Folders
               </Text>
               {allFolders?.length === 0 && (
-                <Text
-                  fontSize={16}
-                  color="subText.400"
-                  fontFamily={"body"}
-                  mb={3}
-                >
-                  No folders found
-                </Text>
+                <Empty2
+                  title="No Folders"
+                  desc="All your folders will appear here"
+                />
               )}
 
               {allFolders?.length > 0 && (

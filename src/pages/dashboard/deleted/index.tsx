@@ -10,12 +10,13 @@ import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 export default function Deleted() {
   const { userInfo } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
+  const department = userInfo?.department?.name?.trim();
 
   return (
     <>
       <DashboardLayout>
-        {role === "User" && <DeletedReport />}
-        {/* {role === "user-contracts" && <DeletedContract />} */}
+        {role === "User" && department !== "Legal" && <DeletedReport />}
+        {role === "User" && department === "Legal" && <DeletedContract />}
         {role === "Manager" && <DeletedManager />}
         {role === "Supervisor" && <DeletedSupervisor />}
         {role === "Admin" && <DeletedAdmin />}

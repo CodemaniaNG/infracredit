@@ -58,30 +58,120 @@ export const graphConfig = {
 
 
 
+    const [contractFiles, setContractFiles] = useState<any>([
+    {
+      uri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    },
+  ]
 
-  // useEffect(() => {
-  //   if (templateData?.title?.toLowerCase().includes("ceo")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("ceo"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("management")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("management"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("credit")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("credit"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("renumeration")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("renumeration"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("finance")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("finance"));
-  //   }
-  //   if (templateData?.title?.toLowerCase().includes("risk")) {
-  //     dispatch(setTemplateContent(JSON.parse(templateData.body)));
-  //     dispatch(setType("risk"));
-  //   }
-  // }, [templateData, dispatch]);
+
+
+  import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+
+// import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+// import "@cyntler/react-doc-viewer/dist/index.css";
+
+ {
+   /* <DocViewer
+                      documents={docs}
+                      config={{
+                        header: {
+                          disableHeader: false,
+                          disableFileName: false,
+                          retainURLParams: false,
+                        },
+                      }}
+                      pluginRenderers={DocViewerRenderers}
+                    /> */
+ }
+ {
+   /* <DocViewer
+                      documents={docs}
+                      pluginRenderers={DocViewerRenderers}
+                    /> */
+ }
+
+
+
+
+
+
+  const LinkItems: Array<LinkItemProps> = [
+    {
+      name: "Dashboard",
+      path: "/",
+      icon: "/images/dashboard.svg",
+      iconActive: "/images/dashboard-active.svg",
+      isVisble:
+        role === "User" ||
+        // (role === "User" && department === "Legal") ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor" ||
+        role === "Viewer"
+          ? true
+          : false,
+    },
+    {
+      name: "Documents",
+      path: "/dashboard/documents",
+      icon: "/images/documents.svg",
+      iconActive: "/images/documents-active.svg",
+      isVisble:
+        (role === "User" && department !== "ESG") ||
+        // role === "user-contracts" ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor" ||
+        role === "Viewer"
+          ? true
+          : false,
+    },
+    {
+      name: "Deleted",
+      path: "/dashboard/deleted",
+      icon: "/images/deleted.svg",
+      iconActive: "/images/deleted-active.svg",
+      isVisble:
+        (role === "User" && department !== "ESG") ||
+        role === "user-contracts" ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
+          ? true
+          : false,
+    },
+    {
+      name: "Tasks",
+      path: "/dashboard/tasks",
+      icon: "/images/tasks.svg",
+      iconActive: "/images/tasks-active.svg",
+      isVisble:
+        (role === "User" && department !== "Legal" && department !== "ESG") ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
+          ? true
+          : false,
+    },
+    {
+      name: "Contracts",
+      path: "/dashboard/contracts",
+      icon: "/images/contracts.svg",
+      iconActive: "/images/contracts-active.svg",
+      isVisble:
+        (role === "User" && department !== "Legal" && department !== "ESG") ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
+          ? true
+          : false,
+    },
+    {
+      name: "Staffs",
+      path: "/dashboard/admin",
+      icon: "/images/admin.svg",
+      iconActive: "/images/admin-active.svg",
+      isVisble: role === "Admin" ? true : false,
+    },
+  ];

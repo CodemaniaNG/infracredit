@@ -6,16 +6,10 @@ import { memo } from "react";
 const ActionBtns = ({
   isEdit,
   setIsEdit,
-  handleModal,
-  handleModal2,
   handleModal3,
   handleModal4,
-  handleModal5,
   handleModal6,
   handleModal7,
-  handleModal8,
-  template,
-  role,
   handleUpdateReport,
   updateReportLoading,
   templateData,
@@ -155,33 +149,6 @@ const ActionBtns = ({
           />
         </HStack>
       )}
-
-      {/* {template === "contract" && role === "user-contracts" && (
-        <HStack justify="flex-end">
-          <Button
-            text="Share Contract"
-            bg="#F0FFFF"
-            border="#8CDBB4"
-            color="greens.100"
-            borderWidth="1px"
-            onClick={handleModal2}
-          />
-          <Button text="Re-Upload Contract" px={6} onClick={handleModal} />
-        </HStack>
-      )}
-
-      {template === "contract" && role === "manager" && (
-        <HStack justify="flex-end">
-          <Button
-            text="Download Document"
-            bg="#F0FFFF"
-            border="#8CDBB4"
-            color="greens.100"
-            borderWidth="1px"
-          />
-          <Button text="Upload Signed PDF" px={6} onClick={handleModal5} />
-        </HStack>
-      )} */}
     </>
   );
 };

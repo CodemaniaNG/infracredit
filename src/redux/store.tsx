@@ -26,6 +26,7 @@ import { templatesApi } from "./services/templates.service";
 import { reportsApi } from "./services/reports.service";
 import { logsApi } from "./services/logs.service";
 import { documentsApi } from "./services/document.service";
+import { contractApi } from "./services/contract.service";
 
 // reducers
 import authReducer from "./slices/authSlice";
@@ -47,6 +48,7 @@ const rootReducer = combineReducers({
   [reportsApi.reducerPath]: reportsApi.reducer,
   [logsApi.reducerPath]: logsApi.reducer,
   [documentsApi.reducerPath]: documentsApi.reducer,
+  [contractApi.reducerPath]: contractApi.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -60,6 +62,7 @@ export const store: any = configureStore({
     [reportsApi.reducerPath]: reportsApi.reducer,
     [logsApi.reducerPath]: logsApi.reducer,
     [documentsApi.reducerPath]: documentsApi.reducer,
+    [contractApi.reducerPath]: contractApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -74,6 +77,7 @@ export const store: any = configureStore({
       reportsApi.middleware,
       logsApi.middleware,
       documentsApi.middleware,
+      contractApi.middleware,
     ]),
 });
 

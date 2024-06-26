@@ -69,7 +69,7 @@ const ReportDescription = ({
           <Input
             pr="4.5rem"
             type="text"
-            placeholder="This is a description"
+            placeholder="Enter report title"
             borderWidth={1}
             borderColor="border.200"
             borderRadius={8}

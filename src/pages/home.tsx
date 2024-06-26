@@ -1,11 +1,52 @@
 import Welcome from "@/components/dashboard/Welcome";
 import DashboardLayout from "@/components/dashboard/layout/DashboardLayout";
 import { VStack, HStack, Avatar, Text, Grid, GridItem } from "@chakra-ui/react";
-import { useAppSelector } from "@/redux/store";
+import { useAppSelector, useAppDispatch } from "@/redux/store";
 import HomeCard from "@/components/dashboard/HomeCard";
+import { setModule } from "@/redux/slices/authSlice";
+import { useRouter } from "next/router";
 
 const Home = () => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.app.auth);
+
+  const modules = [
+    {
+      name: "Report Management System",
+      description:
+        "Centralized platform for generating, tracking and analyzing reports and data insights",
+      image: "/images/report.svg",
+      type: "report",
+      onClick: () => {
+        dispatch(setModule("report"));
+        router.push("/");
+      },
+    },
+    {
+      name: "Contract Management System",
+      description:
+        "Centralized platform for generating, tracking and analyzing reports and data insights",
+      image: "/images/contract2.svg",
+      type: "contract",
+      onClick: () => {
+        dispatch(setModule("contract"));
+        router.push("/dashboard/contracts");
+      },
+    },
+    {
+      name: "Documents Management System",
+      description:
+        "Centralized platform for generating, tracking and analyzing reports and data insights",
+      image: "/images/documents2.svg",
+      type: "document",
+      onClick: () => {
+        dispatch(setModule("document"));
+        router.push("/dashboard/documents");
+      },
+    },
+  ];
+
   return (
     <DashboardLayout showSidebar={false} bgColor="bg.300">
       <Welcome isHome />
@@ -57,27 +98,16 @@ const Home = () => {
         gap={2}
         mb={5}
       >
-        <GridItem colSpan={1}>
-          <HomeCard
-            text="Report Management System"
-            description="Centralized platform for generating, tracking and analyzing reports and data insights"
-            image="/images/report.svg"
-          />
-        </GridItem>
-        <GridItem colSpan={1}>
-          <HomeCard
-            text="Report Management System"
-            description="Centralized platform for generating, tracking and analyzing reports and data insights"
-            image="/images/contract2.svg"
-          />
-        </GridItem>
-        <GridItem colSpan={1}>
-          <HomeCard
-            text="Report Management System"
-            description="Centralized platform for generating, tracking and analyzing reports and data insights"
-            image="/images/documents2.svg"
-          />
-        </GridItem>
+        {modules.map((module, index) => (
+          <GridItem colSpan={1} key={index}>
+            <HomeCard
+              text={module.name}
+              description={module.description}
+              image={module.image}
+              onClick={module.onClick}
+            />
+          </GridItem>
+        ))}
       </Grid>
     </DashboardLayout>
   );

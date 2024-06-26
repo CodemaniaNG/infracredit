@@ -29,7 +29,6 @@ const TaskCard = ({
   desc,
   isStack = false,
   status,
-  type = "report",
   id,
   commentCount,
 }: TaskCardProps) => {

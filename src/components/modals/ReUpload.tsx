@@ -5,12 +5,57 @@ import {
   Image,
   VStack,
   Input as ChakraInput,
+  useToast,
 } from "@chakra-ui/react";
 import Button from "../ui/Button";
 import { useState } from "react";
+import { useAppSelector } from "@/redux/store";
+import { useUploadContractFileMutation } from "@/redux/services/contract.service";
 
-const ReUpload = ({ setIsOpen }: any) => {
+const ReUpload = ({ setIsOpen, contractData }: any) => {
+  const toast = useToast();
+
+  const { token } = useAppSelector((state) => state.app.auth);
+
   const [file, setFile] = useState<any>(null);
+
+  const [uploadFile, { isLoading }] = useUploadContractFileMutation();
+
+  const handleUpload = async () => {
+    if (!file) {
+      toast({
+        title: "Please upload a file",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    await uploadFile({ token, id: contractData.id, body: formData })
+      .unwrap()
+      .then((res) => {
+        toast({
+          title: "File uploaded successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setIsOpen(false);
+      })
+      .catch((err) => {
+        toast({
+          title: "Error uploading file",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
+  };
+
   return (
     <VStack align="flex-start" spacing={4} mt={10} mb={5}>
       <Text
@@ -113,7 +158,16 @@ const ReUpload = ({ setIsOpen }: any) => {
         </HStack>
       )}
 
-      {file && <Button text="Re-Upload" py={4} type="submit" />}
+      {file && (
+        <Button
+          text="Re-Upload"
+          py={4}
+          type="button"
+          isDisabled={isLoading}
+          isLoading={isLoading}
+          onClick={handleUpload}
+        />
+      )}
     </VStack>
   );
 };

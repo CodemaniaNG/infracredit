@@ -8,7 +8,7 @@ import {
   ModalFooter,
   Text,
   HStack,
-  Image
+  Image,
 } from "@chakra-ui/react";
 
 const ModalComponent = ({
