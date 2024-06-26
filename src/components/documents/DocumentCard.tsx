@@ -72,7 +72,7 @@ const DocumentCard = ({ title, desc, id, meta }: TaskCardProps) => {
         overflow="hidden"
       >
         <CardBody p={2}>
-          <Image src="/images/template.svg" alt="Document" />
+          <Image src="/images/template.svg" alt="Document" w="full" />
           <Box position="absolute" top={2} right={1} zIndex={1}>
             <Menu>
               <MenuButton
@@ -102,18 +102,14 @@ const DocumentCard = ({ title, desc, id, meta }: TaskCardProps) => {
           <VStack align="flex-start" spacing={4} py={2}>
             <VStack align="flex-start">
               <Text
-                fontSize={{
-                  base: "16px",
-                  md: "16px",
-                  lg: "16px",
-                }}
+                fontSize="14"
                 fontWeight="600"
                 color="maintText.100"
                 fontFamily={"body"}
               >
                 {title}
               </Text>
-              <Text
+              {/* <Text
                 fontSize={"10px"}
                 fontWeight="500"
                 color="subText.300"
@@ -121,7 +117,7 @@ const DocumentCard = ({ title, desc, id, meta }: TaskCardProps) => {
                 mt={-2}
               >
                 {desc}
-              </Text>
+              </Text> */}
             </VStack>
           </VStack>
         </CardBody>

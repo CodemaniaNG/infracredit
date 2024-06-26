@@ -70,7 +70,7 @@ const Input2 = ({
                   onChange(e);
                 }
               }}
-              value={value}
+              // value={value}
             />
             {icon && iconPosition === "right" && (
               <InputRightElement position="absolute" top="5px">

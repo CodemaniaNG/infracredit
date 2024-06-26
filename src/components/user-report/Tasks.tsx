@@ -1,4 +1,4 @@
-import { Text, Grid, GridItem, Stack, Image } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import TaskCard from "@/components/dashboard/TaskCard";
 import TaskStack from "@/components/task/TaskStack";
 import Button from "../ui/Button";

@@ -19,6 +19,7 @@ import { useCreateReportMutation } from "@/redux/services/reports.service";
 import { useGetUsersQuery } from "@/redux/services/onboard.service";
 import { useGetTemplatesQuery } from "@/redux/services/templates.service";
 import { useMemo, useState } from "react";
+import { monthOptions, yearOptions } from "@/utils/constant";
 
 const CreateReport = ({ setIsOpen }: any) => {
   const toast = useToast();
@@ -164,18 +165,18 @@ const CreateReport = ({ setIsOpen }: any) => {
                 />
 
                 <HStack w={"100%"} justify="space-between" align="flex-start">
-                  <Input
+                  <Select
                     label="Month"
                     name="Month"
-                    type="number"
-                    placeholder="Month"
+                    options={monthOptions}
+                    placeholder="Select Month"
                   />
 
-                  <Input
+                  <Select
                     label="Year"
                     name="Year"
-                    type="number"
-                    placeholder="Year"
+                    options={yearOptions}
+                    placeholder="Select Year"
                   />
                 </HStack>
 
@@ -243,129 +244,6 @@ const CreateReport = ({ setIsOpen }: any) => {
                     </VStack>
                   )}
                 />
-
-                {/* <FieldArray
-                  name="collaborator"
-                  render={(arrayHelpers) => (
-                    <VStack align="stretch" w={"100%"} mt={4}>
-                      {props.values.collaborator.map((email, index) => (
-                        <VStack key={index} position="relative">
-                          <Input
-                            label="Collaborator"
-                            name={`collaborator.${index}`}
-                            type="email"
-                            placeholder="Collaborator Email"
-                          />
-                          {index > 0 && (
-                            <IconButton
-                              aria-label="delete collaborator"
-                              position="absolute"
-                              right="-2"
-                              top="-2"
-                              icon={<FiTrash2 size={20} color="#FF3B30" />}
-                              onClick={() => arrayHelpers.remove(index)}
-                              variant="ghost"
-                              _hover={{ bg: "transparent" }}
-                            />
-                          )}
-                        </VStack>
-                      ))}
-                      <Button
-                        text="Add another collaborator"
-                        size="sm"
-                        fontSize={10}
-                        onClick={() => arrayHelpers.push("")}
-                        variant="outline"
-                        bg="transparent"
-                        color="subText.400"
-                        border="border.100"
-                        borderStyle="dashed"
-                      />
-                    </VStack>
-                  )}
-                />
-
-                <FieldArray
-                  name="supervisor"
-                  render={(arrayHelpers) => (
-                    <VStack align="stretch" w={"100%"} mt={4}>
-                      {props.values.supervisor.map((email, index) => (
-                        <VStack key={index} position="relative">
-                          <Input
-                            label="Supervisor"
-                            name={`supervisor.${index}`}
-                            type="email"
-                            placeholder="Supervisor Email"
-                          />
-                          {index > 0 && (
-                            <IconButton
-                              aria-label="delete supervisor"
-                              position="absolute"
-                              right="-2"
-                              top="-2"
-                              icon={<FiTrash2 size={20} color="#FF3B30" />}
-                              onClick={() => arrayHelpers.remove(index)}
-                              variant="ghost"
-                              _hover={{ bg: "transparent" }}
-                            />
-                          )}
-                        </VStack>
-                      ))}
-                      <Button
-                        text="Add another supervisor"
-                        size="sm"
-                        fontSize={10}
-                        onClick={() => arrayHelpers.push("")}
-                        variant="outline"
-                        bg="transparent"
-                        color="subText.400"
-                        border="border.100"
-                        borderStyle="dashed"
-                      />
-                    </VStack>
-                  )}
-                />
-
-                <FieldArray
-                  name="manager"
-                  render={(arrayHelpers) => (
-                    <VStack align="stretch" w={"100%"} mt={4}>
-                      {props.values.manager.map((email, index) => (
-                        <VStack key={index} position="relative">
-                          <Input
-                            label="Manager"
-                            name={`manager.${index}`}
-                            type="email"
-                            placeholder="Manager Email"
-                          />
-                          {index > 0 && (
-                            <IconButton
-                              aria-label="delete manager"
-                              position="absolute"
-                              right="-2"
-                              top="-2"
-                              icon={<FiTrash2 size={20} color="#FF3B30" />}
-                              onClick={() => arrayHelpers.remove(index)}
-                              variant="ghost"
-                              _hover={{ bg: "transparent" }}
-                            />
-                          )}
-                        </VStack>
-                      ))}
-                      <Button
-                        text="Add another manager"
-                        size="sm"
-                        fontSize={10}
-                        onClick={() => arrayHelpers.push("")}
-                        variant="outline"
-                        bg="transparent"
-                        color="subText.400"
-                        border="border.100"
-                        borderStyle="dashed"
-                      />
-                    </VStack>
-                  )}
-                /> */}
 
                 <VStack align="stretch" w={"100%"} mt={4}>
                   <Button

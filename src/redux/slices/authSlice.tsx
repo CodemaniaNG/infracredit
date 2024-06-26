@@ -4,12 +4,14 @@ type AuthState = {
   userInfo: any;
   token: string;
   roles: any;
+  module: string;
 };
 
 const initialState: AuthState = {
   userInfo: null,
   token: "",
   roles: [],
+  module: "",
 };
 
 const authSlice = createSlice({
@@ -25,6 +27,9 @@ const authSlice = createSlice({
     setRoles: (state, action) => {
       state.roles = action.payload;
     },
+    setModule: (state, action) => {
+      state.module = action.payload;
+    },
     logOut: (state) => {
       state.userInfo = null;
       state.token = "";
@@ -34,6 +39,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCredentials, logOut, setToken, setRoles } = authSlice.actions;
+export const { setCredentials, logOut, setToken, setRoles, setModule } =
+  authSlice.actions;
 
 export default authSlice.reducer;

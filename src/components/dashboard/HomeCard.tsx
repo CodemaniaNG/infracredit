@@ -6,9 +6,15 @@ type DashboardCardProps = {
   text: string;
   description: string;
   image?: string;
+  onClick?: () => void;
 };
 
-const HomeCard = ({ text, description, image }: DashboardCardProps) => {
+const HomeCard = ({
+  text,
+  description,
+  image,
+  onClick,
+}: DashboardCardProps) => {
   const router = useRouter();
   return (
     <>
@@ -32,7 +38,11 @@ const HomeCard = ({ text, description, image }: DashboardCardProps) => {
               {description}
             </Text>
 
-            <Button text="Open" onClick={() => router.push("/")} />
+            <Button
+              text="Open"
+              // onClick={() => router.push("/")}
+              onClick={onClick}
+            />
           </VStack>
         </CardBody>
       </Card>

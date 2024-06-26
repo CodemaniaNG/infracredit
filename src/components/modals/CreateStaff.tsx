@@ -34,7 +34,7 @@ const CreateStaff = ({ setIsOpen }: any) => {
 
   const roles = rolesData?.data?.map((role: any) => ({
     value: role.id,
-    label: role.value,
+    label: role.name,
   }));
 
   const { data: departmentsData, isLoading: departmentsLoading } =
@@ -117,7 +117,6 @@ const CreateStaff = ({ setIsOpen }: any) => {
         setIsOpen(false);
       })
       .catch((error) => {
-        console.log(error, "error");
         if (error.data && error.data.errors) {
           const errorMessages = Object.values(error.data.errors)
             .flat()

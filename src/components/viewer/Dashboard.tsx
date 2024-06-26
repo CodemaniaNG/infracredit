@@ -1,165 +1,112 @@
-import { Text, VStack, Grid, GridItem } from "@chakra-ui/react";
+import { Text, Grid, GridItem } from "@chakra-ui/react";
 import ContractCard from "@/components/contracts/ContractCard";
+import DashboardHeader from "../dashboard/DashboardHeader";
+import { useAppSelector } from "@/redux/store";
+import { useGetContractsQuery } from "@/redux/services/contract.service";
+import Loader from "../ui/Loader";
+import Empty2 from "../admin/Empty2";
+import Welcome from "../dashboard/Welcome";
 
 const Dashboard = () => {
-  const tasks = [
-    {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
-    },
-    {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
-    },
-    {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
-    },
-    {
-      title: "Annual report",
-      desc: "This is a commment, This is a commment, This is a commment",
-    },
-  ];
+  const { token } = useAppSelector((state) => state.app.auth);
 
-  const data = [
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-    {
-      sn: "1",
-      title: "Annual report",
-      editedBy: "Olusanya Ezekiel",
-      editedOn: "12th May, 2021",
-      currentUser: "Wale Peter",
-    },
-  ];
+  const { data, isLoading } = useGetContractsQuery(token);
+  const contracts = data?.data;
+
   return (
     <>
-      <VStack align="flex-start" mb={"3"}>
-        <Text
-          fontSize={{
-            base: "20px",
-            md: "24px",
-            lg: "32px",
-          }}
-          fontWeight="600"
-          color="maintText.200"
-          fontFamily={"body"}
-        >
-          Welcome back,
-          <Text
-            as="span"
-            fontSize={{
-              base: "20px",
-              md: "24px",
-              lg: "32px",
-            }}
-            fontWeight="600"
-            color="secondary"
-            fontFamily={"body"}
-          >
-            Olusanya Ezekiel
-          </Text>
-        </Text>
-        <Text
-          fontSize={"16px"}
-          fontWeight="500"
-          color="subText.400"
-          mt={-2}
-          fontFamily={"body"}
-        >
-          12th May, 2023
-        </Text>
-      </VStack>
-      <>
+      {isLoading ? (
+        <Loader />
+      ) : (
         <>
-          <Text
-            fontSize={{
-              base: "16px",
-              md: "18px",
-              lg: "20px",
-            }}
-            fontWeight="600"
-            color="subText.400"
-            fontFamily={"body"}
-            mb={3}
-          >
-            Ongoing Contracts
-          </Text>
+          {/* <DashboardHeader title="Contracts" /> */}
+          <Welcome />
 
-          <Grid
-            templateColumns={{
-              sm: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap={2}
-            mb={5}
-          >
-            {tasks.map((task, index) => (
-              <GridItem colSpan={1} key={index}>
-                <ContractCard title={task.title} desc={task.desc} />
-              </GridItem>
-            ))}
-          </Grid>
-        </>
-        <>
-          <Text
-            fontSize={{
-              base: "16px",
-              md: "18px",
-              lg: "20px",
-            }}
-            fontWeight="600"
-            color="subText.400"
-            fontFamily={"body"}
-            mb={3}
-          >
-            Closed Out Contracts
-          </Text>
+          <>
+            <Text
+              fontSize={{
+                base: "16px",
+                md: "18px",
+                lg: "20px",
+              }}
+              fontWeight="600"
+              color="maintText.200"
+              fontFamily={"body"}
+              mb={3}
+            >
+              Ongoing Contracts
+            </Text>
+            {contracts?.length === 0 && (
+              <Empty2
+                title="No Contracts"
+                desc="All your contracts will appear here"
+              />
+            )}
+            <Grid
+              templateColumns={{
+                sm: "repeat(1, 1fr)",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(4, 1fr)",
+              }}
+              gap={2}
+              mb={5}
+            >
+              {contracts?.map((contract: any, index: any) => (
+                <GridItem colSpan={1} key={index}>
+                  <ContractCard
+                    title={contract.title}
+                    desc={contract.description}
+                    id={contract.id}
+                    serialNo={contract.serialNo}
+                  />
+                </GridItem>
+              ))}
+            </Grid>
+          </>
 
-          <Grid
-            templateColumns={{
-              sm: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap={2}
-            mb={5}
-          >
-            {tasks.map((task, index) => (
-              <GridItem colSpan={1} key={index}>
-                <ContractCard title={task.title} desc={task.desc} />
-              </GridItem>
-            ))}
-          </Grid>
+          <>
+            <Text
+              fontSize={{
+                base: "16px",
+                md: "18px",
+                lg: "20px",
+              }}
+              fontWeight="600"
+              color="maintText.200"
+              fontFamily={"body"}
+              mb={3}
+            >
+              Closed Out Contracts
+            </Text>
+            {contracts?.length === 0 && (
+              <Empty2
+                title="No Contracts"
+                desc="All your contracts will appear here"
+              />
+            )}
+            <Grid
+              templateColumns={{
+                sm: "repeat(1, 1fr)",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(4, 1fr)",
+              }}
+              gap={2}
+              mb={5}
+            >
+              {contracts?.map((contract: any, index: any) => (
+                <GridItem colSpan={1} key={index}>
+                  <ContractCard
+                    title={contract.title}
+                    desc={contract.description}
+                    id={contract.id}
+                    serialNo={contract.serialNo}
+                  />
+                </GridItem>
+              ))}
+            </Grid>
+          </>
         </>
-      </>
+      )}
     </>
   );
 };

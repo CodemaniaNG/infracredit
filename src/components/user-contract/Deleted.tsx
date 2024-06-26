@@ -1,5 +1,6 @@
-import { Text, VStack, Grid, GridItem } from "@chakra-ui/react";
-import DocumentCard from "@/components/documents/DocumentCard";
+import { Text, Grid, GridItem } from "@chakra-ui/react";
+import DeletedCardContract from "../deleted/DeletedCardContract";
+import DashboardHeader from "../dashboard/DashboardHeader";
 const tasks = [
   {
     title: "Annual report",
@@ -21,29 +22,7 @@ const tasks = [
 const Deleted = () => {
   return (
     <>
-      <VStack align="flex-start" mb={"3"}>
-        <Text
-          fontSize={{
-            base: "20px",
-            md: "24px",
-            lg: "32px",
-          }}
-          fontWeight="600"
-          color="maintText.200"
-          fontFamily={"body"}
-        >
-          Deleted Contracts
-        </Text>
-        <Text
-          fontSize={"16px"}
-          fontWeight="500"
-          color="subText.400"
-          mt={-2}
-          fontFamily={"body"}
-        >
-          12th May, 2023
-        </Text>
-      </VStack>
+      <DashboardHeader title="Deleted Contracts" />
 
       <>
         <>
@@ -71,7 +50,7 @@ const Deleted = () => {
           >
             {tasks.map((task, index) => (
               <GridItem colSpan={1} key={index}>
-                <DocumentCard
+                <DeletedCardContract
                   title={task.title}
                   desc={task.desc}
                   id={index.toString()}
@@ -105,7 +84,7 @@ const Deleted = () => {
           >
             {tasks.map((task, index) => (
               <GridItem colSpan={1} key={index}>
-                <DocumentCard
+                <DeletedCardContract
                   title={task.title}
                   desc={task.desc}
                   id={index.toString()}

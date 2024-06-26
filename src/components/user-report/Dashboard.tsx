@@ -1,4 +1,4 @@
-import { Text, VStack, Grid, GridItem } from "@chakra-ui/react";
+import { Text, Grid, GridItem } from "@chakra-ui/react";
 import DashboardCard from "@/components/dashboard/DashboardCard";
 import TaskCard from "@/components/dashboard/TaskCard";
 import DashboardTable from "@/components/dashboard/DashboardTable";
@@ -6,7 +6,8 @@ import Loader from "../ui/Loader";
 import { useGetLogsQuery } from "@/redux/services/logs.service";
 import { useGetReportsQuery } from "@/redux/services/reports.service";
 import { useAppSelector } from "@/redux/store";
-import Welcome from "../dashboard/Welcome";
+import Empty from "../admin/Empty2";
+import DashboardHeader from "../dashboard/DashboardHeader";
 
 const Dashboard = () => {
   const { token } = useAppSelector((state) => state.app.auth);
@@ -20,7 +21,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Welcome />
+      <DashboardHeader title="Reports" />
       {logsLoading || reportsLoading ? (
         <Loader />
       ) : (
@@ -82,6 +83,13 @@ const Dashboard = () => {
             >
               Current Tasks
             </Text>
+            {reports?.length === 0 ||
+              (!reports && (
+                <Empty
+                  title="No reports found"
+                  desc="All ongoing reports will be displayed here."
+                />
+              ))}
             <Grid
               templateColumns={{
                 sm: "repeat(1, 1fr)",

@@ -35,8 +35,11 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { userInfo } = useAppSelector((state) => state.app.auth);
+  const { userInfo, module } = useAppSelector((state) => state.app.auth);
   const role = userInfo?.role.name;
+  const department = userInfo?.department?.name?.trim();
+
+  console.log("module", module);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -58,7 +61,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       iconActive: "/images/dashboard-active.svg",
       isVisble:
         role === "User" ||
-        role === "user-contracts" ||
+        // (role === "User" && department === "Legal") ||
         role === "Admin" ||
         role === "Manager" ||
         role === "Supervisor" ||
@@ -72,8 +75,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       icon: "/images/documents.svg",
       iconActive: "/images/documents-active.svg",
       isVisble:
-        role === "User" ||
-        role === "user-contracts" ||
+        (role === "User" && department !== "ESG") ||
+        // role === "user-contracts" ||
         role === "Admin" ||
         role === "Manager" ||
         role === "Supervisor" ||
@@ -87,7 +90,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       icon: "/images/deleted.svg",
       iconActive: "/images/deleted-active.svg",
       isVisble:
-        role === "User" ||
+        (role === "User" && department !== "ESG") ||
         role === "user-contracts" ||
         role === "Admin" ||
         role === "Manager" ||
@@ -101,7 +104,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       icon: "/images/tasks.svg",
       iconActive: "/images/tasks-active.svg",
       isVisble:
-        role === "User" ||
+        (role === "User" && department !== "Legal" && department !== "ESG") ||
         role === "Admin" ||
         role === "Manager" ||
         role === "Supervisor"
@@ -114,7 +117,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       icon: "/images/contracts.svg",
       iconActive: "/images/contracts-active.svg",
       isVisble:
-        role === "User" || role === "Admin" || role === "Manager"
+        (role === "User" && department !== "Legal" && department !== "ESG") ||
+        role === "Admin" ||
+        role === "Manager" ||
+        role === "Supervisor"
           ? true
           : false,
     },

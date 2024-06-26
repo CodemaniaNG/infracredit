@@ -13,31 +13,18 @@ import { useRouter } from "next/router";
 type ContractCardProps = {
   title: string;
   desc: string;
-  type?: string;
-  role?: string;
+  id: string;
+  serialNo: string;
 };
 
-const ContractCard = ({
-  title,
-  desc,
-  type = "contract",
-  role,
-}: ContractCardProps) => {
+const ContractCard = ({ title, desc, id, serialNo }: ContractCardProps) => {
   const router = useRouter();
+
   return (
     <>
-      <Card
-        variant="outline"
-        maxW="sm"
-        bg="#fff"
-        borderRadius={16}
-        onClick={() => {
-          router.push(`/editor/${type}?role=${role}`);
-        }}
-        cursor="pointer"
-      >
+      <Card variant="outline" maxW="sm" bg="#fff" borderRadius={16}>
         <CardBody p={2}>
-          <Image src="/images/contract.svg" alt="Document" />
+          <Image src="/images/contract.svg" alt="Document" w="full" />
           <Divider borderColor="border.200" />
           <VStack align="flex-start" spacing={4} py={2}>
             <VStack align="flex-start">
@@ -66,15 +53,26 @@ const ContractCard = ({
 
             <Divider borderColor="border.200" />
 
-            <HStack>
-              <Image src="/images/comment.svg" alt="Like" />
+            <HStack spacing={4} w="full" justify="space-between">
+              <HStack>
+                <Image src="/images/comment.svg" alt="Like" />
+                <Text
+                  fontSize={"12px"}
+                  fontWeight="500"
+                  color="subText.300"
+                  fontFamily={"body"}
+                >
+                  0 Comments
+                </Text>
+              </HStack>
+
               <Text
                 fontSize={"12px"}
-                fontWeight="500"
-                color="subText.300"
+                fontWeight="600"
+                color="secondary"
                 fontFamily={"body"}
               >
-                13 Comments
+                {serialNo}
               </Text>
             </HStack>
 
@@ -83,7 +81,7 @@ const ContractCard = ({
               type="submit"
               size="md"
               onClick={() => {
-                router.push(`/editor/${type}?role=${role}`);
+                router.push(`/editor-contract/${id}`);
               }}
             />
           </VStack>
