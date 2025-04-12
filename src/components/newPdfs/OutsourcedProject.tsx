@@ -57,21 +57,13 @@ const OutsourcedProjectUpdate = () => {
         "Completion of Risk Control and Self Assessment...",
         "Improvement in processes with the drafting of relevant manuals...",
       ],
-      costBenefit: [
-        "This is considered adequate given the cost of hiring...",
-        "The fee is always strongly negotiated.",
-      ],
-      risks: [
-        "The absence of such reviews could lead to lax adherence...",
-        "The benefits of the reviews have translated into action firmwide...",
-      ],
+      costBenefit: ["This is considered adequate given the cost of hiring...", "The fee is always strongly negotiated."],
+      risks: ["The absence of such reviews could lead to lax adherence...", "The benefits of the reviews have translated into action firmwide..."],
     },
 
     // IT Support Services (Page 4)
     itSupport: {
-      justification: [
-        "This allows the company to focus on its primary business activity...",
-      ],
+      justification: ["This allows the company to focus on its primary business activity..."],
       strategy: [
         "The experience the service provider brings helps us deploy systems...",
         "This also helps us maintain a lean but efficient focus driven team",
@@ -83,52 +75,41 @@ const OutsourcedProjectUpdate = () => {
         "Leverage on expanded and varying experience...",
         "Aligns with our strategy to maintain a lean team",
       ],
-      impact: [
-        "Successful implementation of technology solutions and systems...",
-        "More efficient management of internal systems...",
-      ],
-      costBenefit: [
-        "Cost Savings - this service had historically saved on cost...",
-      ],
-      risks: [
-        "Inexperienced resources: The service provider has so far been able...",
-      ],
+      impact: ["Successful implementation of technology solutions and systems...", "More efficient management of internal systems..."],
+      costBenefit: ["Cost Savings - this service had historically saved on cost..."],
+      risks: ["Inexperienced resources: The service provider has so far been able..."],
     },
 
     // ... all other sections for each project
   };
 
-  const handleSubmit = (values) => {
+
+
+  const handleSubmit = (values: any) => {
     console.log("Submitted values:", values);
     setIsEditable(false);
   };
 
-  const renderEditableField = (fieldName, value, isTextArea = false) => {
-    const style = {
-      width: "100%",
-      boxSizing: "border-box",
-      padding: "8px",
-      margin: "4px 0",
-      border: isEditable ? "1px solid #ddd" : "none",
-      borderRadius: "4px",
-      backgroundColor: isEditable ? "#fff" : "transparent",
-      fontFamily: "inherit",
-      fontSize: "inherit",
-    };
+  const renderEditableField = (fieldName: string, value: any, isTextArea = false) => {
+    const style: React.CSSProperties = {
+  width: "100%",
+  boxSizing: "border-box",
+  padding: "8px",
+  margin: "4px 0",
+  border: isEditable ? "1px solid #ddd" : "none",
+  borderRadius: "4px",
+  backgroundColor: isEditable ? "#fff" : "transparent",
+  fontFamily: "inherit",
+  fontSize: "inherit",
+};
 
     if (isEditable) {
-      return (
-        <Field
-          as={isTextArea ? "textarea" : "input"}
-          name={fieldName}
-          style={{ ...style, resize: isTextArea ? "vertical" : "none" }}
-        />
-      );
+      return <Field as={isTextArea ? "textarea" : "input"} name={fieldName} style={{ ...style, resize: isTextArea ? "vertical" : "none" }} />;
     }
     return <div style={{ ...style, whiteSpace: "pre-wrap" }}>{value}</div>;
   };
 
-  const renderSection = (title, fieldPrefix, content) => {
+  const renderSection = (title: string, fieldPrefix: string, content: any) => {
     return (
       <div style={{ marginBottom: "30px" }}>
         <h2
@@ -136,37 +117,29 @@ const OutsourcedProjectUpdate = () => {
             fontSize: "18px",
             borderBottom: "1px solid #eee",
             paddingBottom: "8px",
-          }}
-        >
+          }}>
           {renderEditableField(`${fieldPrefix}.title`, title)}
         </h2>
 
-        {Object.entries(content).map(([section, items]) => (
+        {Object.entries(content).map(([section, items]) =>{
+          const itemsArr = items as any[];
+          return (
           <div key={section} style={{ marginTop: "15px" }}>
-            <h3 style={{ fontSize: "16px", color: "#555" }}>
-              {renderEditableField(
-                `${fieldPrefix}.${section}.title`,
-                section.toUpperCase(),
-              )}
-            </h3>
+            <h3 style={{ fontSize: "16px", color: "#555" }}>{renderEditableField(`${fieldPrefix}.${section}.title`, section.toUpperCase())}</h3>
 
             <FieldArray name={`${fieldPrefix}.${section}.items`}>
               {() => (
                 <ul style={{ paddingLeft: "20px" }}>
-                  {items.map((item, idx) => (
+                  {itemsArr.map((item, idx) => (
                     <li key={idx} style={{ marginBottom: "8px" }}>
-                      {renderEditableField(
-                        `${fieldPrefix}.${section}.items.${idx}`,
-                        item,
-                        true,
-                      )}
+                      {renderEditableField(`${fieldPrefix}.${section}.items.${idx}`, item, true)}
                     </li>
                   ))}
                 </ul>
               )}
             </FieldArray>
           </div>
-        ))}
+        )})}
       </div>
     );
   };
@@ -179,8 +152,7 @@ const OutsourcedProjectUpdate = () => {
         padding: "20px",
         fontFamily: "Arial, sans-serif",
         backgroundColor: "#f9f9f9",
-      }}
-    >
+      }}>
       <button
         onClick={() => setIsEditable(!isEditable)}
         style={{
@@ -191,8 +163,7 @@ const OutsourcedProjectUpdate = () => {
           borderRadius: "4px",
           cursor: "pointer",
           marginBottom: "20px",
-        }}
-      >
+        }}>
         {isEditable ? "Cancel Editing" : "Edit Report"}
       </button>
 
@@ -207,20 +178,16 @@ const OutsourcedProjectUpdate = () => {
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                 marginBottom: "30px",
                 textAlign: "center",
-              }}
-            >
+              }}>
               <h1
                 style={{
                   fontSize: "24px",
                   fontWeight: "bold",
                   marginBottom: "15px",
-                }}
-              >
+                }}>
                 {renderEditableField("cover.header", values.cover.header)}
               </h1>
-              <div style={{ fontSize: "18px", whiteSpace: "pre-wrap" }}>
-                {renderEditableField("cover.title", values.cover.title, true)}
-              </div>
+              <div style={{ fontSize: "18px", whiteSpace: "pre-wrap" }}>{renderEditableField("cover.title", values.cover.title, true)}</div>
             </div>
 
             {/* Project Summary Table */}
@@ -231,9 +198,8 @@ const OutsourcedProjectUpdate = () => {
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                 marginBottom: "30px",
                 overflowX: "auto",
-              }}
-            >
-              <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>
+              }}>
+              <h1 style={{ fontSize: "20px", marginBottom: "20px", width: "85%", backgroundColor: "rgb(146	186	68)", color: "white", fontWeight: 700 }}>
                 {renderEditableField("projectsTitle", "PROJECT SUMMARY")}
               </h1>
 
@@ -253,12 +219,12 @@ const OutsourcedProjectUpdate = () => {
                       <th
                         key={header}
                         style={{
-                          border: "1px solid #ddd",
+                          border: "1px solid #fff",
                           padding: "10px",
                           textAlign: "left",
-                          backgroundColor: "#f2f2f2",
-                        }}
-                      >
+                          backgroundColor: "rgb(146	186	68)",
+                          color: "white",
+                        }}>
                         {renderEditableField(`header_${header}`, header)}
                       </th>
                     ))}
@@ -268,19 +234,15 @@ const OutsourcedProjectUpdate = () => {
                   <FieldArray name="projects">
                     {() =>
                       values.projects.map((project, idx) => (
-                        <tr key={idx}>
+                        <tr key={idx} style={{ backgroundColor: idx % 2 === 0 ? "rgb(238	244	233	)" : "rgb(220	230	207	)", color: "rgb(110	111	108	)" }}>
                           {Object.entries(project).map(([key, value]) => (
                             <td
                               key={key}
                               style={{
                                 border: "1px solid #ddd",
                                 padding: "10px",
-                              }}
-                            >
-                              {renderEditableField(
-                                `projects.${idx}.${key}`,
-                                value,
-                              )}
+                              }}>
+                              {renderEditableField(`projects.${idx}.${key}`, value)}
                             </td>
                           ))}
                         </tr>
@@ -298,31 +260,31 @@ const OutsourcedProjectUpdate = () => {
                 backgroundColor: "white",
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                 marginBottom: "30px",
-              }}
-            >
-              <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>
-                {renderEditableField("internalAuditTitle", "INTERNAL AUDIT")}
-              </h1>
+              }}>
+              <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>{renderEditableField("internalAuditTitle", "INTERNAL AUDIT")}</h1>
 
-              {renderSection("JUSTIFICATION", "internalAudit.justification", {
-                items: values.internalAudit.justification,
-              })}
+              <form action="">
+                <fieldset>
+                  <legend>
+                    {renderSection("JUSTIFICATION", "internalAudit.justification", {
+                      items: values.internalAudit.justification,
+                    })}
+                  </legend>
 
-              <hr
-                style={{
-                  margin: "20px 0",
-                  border: "0",
-                  borderTop: "1px solid #eee",
-                }}
-              />
-
-              {renderSection(
-                "WHY DOES IT FIT OUR STRATEGY?",
-                "internalAudit.strategy",
-                {
-                  items: values.internalAudit.strategy,
-                },
-              )}
+                  {/* <hr
+                    style={{
+                      margin: "20px 0",
+                      border: "0",
+                      borderTop: "1px solid #eee",
+                    }}
+                  /> */}
+                  <span>
+                    {renderSection("WHY DOES IT FIT OUR STRATEGY?", "internalAudit.strategy", {
+                      items: values.internalAudit.strategy,
+                    })}
+                  </span>
+                </fieldset>
+              </form>
 
               {/* Render all other sections similarly */}
             </div>
@@ -334,11 +296,8 @@ const OutsourcedProjectUpdate = () => {
                 backgroundColor: "white",
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                 marginBottom: "30px",
-              }}
-            >
-              <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>
-                {renderEditableField("itSupportTitle", "IT SUPPORT SERVICES")}
-              </h1>
+              }}>
+              <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>{renderEditableField("itSupportTitle", "IT SUPPORT SERVICES")}</h1>
 
               {renderSection("JUSTIFICATION", "itSupport.justification", {
                 items: values.itSupport.justification,
@@ -361,8 +320,7 @@ const OutsourcedProjectUpdate = () => {
                     borderRadius: "4px",
                     cursor: "pointer",
                     fontSize: "16px",
-                  }}
-                >
+                  }}>
                   Save Changes
                 </button>
               </div>

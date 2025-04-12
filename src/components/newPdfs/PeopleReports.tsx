@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import {
   PieChart,
@@ -119,39 +120,39 @@ const PeopleReport = () => {
   });
 
   // Handler for editing text fields
-  const handleTextChange = (section, field, value) => {
+  const handleTextChange = (section:any, field:string, value:any) => {
     setReportData((prev) => ({
       ...prev,
       [section]: {
-        ...prev[section],
+        ...(prev as any)[section],
         [field]: value,
       },
     }));
   };
 
   // Handler for editing numeric values
-  const handleNumberChange = (section, field, value) => {
+  const handleNumberChange = (section:any, field:string, value:any) => {
     const numValue = parseInt(value) || 0;
     setReportData((prev) => ({
       ...prev,
       [section]: {
-        ...prev[section],
+        ...(prev as any)[section],
         [field]: numValue,
       },
     }));
   };
 
   // Handler for editing array items
-  const handleArrayItemChange = (section, index, value) => {
-    setReportData((prev) => {
-      const newArray = [...prev[section]];
-      newArray[index] = value;
-      return {
-        ...prev,
-        [section]: newArray,
-      };
-    });
-  };
+  // const handleArrayItemChange = (section, index, value) => {
+  //   setReportData((prev) => {
+  //     const newArray = [...prev[section]];
+  //     newArray[index] = value;
+  //     return {
+  //       ...prev,
+  //       [section]: newArray,
+  //     };
+  //   });
+  // };
 
   // Data for charts
   const genderData = [
@@ -197,7 +198,7 @@ const PeopleReport = () => {
       }}
     >
       {/* Header Section */}
-      <header style={{ textAlign: "center", marginBottom: "30px" }}>
+      <header style={{ textAlign: "center", marginBottom: "30px" }} >
         <h1 style={{ fontSize: "28px", fontWeight: "bold" }}>
           <input
             type="text"
@@ -265,14 +266,7 @@ const PeopleReport = () => {
       </header>
 
       {/* Workforce Overview */}
-      <section
-        style={{
-          marginBottom: "30px",
-          backgroundColor: "#f9f9f9",
-          padding: "20px",
-          borderRadius: "8px",
-        }}
-      >
+      <div className="page">
         <h2 style={{ fontSize: "24px", marginBottom: "15px" }}>
           People Operational Report – July to September 2024
         </h2>
@@ -363,7 +357,7 @@ const PeopleReport = () => {
             events.
           </li>
         </ul>
-      </section>
+      </div>
 
       {/* Operational Overview */}
       <section style={{ marginBottom: "30px" }}>
@@ -1333,6 +1327,172 @@ const PeopleReport = () => {
         </p>
         <p style={{ marginBottom: "5px" }}>+234 1 631 2300 - 29</p>
       </footer>
+       <style jsx>{`
+        .compliance-report {
+          font-family: Arial, sans-serif;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          background: #f9f9f9;
+        }
+        .page {
+          margin-bottom: 40px;
+          padding: 40px;
+          background: white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          position: relative;
+          min-height: 1122px;
+        }
+        .cover-page,
+        .footer-page {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          height: 1122px;
+        }
+        .header-text,
+        .title-text,
+        .footer-text {
+          white-space: pre-wrap;
+          text-align: center;
+          width: 100%;
+        }
+        .header-text {
+          font-size: 24px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+        .title-text {
+          font-size: 18px;
+        }
+        .footer-text {
+          font-size: 14px;
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+          margin-top: 1em;
+          margin-bottom: 0.5em;
+        }
+        h1 {
+          font-size: 20px;
+          border-bottom: 1px solid #ddd;
+          padding-bottom: 10px;
+        }
+        .heading {
+          font-weight: bold;
+          margin: 1em 0 0.5em 0;
+          display: block;
+          width: 100%;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 15px 0;
+        }
+        th,
+        td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
+        .editable-field {
+          width: 100%;
+          padding: 8px;
+          margin: 5px 0;
+          border: 1px solid #ddd;
+          font-family: inherit;
+          font-size: inherit;
+        }
+        .editable-field.textarea {
+          min-height: 100px;
+        }
+        .editable-field.heading {
+          font-weight: bold;
+          font-size: 1.17em; /* h3 size */
+          border: none;
+          padding: 0;
+          margin: 1em 0 0.5em 0;
+        }
+        .readonly-field {
+          white-space: pre-wrap;
+          padding: 5px 0;
+        }
+        .edit-toggle {
+          background: #4caf50;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          margin-bottom: 20px;
+          font-size: 16px;
+        }
+        .save-button {
+          background: #2196f3;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+        .form-actions {
+          text-align: center;
+          margin-top: 20px;
+        }
+        .planned-activities,
+        .record-keeping {
+          list-style-type: none;
+          padding-left: 0;
+        }
+        .planned-activities li,
+        .record-keeping li {
+          margin-bottom: 10px;
+          position: relative;
+        }
+        .add-activity {
+          background: #4caf50;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        .remove-activity {
+          background: #f44336;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+          margin-left: 10px;
+          position: absolute;
+          right: -30px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        .page-number {
+          position: absolute;
+          bottom: 20px;
+          right: 40px;
+          font-size: 12px;
+          color: #666;
+        }
+        p {
+          margin: 0.5em 0;
+        }
+        strong {
+          font-weight: bold;
+        }
+      `}</style>
     </div>
   );
 };

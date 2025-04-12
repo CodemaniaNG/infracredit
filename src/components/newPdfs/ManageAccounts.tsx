@@ -160,23 +160,23 @@ const ManagementAccounts = () => {
       "www.infracredit.ng\nlinkedin.com/company/infraCredit\n@InfraCredit",
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values:any) => {
     console.log("Submitted values:", values);
     setIsEditable(false);
   };
 
-  const renderEditableField = (fieldName, value, isTextArea = false) => {
-    const style = {
-      width: "100%",
-      boxSizing: "border-box",
-      padding: "8px",
-      margin: "4px 0",
-      border: isEditable ? "1px solid #ddd" : "none",
-      borderRadius: "4px",
-      backgroundColor: isEditable ? "#fff" : "transparent",
-      fontFamily: "inherit",
-      fontSize: "inherit",
-    };
+  const renderEditableField = (fieldName:string, value:any, isTextArea = false) => {
+    const style: React.CSSProperties = {
+  width: "100%",
+  boxSizing: "border-box",
+  padding: "8px",
+  margin: "4px 0",
+  border: isEditable ? "1px solid #ddd" : "none",
+  borderRadius: "4px",
+  backgroundColor: isEditable ? "#fff" : "transparent",
+  fontFamily: "inherit",
+  fontSize: "inherit",
+};
 
     if (isEditable) {
       return (
@@ -190,7 +190,7 @@ const ManagementAccounts = () => {
     return <div style={{ ...style, whiteSpace: "pre-wrap" }}>{value}</div>;
   };
 
-  const renderTable = (tableData, fieldPrefix) => {
+  const renderTable = (tableData:any, fieldPrefix:any) => {
     return (
       <table
         style={{ width: "100%", borderCollapse: "collapse", margin: "15px 0" }}
@@ -217,7 +217,7 @@ const ManagementAccounts = () => {
         <tbody>
           <FieldArray name={`${fieldPrefix}.rows`}>
             {() =>
-              tableData.map((row, rowIndex) => (
+              tableData.map((row:any, rowIndex:number) => (
                 <tr key={rowIndex}>
                   {Object.entries(row).map(([key, value]) => (
                     <td
@@ -300,14 +300,14 @@ const ManagementAccounts = () => {
                 marginBottom: "30px",
               }}
             >
-              <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>
+              <h1 style={{ fontSize: "24px", marginBottom: "20px" , fontWeight: 500 }}>
                 {renderEditableField(
                   "financialHighlights.title",
                   "Financial Highlights as at 30th September 2024",
                 )}
               </h1>
 
-              <h2 style={{ fontSize: "18px", marginTop: "20px" }}>
+              <h2 style={{ fontSize: "22px" ,color:"rgb(80	140	194	)"}}>
                 {renderEditableField(
                   "financialHighlights.profitOrLossTitle",
                   "Statement of profit or loss",
@@ -316,10 +316,10 @@ const ManagementAccounts = () => {
 
               <FieldArray name="financialHighlights.statementOfProfitOrLoss">
                 {() => (
-                  <ul style={{ paddingLeft: "20px" }}>
+                  <ul style={{ padding: "20px", paddingLeft: "20px", backgroundColor: "rgb(244	247	238	)", borderRadius: "16px", }}>
                     {values.financialHighlights.statementOfProfitOrLoss.map(
                       (item, index) => (
-                        <li key={index} style={{ marginBottom: "10px" }}>
+                        <li key={index} style={{ marginBottom: "10px",color:"black" }}>
                           {renderEditableField(
                             `financialHighlights.statementOfProfitOrLoss.${index}`,
                             item,
@@ -332,7 +332,7 @@ const ManagementAccounts = () => {
                 )}
               </FieldArray>
 
-              <h2 style={{ fontSize: "18px", marginTop: "20px" }}>
+               <h2 style={{ fontSize: "22px" ,color:"rgb(80	140	194	)", marginTop: "20px",}}>
                 {renderEditableField(
                   "financialHighlights.financialPositionTitle",
                   "Statement of financial position",
@@ -341,7 +341,7 @@ const ManagementAccounts = () => {
 
               <FieldArray name="financialHighlights.statementOfFinancialPosition">
                 {() => (
-                  <ul style={{ paddingLeft: "20px" }}>
+                   <ul style={{ padding: "20px", paddingLeft: "20px", backgroundColor: "rgb(244	247	238	)", borderRadius: "16px", }}>
                     {values.financialHighlights.statementOfFinancialPosition.map(
                       (item, index) => (
                         <li key={index} style={{ marginBottom: "10px" }}>
@@ -381,14 +381,14 @@ const ManagementAccounts = () => {
                 marginBottom: "30px",
               }}
             >
-              <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>
+              <h1 style={{ fontSize: "28px",color:"rgb(2	2	2	)",  marginBottom: "20px", fontWeight: 500, }}>
                 {renderEditableField(
                   "financialReport.title",
                   "Financial Report for the Period ended 30th September 2024",
                 )}
               </h1>
 
-              <p style={{ marginBottom: "15px" }}>
+              <p style={{ marginBottom: "15px" , color: "rgb(27 27 27)", fontWeight: 400,}}>
                 {renderEditableField(
                   "financialReport.overview",
                   values.financialReport.overview,

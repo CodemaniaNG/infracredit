@@ -20,10 +20,8 @@ const ComplianceReport = () => {
         "Developed CP Checklists for LADOL, Viathan III, Falcon and Extended Networks (3 were approved by MROC). The CPs were built from the standard template (e.g. account openings, validation of capex costs and existing debt balances), conditions outlined in credit papers, MROC and Credit Committee minutes, and due diligence flags (e.g. legal, operational, E&S, technical KYC/Integrity, etc.). The CP Checklist is embedded in the Recourse Deed and Compliance validates clearance of all CPs before recommending to MROC for final sign-off.",
       securityTracker:
         "Security over client assets, accounts, contracts and cashflows is backed by initial stamping and CAC registration (e.g. often 10% of exposure) and pre-funding of a Perfection Reserve Account (PRA) held by a Security Trustee, with clients required to periodically top-up the PRA. Compliance and Legal track initial stamping and registration (effected post-closing by an agreed external counsel), while Compliance also tracks scheduled PRA additions.",
-      kycReports:
-        "Ten (10) Preliminary KYC DDs and four (4) KYC/Integrity Due Diligence Reports were conducted in the period, with flags noted in NBC and credit papers.",
-      conditionsTracking:
-        "Worked closely with our Portfolio Management team to track clearance of agreed Condition Subsequent (CS) for all portfolio clients.",
+      kycReports: "Ten (10) Preliminary KYC DDs and four (4) KYC/Integrity Due Diligence Reports were conducted in the period, with flags noted in NBC and credit papers.",
+      conditionsTracking: "Worked closely with our Portfolio Management team to track clearance of agreed Condition Subsequent (CS) for all portfolio clients.",
     },
     transactionSummary: {
       newKYCs: 10,
@@ -36,8 +34,7 @@ const ComplianceReport = () => {
       subsequentConditions: 15,
     },
     complianceMonitoring: {
-      codeOfConduct:
-        "Based on the compliance monitoring this quarter, we recorded no breach in the Code of Conduct & Business Ethics. This is continually monitored by the team.",
+      codeOfConduct: "Based on the compliance monitoring this quarter, we recorded no breach in the Code of Conduct & Business Ethics. This is continually monitored by the team.",
       gifts:
         "The automated Gift Registry App records all gifts was process was followed in declaring, administering and reporting gifts. In Q3, no gifts exceeding the threshold have been given to members of staff.",
       whistleblowing:
@@ -75,91 +72,69 @@ const ComplianceReport = () => {
       "Monitor changes in relevant legislation and the regulatory environment and work with Legal to advise Management on potential impact and recommendations.",
       "In addition to implementation of Personal Development Plans for staff, Knowledge Exchange opportunities will be considered where opportunities arise – e.g. information sharing on compliance and internal control with capital providers and/or other development partners.",
     ],
-    footer:
-      "InfraCredit\nSecuring Infrastructure Finance\nwww.infracredit.ng\n📝 InfraCredit\n@InfraCredit",
+    footer: "InfraCredit\nSecuring Infrastructure Finance\nwww.infracredit.ng\n📝 InfraCredit\n@InfraCredit",
   };
 
-  const handleSubmit = (values) => {
+
+  const handleSubmit = (values: any) => {
     console.log("Submitted values:", values);
     setIsEditable(false);
   };
 
-  const renderEditableText = (
-    fieldName,
-    value,
-    isTextArea = false,
-    className = "",
-  ) => {
+  const renderEditableText = (fieldName: string, value: any, isTextArea = false, className = "", style?: any) => {
     if (isEditable) {
-      return (
-        <Field
-          as={isTextArea ? "textarea" : "input"}
-          name={fieldName}
-          className={`editable-field ${
-            isTextArea ? "textarea" : ""
-          } ${className}`}
-        />
-      );
+      return <Field as={isTextArea ? "textarea" : "input"} name={fieldName} className={`editable-field ${isTextArea ? "textarea" : ""} ${className}`} />;
     }
-    return <div className={`readonly-field ${className}`}>{value}</div>;
+    return (
+      <p className={`readonly-field ${className}`} style={style}>
+        {value}
+      </p>
+    );
   };
 
-  const renderEditableHeading = (level, fieldName, value) => {
-    const HeadingTag = `h${level}`;
+  const renderEditableHeading = (level: number, fieldName: string, value: string, className?: string, style?: any) => {
+    const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+    if (isEditable) {
+      return <Field as={"input"} name={fieldName} className={`editable-field  ${className}`} />;
+    }
     return (
-      <HeadingTag>
-        {renderEditableText(fieldName, value, false, "heading")}
+      <HeadingTag className={className} style={style}>
+        {value}
       </HeadingTag>
     );
   };
 
   return (
     <div className="compliance-report">
-      <button
-        onClick={() => setIsEditable(!isEditable)}
-        className="edit-toggle"
-      >
+      <button onClick={() => setIsEditable(!isEditable)} className="edit-toggle">
         {isEditable ? "Cancel Editing" : "Edit Report"}
       </button>
 
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        enableReinitialize
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} enableReinitialize>
         {({ values }) => (
           <Form>
             {/* Cover Page */}
             <div className="page cover-page">
-              <div className="header">
-                {renderEditableText(
-                  "header",
-                  values.header,
-                  true,
-                  "header-text",
-                )}
-              </div>
-              <div className="title">
-                {renderEditableText("title", values.title, true, "title-text")}
-              </div>
+              <div className="header">{renderEditableText("header", values.header, true, "header-text")}</div>
+              <div className="title">{renderEditableText("title", values.title, true, "title-text")}</div>
             </div>
 
             {/* Page 2 */}
             <div className="page">
-              {renderEditableHeading(
-                1,
-                "page2Title",
-                "Compliance and Internal Control Quarterly Report",
-              )}
+              {renderEditableHeading(1, "page2Title", "Compliance and Internal Control Quarterly Report", "page2Title", {
+                color: "rgb(15	106	154	)",
+                fontSize: "18px",
+                fontWeight: "bold",
+                borderBottom: "1px solid green",
+                paddingBottom: "8px",
+              })}
 
-              {renderEditableHeading(2, "teamHeading", "Team Composition")}
+              {renderEditableHeading(2, "teamHeading", "Team Composition", "", { color: "green", fontSize: "16px", fontWeight: "400", margin: "16px 0px" })}
               <table className="team-table">
                 <thead>
                   <tr>
                     <th>{renderEditableText("teamNameHeader", "Name")}</th>
-                    <th>
-                      {renderEditableText("teamPositionHeader", "Position")}
-                    </th>
+                    <th>{renderEditableText("teamPositionHeader", "Position")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -167,18 +142,8 @@ const ComplianceReport = () => {
                     {() =>
                       values.team.map((member, index) => (
                         <tr key={index}>
-                          <td>
-                            {renderEditableText(
-                              `team.${index}.name`,
-                              member.name,
-                            )}
-                          </td>
-                          <td>
-                            {renderEditableText(
-                              `team.${index}.position`,
-                              member.position,
-                            )}
-                          </td>
+                          <td>{renderEditableText(`team.${index}.name`, member.name)}</td>
+                          <td>{renderEditableText(`team.${index}.position`, member.position)}</td>
                         </tr>
                       ))
                     }
@@ -186,232 +151,162 @@ const ComplianceReport = () => {
                 </tbody>
               </table>
 
-              {renderEditableHeading(
-                2,
-                "keyActivitiesHeading",
-                "Key activities and achievements for the quarter",
-              )}
-              {renderEditableText("introText", values.introText, true)}
+              {renderEditableHeading(2, "keyActivitiesHeading", "Key activities and achievements for the quarter", "", {
+                color: "rgb(29	74	106	)",
+                marginBottom: "20px",
+                fontSize: "20px",
+                fontWeight: 400,
+              })}
+              {renderEditableText("introText", values.introText, true, "introText", { color: "rgb(109	109	109)", marginBottom: "20px", fontSize: "16px", fontWeight: 400 })}
 
-              {renderEditableHeading(
-                3,
-                "transactionHeading",
-                "Transaction and Pipeline-Related Activity",
-              )}
-              <p>
-                <strong>
-                  {renderEditableText(
-                    "cpChecklistsLabel",
-                    "Condition Precedent (CP) Checklists:",
-                  )}
-                </strong>
-                {renderEditableText(
-                  "transactionActivities.cpChecklists",
-                  values.transactionActivities.cpChecklists,
-                  true,
-                )}
-              </p>
-              <p>
-                <strong>
-                  {renderEditableText(
-                    "securityTrackerLabel",
-                    "Security Perfection Tracker:",
-                  )}
-                </strong>
-                {renderEditableText(
-                  "transactionActivities.securityTracker",
-                  values.transactionActivities.securityTracker,
-                  true,
-                )}
-              </p>
-              <p>
-                <strong>
-                  {renderEditableText(
-                    "kycReportsLabel",
-                    "KYC/Integrity Due Diligence:",
-                  )}
-                </strong>
-                {renderEditableText(
-                  "transactionActivities.kycReports",
-                  values.transactionActivities.kycReports,
-                  true,
-                )}
-              </p>
-              <p>
-                <strong>
-                  {renderEditableText(
-                    "conditionsTrackingLabel",
-                    "Conditions Subsequent Tracking:",
-                  )}
-                </strong>
-                {renderEditableText(
-                  "transactionActivities.conditionsTracking",
-                  values.transactionActivities.conditionsTracking,
-                  true,
-                )}
-              </p>
-
-              {renderEditableHeading(
-                3,
-                "summaryHeading",
-                "SUMMARY OF TRANSACTION ACTIVITY",
-              )}
+              <ul>
+                <li style={{ listStyleType: "square" }}>
+                  {renderEditableHeading(3, "transactionHeading", "Transaction and Pipeline-Related Activity", "", {
+                    color: "rgb(29	74	106	)",
+                    marginBottom: "20px",
+                    fontSize: "18px",
+                    fontWeight: 400,
+                  })}
+                  <ul>
+                    <li style={{ listStyleType: "square" }}>
+                      <strong>
+                        {renderEditableText("cpChecklistsLabel", "Condition Precedent (CP) Checklists:", true, "", { color: "rgb(65	65	65)", textDecoration: "underline" })}
+                      </strong>
+                      {renderEditableText("transactionActivities.cpChecklists", values.transactionActivities.cpChecklists, true)}
+                    </li>
+                    <li style={{ listStyleType: "square" }}>
+                      <strong>{renderEditableText("securityTrackerLabel", "Security Perfection Tracker:", true, "", { color: "rgb(65	65	65)", textDecoration: "underline" })}</strong>
+                      {renderEditableText("transactionActivities.securityTracker", values.transactionActivities.securityTracker, true)}
+                    </li>
+                    <li style={{ listStyleType: "square" }}>
+                      <strong>{renderEditableText("kycReportsLabel", "KYC/Integrity Due Diligence:", true, "", { color: "rgb(65	65	65)", textDecoration: "underline" })}</strong>
+                      {renderEditableText("transactionActivities.kycReports", values.transactionActivities.kycReports, true)}
+                    </li>
+                    <li style={{ listStyleType: "square" }}>
+                      <strong>
+                        {renderEditableText("conditionsTrackingLabel", "Conditions Subsequent Tracking:", true, "", { color: "rgb(65	65	65)", textDecoration: "underline" })}
+                      </strong>
+                      {renderEditableText("transactionActivities.conditionsTracking", values.transactionActivities.conditionsTracking, true)}
+                    </li>
+                  </ul>
+                </li>
+              </ul>
               <table className="summary-table">
+                <thead>
+                  <tr>
+                    <th>{renderEditableText("newKYCsLabel", "New Preliminary KYCs Completed")}</th>
+                    <th>{renderEditableText("newKYCsLabel", "Q3 2024")}</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
-                    <td>
-                      {renderEditableText(
-                        "newKYCsLabel",
-                        "New Preliminary KYCs Completed",
-                      )}
-                    </td>
-                    <td>
-                      {renderEditableText(
-                        "transactionSummary.newKYCs",
-                        values.transactionSummary.newKYCs,
-                      )}
-                    </td>
+                    <td>{renderEditableText("newKYCsLabel", "New Preliminary KYCs Completed")}</td>
+                    <td>{renderEditableText("transactionSummary.newKYCs", values.transactionSummary.newKYCs)}</td>
+                  </tr>
+                  <tr>
+                    <td>{renderEditableText("nbcFlagsLabel", "Flags Identified (noted in NBC papers)")}</td>
+                    <td>{renderEditableText("transactionSummary.nbcFlags", values.transactionSummary.nbcFlags)}</td>
                   </tr>
                   <tr>
                     <td>
-                      {renderEditableText(
-                        "nbcFlagsLabel",
-                        "Flags Identified (noted in NBC papers)",
-                      )}
+                      <strong>{renderEditableText("completedKYCReportsLabel", "New KYC/IDD Reports Completed")}</strong>
                     </td>
-                    <td>
-                      {renderEditableText(
-                        "transactionSummary.nbcFlags",
-                        values.transactionSummary.nbcFlags,
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>
-                        {renderEditableText(
-                          "completedKYCReportsLabel",
-                          "New KYC/IDD Reports Completed",
-                        )}
-                      </strong>
-                    </td>
-                    <td>
-                      {renderEditableText(
-                        "transactionSummary.completedKYCReports",
-                        values.transactionSummary.completedKYCReports,
-                      )}
-                    </td>
+                    <td>{renderEditableText("transactionSummary.completedKYCReports", values.transactionSummary.completedKYCReports)}</td>
                   </tr>
                   {/* Add all other table rows similarly */}
                 </tbody>
               </table>
-              <div className="page-number">
-                {renderEditableText(
-                  "page2Number",
-                  "InfraCredit Compliance Report – Q3 2024 1",
-                )}
-              </div>
+              <div className="page-number">{renderEditableText("page2Number", "InfraCredit Compliance Report – Q3 2024 1")}</div>
             </div>
 
             {/* Page 3 */}
             <div className="page">
-              {renderEditableHeading(
-                1,
-                "page3Title",
-                "Compliance and Internal Control Quarterly Report",
-              )}
+              {renderEditableHeading(1, "page3Title", "Compliance and Internal Control Quarterly Report", "page2Title", {
+                color: "rgb(15	106	154	)",
+                fontSize: "18px",
+                fontWeight: "bold",
+                borderBottom: "1px solid green",
+                paddingBottom: "8px",
+              })}
 
-              {renderEditableHeading(
-                2,
-                "keyActivitiesContHeading",
-                "Key activities and achievements for the quarter (cont'd)",
-              )}
-
-              {renderEditableHeading(
-                3,
-                "complianceMonitoringHeading",
-                "Compliance Monitoring Programme",
-              )}
-              <p>
-                <strong>
-                  {renderEditableText("codeOfConductLabel", "Code of Conduct:")}
-                </strong>
-                {renderEditableText(
-                  "complianceMonitoring.codeOfConduct",
-                  values.complianceMonitoring.codeOfConduct,
-                  true,
-                )}
-              </p>
+              {renderEditableHeading(2, "keyActivitiesContHeading", "Key activities and achievements for the quarter (cont'd)", "", {
+                color: "rgb(30	76	108	)",
+                fontSize: "18px",
+                fontWeight: 400,
+                margin: "16px 0px",
+              })}
+              <ul>
+                <li style={{ listStyleType: "square" }}>
+                  {renderEditableHeading(3, "complianceMonitoringHeading", "Compliance Monitoring Programme", "", {
+                    color: "rgb(29	74	106	)",
+                    // marginBottom: "20px",
+                    fontSize: "18px",
+                    fontWeight: 400,
+                  })}
+                   <ul style={{marginLeft: "25px", marginTop: "20px", marginBottom: "20px",}}>
+                    <li style={{ listStyleType: "square" }}>
+                      <strong>{renderEditableText("codeOfConductLabel", "Code of Conduct:")}</strong>
+                      {renderEditableText("complianceMonitoring.codeOfConduct", values.complianceMonitoring.codeOfConduct, true)}
+                    </li>
+                  </ul>
+                </li>
+                <li style={{ listStyleType: "square" }}>
+                  {renderEditableHeading(3, "auditActivitiesHeading", "Audit and Other Activity", "", {
+                    color: "rgb(29	74	106	)",
+                    // marginBottom: "20px",
+                    fontSize: "18px",
+                    fontWeight: 400,
+                  })}
+                  <ul style={{marginLeft: "25px", marginTop: "20px", marginBottom: "20px",}}>
+                    <li style={{ listStyleType: "square" }}>
+                      <strong>{renderEditableText("internalAuditLabel", "Coordinating Q3 2024 Internal Audit:")}</strong>
+                      {renderEditableText("auditActivities.internalAudit", values.auditActivities.internalAudit, true)}
+                    </li>
+                  </ul>
+                </li>
+                <li style={{ listStyleType: "square" }}>
+                  {renderEditableHeading(3, "issuesHeading", "Issues and Challenges", "", {
+                    color: "rgb(29	74	106	)",
+                    marginBottom: "16px",
+                    fontSize: "18px",
+                    fontWeight: 400,
+                  })}
+                   <ul style={{marginLeft: "25px", marginTop: "20px", marginBottom: "20px",}}>
+                    <li style={{ listStyleType: "square" }}>{renderEditableText("issuesChallenges", values.issuesChallenges, true)}</li>
+                  </ul>
+                </li>
+              </ul>
               {/* Add all other compliance monitoring items similarly */}
 
-              {renderEditableHeading(
-                3,
-                "auditActivitiesHeading",
-                "Audit and Other Activity",
-              )}
-              <p>
-                <strong>
-                  {renderEditableText(
-                    "internalAuditLabel",
-                    "Coordinating Q3 2024 Internal Audit:",
-                  )}
-                </strong>
-                {renderEditableText(
-                  "auditActivities.internalAudit",
-                  values.auditActivities.internalAudit,
-                  true,
-                )}
-              </p>
               {/* Add all other audit activities similarly */}
 
-              {renderEditableHeading(
-                3,
-                "issuesHeading",
-                "Issues and Challenges",
-              )}
-              {renderEditableText(
-                "issuesChallenges",
-                values.issuesChallenges,
-                true,
-              )}
-
-              <div className="page-number">
-                {renderEditableText(
-                  "page3Number",
-                  "InfraCredit Compliance Report – Q3 2",
-                )}
-              </div>
+              <div className="page-number">{renderEditableText("page3Number", "InfraCredit Compliance Report – Q3 2")}</div>
             </div>
 
             {/* Page 4 */}
             <div className="page">
-              {renderEditableHeading(
-                1,
-                "page4Title",
-                "Compliance and Internal Control Quarterly Report",
-              )}
+              {renderEditableHeading(1, "page4Title", "Compliance and Internal Control Quarterly Report", "page2Title", {
+                color: "rgb(15	106	154	)",
+                fontSize: "18px",
+                fontWeight: "bold",
+                borderBottom: "1px solid green",
+                paddingBottom: "8px",
+              })}
 
-              {renderEditableHeading(
-                2,
-                "plannedActivitiesHeading",
-                "Key activities planned for Q4 2024",
-              )}
+              {renderEditableHeading(2, "plannedActivitiesHeading", "Key activities planned for Q4 2024", "", {
+                color: "rgb(30	76	108	)",
+                fontSize: "18px",
+                fontWeight: 400,
+                margin: "16px 0px",
+              })}
               <FieldArray name="plannedActivities">
                 {({ push, remove, form }) => (
                   <ul className="planned-activities">
                     {values.plannedActivities.map((activity, index) => (
                       <li key={index}>
-                        {renderEditableText(
-                          `plannedActivities.${index}`,
-                          activity,
-                          true,
-                        )}
+                        {renderEditableText(`plannedActivities.${index}`, activity, true, "", { fontSize: "16px", fontWeight: 400, lineHeight: "32px", color: "rgb(43,43,43)" })}
                         {isEditable && (
-                          <button
-                            type="button"
-                            onClick={() => remove(index)}
-                            className="remove-activity"
-                          >
+                          <button type="button" onClick={() => remove(index)} className="remove-activity">
                             ×
                           </button>
                         )}
@@ -419,11 +314,7 @@ const ComplianceReport = () => {
                     ))}
                     {isEditable && (
                       <li>
-                        <button
-                          type="button"
-                          onClick={() => push("New activity")}
-                          className="add-activity"
-                        >
+                        <button type="button" onClick={() => push("New activity")} className="add-activity">
                           + Add Activity
                         </button>
                       </li>
@@ -432,27 +323,18 @@ const ComplianceReport = () => {
                 )}
               </FieldArray>
 
-              {renderEditableHeading(
-                2,
-                "recordKeepingHeading",
-                "Record-keeping and retention",
-              )}
+              {renderEditableHeading(2, "recordKeepingHeading", "Record-keeping and retention", "", {
+                fontSize: "18px",
+                fontWeight: "bold",
+              })}
               <FieldArray name="recordKeeping">
                 {({ push, remove, form }) => (
                   <ul className="record-keeping">
                     {values.recordKeeping.map((item, index) => (
-                      <li key={index}>
-                        {renderEditableText(
-                          `recordKeeping.${index}`,
-                          item,
-                          true,
-                        )}
+                      <li style={{ listStyleType: "square", marginLeft: "16px", }} key={index}>
+                        {renderEditableText(`recordKeeping.${index}`, item, true)}
                         {isEditable && (
-                          <button
-                            type="button"
-                            onClick={() => remove(index)}
-                            className="remove-activity"
-                          >
+                          <button type="button" onClick={() => remove(index)} className="remove-activity">
                             ×
                           </button>
                         )}
@@ -460,11 +342,7 @@ const ComplianceReport = () => {
                     ))}
                     {isEditable && (
                       <li>
-                        <button
-                          type="button"
-                          onClick={() => push("New record keeping item")}
-                          className="add-activity"
-                        >
+                        <button type="button" onClick={() => push("New record keeping item")} className="add-activity">
                           + Add Item
                         </button>
                       </li>
@@ -473,24 +351,12 @@ const ComplianceReport = () => {
                 )}
               </FieldArray>
 
-              <div className="page-number">
-                {renderEditableText(
-                  "page4Number",
-                  "InfraCredit Compliance Report – Q3 2024",
-                )}
-              </div>
+              <div className="page-number">{renderEditableText("page4Number", "InfraCredit Compliance Report – Q3 2024")}</div>
             </div>
 
             {/* Footer Page */}
             <div className="page footer-page">
-              <div className="footer-content">
-                {renderEditableText(
-                  "footer",
-                  values.footer,
-                  true,
-                  "footer-text",
-                )}
-              </div>
+              <div className="footer-content">{renderEditableText("footer", values.footer, true, "footer-text")}</div>
             </div>
 
             {isEditable && (
@@ -536,6 +402,13 @@ const ComplianceReport = () => {
           text-align: center;
           width: 100%;
         }
+        .page .page2Title {
+          color: red !important;
+        }
+        .introText {
+          margin-bottom: 20px;
+          font-size: 45px;
+        }
         .header-text {
           font-size: 24px;
           font-weight: bold;
@@ -578,6 +451,39 @@ const ComplianceReport = () => {
         }
         th {
           background-color: #f2f2f2;
+        }
+        .team-table thead tr th {
+          color: white;
+          font-size: 16px;
+          text-align: center;
+          border: none;
+        }
+        .team-table thead tr th:first-child {
+          background-color: rgb(45 104 149);
+        }
+        .team-table thead tr th:last-child {
+          background-color: rgb(44 111 186);
+        }
+        .team-table tbody tr {
+          background-color: rgb(242 242 242);
+        }
+
+        .summary-table {
+          border: 1px solid rgb(112 159 211);
+        }
+
+        .summary-table td,
+        .summary-table th {
+          border: none;
+        }
+
+        .summary-table thead tr th {
+          background-color: rgb(105 154 208) !important;
+          color: white;
+        }
+
+        .summary-table tbody tr {
+          border-bottom: 1px solid rgb(112 159 211);
         }
         .editable-field {
           width: 100%;
@@ -642,6 +548,18 @@ const ComplianceReport = () => {
           border-radius: 4px;
           cursor: pointer;
         }
+        .row {
+          display: flex;
+          gap: 32px;
+          align-items: flex-start;
+        }
+
+        .row div {
+          width: 5px;
+          height: 5px;
+          background-color: rgb(45 104 149);
+        }
+
         .remove-activity {
           background: #f44336;
           color: white;

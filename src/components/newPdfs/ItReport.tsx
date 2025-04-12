@@ -7,8 +7,7 @@ const ITReport = () => {
 
   const initialValues = {
     header: "InfraCredit\nSecuring Infrastructure Finance",
-    title:
-      "Management Report\nINFORMATION TECHNOLOGY (IT)\nFor the Period Ended 30 September 2024",
+    title: "Management Report\nINFORMATION TECHNOLOGY (IT)\nFor the Period Ended 30 September 2024",
     keyActivities: [
       {
         category: "Cyber Security Management",
@@ -65,26 +64,20 @@ const ITReport = () => {
     footer: "InfraCredit Q3 2024 IT Report",
   };
 
-  const handleSubmit = (values) => {
+
+
+  const handleSubmit = (values: any) => {
     console.log("Submitted values:", values);
     setIsEditable(false);
   };
-  const [createTemplate, { data: createTemplateData }]: any =
-    useCreateTemplateMutation();
-  const renderEditableText = (
-    fieldName,
-    value,
-    isTextArea = false,
-    className = "",
-  ) => {
+  const [createTemplate, { data: createTemplateData }]: any = useCreateTemplateMutation();
+  const renderEditableText = (fieldName: string, value: any, isTextArea = false, className = "") => {
     if (isEditable) {
       return (
         <Field
           as={isTextArea ? "textarea" : "input"}
           name={fieldName}
-          className={`editable-field ${
-            isTextArea ? "textarea" : ""
-          } ${className}`}
+          className={`editable-field ${isTextArea ? "textarea" : ""} ${className}`}
           style={{
             width: "100%",
             boxSizing: "border-box",
@@ -99,35 +92,25 @@ const ITReport = () => {
       );
     }
     return (
-      <div
-        className={`readonly-field ${className}`}
-        style={{ whiteSpace: "pre-wrap" }}
-      >
+      <div className={`readonly-field ${className}`} style={{ whiteSpace: "pre-wrap" }}>
         {value}
       </div>
     );
   };
 
-  const renderEditableHeading = (level, fieldName, value) => {
-    const HeadingTag = `h${level}`;
-    const headingStyles = {
+  const renderEditableHeading = (level: number, fieldName: string, value: any) => {
+    const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+    const headingStyles: Record<number, React.CSSProperties> = {
       1: {
         fontSize: "20px",
         borderBottom: "1px solid #ddd",
         paddingBottom: "10px",
         marginTop: "0",
       },
-      2: { fontSize: "18px", marginTop: "30px" },
-      3: { fontSize: "16px", marginTop: "20px" },
+      2: { fontSize: "18px" },
     };
 
-    return (
-      <HeadingTag
-        style={{ ...headingStyles[level], width: "100%", marginBottom: "10px" }}
-      >
-        {renderEditableText(fieldName, value, false, "heading")}
-      </HeadingTag>
-    );
+    return <HeadingTag style={{ ...headingStyles[level], width: "100%", marginBottom: "10px" }}>{renderEditableText(fieldName, value, false, "heading")}</HeadingTag>;
   };
 
   return (
@@ -138,8 +121,7 @@ const ITReport = () => {
         margin: "0 auto",
         padding: "20px",
         backgroundColor: "#f9f9f9",
-      }}
-    >
+      }}>
       <button
         onClick={() => setIsEditable(!isEditable)}
         style={{
@@ -151,16 +133,11 @@ const ITReport = () => {
           cursor: "pointer",
           marginBottom: "20px",
           fontSize: "16px",
-        }}
-      >
+        }}>
         {isEditable ? "Cancel Editing" : "Edit Report"}
       </button>
 
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        enableReinitialize
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} enableReinitialize>
         {({ values }) => (
           <Form>
             {/* Cover Page */}
@@ -177,8 +154,7 @@ const ITReport = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
-              }}
-            >
+              }}>
               <div
                 style={{
                   whiteSpace: "pre-wrap",
@@ -187,8 +163,7 @@ const ITReport = () => {
                   fontSize: "24px",
                   fontWeight: "bold",
                   marginBottom: "20px",
-                }}
-              >
+                }}>
                 {renderEditableText("header", values.header, true)}
               </div>
               <div
@@ -197,8 +172,7 @@ const ITReport = () => {
                   textAlign: "center",
                   width: "100%",
                   fontSize: "18px",
-                }}
-              >
+                }}>
                 {renderEditableText("title", values.title, true)}
               </div>
             </div>
@@ -212,54 +186,38 @@ const ITReport = () => {
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                 position: "relative",
                 minHeight: "1122px",
-              }}
-            >
-              {renderEditableHeading(
-                1,
-                "reportTitle",
-                "Information Technology Report",
-              )}
-
-              {renderEditableHeading(
-                2,
-                "activitiesHeading",
-                "Key Activities and Achievements for 1 July 2024 through 30 September 2024",
-              )}
+              }}>
+              {renderEditableHeading(1, "reportTitle", "Information Technology Report")}
+              <div style={{ color: "rgb(39	72	102	)", fontWeight: 500 }}>
+                {renderEditableHeading(2, "activitiesHeading", "Key Activities and Achievements for 1 July 2024 through 30 September 2024")}
+              </div>
 
               <FieldArray name="keyActivities">
                 {() =>
                   values.keyActivities.map((activity, activityIndex) => (
-                    <div key={activityIndex} style={{ marginBottom: "20px" }}>
-                      {renderEditableHeading(
-                        3,
-                        `keyActivities.${activityIndex}.category`,
-                        activity.category,
-                      )}
-                      <FieldArray name={`keyActivities.${activityIndex}.items`}>
-                        {() => (
-                          <ul
-                            style={{ paddingLeft: "20px", marginTop: "10px" }}
-                          >
-                            {activity.items.map((item, itemIndex) => (
-                              <li
-                                key={itemIndex}
-                                style={{
-                                  marginBottom: "10px",
-                                  position: "relative",
-                                  listStyleType: "disc",
-                                }}
-                              >
-                                {renderEditableText(
-                                  `keyActivities.${activityIndex}.items.${itemIndex}`,
-                                  item,
-                                  true,
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </FieldArray>
-                    </div>
+                    <ul key={activityIndex}>
+                      <li style={{ marginBottom: "20px", fontWeight: 700, color: "black" }}>
+                        {renderEditableHeading(3, `keyActivities.${activityIndex}.category`, activity.category)}
+                        <FieldArray name={`keyActivities.${activityIndex}.items`}>
+                          {() => (
+                            <ul style={{ paddingLeft: "20px", marginTop: "10px" }}>
+                              {activity.items.map((item, itemIndex) => (
+                                <li
+                                  key={itemIndex}
+                                  style={{
+                                    marginBottom: "10px",
+                                    position: "relative",
+                                    listStyleType: "circle",
+                                    fontWeight: 400,
+                                  }}>
+                                  {renderEditableText(`keyActivities.${activityIndex}.items.${itemIndex}`, item, true)}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </FieldArray>
+                      </li>
+                    </ul>
                   ))
                 }
               </FieldArray>
@@ -271,8 +229,7 @@ const ITReport = () => {
                   right: "40px",
                   fontSize: "12px",
                   color: "#666",
-                }}
-              >
+                }}>
                 {renderEditableText("page2Number", `${values.footer} | 2`)}
               </div>
             </div>
@@ -286,56 +243,38 @@ const ITReport = () => {
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                 position: "relative",
                 minHeight: "1122px",
-              }}
-            >
-              {renderEditableHeading(
-                1,
-                "reportTitlePage3",
-                "Information Technology Report",
-              )}
-
-              {renderEditableHeading(
-                2,
-                "continuedActivitiesHeading",
-                "Key Activities and Achievements for 1 July 2024 through 30 September 2024 (cont'd)",
-              )}
+              }}>
+              {renderEditableHeading(1, "reportTitlePage3", "Information Technology Report")}
+              <div style={{ color: "rgb(39	72	102	)", fontWeight: 500 }}>
+                {renderEditableHeading(2, "continuedActivitiesHeading", "Key Activities and Achievements for 1 July 2024 through 30 September 2024 (cont'd)")}
+              </div>
 
               <FieldArray name="continuedActivities">
                 {() =>
                   values.continuedActivities.map((activity, activityIndex) => (
-                    <div key={activityIndex} style={{ marginBottom: "20px" }}>
-                      {renderEditableHeading(
-                        3,
-                        `continuedActivities.${activityIndex}.category`,
-                        activity.category,
-                      )}
-                      <FieldArray
-                        name={`continuedActivities.${activityIndex}.items`}
-                      >
-                        {() => (
-                          <ul
-                            style={{ paddingLeft: "20px", marginTop: "10px" }}
-                          >
-                            {activity.items.map((item, itemIndex) => (
-                              <li
-                                key={itemIndex}
-                                style={{
-                                  marginBottom: "10px",
-                                  position: "relative",
-                                  listStyleType: "disc",
-                                }}
-                              >
-                                {renderEditableText(
-                                  `continuedActivities.${activityIndex}.items.${itemIndex}`,
-                                  item,
-                                  true,
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </FieldArray>
-                    </div>
+                    <ul key={activityIndex}>
+                      <li style={{ marginBottom: "20px", fontWeight: 700, color: "black" }}>
+                        {renderEditableHeading(3, `continuedActivities.${activityIndex}.category`, activity.category)}
+                        <FieldArray name={`continuedActivities.${activityIndex}.items`}>
+                          {() => (
+                            <ul style={{ paddingLeft: "20px", marginTop: "10px" }}>
+                              {activity.items.map((item, itemIndex) => (
+                                <li
+                                  key={itemIndex}
+                                  style={{
+                                    marginBottom: "10px",
+                                    position: "relative",
+                                    listStyleType: "circle",
+                                    fontWeight: 400,
+                                  }}>
+                                  {renderEditableText(`continuedActivities.${activityIndex}.items.${itemIndex}`, item, true)}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </FieldArray>
+                      </li>
+                    </ul>
                   ))
                 }
               </FieldArray>
@@ -347,8 +286,7 @@ const ITReport = () => {
                   right: "40px",
                   fontSize: "12px",
                   color: "#666",
-                }}
-              >
+                }}>
                 {renderEditableText("page3Number", `${values.footer} | 3`)}
               </div>
             </div>
@@ -362,83 +300,77 @@ const ITReport = () => {
                 boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                 position: "relative",
                 minHeight: "1122px",
-              }}
-            >
-              {renderEditableHeading(
-                1,
-                "reportTitlePage4",
-                "Information Technology Report",
-              )}
-
-              {renderEditableHeading(
-                2,
-                "plannedActivitiesHeading",
-                "Key Activities Planned for October 2024 – December 2024",
-              )}
-
-              <FieldArray name="plannedActivities">
-                {({ push, remove }) => (
-                  <ul style={{ paddingLeft: "20px", marginTop: "10px" }}>
-                    {values.plannedActivities.map((item, index) => (
-                      <li
-                        key={index}
-                        style={{
-                          marginBottom: "10px",
-                          position: "relative",
-                          listStyleType: "disc",
-                        }}
-                      >
-                        {renderEditableText(
-                          `plannedActivities.${index}`,
-                          item,
-                          true,
-                        )}
-                        {isEditable && (
-                          <button
-                            type="button"
-                            onClick={() => remove(index)}
+              }}>
+              {renderEditableHeading(1, "reportTitlePage4", "Information Technology Report")}
+              <div style={{ color: "rgb(39	72	102	)", fontWeight: 500 }}>
+                {renderEditableHeading(2, "plannedActivitiesHeading", "Key Activities Planned for October 2024 – December 2024")}
+              </div>
+              <ul>
+                <li>
+                  <div style={{ color: "black", fontWeight: 700, textDecoration: "underline", fontSize: "20px" }}>
+                  {renderEditableHeading(3, "title", "Business Applications & Cybersecurity Operation Management")}
+                  </div>
+                  <FieldArray name="plannedActivities">
+                    {({ push, remove }) => (
+                      <ul style={{ paddingLeft: "20px", marginTop: "10px" }}>
+                        {values.plannedActivities.map((item, index) => (
+                          <li
+                            key={index}
                             style={{
-                              background: "#f44336",
-                              color: "white",
-                              border: "none",
-                              borderRadius: "50%",
-                              width: "20px",
-                              height: "20px",
-                              cursor: "pointer",
-                              marginLeft: "10px",
-                              position: "absolute",
-                              right: "-30px",
-                              top: "50%",
-                              transform: "translateY(-50%)",
-                            }}
-                          >
-                            ×
-                          </button>
+                              marginBottom: "10px",
+                              position: "relative",
+                              listStyleType: "circle",
+                              fontWeight: 400,
+                              textDecoration: "none",
+                              fontSize: "16px",
+                            }}>
+                            {renderEditableText(`plannedActivities.${index}`, item, true)}
+                            {isEditable && (
+                              <button
+                                type="button"
+                                onClick={() => remove(index)}
+                                style={{
+                                  background: "#f44336",
+                                  color: "white",
+                                  border: "none",
+                                  borderRadius: "50%",
+                                  width: "20px",
+                                  height: "20px",
+                                  cursor: "pointer",
+                                  marginLeft: "10px",
+                                  position: "absolute",
+                                  right: "-30px",
+                                  top: "50%",
+                                  transform: "translateY(-50%)",
+                                }}>
+                                ×
+                              </button>
+                            )}
+                          </li>
+                        ))}
+                        {isEditable && (
+                          <li>
+                            <button
+                              type="button"
+                              onClick={() => push("New planned activity")}
+                              style={{
+                                background: "#4CAF50",
+                                color: "white",
+                                border: "none",
+                                padding: "5px 10px",
+                                borderRadius: "4px",
+                                cursor: "pointer",
+                                marginTop: "10px",
+                              }}>
+                              + Add Activity
+                            </button>
+                          </li>
                         )}
-                      </li>
-                    ))}
-                    {isEditable && (
-                      <li>
-                        <button
-                          type="button"
-                          onClick={() => push("New planned activity")}
-                          style={{
-                            background: "#4CAF50",
-                            color: "white",
-                            border: "none",
-                            padding: "5px 10px",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                            marginTop: "10px",
-                          }}
-                        >
-                          + Add Activity
-                        </button>
-                      </li>
+                      </ul>
                     )}
-                  </ul>
-                )}
-              </FieldArray>
+                  </FieldArray>
+                </li>
+              </ul>
 
               <div
                 style={{
@@ -447,8 +379,7 @@ const ITReport = () => {
                   right: "40px",
                   fontSize: "12px",
                   color: "#666",
-                }}
-              >
+                }}>
                 {renderEditableText("page4Number", `${values.footer} | 4`)}
               </div>
             </div>
@@ -465,8 +396,7 @@ const ITReport = () => {
                     borderRadius: "4px",
                     cursor: "pointer",
                     fontSize: "16px",
-                  }}
-                >
+                  }}>
                   Save Changes
                 </button>
               </div>

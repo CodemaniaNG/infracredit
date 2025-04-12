@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/no-unescaped-entities */
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import {
   BarChart,
@@ -13,6 +14,7 @@ import {
 } from "recharts";
 
 const PortfolioReport = () => {
+  const [isEditable, setIsEditable] = useState(false);
   const formik = useFormik({
     initialValues: {
       title: "InfraCredit",
@@ -138,6 +140,125 @@ const PortfolioReport = () => {
     },
   });
 
+  console.log(JSON.stringify( {
+      title: "InfraCredit",
+      subtitle: "Securing Infrastructure Finance",
+      reportTitle: "PORTFOLIO REPORT",
+      year: "2024",
+      issueDate: "30TH SEPTEMBER 2024",
+
+      portfolioSummary: {
+        counterparties: 19,
+        sectors: 9,
+        exposure: "NGN 209.08",
+        sectorDistribution: [
+          { sector: "Off-grid power", amount: "N18.46", percentage: "8.8%" },
+          { sector: "On-grid power", amount: "N23.86", percentage: "11.4%" },
+          { sector: "Transportation", amount: "N34.00", percentage: "16.3%" },
+          { sector: "Logistics", amount: "N53.00", percentage: "25.3%" },
+          { sector: "Gas-to-Power", amount: "N16.09", percentage: "7.7%" },
+          {
+            sector: "Gas-to-Clean Cooking",
+            amount: "N15.00",
+            percentage: "7.2%",
+          },
+          { sector: "Manufacturing", amount: "N19.58", percentage: "9.4%" },
+          { sector: "ICT/Telecoms", amount: "N10.59", percentage: "5.1%" },
+          { sector: "Renewable Energy", amount: "N3.37", percentage: "1.6%" },
+          { sector: "Green Housing", amount: "N5.13", percentage: "2.5%" },
+          { sector: "Healthcare", amount: "N10.00", percentage: "4.8%" },
+        ],
+        ratingDistribution: [
+          { rating: "A-", amount: "N80.44", percentage: "38.5%" },
+          { rating: "BBB+", amount: "N32.57", percentage: "15.6%" },
+          { rating: "BBB", amount: "N64.01", percentage: "30.6%" },
+          { rating: "BBB-", amount: "N10.59", percentage: "5.1%" },
+          { rating: "BB+", amount: "N21.47", percentage: "10.3%" },
+        ],
+        portfolioAtGlance: {
+          aggregateSize: "NGN 209.08bn",
+          weightedAverageTenor: "8.54YEARS (102.50Months)",
+          averageRating: "BBB",
+          performance: "Performing",
+          capitalization: "$ 196m",
+          grossLeverage: "0.69x",
+          reguarantees: "NGN 6514bn",
+          netLeverage: "0.45x",
+          targetLeverage: "1.4x – 2.5x",
+          grossCapitalLeverage: "794x",
+          netCapitalLeverage: "5.21x",
+          netLeverageExcluding: "2.37x",
+          stressAssets: "0.07x",
+          watchlistAssets: "0.18x",
+        },
+      },
+
+      keyPortfolioIndices: [
+        {
+          name: "Viathan Group (Viathan)",
+          principal: "6.72",
+          maturity: "Dec-27",
+          currentRating: "BB+",
+          ratingAgency: "Internal",
+          reserveRequired: "1.23",
+          reserveActual: "0.00*",
+          securityCoverageRequired: "1.25",
+          securityCoverageActual: "2.91",
+          seniorDebtCovenant: "2.5",
+          seniorDebtActual: "2.1",
+          dscrCovenant: "1.2",
+          dscrActual: "1.2",
+          debtToEquityCovenant: "NA",
+          debtToEquityActual: "NA",
+        },
+        // More counterparties would be added here
+      ],
+
+      capitalAdequacy: {
+        summary: [
+          "InfraCredit total guarantee portfolio stand at NGN 209.08billion",
+          "All previous coupons have been funded via operating cash flows.",
+          "Macros instability have continued to drive up costs and despite the essentiality of services driving revenues and resilience, consumer purchasing power continues to shrink.",
+          "However, for the more stressed assets (like TSL) we may see a potential call on the guarantee in the next 12 months unless they are able to raise some equity to plug the working capital gap.",
+          "Outlook is considered stable",
+        ],
+        keyUpdates: [
+          {
+            company: "Viathan Funding Plc (Viathan)",
+            updates: [
+              "Total receivables expected from Lagos State Government and Qgun State Government stand at a combined NGN 3.4bn",
+              "3 Engines IPL1 GG4, IPL1 GG3 and IPL2 GG1, have been partially overhauled and back in operation.",
+              "The board credit committee has approved an additional NGN 15bn limit to provide a guarantee to the Bank of Industry (BOI) for new facilities to Viathan.",
+            ],
+          },
+          // More company updates would be added here
+        ],
+      },
+
+      portfolioOutlook: {
+        companies: [
+          {
+            name: "Viathan Funding Plc",
+            rating: "BB+",
+            exposure: "6,719,727,087",
+            outlook: [
+              "Watchlist (Stressed)",
+              "Watchlist (Stressed)",
+              "Watchlist (Stressed)",
+              "Watchlist (Stressed)",
+              "Watchlist (Stressed)",
+            ],
+          },
+          // More companies would be added here
+        ],
+        pressurePoints: [
+          "Viathan: The refinance of the Bond is key to sustainability.",
+          "VI Power: The close out of the new NGN 10bn bridge is key to operationalizing the LC.",
+          "TSL: The payment account is funded for the coupon payment falling due October 6th 2024.",
+        ],
+      },
+    }))
+
   // Data for charts
   const sectorData = formik.values.portfolioSummary.sectorDistribution.map(
     (item) => ({
@@ -170,8 +291,18 @@ const PortfolioReport = () => {
         maxWidth: "1200px",
         margin: "0 auto",
         padding: "20px",
+        background: "#f9f9f9",
       }}
     >
+      <button
+        onClick={() => setIsEditable(!isEditable)}
+        className="edit-toggle"
+         style={{
+          backgroundColor: isEditable ? "#dc3545" : "#28a745",
+        }}
+      >
+        {isEditable ? "Cancel Editing" : "Edit Report"}
+      </button>
       <form onSubmit={formik.handleSubmit}>
         {/* Header Section */}
         <header style={{ textAlign: "center", marginBottom: "30px" }}>
@@ -1109,6 +1240,172 @@ const PortfolioReport = () => {
           </button>
         </div>
       </form>
+       <style jsx>{`
+        .compliance-report {
+          font-family: Arial, sans-serif;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          background: #f9f9f9;
+        }
+        .page {
+          margin-bottom: 40px;
+          padding: 40px;
+          background: white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          position: relative;
+          min-height: 1122px;
+        }
+        .cover-page,
+        .footer-page {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          height: 1122px;
+        }
+        .header-text,
+        .title-text,
+        .footer-text {
+          white-space: pre-wrap;
+          text-align: center;
+          width: 100%;
+        }
+        .header-text {
+          font-size: 24px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+        .title-text {
+          font-size: 18px;
+        }
+        .footer-text {
+          font-size: 14px;
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+          margin-top: 1em;
+          margin-bottom: 0.5em;
+        }
+        h1 {
+          font-size: 20px;
+          border-bottom: 1px solid #ddd;
+          padding-bottom: 10px;
+        }
+        .heading {
+          font-weight: bold;
+          margin: 1em 0 0.5em 0;
+          display: block;
+          width: 100%;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 15px 0;
+        }
+        th,
+        td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
+        .editable-field {
+          width: 100%;
+          padding: 8px;
+          margin: 5px 0;
+          border: 1px solid #ddd;
+          font-family: inherit;
+          font-size: inherit;
+        }
+        .editable-field.textarea {
+          min-height: 100px;
+        }
+        .editable-field.heading {
+          font-weight: bold;
+          font-size: 1.17em; /* h3 size */
+          border: none;
+          padding: 0;
+          margin: 1em 0 0.5em 0;
+        }
+        .readonly-field {
+          white-space: pre-wrap;
+          padding: 5px 0;
+        }
+        .edit-toggle {
+          background: #4caf50;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          margin-bottom: 20px;
+          font-size: 16px;
+        }
+        .save-button {
+          background: #2196f3;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+        .form-actions {
+          text-align: center;
+          margin-top: 20px;
+        }
+        .planned-activities,
+        .record-keeping {
+          list-style-type: none;
+          padding-left: 0;
+        }
+        .planned-activities li,
+        .record-keeping li {
+          margin-bottom: 10px;
+          position: relative;
+        }
+        .add-activity {
+          background: #4caf50;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        .remove-activity {
+          background: #f44336;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+          margin-left: 10px;
+          position: absolute;
+          right: -30px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        .page-number {
+          position: absolute;
+          bottom: 20px;
+          right: 40px;
+          font-size: 12px;
+          color: #666;
+        }
+        p {
+          margin: 0.5em 0;
+        }
+        strong {
+          font-weight: bold;
+        }
+      `}</style>
     </div>
   );
 };
